@@ -1,0 +1,19 @@
+{
+  "name": "FIXTatnt",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "ibm",
+  "contributors": [],
+  "dependencies": {},
+  "devDependencies": {
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-express": "^1.4.1",
+    "grunt-open": "^0.2.3"
+  }
+}
