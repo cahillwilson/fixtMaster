@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-    .controller('dashboardController', function (constantLoader) {
+    .controller('dashboardController', function (constantLoader, log) {
 
     var vm =  this;
     vm.searchList = constantLoader.defaultObjects.SEARCH_LIST;
@@ -11,7 +11,7 @@ angular.module('fixtApp')
     }
     
     vm.onSearchItemClick = function(item){
-        console.log(item);
+        log.info(item);
     };
     
     initialized();
