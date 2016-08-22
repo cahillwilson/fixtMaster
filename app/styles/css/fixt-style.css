@@ -126,7 +126,6 @@ input#searchIcon{
 
 .search-menu{
     width:165px; 
-    height:200px; 
     margin-top: 3px;
     border:solid 0px red; 
     position:absolute;
@@ -140,12 +139,21 @@ input#searchIcon{
     -webkit-box-shadow: 0px 0px 10px #888888;
     -moz-box-shadow: 0px 0px 10px #888888;
     box-shadow: 0px 0px 10px #888888;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    float: left;
+    padding: 5px 0;
+    margin: 2px 0 0;
 }
-.show-hide-search{
-    transition: all linear 0.3s;
+.search-menu li{
+    padding: 3px 2px 3px 10px;
+    height: 26px;
+    cursor: pointer;
 }
-.show-hide-search.ng-hide {
-    height: 0;
+.search-menu li:hover{
+    background-color:gainsboro;
 }
 
 /************test*********************/

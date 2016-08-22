@@ -1,0 +1,12 @@
+{
+    "elements": {
+        "fixt-searchbox": {
+            "attributes": {
+                "selection-changed": {},
+                "label": {},
+                "items": {}
+            }
+        }
+    },
+    "attributes": {}
+}

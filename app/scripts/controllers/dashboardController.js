@@ -1,17 +1,17 @@
 'use strict';
 
 angular.module('fixtApp')
-    .controller('dashboardController', function () {
+    .controller('dashboardController', function (constantLoader) {
 
     var vm =  this;
-    vm.isSearchMenuShow = false;
+    vm.searchList = constantLoader.defaultObjects.SEARCH_LIST;
    
     function initialized() {
         
     }
     
-    vm.onSearchButtonClick = function(){
-        vm.isSearchMenuShow = !vm.isSearchMenuShow;
+    vm.onSearchItemClick = function(item){
+        console.log(item);
     };
     
     initialized();

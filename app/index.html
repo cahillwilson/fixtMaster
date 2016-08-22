@@ -20,25 +20,44 @@
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <!-- bower component - end -->
         
         <!-- application component - start -->
         <script src="scripts/app.js"></script>
+        
+        <!-- configuration classes -->
         <script src="scripts/services/config/appconfig.js"></script>
         <script src="scripts/services/config/apprun.js"></script>
         <script src="scripts/services/config/routeconfig.js"></script>
+        
+        <!-- constant classes -->
         <script src="scripts/services/constant/defaultValues.js"></script>
         <script src="scripts/services/constant/relativeUrls.js"></script>
+        <script src="scripts/services/constant/defaultObjects.js"></script>
+        
+        <!-- data model classes -->
         <script src="scripts/services/dataModel/dataAccess.js"></script>
         <script src="scripts/services/dataModel/utility/commonUtility.js"></script>
         <script src="scripts/services/dataModel/business/dashboardBusiness.js"></script>
         <script src="scripts/services/dataModel/data/dashboardData.js"></script>
+        
+        <!-- loader classes -->
         <script src="scripts/services/loader/constantLoader.js"></script>
         <script src="scripts/services/loader/serviceLoader.js"></script>
+        
+        <!-- storage classes -->
         <script src="scripts/services/storage/localStorage.js"></script>
         <script src="scripts/services/storage/sessionStorage.js"></script>
-        <script src="scripts/controllers/dashboardController.js"></script>
         
+        <!-- directive classes -->
+        <script src="scripts/directives/fixtSearchbox.js"></script>
+        
+        <!-- filter classes -->
+        
+        <!-- controller classes -->
+        <script src="scripts/controllers/dashboardController.js"></script>
         <!-- application component - end -->
     </head>
     <body data-ng-app="fixtApp">
@@ -66,20 +85,8 @@
         
         <div id="container">
             <div class="searchTab" ng-controller="dashboardController as vm">
-                <div class="col-xs-6 col-xs">
-		    <div class="input-group">
-                        <div class="input-group-btn search-panel">
-                            <button type="button" class="btn btn-default dropdown-toggle" ng-click="vm.onSearchButtonClick()">
-                                <span class="elementfx">Type/ Select  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span> 
-                                <span><img src="styles/images/dropdwn-arrow.png" width="18" height="10" alt=""/></span>
-                            </button>
-                            <div class="search-menu show-hide-search" ng-show="vm.isSearchMenuShow">
-                                hgfhgf
-                            </div>
-                        </div>
-                        <input type="text" id="searchIcon" class="form-control" name="x" placeholder="Search ">
-                    </div>
-                </div>
+                <fixt-searchbox label="Type/ Select" items="vm.searchList"
+                    selection-changed="vm.onSearchItemClick(item)"></fixt-searchbox>
             </div>
             <div ng-view></div>
         </div>
