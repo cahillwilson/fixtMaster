@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('fixtApp')
-    .service('serviceLoader', function ($http) {
+    .service('serviceLoader', function ($http, $log) {
         
         var serviceLoader = {};
         
         var _http = null;
+        var _log = null;
         
         function setProperty(instance, service){
             if(instance === null){
@@ -18,6 +19,12 @@ angular.module('fixtApp')
         Object.defineProperty(serviceLoader, "http", {
             get: function() {
                 return setProperty(_http, $http);
+            }
+        });
+        
+        Object.defineProperty(serviceLoader, "log", {
+            get: function() {
+                return setProperty(_log, $log);
             }
         });
         
