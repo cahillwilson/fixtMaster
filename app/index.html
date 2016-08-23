@@ -62,6 +62,7 @@
         
         <!-- controller classes -->
         <script src="scripts/controllers/dashboardController.js"></script>
+        <script src="scripts/controllers/cardController.js"></script>
         <!-- application component - end -->
     </head>
     <body data-ng-app="fixtApp">
@@ -94,5 +95,7 @@
             </div>
             <div ng-view></div>
         </div>
+        <!--adding controller for Card-->
+        <div class="carddemoBasicUsage" ng-controller="CardCtrl" ng-cloak=""></div>
     </body>
 </html>
