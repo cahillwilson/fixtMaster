@@ -62,12 +62,13 @@
         
         <!-- controller classes -->
         <script src="scripts/controllers/dashboardController.js"></script>
+        <script src="scripts/controllers/cardController.js"></script>
         <!-- application component - end -->
     </head>
     <body data-ng-app="fixtApp">
         <header>
             <div class="colTop-1-1">
-                <a href="home.html" style="text-decoration : none; color : #ffffff;">FIXT </a>
+                <a href="#" ng-link="['/']" style="text-decoration : none; color : #ffffff;">FIXT </a>
             </div>
             <div class="colTop-2-1">
                 <div class="colTop-2-2">
@@ -94,5 +95,7 @@
             </div>
             <div ng-view></div>
         </div>
+        <!--adding controller for Card-->
+        <div class="carddemoBasicUsage" ng-controller="CardCtrl" ng-cloak=""></div>
     </body>
 </html>
