@@ -27,10 +27,6 @@ angular.module('fixtApp')
                                     '</ul>' +
                                 '</div>' +
                                 '<input type="text" id="searchIcon" class="form-control" name="x" placeholder="Search ">' +
-//                                '<input type="text" class="form-control"id="searchIcon" placeholder="Search" />' +
-                                '<span class="input-group-btn">' + 
-                                    '<button class="btnSerch" type="button"></button>' + 
-                                '</span>' +
                             '</div>' +
                         '</div>';
         
