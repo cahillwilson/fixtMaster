@@ -1,0 +1,48 @@
+
+{
+"nodeDetails": [
+{
+"nodeType": "AS",
+"nodeID": "8310001226402",
+"nodeLabel": "CUSTOMBILLING",
+"hierarchyPointID": "164241159",
+"startDate": "2008092411:30:08",
+"endDate": "",
+"addressDetails": [
+{
+"addressType": null,
+"addressLine1": null,
+"addressLine2": null,
+"addressLine3": null,
+"addressLine4": null,
+"addressName": null,
+"city": null,
+"floor": null,
+"state": null,
+"province": null,
+"zipCode": null,
+"zipCodeSuffix": null,
+"foreignPostalCode": null,
+"countryCode": null,
+"geoCode": null
+}
+]
+}
+],
+"transactionDetails": {
+"transactionID": "1234",
+"statusCode": "0",
+"statusMessage": "Success",
+"sourceSystem": null,
+"startRow": "1",
+"endRow": "400",
+"totalRow": null,
+"segment": null,
+"rowCount": "1",
+"timeZone": "EST"
+},
+"editableFields": [
+"startDate",
+"endDate"
+]
+} 
