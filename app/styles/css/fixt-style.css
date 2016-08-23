@@ -177,13 +177,22 @@ input#searchIcon{
     color:rgba(51, 51, 51, 1);
 }
 
+.btnSerch{ 
+    width:28px; 
+    height:30px; 
+    float:left; 
+    border: none; 
+    background-image:url(../images/icon_serachB.jpg); 
+    background-repeat:no-repeat;position:absolute;
+    transition: .5s ease;
+    top: 10%;
+    left: -480%; 
+    z-index:9999
+}
 /* Card Styles*/
 
 .carddemoBasicUsage .card-media {
-  background-color: #999999; }
+    background-color: #999999; 
+}
 
 
-/*
-Copyright 2016 Google Inc. All Rights Reserved. 
-Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
-*/
