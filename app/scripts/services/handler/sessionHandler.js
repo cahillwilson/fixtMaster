@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .factory('sessionHandler', function (serviceLoader, base64, commonUtility) {
+  .factory('sessionHandler', function (serviceLoader, base64Handler, commonUtility) {
     
     var sessionHandler = {};
     
@@ -9,7 +9,7 @@ angular.module('fixtApp')
         if(!commonUtility.is3DValidKey(isEncripted)){
             isEncripted = true;
         }
-        value = isEncripted ? base64.encode(value) : value;
+        value = isEncripted ? base64Handler.encode(value) : value;
         serviceLoader.rootScope[propertyName] = value;
     };
     
@@ -18,7 +18,7 @@ angular.module('fixtApp')
             isEncripted = true;
         }
         if(isEncripted){
-            return base64.decode(serviceLoader.rootScope[propertyName]);
+            return base64Handler.decode(serviceLoader.rootScope[propertyName]);
         }
         return serviceLoader.rootScope[propertyName];
     };
