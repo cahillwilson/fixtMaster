@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .factory('base64', function (constantLoader) {
+  .factory('base64Handler', function (constantLoader) {
     
     var base64 = {};
     var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
