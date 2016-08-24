@@ -6,8 +6,8 @@ angular.module('routerConfigModule', ['ngRoute'])
         .when('/', {
            templateUrl: 'views/dashBoard.html'
         })
-        .when('/sandbox?:id',{
-           templateUrl: 'views/sandbox-demo.html'
+        .when('/sandbox',{
+           templateUrl: 'views/sandboxList.html'
         })
         .otherwise({
             redirectTo: '/'

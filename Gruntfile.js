@@ -29,7 +29,7 @@ module.exports = function (grunt) {
 
         open: {
             all: {
-                path: 'http://localhost:3031/index.html'
+                path: 'http://localhost:3031'
             }
         }
     });

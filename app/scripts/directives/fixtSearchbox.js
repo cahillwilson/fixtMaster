@@ -6,11 +6,12 @@ angular.module('fixtApp')
 	restricted: "E",
 	replace: true,
         scope: {
-            label: "@",
+            label: "=",
             items: "=",
             labelBinding: "@",
             modelBinding: "@",
-            selectionChanged: "&"
+            selectionChanged: "&",
+            searchClick: "&"
         },
         template: function(element, attrs){
             
@@ -18,7 +19,7 @@ angular.module('fixtApp')
                             '<div class="input-group">' +
                                 '<div class="input-group-btn search-panel">' +
                                     '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
-                                        '<span class="elementfx">{{label}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>' +
+                                        '<div class="elementfx">{{label}}   </div>' +
                                         '<span>' +
                                             '<img src="styles/images/dropdwn-arrow.png" width="18" height="10" alt=""/>' +
                                         '</span>' +
@@ -30,7 +31,7 @@ angular.module('fixtApp')
                                 '</div>' +
                                 '<input type="text" id="searchIcon" class="form-control" name="x" placeholder="Search ">' +
                                 '<span class="input-group-btn">' + 
-                                    '<button class="btnSerch" type="button"></button>' + 
+                                    '<button class="btnSerch" ng-click="onSearchClick()" type="button"></button>' + 
                                 '</span>' +
                             '</div>' +
                         '</div>';
@@ -42,6 +43,10 @@ angular.module('fixtApp')
                 scope.selectionChanged({
                     item: item
                 });
+            };
+            
+            scope.onSearchClick = function(){
+                scope.searchClick();
             };
         }
     };

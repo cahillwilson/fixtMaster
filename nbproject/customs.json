@@ -4,6 +4,7 @@
             "attributes": {
                 "label-binding": {},
                 "model-binding": {},
+                "search-click": {},
                 "selection-changed": {},
                 "label": {},
                 "items": {}

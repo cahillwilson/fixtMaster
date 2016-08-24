@@ -3,5 +3,6 @@
 angular.module('fixtApp')
     .constant('defaultValues', {
         BASE_URL: "",
-        BLANK_STRING: ""
+        BLANK_STRING: "",
+        SEARCH_TYPE_INIT_VALUE: "Type/ Select"
     });

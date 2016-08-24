@@ -138,6 +138,9 @@ input#searchIcon{
     font-family:"Omnes_ATTW02Medium"; 
     font-size:16px; 
     color:rgba(51, 51, 51, 1);
+    width: 160px;
+    text-align: left;
+    display: inline-block;
 }
 
 /***********sandbox style*******************************/
@@ -388,6 +391,7 @@ input#searchIcon{
     height:25px; 
     float: right; 
     padding-top:7px;
+    cursor: pointer;
 }
 .elementBorder{ 
     width:3px; 
