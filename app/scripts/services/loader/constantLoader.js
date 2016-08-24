@@ -2,13 +2,14 @@
 
 angular.module('fixtApp')
     .factory('constantLoader', function (defaultValues, relativeUrls,
-        defaultObjects) {
+        defaultObjects, routeList) {
           
         var constantLoader = {};
   
         constantLoader.defaultValues = defaultValues;
         constantLoader.relativeUrls = relativeUrls;
         constantLoader.defaultObjects = defaultObjects;
+        constantLoader.routeList = routeList;
         
         return constantLoader;
     });
