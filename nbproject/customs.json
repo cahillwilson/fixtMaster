@@ -2,6 +2,8 @@
     "elements": {
         "fixt-searchbox": {
             "attributes": {
+                "label-binding": {},
+                "model-binding": {},
                 "selection-changed": {},
                 "label": {},
                 "items": {}

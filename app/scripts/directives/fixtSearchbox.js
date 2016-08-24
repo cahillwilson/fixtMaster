@@ -8,9 +8,11 @@ angular.module('fixtApp')
         scope: {
             label: "@",
             items: "=",
+            labelBinding: "@",
+            modelBinding: "@",
             selectionChanged: "&"
         },
-        template: function(){
+        template: function(element, attrs){
             
             var html =  '<div class="col-xs-6 col-xs">' +
                             '<div class="input-group">' +
@@ -22,8 +24,8 @@ angular.module('fixtApp')
                                         '</span>' +
                                     '</button>' +
                                     '<ul class="dropdown-menu search-menu">' +
-                                        '<li ng-repeat="item in items" value="item.code" ' +
-                                            'ng-click="onOptionClick(item)">{{item.value}}</li>' +
+                                        '<li ng-repeat="item in items" value="item.' + attrs.modelBinding + '" ' +
+                                            'ng-click="onOptionClick(item)">{{item.' + attrs.labelBinding + '}}</li>' +
                                     '</ul>' +
                                 '</div>' +
                                 '<input type="text" id="searchIcon" class="form-control" name="x" placeholder="Search ">' +

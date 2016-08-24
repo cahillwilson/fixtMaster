@@ -4,48 +4,39 @@ angular.module('fixtApp')
     .constant('defaultObjects', {
         SEARCH_LIST: [
             {
-                code: "Customer",
-                value: "Customer",
-                id: 'customer'
+                id: "customer",
+                value: "Customer"
             }, 
             {
-                code: "MCN",
-                value: "MCN",
-                id: 'mcn'
+                id: "mcn",
+                value: "MCN"
             }, 
             {
-                code: "Vendor ID",
-                value: "Vendor ID",
-                id: 'vendor'
+                id: "vendor",
+                value: "Vendor ID"
             }, 
             {
-                code: "CSS #",
-                value: "CSS #",
-                id: 'css'
+                id: "css",
+                value: "CSS #"
             }, 
             {
-                code: "Foreign Account #",
-                value: "Foreign Account #",
-                id: 'foreign-account'
+                id: "foreignAccount",
+                value: "Foreign Account #"
             }, 
             {
-                code: "Contract #",
-                value: "Contract #",
-                id: 'contract'
+                id: "contract",
+                value: "Contract #"
             }, 
             {
-                code: "Address",
-                value: "Address",
-                id: 'address'
+                id: "address",
+                value: "Address"
             }, 
             {
-                code: "Inventory Element ID",
-                value: "Inventory Element ID",
-                id: 'inventory'
+                id: "inventory",
+                value: "Inventory Element ID"
             }, 
             {
-                code: "Account #",
-                value: "Account #",
-                id: 'account'
+                id: "account",
+                value: "Account #"
             }]
     });

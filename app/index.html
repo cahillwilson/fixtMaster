@@ -97,7 +97,8 @@
         <div id="container">
             <div class="searchTab" ng-controller="dashboardController as vm">
                 <fixt-searchbox label="Type/ Select" items="vm.searchList"
-                    selection-changed="vm.onSearchItemClick(item)"></fixt-searchbox>
+                    selection-changed="vm.onSearchItemClick(item)"
+                    label-binding="value" model-binding="id"></fixt-searchbox>
             </div>
             <div ng-view></div>
         </div>
