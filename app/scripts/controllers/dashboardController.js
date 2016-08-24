@@ -19,7 +19,7 @@ angular.module('fixtApp')
     
     vm.onSearchClick = function(){
         handlerLoader.log.info(vm.searchItem);
-        commonUtility.redirectTo("sandbox");
+        commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
     };
     
     initialized();
