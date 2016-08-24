@@ -1,5 +1,5 @@
 
-<div>
+<div ng-controller="cardController as vm">
     <div class="borderline" ></div>
 
     <div class="row">
@@ -48,7 +48,77 @@
     <!--Row with two columns divided two equal columns-->
     <div class="row">
         <div class="col-sm-6">
-
+            <!---sandBox start-->
+            <div class="sandBox">
+                <div class="sBxheader">
+                    <div contenteditable="true" class="sBxtitle" >Walmart SA12345678123- State DC</div>
+                    <div class="sBxaction">
+                        <div class="sBxbox1-1">
+                            <div class="dropdown pull-right">
+                                <div class="dropdown-toggle pointer" data-toggle="dropdown">
+                                    <span>Actions</span> 
+                                    <span>
+                                        <img src="styles/images/dropdwn-arrow-sml.png" width="16" height="9" alt=""/>
+                                    </span>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li class="sbox-menu-item">
+                                        <span class="imgBox">
+                                            <img src="styles/images/icon_create.png" width="16" height="18" alt=""/>
+                                        </span>
+                                        Create Node
+                                    </li>
+                                    <li class="sbox-menu-item">
+                                        <span class="imgBox">
+                                            <img src="styles/images/icon_export.png" width="16" height="16" alt=""/>
+                                        </span>
+                                        Export
+                                    </li>
+                                    <li class="sbox-menu-item">
+                                        <span class="imgBox">
+                                            <img src="styles/images/icon_jump.png" width="16" height="16" alt=""/>
+                                        </span>
+                                        Go to EUAM
+                                    </li> 
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="sBxbox1-2">
+                            <img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/>
+                        </div>
+                    </div><!---sBxaction end-->
+                </div>
+                <div class="sandBoxComoncol">
+                    <div class="sandBoxLeftcol">
+                        <div ng-repeat="item in vm.cardDetails.items">
+                            <div style="padding-left: {{$index*10}}px;">
+                                <div class="sbxFolder">
+                                    <img src="styles/images/icon_folder-sml.png" width="24" height="14" alt=""/>
+                                </div>
+                                <div class="sbxLeftItem"><span class="sbox-item-title">{{item}}</span></div>
+                            </div><br>
+                        </div>
+                    </div><!-- sandBoxLeftcol end-->
+                    <div class="sandBoxMidcol"></div>
+                    <div class="sandBoxRightcol">
+                        <div class="sbxRightItem1-1">Field 1:</div>
+                        <div class="sbxRightItem1-2">###-###-###</div><br>
+                        <div class="sbxRightItem1-1">Field 2:</div>
+                        <div class="sbxRightItem1-2">###-###-###</div><br>
+                        <div class="sbxRightItem1-1">Field 3:</div>
+                        <div class="sbxRightItem1-2">###-###-###</div><br>
+                        <div class="sbxRightItem1-1">Field 4:</div>
+                        <div class="sbxRightItem1-2">###-###-###</div><br>
+                        <div class="sbxRightItem1-1">Field 5:</div>
+                        <div class="sbxRightItem1-2">###-###-###</div><br>
+                    </div><!-- sandBoxRightcol end-->
+                    <div class="sBxfooter">
+                        <div class="sBxfooter1-1">Explore hierarchy</div>
+                        <div class="sBxfooter1-2">More details</div>
+                    </div><!-- sBxfooter end-->
+                </div>
+            </div>
+            <!---sandBox end-->
         </div>
         <div class="col-sm-6">
 
