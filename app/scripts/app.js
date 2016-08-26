@@ -3,5 +3,6 @@
 angular
   .module('fixtApp', [
     'routerConfigModule',
-    'ngAnimate'
+    'ngAnimate',
+    'content-editable'
   ]);

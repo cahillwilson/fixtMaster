@@ -6,7 +6,7 @@
         <div class="col-sm-6">
         <div class="sandboxTitle">
             <img src="styles/images/sandBox-icon.png" width="27" height="27" alt=""/>
-            <span class="titleAlign" contenteditable="true" ngModel="titleTxt">Walmart</span>
+            <div class="titleAlign" contenteditable="true" ng-model="vm.title"></div>
         </div>
         </div>
         <div class="col-sm-6">
@@ -52,7 +52,7 @@
             <!---sandBox start-->
           <div class="sandBox">
                 <div class="sBxheader">
-                    <div contenteditable="true" class="sBxtitle" >Walmart SA12345678123- State DC</div>
+                    <div class="sBxtitle" contenteditable="true" ng-model="vm.cardTitle"></div>
                     <div class="sBxaction">
                         <div class="sBxbox1-1">
                             <div class="dropdown pull-right">
