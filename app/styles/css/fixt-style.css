@@ -380,6 +380,10 @@ input#searchIcon{
 }
 .titleAlign{ 
     padding-left:17px;
+    height: 50px;
+    width: 350px;
+    position: fixed;
+    white-space: nowrap;
 }
 .cntrAlign{ }
 .sbox-menu-item{
