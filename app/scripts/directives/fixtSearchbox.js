@@ -19,7 +19,7 @@ angular.module('fixtApp')
                             '<div class="input-group">' +
                                 '<div class="input-group-btn search-panel">' +
                                     '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
-                                        '<div class="elementfx">{{label}}   </div>' +
+                                        '<div contenteditable="true" ng-model="label" class="elementfx">{{label}}</div>' +
                                         '<span>' +
                                             '<img src="styles/images/dropdwn-arrow.png" width="18" height="10" alt=""/>' +
                                         '</span>' +

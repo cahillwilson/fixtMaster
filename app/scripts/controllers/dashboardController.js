@@ -6,19 +6,19 @@ angular.module('fixtApp')
 
     var vm =  this;
     vm.searchList = constantLoader.defaultObjects.SEARCH_LIST;
-    vm.searchItem = {};
-    vm.searchItem.value = constantLoader.defaultValues.SEARCH_TYPE_INIT_VALUE;
+    vm.searchItemType = constantLoader.defaultValues.SEARCH_TYPE_INIT_VALUE;
    
     function initialized() {
         
     }
     
     vm.onSearchItemChanged = function(item){
-        vm.searchItem = item;
+        vm.searchItemType = item.value;
     };
     
     vm.onSearchClick = function(){
-        handlerLoader.log.info(vm.searchItem);
+        vm.searchItemType = "";
+        handlerLoader.log.info(vm.searchItemType);
         commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
     };
     
