@@ -5,5 +5,6 @@ angular
     'routerConfigModule',
     'ngAnimate',
     'content-editable',
-    'ngDialog'
+    'ngDialog',
+    'ngDragDrop'   
   ]);
