@@ -4,5 +4,6 @@ angular
   .module('fixtApp', [
     'routerConfigModule',
     'ngAnimate',
-    'content-editable'
+    'content-editable',
+    'ngDialog'
   ]);

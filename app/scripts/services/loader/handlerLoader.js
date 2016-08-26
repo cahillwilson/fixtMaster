@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .service('handlerLoader', function (log, base64Handler, sessionHandler,
-        exceptionHandler) {
+        exceptionHandler, modalHandler) {
         
         var handlerLoader = {};
         
@@ -10,6 +10,7 @@ angular.module('fixtApp')
         handlerLoader.base64Handler = base64Handler;
         handlerLoader.sessionHandler = sessionHandler;
         handlerLoader.exceptionHandler = exceptionHandler;
+        handlerLoader.modalHandler = modalHandler;
         
         return handlerLoader;
     });
