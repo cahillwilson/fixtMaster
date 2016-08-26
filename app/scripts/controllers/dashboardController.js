@@ -17,7 +17,7 @@ angular.module('fixtApp')
     };
     
     vm.onSearchClick = function(){
-        vm.searchItemType = "";
+        vm.searchItemType = constantLoader.defaultValues.BLANK_STRING;;
         handlerLoader.log.info(vm.searchItemType);
         commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
     };
