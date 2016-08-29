@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('fixtApp')
-    .service('serviceLoader', function ($http, $log, $location, $rootScope) {
+    .service('serviceLoader', function ($filter, $http, $log, $location, $rootScope) {
         
         var serviceLoader = {};
         
+        var _filter = null;
         var _http = null;
         var _log = null;
         var _location = null;
@@ -17,6 +18,12 @@ angular.module('fixtApp')
             }
             return instance;
         }
+        
+        Object.defineProperty(serviceLoader, "filter", {
+            get: function() {
+                return setProperty(_filter, $filter);
+            }
+        });
         
         Object.defineProperty(serviceLoader, "http", {
             get: function() {

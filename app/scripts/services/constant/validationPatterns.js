@@ -2,13 +2,13 @@
 
 angular.module('fixtApp')
   .constant('validationPatterns', {
-        SEARCH_CUSTOMER: /^[a-z].*[A-Z]|[A-Z].*[a-z]*$/,
-        SEARCH_MCN: /^[a-z].*[A-Z]|[A-Z].*[a-z]*$/,
-        SEARCH_VENDOR: /^[a-z].*[A-Z]|[A-Z].*[a-z]*$/,
-        SEARCH_CSS: /^[a-z].*[A-Z]|[A-Z].*[a-z]*$/,
-        SEARCH_FOREIGN_ACCOUNT: /^[a-z].*[A-Z]|[A-Z].*[a-z]*$/,
-        SEARCH_CONTRACT: /^[a-z].*[A-Z]|[A-Z].*[a-z]*$/,
-        SEARCH_ADDRESS: /^[a-z].*[A-Z]|[A-Z].*[a-z]*$/,
-        SEARCH_INVENTORY: /^[a-z].*[A-Z]|[A-Z].*[a-z]*$/,
-        SEARCH_ACCOUNT: /^[a-z].*[A-Z]|[A-Z].*[a-z]*$/
+        SEARCH_CUSTOMER: /^[a-zA-Z]*$/,
+        SEARCH_MCN: /^[a-zA-Z]*$/,
+        SEARCH_VENDOR: /^[a-zA-Z]*$/,
+        SEARCH_CSS: /^[a-zA-Z]*$/,
+        SEARCH_FOREIGN_ACCOUNT: /^[a-zA-Z]*$/,
+        SEARCH_CONTRACT: /^[a-zA-Z]*$/,
+        SEARCH_ADDRESS: /^[a-zA-Z]*$/,
+        SEARCH_INVENTORY: /^[a-zA-Z]*$/,
+        SEARCH_ACCOUNT: /^[a-zA-Z]*$/
   });

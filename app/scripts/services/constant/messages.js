@@ -3,6 +3,7 @@
 angular.module('fixtApp')
     .constant('messages', {
         SEARCH_NOT_VALID: "Please enter a valid search term",
+        SEARCH_ITEM_NOT_VALID: "Please enter a valid search item",
         SEARCH_VALIDATION_CUSTOMER: "search customer",
         SEARCH_VALIDATION_MCN: "search mcn",
         SEARCH_VALIDATION_VENDOR: "search vendor",

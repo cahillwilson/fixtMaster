@@ -10,13 +10,16 @@ angular.module('fixtApp')
     };
     
     commonUtility.is3DValidKey = function(value){
-        
         return (angular.isDefined(value) && 
             value !== constantLoader.defaultValues.BLANK_STRING && value !== null);
     };
     
     commonUtility.redirectTo = function(route){
         serviceLoader.location.path(route);
+    };
+    
+    commonUtility.filterInArray = function(array, filterJson){
+        return serviceLoader.filter("filter")(array, filterJson);
     };
     
     return commonUtility;

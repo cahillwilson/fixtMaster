@@ -6,6 +6,7 @@
                 "show-validation": {},
                 "model-binding": {},
                 "search-click": {},
+                "ng-model": {},
                 "msg-type": {},
                 "selection-changed": {},
                 "label": {},

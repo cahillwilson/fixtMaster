@@ -19,12 +19,13 @@ angular.module('fixtApp')
             var html =  '<div class="col-xs-6 col-xs search-body-height">' +
                             '<div class="input-group">' +
                                 '<div class="input-group-btn search-panel">' +
-                                    '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
-                                        '<div contenteditable="true" ng-model="label" class="elementfx">{{label}}</div>' +
+                                    '<div class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
+                                        '<div contenteditable ng-show="!isShowOnly" ng-model="label" class="elementfx">{{label}}</div>' +
+                                        '<div ng-show="isShowOnly" ng-click="onShowOnlyClick()" class="elementfx">{{label}}</div>' +
                                         '<span>' +
                                             '<img src="styles/images/dropdwn-arrow.png" width="18" height="10" alt=""/>' +
                                         '</span>' +
-                                    '</button>' +
+                                    '</div>' +
                                     '<ul class="dropdown-menu search-menu">' +
                                         '<li ng-repeat="item in items" value="item.' + attrs.modelBinding + '" ' +
                                             'ng-click="onOptionClick(item)">{{item.' + attrs.labelBinding + '}}</li>' +
@@ -43,10 +44,13 @@ angular.module('fixtApp')
         },
         link: function(scope){
             
+            scope.isShowOnly = true;
             var searchTypeItem = {};
             setErrorPlace(false, constantLoader.defaultValues.BLANK_STRING);
             
             scope.onOptionClick = function(item){
+                scope.isShowOnly = true;
+                scope.label = item.value;
                 searchTypeItem = item;
                 setErrorPlace(false, constantLoader.defaultValues.BLANK_STRING);
                 scope.selectionChanged({
@@ -54,9 +58,17 @@ angular.module('fixtApp')
                 });
             };
             
+            scope.onShowOnlyClick = function(){
+                scope.isShowOnly = false;
+            };
+            
             scope.onSearchClick = function(){
                 if(!commonUtility.is3DValidKey(scope.ngModel)){
                     setErrorPlace(true, constantLoader.messages.SEARCH_NOT_VALID);
+                    return false;
+                }
+                if(!commonUtility.filterInArray(scope.items, {"value": scope.label}).length>0){
+                    setErrorPlace(true, constantLoader.messages.SEARCH_ITEM_NOT_VALID);
                     return false;
                 }
                 if((constantLoader.defaultObjects.SEARCH_LIST.length > 0) &&

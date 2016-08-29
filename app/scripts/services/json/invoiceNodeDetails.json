@@ -61,5 +61,12 @@
   "editableFields": [
     "startDate",
     "endDate"
-  ]
+  ],
+  "topFive": {
+      "one": "field_name",
+      "two": "field_name",
+      "three": "field_name",
+      "four": "field_name",
+      "five": "field_name"
+  }
 } 
