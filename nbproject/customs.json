@@ -3,8 +3,10 @@
         "fixt-searchbox": {
             "attributes": {
                 "label-binding": {},
+                "show-validation": {},
                 "model-binding": {},
                 "search-click": {},
+                "msg-type": {},
                 "selection-changed": {},
                 "label": {},
                 "items": {}

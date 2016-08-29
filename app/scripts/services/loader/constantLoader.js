@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .factory('constantLoader', function (defaultValues, relativeUrls,
-        defaultObjects, routeList) {
+        defaultObjects, routeList, messages, validationPatterns) {
           
         var constantLoader = {};
   
@@ -10,6 +10,8 @@ angular.module('fixtApp')
         constantLoader.relativeUrls = relativeUrls;
         constantLoader.defaultObjects = defaultObjects;
         constantLoader.routeList = routeList;
+        constantLoader.messages = messages;
+        constantLoader.validationPatterns = validationPatterns;
         
         return constantLoader;
     });

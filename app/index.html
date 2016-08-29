@@ -55,6 +55,7 @@
         <script src="scripts/services/constant/sessionItems.js"></script>
         <script src="scripts/services/constant/routeList.js"></script>
         <script src="scripts/services/constant/validationPatterns.js"></script>
+        <script src="scripts/services/constant/messages.js"></script>
         
         <!-- data model classes -->
         <script src="scripts/services/dataModel/dataAccess.js"></script>
@@ -108,7 +109,7 @@
         <div id="container">
             <div class="searchTab" ng-controller="dashboardController as vm">
                 <fixt-searchbox label="vm.searchItemType" items="vm.searchList"
-                    search-click="vm.onSearchClick()" 
+                    search-click="vm.onSearchClick()" ng-model="vm.searchText"
                     selection-changed="vm.onSearchItemChanged(item)"
                     label-binding="value" model-binding="id"></fixt-searchbox>
             </div>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .factory('exceptionHandler', function (log) {
+  .factory('exceptionHandler', function (log, modalHandler) {
     
     var errorHandler = {};
     
@@ -19,6 +19,7 @@ angular.module('fixtApp')
     
     errorHandler.onErrorLogWithAlert = function(response, alertMessage) {
         logError(response);
+        modalHandler.showMsg(alertMessage);
     };
     
     return errorHandler;

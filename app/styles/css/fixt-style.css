@@ -154,7 +154,8 @@ input#searchIcon{
     background: #ffffff;
     width: 603px;
     height:313px;
-    border-radius: 8px;font-family:"Omnes_ATTW02Medium";
+    border-radius: 8px;
+    font-family:"Omnes_ATTW02Medium";
 }
 .sBxheader{ 
     width:603px; 
@@ -332,7 +333,6 @@ input#searchIcon{
 .search-menu{
     width:205px; 
     margin-top: 3px;
-    border:solid 0px red; 
     position:absolute;
     background-color: #FFF;
     -moz-border-radius-bottomleft: 7px;
@@ -359,6 +359,17 @@ input#searchIcon{
 }
 .search-menu li:hover{
     background-color:gainsboro;
+}
+
+.search-error{
+    color: red;
+    margin-left: 220px;
+    font-family:"Omnes_ATTW02Medium";
+}
+
+.search-body-height{
+    height:60px; 
+    margin-top:15px;
 }
 /*==================================================================*/
 
