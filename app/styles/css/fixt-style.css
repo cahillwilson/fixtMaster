@@ -146,6 +146,12 @@ input#searchIcon{
     text-align: left;
     display: inline-block;
 }
+.elementfx input[type="text"]{
+    background-color: transparent; 
+    border:0px; 
+    border-color: transparent;
+    width:160px;
+}
 
 /***********sandbox style*******************************/
 .sandBox{
@@ -167,6 +173,12 @@ input#searchIcon{
     padding: 10px 0 0 20px; 
     font-size:20px; 
     float:left;
+}
+.sBxtitle input[type="text"]{
+    background-color: transparent; 
+    border:0px; 
+    border-color: transparent;
+    width:350px;
 }
 .sBxaction{
     width:120px; 

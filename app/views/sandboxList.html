@@ -53,7 +53,9 @@
             <div class="sandBox" data-drag="true" data-jqyoui-options="{revert: 'false', containment: 'window'}" 
                 ng-model="vm.cardDetails" jqyoui-draggable="{animate:true}">
                 <div class="sBxheader">
-                    <div class="sBxtitle" contenteditable="true" ng-model="vm.cardTitle"></div>
+                    <div class="sBxtitle">
+                        <input type="text" ng-model="vm.cardTitle" />
+                    </div>
                     <div class="sBxaction">
                         <div class="sBxbox1-1">
                             <div class="dropdown pull-right">
@@ -92,7 +94,7 @@
                 </div>
                 <div class="sandBoxComoncol">
                     <div class="sandBoxLeftcol">
-                        <div ng-repeat="item in vm.cardDetails.items">
+                        <div ng-repeat="item in vm.cardDetails.parentNodes">
                             <div style="padding-left: {{$index*10}}px;">
                                 <div class="sbxFolder">
                                     <img src="styles/images/icon_folder-sml.png" width="24" height="14" alt=""/>

@@ -14,6 +14,10 @@ angular.module('fixtApp')
             value !== constantLoader.defaultValues.BLANK_STRING && value !== null);
     };
     
+    commonUtility.isDefinedObject = function(object){
+        return (angular.isDefined(object) && object !== null);
+    };
+    
     commonUtility.redirectTo = function(route){
         serviceLoader.location.path(route);
     };

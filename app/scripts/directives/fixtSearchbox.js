@@ -20,8 +20,9 @@ angular.module('fixtApp')
                             '<div class="input-group">' +
                                 '<div class="input-group-btn search-panel">' +
                                     '<div class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
-                                        '<div contenteditable ng-show="!isShowOnly" ng-model="label" class="elementfx">{{label}}</div>' +
-                                        '<div ng-show="isShowOnly" ng-click="onShowOnlyClick()" class="elementfx">{{label}}</div>' +
+                                        '<div class="elementfx">' +
+                                            '<input type="text" ng-model="label" />' +
+                                        '</div>' +
                                         '<span>' +
                                             '<img src="styles/images/dropdwn-arrow.png" width="18" height="10" alt=""/>' +
                                         '</span>' +
@@ -44,7 +45,6 @@ angular.module('fixtApp')
         },
         link: function(scope){
             
-            scope.isShowOnly = true;
             var searchTypeItem = {};
             setErrorPlace(false, constantLoader.defaultValues.BLANK_STRING);
             
@@ -56,10 +56,6 @@ angular.module('fixtApp')
                 scope.selectionChanged({
                     item: item
                 });
-            };
-            
-            scope.onShowOnlyClick = function(){
-                scope.isShowOnly = false;
             };
             
             scope.onSearchClick = function(){
