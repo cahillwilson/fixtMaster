@@ -11,6 +11,13 @@ angular.module('fixtApp')
         });
     };
     
+    this.getFromJsonAsync = function(relativeUrl){
+        return serviceLoader.http({
+            method: 'GET', 
+            url: relativeUrl
+        });
+    };
+    
     this.postAsync = function(relativeUrl, postData){
         var httpPromise = null;
         var requestObj = {};

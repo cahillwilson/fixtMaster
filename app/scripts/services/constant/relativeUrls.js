@@ -2,5 +2,5 @@
 
 angular.module('fixtApp')
     .constant('relativeUrls', {
-        URL: ""
+        CARD_DETAILS: "/scripts/services/json/invoiceNodeDetails_multirslt.json"
     });

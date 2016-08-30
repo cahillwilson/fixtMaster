@@ -63,7 +63,7 @@
     "endDate"
   ],
 
-"transactionDetails": {
+  "transactionDetails": {
     "transactionID": "5678",
     "statusCode": "MX_0000",
     "statusMessage": "TransactionSuccess",
