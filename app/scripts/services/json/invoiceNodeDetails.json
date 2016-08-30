@@ -34,12 +34,20 @@
     "cdgexcerpt": null
   },
   "invoiceNodeDetails": {
+    "summary": {
     "nodeType": "I",
     "nodeID": "1717858114129",
     "nodeLabel": "UAMCITRIXDROIDLEAD",
     "hierarchyPointID": "124988287",
-    "startDate": "19-APR-01",
-    "endDate": "",
+    "startDate": "19-APR-01"
+
+    },
+    //"nodeType": "I",
+    //"nodeID": "1717858114129",
+    //"nodeLabel": "UAMCITRIXDROIDLEAD",
+    //"hierarchyPointID": "124988287",
+    //"startDate": "19-APR-01",
+    //"endDate": "",
     "address": {
       "addressType": "RE",
       "addressLine1": "650NORTHLANDBLVDSTE600",

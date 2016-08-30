@@ -1,94 +1,129 @@
-//Search Example with one result  --use nodeID for search
 {
-"nodeDetails": [
-{
-"nodeType": "AS",
-"nodeID": "8310001226402",
-"nodeLabel": "CUSTOMBILLING",
-"hierarchyPointID": "164241159",
-"startDate": "2008092411:30:08",
-"endDate": "",
-"addressDetails": [
-{
-"addressType": null,
-"addressLine1": null,
-"addressLine2": null,
-"addressLine3": null,
-"addressLine4": null,
-"addressName": null,
-"city": null,
-"floor": null,
-"state": null,
-"province": null,
-"zipCode": null,
-"zipCodeSuffix": null,
-"foreignPostalCode": null,
-"countryCode": null,
-"geoCode": null
-}
-]
-}
-],
-"transactionDetails": {
-"transactionID": "1234",
-"statusCode": "0",
-"statusMessage": "Success",
-"sourceSystem": null,
-"startRow": "1",
-"endRow": "400",
-"totalRow": null,
-"segment": null,
-"rowCount": "1",
-"timeZone": "EST"
-},
-"editableFields": [
-"startDate",
-"endDate"
-],
+  "transactionDetails": {
+    "transactionID": "1234",
+    "statusCode": "MX_0000",
+    "statusMessage": "TransactionSuccess",
+    "sourceSystem": null,
+    "startRow": "1",
+    "endRow": "400",
+    "totalRow": null,
+    "segment": null,
+    "rowCount": null,
+    "timeZone": null
+  },
+  "parentNodeDetails": {
+    "customerExcerpt": {
+      "customerId": "33993395",
+      "customerName": "TESTORTABNBETA2"
+    },
+    "hierarchyExcerpt": {
+      "parentageLevel": "2",
+      "custBillingHierarchyId": "36298697",
+      "account1Number": "",
+      "description": "",
+      "hierarchyPointId": "124988285"
+    },
+    "bundleExcerpt": {
+      "parentageLevel": "1",
+      "account1Number": "50000349163",
+      "description": "",
+      "hierarchyPointId": "124988286",
+      "custBillingHierarchyId": "36298697"
+    },
+    "invoiceExcerpt": null,
+    "cdgexcerpt": null
+  },
+  "invoiceNodeDetails": {
+    "nodeType": "I",
+    "nodeID": "1717858114129",
+    "nodeLabel": "UAMCITRIXDROIDLEAD",
+    "hierarchyPointID": "124988287",
+    "startDate": "19-APR-01",
+    "endDate": "",
+    "address": {
+      "addressType": "RE",
+      "addressLine1": "650NORTHLANDBLVDSTE600",
+      "addressLine2": "CINCINNATI,OH,452403249",
+      "addressLine3": "",
+      "addressLine4": "",
+      "addressName": "AT&T",
+      "city": "CINCINNATI",
+      "floor": "",
+      "state": "OH",
+      "province": "",
+      "zipCode": "45240",
+      "zipCodeSuffix": "3249",
+      "foreignPostalCode": "",
+      "countryCode": "",
+      "geoCode": "0133061201000"
+    }
+  },
+  "editableFields": [
+    "startDate",
+    "endDate"
+  ],
 
-//Second set of Data
-"nodeDetails": [
-{
-"nodeType": "AS",
-"nodeID": "8310001226403",
-"nodeLabel": "CUSTOMBILLING",
-"hierarchyPointID": "164251111",
-"startDate": "2010062710:30:08",
-"endDate": "",
-"addressDetails": [
-{
-"addressType": null,
-"addressLine1": null,
-"addressLine2": null,
-"addressLine3": null,
-"addressLine4": null,
-"addressName": null,
-"city": null,
-"floor": null,
-"state": null,
-"province": null,
-"zipCode": null,
-"zipCodeSuffix": null,
-"foreignPostalCode": null,
-"countryCode": null,
-"geoCode": null
-}
-]
-}
-],
 "transactionDetails": {
-"transactionID": "5678",
-"statusCode": "0",
-"statusMessage": "Success",
-"sourceSystem": null,
-"startRow": "1",
-"endRow": "400",
-"totalRow": null,
-"segment": null,
-"rowCount": "1",
-"timeZone": "CST"
-},
-"editableFields": [
-"startDate",
-"endDate"
-]} 
+    "transactionID": "5678",
+    "statusCode": "MX_0000",
+    "statusMessage": "TransactionSuccess",
+    "sourceSystem": null,
+    "startRow": "1",
+    "endRow": "400",
+    "totalRow": null,
+    "segment": null,
+    "rowCount": null,
+    "timeZone": null
+  },
+  "parentNodeDetails": {
+    "customerExcerpt": {
+      "customerId": "33993395",
+      "customerName": "TESTORTABNBETA2"
+    },
+    "hierarchyExcerpt": {
+      "parentageLevel": "2",
+      "custBillingHierarchyId": "36298697",
+      "account1Number": "",
+      "description": "",
+      "hierarchyPointId": "124988285"
+    },
+    "bundleExcerpt": {
+      "parentageLevel": "1",
+      "account1Number": "50000349163",
+      "description": "",
+      "hierarchyPointId": "124988286",
+      "custBillingHierarchyId": "36298697"
+    },
+    "invoiceExcerpt": null,
+    "cdgexcerpt": null
+  },
+  "invoiceNodeDetails": {
+    "nodeType": "I",
+    "nodeID": "1716858115229",
+    "nodeLabel": "UAMCITRIXDROIDLEAD",
+    "hierarchyPointID": "124988287",
+    "startDate": "30-Jan-02",
+    "endDate": "",
+    "address": {
+      "addressType": "RE",
+      "addressLine1": "650NORTHLANDBLVDSTE600",
+      "addressLine2": "CINCINNATI,OH,452403249",
+      "addressLine3": "",
+      "addressLine4": "",
+      "addressName": "AT&T",
+      "city": "CINCINNATI",
+      "floor": "",
+      "state": "OH",
+      "province": "",
+      "zipCode": "45240",
+      "zipCodeSuffix": "3249",
+      "foreignPostalCode": "",
+      "countryCode": "",
+      "geoCode": "0155061201000"
+    }
+  },
+  "editableFields": [
+    "startDate",
+    "endDate"
+  ]
+} 
