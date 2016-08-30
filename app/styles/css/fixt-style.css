@@ -147,12 +147,8 @@ input#searchIcon{
     display: inline-block;
 }
 .elementfx input[type="text"]{
-    background-color: transparent; 
-    border:0px; 
-    border-color: transparent;
     width:160px;
 }
-
 /***********sandbox style*******************************/
 .sandBox{
     border: 1px solid rgba(204, 204, 204, 1);
@@ -175,9 +171,6 @@ input#searchIcon{
     float:left;
 }
 .sBxtitle input[type="text"]{
-    background-color: transparent; 
-    border:0px; 
-    border-color: transparent;
     width:350px;
 }
 .sBxaction{
@@ -446,4 +439,10 @@ input#searchIcon{
     height:45PX; 
     float:right; 
     border-right:1px solid rgba(204, 204, 204, 1);
+}
+
+.editable-field{
+    background-color: transparent; 
+    border:0px; 
+    border-color: transparent;
 }

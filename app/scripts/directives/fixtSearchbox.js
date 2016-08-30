@@ -21,7 +21,7 @@ angular.module('fixtApp')
                                 '<div class="input-group-btn search-panel">' +
                                     '<div class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
                                         '<div class="elementfx">' +
-                                            '<input type="text" ng-model="label" />' +
+                                            '<fixt-editable item="label"></fixt-editable>' +
                                         '</div>' +
                                         '<span>' +
                                             '<img src="styles/images/dropdwn-arrow.png" width="18" height="10" alt=""/>' +
