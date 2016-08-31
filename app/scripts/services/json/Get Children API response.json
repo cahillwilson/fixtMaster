@@ -1,0 +1,90 @@
+    {
+        "transactionDetails":
+        {
+            "transactionID": "123333",
+            "statusCode": "0",
+            "statusMessage": "Success",
+            "sourceSystem": null,
+            "startRow": "1",
+            "endRow": "20",
+            "totalRow": null,
+            "segment": null,
+            "rowCount": "1",
+            "timeZone": "EST"
+        },
+        "childDetails":
+        [
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860191",
+                "hierarchyPointID": "161715109",
+                "accountType": "S"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860191",
+                "hierarchyPointID": "161715108",
+                "accountType": "AS"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860201",
+                "hierarchyPointID": "161715101",
+                "accountType": "S"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860201",
+                "hierarchyPointID": "161715100",
+                "accountType": "AS"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860201",
+                "hierarchyPointID": "161679852",
+                "accountType": "AG"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860201",
+                "hierarchyPointID": "161679818",
+                "accountType": "S"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860201",
+                "hierarchyPointID": "161679816",
+                "accountType": "I"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860201",
+                "hierarchyPointID": "161679814",
+                "accountType": "AB"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860191",
+                "hierarchyPointID": "161679811",
+                "accountType": "AG"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860191",
+                "hierarchyPointID": "161679775",
+                "accountType": "S"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860191",
+                "hierarchyPointID": "161679774",
+                "accountType": "I"
+            },
+            {
+                "custID": "38469907",
+                "hierarchyId": "40860191",
+                "hierarchyPointID": "161679773",
+                "accountType": "AB"
+            }
+        ]
+    }

@@ -1,0 +1,69 @@
+    {
+        "transactionDetails":
+        {
+            "transactionID": "123333",
+            "statusCode": "0",
+            "statusMessage": "Success",
+            "sourceSystem": null,
+            "startRow": "1",
+            "endRow": "400",
+            "totalRow": null,
+            "segment": null,
+            "rowCount": "1",
+            "timeZone": "EST",
+            "customerId": null,
+            "hierarchyPointId": null,
+            "lockUserId": null,
+            "lockLevel": null,
+            "lockTimeStamp": null
+        },
+        "parentNodeDetails":
+        {
+            "customerExcerpt":
+            {
+                "customerId": "38533756",
+                "customerName": "Atrium Companies, Inc."
+            },
+            "hierarchyExcerpt":
+            {
+                "parentageLevel": "3",
+                "custBillingHierarchyId": "40923112",
+                "account1Number": "",
+                "description": "Atrium Compaines, Inc",
+                "hierarchyPointId": "164309753"
+            },
+            "bundleExcerpt":
+            {
+                "parentageLevel": "2",
+                "account1Number": "8310001233504",
+                "description": "",
+                "hierarchyPointId": "164309759",
+                "custBillingHierarchyId": "40923112"
+            },
+            "invoiceExcerpt":
+            {
+                "parentageLevel": "1",
+                "account1Number": "8310001233516",
+                "description": "",
+                "hierarchyPointId": "164309788",
+                "custBillingHierarchyId": "40923112"
+            },
+            "cdgexcerpt": null
+        },
+        "cdgnodeDetails":
+        {
+            "hierarchyPointID": "164309792",
+            "startDate": "05-AUG-05",
+            "endDate": "",
+            "sequenceNo": "10",
+            "description": "",
+            "intrOffrRlnkdt": "",
+            "custAdminId": "",
+            "sourceBillerId": "",
+            "parentForeignActID": "",
+            "subAcntId": "164309812",
+            "asscNonAcnt": "",
+            "fanid": "",
+            "fannumber": ""
+        }
+    }
