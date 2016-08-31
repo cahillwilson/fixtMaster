@@ -79,6 +79,7 @@
         <script src="scripts/directives/fixtEditable.js"></script>
         
         <!-- filter classes -->
+        <script src="scripts/filters/fixtRootScope.js"></script>
         
         <!-- controller classes -->
         <script src="scripts/controllers/dashboardController.js"></script>
@@ -110,7 +111,8 @@
         </header>
         
         <div id="container">
-            <div class="searchTab" ng-controller="dashboardController as vm">
+            <div class="searchTab" ng-controller="dashboardController as vm" 
+                ng-hide="{{'IS_SEARCH_HIDDEN' | fixtRootScope}}">
                 <fixt-searchbox label="vm.searchItemType" items="vm.searchList"
                     search-click="vm.onSearchClick()" ng-model="vm.searchText"
                     selection-changed="vm.onSearchItemChanged(item)"

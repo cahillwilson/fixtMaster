@@ -2,5 +2,6 @@
 
 angular.module('fixtApp')
     .constant('routeList', {
-        SANDBOX_LIST: "sandbox"
+        SANDBOX_LIST: "sandbox",
+        LOGIN: "login"
     });

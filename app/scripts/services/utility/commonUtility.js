@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .factory('commonUtility', function (constantLoader, serviceLoader) {
+  .factory('commonUtility', function (constantLoader, serviceLoader, handlerLoader) {
     
     var commonUtility = {};
     
@@ -24,6 +24,11 @@ angular.module('fixtApp')
     
     commonUtility.filterInArray = function(array, filterJson){
         return serviceLoader.filter("filter")(array, filterJson);
+    };
+    
+    commonUtility.isSearchBoxHide = function(isHide){
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SEARCH_HIDDEN, 
+            isHide, false);
     };
     
     return commonUtility;
