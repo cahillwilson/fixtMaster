@@ -111,6 +111,40 @@ header{
 
 /****************Forms*********************************/
 
+.loginForm{
+    width: 300px;
+    padding: 50px;
+    margin:0 auto;
+    background: gray;
+    height: 300px;
+    
+}
+
+#loginBtn{
+    color:#000000;
+    height: 30px;
+    width: 100px;
+    margin:0 auto;
+    margin-top:25px;
+    border-radius: 2px;
+    
+}
+
+#setUser{
+    margin: -20px 185px 0 0; 
+    
+}
+
+#welcomeTxt{
+    margin: -26px 250px 0 0;
+    display:none;
+
+}
+
+
+
+
+
 
 input#searchIcon{
     /*background-image:url(../images/icon_searchboxbg.png);

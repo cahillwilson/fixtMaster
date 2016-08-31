@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+	<body>
+	<div class="loginForm">
+		<form>
+			Username:<input type="text" id="userName" name="userName">
+			Password:<input type="text" id="password" name="password">
+           <a href="#/" onclick="setUser()" style="text-decoration:none;" ><input type="button" id="loginBtn" value="Submit"/></a>
+		</form>
+
+   <div>
+	</body>
+</html>
+<script>
+	function setUser(){
+	$( "#userName" ).keyup(function() {
+    var value = $( this ).val();
+    $( "#setUser" ).text( value );
+    $("#welcomeTxt").show();
+  })
+  .keyup();
+	}
+    
+
+
+</script>
