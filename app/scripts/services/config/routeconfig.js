@@ -10,7 +10,7 @@ angular.module('routerConfigModule', ['ngRoute'])
            templateUrl: 'views/sandboxList.html'
         })
         .when('/login',{
-          templateUrl:'views/login.html'
+           templateUrl:'views/login.html'
         })
         .otherwise({
             redirectTo: '/'

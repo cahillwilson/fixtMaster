@@ -55,7 +55,7 @@
         },
         "subAccountNodeDetails":
         {
-            "nodeType": "AS",
+            "nodeType": "SA",
             "nodeID": "8310001226402",
             "nodeLabel": "CUSTOMBILLING",
             "hierarchyPointID": "164241159",
@@ -117,7 +117,13 @@
                 "countryCode": "",
                 "geoCode": "0147059068000"
             }
-        }
+        },
+        "topFive":[
+            "nodeID",
+            "nodeLabel",
+            "startDate",
+            "seqNum"
+            ]
     }
 
  
