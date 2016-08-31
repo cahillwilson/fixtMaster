@@ -17,7 +17,7 @@ angular.module('fixtApp')
             handlerLoader.sessionHandler.set(constantLoader.sessionItems.USER_NAME,
                 vm.userName, false);
             
-            commonUtility.redirectTo("/");
+            commonUtility.redirectTo(constantLoader.routeList.DASHBOARD);
         }
     };
     

@@ -4,10 +4,10 @@ angular.module('routerConfigModule', ['ngRoute'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'views/dashBoard.html',
+            templateUrl: 'views/login.html',
             resolve: {
                 go: function(commonUtility){
-                    commonUtility.isSearchBoxHide(false);
+                    commonUtility.isSearchBoxHide(true);
                 }
             }
         })
@@ -19,11 +19,11 @@ angular.module('routerConfigModule', ['ngRoute'])
                 }
             }
         })
-        .when('/login',{
-            templateUrl:'views/login.html',
+        .when('/dashboard',{
+            templateUrl:'views/dashBoard.html',
             resolve: {
                 go: function(commonUtility){
-                    commonUtility.isSearchBoxHide(true);
+                    commonUtility.isSearchBoxHide(false);
                 }
             }
         })
