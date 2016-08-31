@@ -115,6 +115,7 @@ header{
     width: 300px;
     padding: 50px;
     margin:0 auto;
+    margin-top:150px;
     background: gray;
     height: 300px;
     
@@ -140,7 +141,6 @@ header{
     display:none;
 
 }
-
 
 
 
