@@ -99,7 +99,9 @@
                                 <div class="sbxFolder">
                                     <img src="styles/images/icon_folder-sml.png" width="24" height="14" alt=""/>
                                 </div>
-                                <div class="sbxLeftItem"><span class="sbox-item-title">{{item}}</span></div>
+                                <div class="sbxLeftItem">
+                                    <span ng-class="{'sbox-item-title':!($index < vm.cardDetails.parentNodes.length -1)}">{{item}}</span>
+                                </div>
                             </div><br>
                         </div>
                     </div><!-- sandBoxLeftcol end-->
@@ -117,8 +119,12 @@
                         <div class="sbxRightItem1-2">###-###-###</div><br>
                     </div><!-- sandBoxRightcol end-->
                     <div class="sBxfooter">
-                        <div class="sBxfooter1-1"><a href="#/sandbox">Explore hierarchy</a></div>
-                        <div class="sBxfooter1-2"><a href="#/sandbox">More details</a></div>
+                        <div class="sBxfooter1-1">
+                            <span class="sBxfooter1-ext">Explore hierarchy</span>
+                        </div>
+                        <div class="sBxfooter1-2">
+                            <span class="sBxfooter1-ext">More details</span>
+                        </div>
                     </div><!-- sBxfooter end-->
                 </div>
             </div>

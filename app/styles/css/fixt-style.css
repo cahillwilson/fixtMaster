@@ -272,6 +272,13 @@ input#searchIcon{
     text-align:right;
 }
 
+.sBxfooter1-ext{
+    cursor: pointer;
+}
+.sBxfooter1-ext:hover{
+    text-decoration: underline;
+}
+
 .panelRow-1-1{ 
     background-color:#1C6AE3; 
     padding:23px 0 0 20px;
@@ -421,11 +428,20 @@ input#searchIcon{
     float:right;
 }
 .sbox-item-title{
-    cursor: pointer;
-    padding: 0px 3px 0px 3px;
-}
-.sbox-item-title:hover{
     background-color:gainsboro;
+    padding: 0px 3px 0px 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-bottom-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-left-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-right-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
 }
 .iconBox{ 
     width:70px; 
