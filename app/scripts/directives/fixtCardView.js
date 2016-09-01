@@ -7,7 +7,8 @@ angular.module('fixtApp')
 	replace: true,
         scope: {
             details: "=",
-            cardTitle: "=",
+            cardId: "=",
+            cardLabel: "=",
             detailsClick: "&",
             hierarchyClick: "&"
         },
@@ -17,7 +18,8 @@ angular.module('fixtApp')
                             'ng-model="details" jqyoui-draggable="{animate:true}">' +
                             '<div class="sBxheader">' +
                                 '<div class="sBxtitle">' +
-                                    '<fixt-editable item="cardTitle"></fixt-editable>' +
+                                    '<span ng-bind="cardId"></span>-' +
+                                    '<fixt-editable item="cardLabel"></fixt-editable>' +
                                 '</div>' +
                                 '<div class="sBxaction">' +
                                     '<div class="sBxbox1-1">' +

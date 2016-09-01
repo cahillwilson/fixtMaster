@@ -7,15 +7,19 @@
         },
         "fixt-editable": {
             "attributes": {
-                "item": {}
+                "item": {},
+                "item-label": {},
+                "item-id": {}
             }
         },
         "fixt-card-view": {
             "attributes": {
                 "card-title": {},
+                "card-label": {},
                 "hierarchy-click": {},
                 "details": {},
-                "details-click": {}
+                "details-click": {},
+                "card-id": {}
             }
         },
         "fixt-searchbox": {

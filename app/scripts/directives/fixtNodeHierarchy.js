@@ -12,7 +12,7 @@ angular.module('fixtApp')
             
             var html =  '<div class="sandBoxLeftcol">' +
                             '<div ng-repeat="item in nodes">' +
-                                '<div style="padding-left: {{$index*10}}px;">' +
+                                '<div style="padding-left: {{$index*7}}px;">' +
                                     '<div class="sbxFolder">' +
                                         '<img src="styles/images/icon_folder-sml.png" width="24" height="14" alt=""/>' +
                                     '</div>' +
