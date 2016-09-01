@@ -1,0 +1,646 @@
+{
+	"variables": [],
+	"info": {
+		"name": "FIXT Node API",
+		"_postman_id": "6542904e-baad-b457-976b-3d5ef205e50f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 Get sandboxes",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/sandbox",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Get all sandboxes for the given user."
+			},
+			"response": []
+		},
+		{
+			"name": "2 Get sandbox",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/sandbox/57a23a2c46382ac2aca942cf",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Get a single sandbox for the given user."
+			},
+			"response": []
+		},
+		{
+			"name": "3 Create sandbox",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/sandbox",
+				"method": "POST",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Walmart NA Sandbox\"\n}"
+				},
+				"description": "Create a new sandbox for the given user."
+			},
+			"response": []
+		},
+		{
+			"name": "4 Update sandbox",
+			"request": {
+				"url": "",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "userId",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Save the given sandbox to the nodejs server."
+			},
+			"response": []
+		},
+		{
+			"name": "5 Delete sandbox",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/sandbox/57bafca2101ce6d075a2e04c",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Delete the given sandbox."
+			},
+			"response": []
+		},
+		{
+			"name": "6. Get card",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/card/57bb0f31e82b49fe798ebf32",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "7 Create card in sandbox",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/sandbox/57bb0ed9e82b49fe798ebf30/1717858114129",
+				"method": "POST",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "8 Update card",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/card/57bb0f31e82b49fe798ebf32",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "9 Delete card",
+			"request": {
+				"url": "",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "10 Add cards to sandbox",
+			"request": {
+				"url": "",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "11 Search for card",
+			"request": {
+				"url": "",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "CSI-BGW"
+			},
+			"response": []
+		},
+		{
+			"name": "12 Get relink card",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "13 Create relink card",
+			"request": {
+				"url": "",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "14 Update relink card",
+			"request": {
+				"url": "",
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "15 Delete relink card",
+			"request": {
+				"url": "",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "16 Add relink cards to sandbox",
+			"request": {
+				"url": "",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "17 Get unify card",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "18 Create unify card",
+			"request": {
+				"url": "",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "19 Update unify card",
+			"request": {
+				"url": "",
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "20 Delete unify card",
+			"request": {
+				"url": "",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "21 Add unify cards to sandbox",
+			"request": {
+				"url": "",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "22 Get  node users",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/node/1717858114129/users",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "get all users of this node, by finding owners of cards pointing to it."
+			},
+			"response": []
+		},
+		{
+			"name": "50 Initial search",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/initialSearch/UpAccountNumber/invoice/1717908853703?start=1&end=25",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "51 Get invoice node details",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/invoiceDetail?accountNumber=1717858114129",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "52 Get bundle node details",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/bundleDetail?accountNumber=1717858114129",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "53 Get subaccount node details",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/invoiceDetail?subaccountNumber=1717858114129",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "54 Get CDG node details",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/cdgDetail?accountNumber=1717858114129",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "55 Get customer node details",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "56 Get hierarchy node details",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "57 Get site node details",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "58 Get node lock status",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "This goes to CSI-BGW directly."
+			},
+			"response": []
+		},
+		{
+			"name": "59 Update node label",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "This goes to CSI-BGW and also updates card label in mongo."
+			},
+			"response": []
+		},
+		{
+			"name": "100 Submit relink",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Same for unify, create_node, edit_node\n\nA copy of the transaction is kept in mongo, will need to watch status of this transaction against backend.\n\nThere will be a transaction table where all this is kept (and shown in a dashboard)"
+			},
+			"response": []
+		},
+		{
+			"name": "101 Submit unify",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "102 Export card",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "200 Create user role",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "There are 2 roles so far: readonly and admin\n"
+			},
+			"response": []
+		},
+		{
+			"name": "201 Create user",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Takes user name and user role"
+			},
+			"response": []
+		},
+		{
+			"name": "Search transactions",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Search by date, user, or status"
+			},
+			"response": []
+		},
+		{
+			"name": "Get transaction",
+			"request": {
+				"url": "localhost:1337/transaction/999",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
