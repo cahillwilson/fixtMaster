@@ -57,7 +57,7 @@
                 <div class="cardExpand">
                     <div class="crdExpheader">
                         <div class="crdExptitle">
-                            <span>Walmart SA12345678123- State DC</span>
+                            <fixt-editable item="vm.cardTitle"></fixt-editable>
                         </div>
                         <div class="sBxaction">
                             <div class="sBxbox1-1">
@@ -96,18 +96,8 @@
 			</div><!---sBxaction end-->
                     </div><!---sBxheader end-->
                     <div class="crdExpComoncol">
-                        <div class="crdExpLeftcol">
-                            <div ng-repeat="item in vm.cardDetails.parentNodes">
-                                <div style="padding-left: {{$index*10}}px;">
-                                    <div class="sbxFolder">
-                                        <img src="styles/images/icon_folder-sml.png" width="24" height="14" alt=""/>
-                                    </div>
-                                    <div class="sbxLeftItem">
-                                        <span ng-class="{'sbox-item-title':!($index < vm.cardDetails.parentNodes.length -1)}">{{item}}</span>
-                                    </div>
-                                </div><br>
-                            </div>
-                        </div>
+                        <fixt-node-hierarchy nodes="vm.cardDetails.parentNodes"></fixt-node-hierarchy>
+                        
                         <div class="crdExpMidcol"></div>
                         <div class="crdExpRightcol">
                             <ul class="nav nav-tabs">

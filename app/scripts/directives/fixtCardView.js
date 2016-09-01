@@ -56,18 +56,7 @@ angular.module('fixtApp')
                                 '</div>' +
                             '</div>' +
                             '<div class="sandBoxComoncol">' +
-                                '<div class="sandBoxLeftcol">' +
-                                    '<div ng-repeat="item in details.parentNodes">' +
-                                        '<div style="padding-left: {{$index*10}}px;">' +
-                                            '<div class="sbxFolder">' +
-                                                '<img src="styles/images/icon_folder-sml.png" width="24" height="14" alt=""/>' +
-                                            '</div>' +
-                                            '<div class="sbxLeftItem">' +
-                                                '<span ng-class="{\'sbox-item-title\':!($index < details.parentNodes.length -1)}">{{item}}</span>' +
-                                            '</div>' +
-                                        '</div><br>' +
-                                    '</div>' +
-                                '</div>' +
+                                '<fixt-node-hierarchy nodes="details.parentNodes"></fixt-node-hierarchy>' +
                                 '<div class="sandBoxMidcol"></div>' +
                                 '<div class="sandBoxRightcol">' +
                                     '<div ng-repeat="field in details.topFields">' +

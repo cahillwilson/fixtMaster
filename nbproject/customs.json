@@ -1,5 +1,10 @@
 {
     "elements": {
+        "fixt-node-hierarchy": {
+            "attributes": {
+                "nodes": {}
+            }
+        },
         "fixt-editable": {
             "attributes": {
                 "item": {}
@@ -8,6 +13,7 @@
         "fixt-card-view": {
             "attributes": {
                 "card-title": {},
+                "hierarchy-click": {},
                 "details": {},
                 "details-click": {}
             }
