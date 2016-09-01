@@ -5,6 +5,7 @@ angular.module('fixtApp')
         handlerLoader, commonUtility) {
 
     var vm =  this;
+    vm.isCardDetailsShow = false;
     vm.title = constantLoader.defaultValues.SANDBOX_TITLE;
     vm.cardDetails = {};
 
@@ -102,6 +103,14 @@ angular.module('fixtApp')
             };
         }
     }
+    
+    vm.onCardDetailsClick = function(){
+        vm.isCardDetailsShow = !vm.isCardDetailsShow;
+    };
+    
+    vm.onCardHierarchyClick = function(){
+        
+    };
     
     initialized();
          

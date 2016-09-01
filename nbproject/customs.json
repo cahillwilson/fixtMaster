@@ -8,7 +8,8 @@
         "fixt-card-view": {
             "attributes": {
                 "card-title": {},
-                "details": {}
+                "details": {},
+                "details-click": {}
             }
         },
         "fixt-searchbox": {

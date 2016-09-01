@@ -7,7 +7,9 @@ angular.module('fixtApp')
 	replace: true,
         scope: {
             details: "=",
-            cardTitle: "="
+            cardTitle: "=",
+            detailsClick: "&",
+            hierarchyClick: "&"
         },
         template: function(){
             
@@ -75,16 +77,25 @@ angular.module('fixtApp')
                                 '</div>' +
                                 '<div class="sBxfooter">' +
                                     '<div class="sBxfooter1-1">' +
-                                        '<span class="sBxfooter1-ext">Explore hierarchy</span>' +
+                                        '<span class="sBxfooter1-ext" ng-click="onHierarchyClick()">Explore hierarchy</span>' +
                                     '</div>' +
                                     '<div class="sBxfooter1-2">' +
-                                        '<span class="sBxfooter1-ext">More details</span>' +
+                                        '<span class="sBxfooter1-ext" ng-click="onDetailsClick()">More details</span>' +
                                     '</div>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';
         
             return html;
+        },
+        link: function(scope){
+            scope.onDetailsClick = function(){
+                scope.detailsClick();
+            };
+            
+            scope.onHierarchyClick = function(){
+                scope.hierarchyClick();
+            };
         }
     };
   });

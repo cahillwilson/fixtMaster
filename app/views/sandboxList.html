@@ -48,12 +48,159 @@
        
     <!--Row with two columns divided two equal columns-->
     <div class="row">
-        <div class="col-sm-6">
-            <fixt-card-view card-title="vm.cardTitle"
-                details="vm.cardDetails"></fixt-card-view>
+        <div ng-hide="vm.isCardDetailsShow" class="short-card-container">
+            <fixt-card-view card-title="vm.cardTitle" details-click="vm.onCardDetailsClick()"
+                details="vm.cardDetails" hierarchy-click="vm.onCardHierarchyClick()"></fixt-card-view>
         </div>
-        <div class="col-sm-6">
-            
+        <div ng-show="vm.isCardDetailsShow">
+            <div class="cardCver">
+                <div class="cardExpand">
+                    <div class="crdExpheader">
+                        <div class="crdExptitle">
+                            <span>Walmart SA12345678123- State DC</span>
+                        </div>
+                        <div class="sBxaction">
+                            <div class="sBxbox1-1">
+                                <div class="dropdown pull-right">
+                                    <div class="dropdown-toggle pointer" data-toggle="dropdown">
+                                        <span>Actions</span> 
+                                        <span>
+                                            <img src="styles/images/dropdwn-arrow-sml.png" width="16" height="9" alt=""/>
+                                        </span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li class="sbox-menu-item">
+                                            <span class="imgBox">
+                                                <img src="styles/images/icon_create.png" width="16" height="18" alt=""/>
+                                            </span>
+                                            Create Node
+                                        </li>
+                                        <li class="sbox-menu-item">
+                                            <span class="imgBox">
+                                                <img src="styles/images/icon_export.png" width="16" height="16" alt=""/>
+                                            </span>
+                                            Export
+                                        </li>
+                                        <li class="sbox-menu-item">
+                                            <span class="imgBox">
+                                                <img src="styles/images/icon_jump.png" width="16" height="16" alt=""/>
+                                            </span>
+                                            Go to EUAM
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sBxbox1-2">
+                                <img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/>
+                            </div>
+			</div><!---sBxaction end-->
+                    </div><!---sBxheader end-->
+                    <div class="crdExpComoncol">
+                        <div class="crdExpLeftcol">
+                            <div ng-repeat="item in vm.cardDetails.parentNodes">
+                                <div style="padding-left: {{$index*10}}px;">
+                                    <div class="sbxFolder">
+                                        <img src="styles/images/icon_folder-sml.png" width="24" height="14" alt=""/>
+                                    </div>
+                                    <div class="sbxLeftItem">
+                                        <span ng-class="{'sbox-item-title':!($index < vm.cardDetails.parentNodes.length -1)}">{{item}}</span>
+                                    </div>
+                                </div><br>
+                            </div>
+                        </div>
+                        <div class="crdExpMidcol"></div>
+                        <div class="crdExpRightcol">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><span>Over view</span></li>
+                                <li><span>Charges</span></li>
+                                <li><span>Telephone Numbers</span></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active">
+                                    <div class="crdTabComoncol">
+                                        <div class="crdTabLeftcol">
+                                            <div>
+                                                <div class="txtMed">Type:</div>
+                                                <div class="txtRt">IP Service</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">Start Date:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">#######:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">#######:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">#######:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">#######:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">#######:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                        </div>
+                                        <div class="crdTabMidcol"></div>
+                                        <span class="txtTit">Service Location Address</span>
+                                        <div class="crdTabRightcol">
+                                            <div>
+                                                <div class="txtMed">Type:</div>
+                                                <div class="txtRt">IP Service</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">Start Date:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">#######:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">#######:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">#######:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">#######:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                            <div>
+                                                <div class="txtMed">#######:</div>
+                                                <div class="txtRt">###########</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade">
+                                    <h3>Wallmart- Details</h3>
+                                    <p>Some content in Pending.</p>
+                                </div>
+                                <div class="tab-pane fade">
+                                    <h3>Wallmart- Details</h3>
+                                    <p>Some content in Pending.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="crdExpfooter">
+                        <div class="crdExpfooterLeft">
+                            <span class="sBxfooter1-ext" ng-click="vm.onCardDetailsClick()">Back to card view</span>
+                        </div>
+                    </div>
+                </div>
+                <!---sandBox end-->
+            </div><!---card Cvr end-->
         </div>
     </div>
 </div>
