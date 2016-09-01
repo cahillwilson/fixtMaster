@@ -5,6 +5,12 @@
                 "item": {}
             }
         },
+        "fixt-card-view": {
+            "attributes": {
+                "card-title": {},
+                "details": {}
+            }
+        },
         "fixt-searchbox": {
             "attributes": {
                 "label-binding": {},
