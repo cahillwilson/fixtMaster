@@ -426,6 +426,33 @@ input#searchIcon{
     margin-bottom:7px;
 }
 
+/***************=========================Sanbox Hierarchy strts here==================*************/
+ .sbxHierarchy{border: 1px solid rgba(204, 204, 204, 1); /*padding: 15px 20px 15px 20px;*/background: #ffffff; width: 603px;height:646px;
+    border-radius: 8px;font-family:"Omnes_ATTW02Medium"; margin-bottom:26px;}
+.sbxHrchyCol{ width:583px; height:550px; float:left; overflow: auto; font-family:"Omnes_ATTW02"; font-size:14px; color: rgba(51, 51, 51, 1);}
+ /****Hierarchychart**/
+ .nodeIcon{width:20px; height:20px; margin:3px 10px 3px 0;}
+ .hrNode1-1{ width:262px; height:26px; margin: 14px 0 0 21px;}
+ .hrNode1-2{ width:262px; height:26px; margin: 14px 0 0 41px;}
+ .hrNode1-3{ width:262px; height:26px; margin: 14px 0 0 61px;}
+ .hrNode1-4{ width:262px; height:26px; margin: 14px 0 0 81px;}
+ .hrNode1-5{ width:262px; height:26px; margin: 14px 0 0 101px;}
+ .hrNode1-6{ width:262px; height:26px; margin: 14px 0 0 123px;}
+ .hrNode2-1{ width:200px; height:20px; margin: 10px 0 0 149px; font-size:14px; color: rgba(5, 116, 172, 1);}
+ .nnn{ width:10px; height:200px; background-color:#5AAFD8;}
+
+.sbxHrchyFooter{ width:603px; height: 46px; float: left; padding-top:15px; font-size:16px; color:rgba(5, 116, 172,1); border-top:1px solid rgba(204, 204, 204, 1);}
+.sbxHrchyFtrLeft{width:281px; float:left; padding-left:20px;}
+.sbxHrchyFtrRight{width:282px; float: right; text-align:right;padding-right:20px;}
+
+ 
+ 
+ 
+ /****------------------------------------------------------------------------------------------****/
+
+
+
+
 /*responsive colum layou for Sandbox -cards*******************************/
 .sandboxTitle{ 
     width:100%; 
