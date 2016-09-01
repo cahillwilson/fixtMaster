@@ -130,6 +130,7 @@ angular.module('fixtApp')
     
     vm.onCardHierarchyClick = function(){
         
+        
     };
     
     initialized();
