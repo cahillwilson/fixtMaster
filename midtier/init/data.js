@@ -1,0 +1,13 @@
+db.dropDatabase();
+db.roles.insert({name:"admin", index:1, editableFields:["startDate", "endDate"]});
+db.roles.insert({name:"readonly", index:2, unreadableFields:["addressDetails"]});
+db.statuses.insert({name:"unsent", index:0});
+db.statuses.insert({name:"pending", index:1});
+db.statuses.insert({name:"complete", index:2});
+db.statuses.insert({name:"failure", index:3});
+db.users.insert({name:"administrator", userId:"123456", role:1});
+db.users.insert({name:"visitor", userId:"999999", role:2});
+db.layout.insert({nodeType: "I", field:"nodeLabel", category:"test1", column:1, row:1, topFive:false});
+db.layout.insert({nodeType: "I", field:"startDate", category:"test1", column:1, row:2, topFive:true});
+db.layout.insert({nodeType: "I", field:"address.city", category:"test1", column:1, row:3, topFive:true});
+db.layout.insert({nodeType: "I", field:"nodeId", category:"test1", column:1, row:4, topFive:false});

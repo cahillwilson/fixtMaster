@@ -1,0 +1,22 @@
+{
+  "name": "fixt",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.5.5",
+    "morgan": "^1.7.0",
+    "request": "^2.74.0",
+    "traversal": "^1.2.1",
+    "traverse": "^0.6.6",
+    "winston": "^2.2.0"
+  }
+}
