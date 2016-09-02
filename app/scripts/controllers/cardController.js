@@ -2,11 +2,13 @@
 
 angular.module('fixtApp')
     .controller('cardController', function (constantLoader, cardBusiness, 
-        handlerLoader, commonUtility, localStorage) {
+        handlerLoader, commonUtility, localStorage, defaultObjects) {
 
     var vm =  this;
     vm.isCardDetailsShow = false;
+    vm.isCardExtendShow = false;
     vm.title = constantLoader.defaultValues.SANDBOX_TITLE;
+    vm.cardExtended = {};
     vm.cardDetails = {};
     vm.cardDetails.nodeId = "";
     vm.cardDetails.nodeLabel = "";
@@ -27,6 +29,20 @@ angular.module('fixtApp')
                 localStorage.setObject("cardDetail", vm.cardDetails);
                 setCardDetailFromResponse();
             }, handlerLoader.exceptionHandler.logError);
+        }
+    }
+
+    function loadCardExtend(){
+        vm.localCopy = localStorage.getObject("cardExtended");
+        if (commonUtility.isDefinedObject(localCopy)){
+            vm.cardDetails = localCopy;
+            setCardExtendedFromResponse();
+        }else{
+            cardExtBusiness.getCardExtendListAsync().then(function(response){
+                vm.cardExtended = response.data;
+                localStorage.setObject("cardExtended", vm.cardExtended);
+                setCardExtendedFromResponse();
+            },handlerLoader.exceptionHandler.logError);
         }
     }
     
@@ -123,15 +139,34 @@ angular.module('fixtApp')
             };
         }
     }
+
+    function setCardExtendedFromResponse(){
+
+       /* vm.cardExtended.childDetails = []; //Referencing the Child Node from GetChildrenAPIresponse.json
+        if (commonUtility.isDefinedObject(vm.cardExtended.childDetails)) {
+            if (commonUtility.isDefinedObject(vm.cardExtended.childDetails)) {
+                   vm.cardExtended.childDetails.push(+"<span class='nodeIcon'><img src='styles/images/Hrchy-child.jpg' width='10' height='10' alt=""/></span>" + 
+                    vm.cardExtended.childDetails.customerId.hierarchyPointID )
+             }               
+
+        }*/
+
+
+    }
     
     vm.onCardDetailsClick = function(){
         vm.isCardDetailsShow = !vm.isCardDetailsShow;
     };
     
     vm.onCardHierarchyClick = function(){
+        console.log(vm.isCardExtendShow);
+        vm.isCardExtendShow = !vm.isCardExtendShow;
         
+       
         
     };
+vm.myFakeData = defaultObjects.FAKE_DATA;
+console.log(vm.myFakeData)
     
     initialized();
          
