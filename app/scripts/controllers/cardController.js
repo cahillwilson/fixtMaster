@@ -51,37 +51,37 @@ angular.module('fixtApp')
         if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails)) {
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.customerExcerpt)) {
                 vm.cardDetails.parentNodes.push(
-                    setParentLabelInHeirarchy("C", 
+                    setParentLabelInHeirarchy(constantLoader.nodeTypes.CUSTOMER, 
                         vm.cardDetails.parentNodeDetails.customerExcerpt.customerId,
                         vm.cardDetails.parentNodeDetails.customerExcerpt.customerName));
             }
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.hierarchyExcerpt)) {
                 vm.cardDetails.parentNodes.push(
-                    setParentLabelInHeirarchy("H", 
+                    setParentLabelInHeirarchy(constantLoader.nodeTypes.HEIRARCHY, 
                         vm.cardDetails.parentNodeDetails.hierarchyExcerpt.custBillingHierarchyId,
                         vm.cardDetails.parentNodeDetails.hierarchyExcerpt.description));
             }
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.bundleExcerpt)) {
                 vm.cardDetails.parentNodes.push(
-                    setParentLabelInHeirarchy("BA", 
+                    setParentLabelInHeirarchy(constantLoader.nodeTypes.BUNDLE, 
                         vm.cardDetails.parentNodeDetails.bundleExcerpt.custBillingHierarchyId,
                         vm.cardDetails.parentNodeDetails.bundleExcerpt.description));
             }
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.invoiceExcerpt)) {
                 vm.cardDetails.parentNodes.push(
-                    setParentLabelInHeirarchy("I", 
+                    setParentLabelInHeirarchy(constantLoader.nodeTypes.INVOICE, 
                         vm.cardDetails.parentNodeDetails.invoiceExcerpt.custBillingHierarchyId,
                         vm.cardDetails.parentNodeDetails.invoiceExcerpt.description));
             }
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.cdgexcerpt)) {
                 vm.cardDetails.parentNodes.push(
-                    setParentLabelInHeirarchy("CDG", 
+                    setParentLabelInHeirarchy(constantLoader.nodeTypes.CUSTOMER_DEFINED_GRP, 
                         vm.cardDetails.parentNodeDetails.cdgexcerpt.custBillingHierarchyId,
                         vm.cardDetails.parentNodeDetails.cdgexcerpt.description));
             }
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.subAccountExcerpt)) {
                 vm.cardDetails.parentNodes.push(
-                    setParentLabelInHeirarchy("SA", 
+                    setParentLabelInHeirarchy(constantLoader.nodeTypes.SUB_ACCOUNT, 
                         vm.cardDetails.parentNodeDetails.subAccountExcerpt.custBillingHierarchyId,
                         vm.cardDetails.parentNodeDetails.subAccountExcerpt.description));
             }
@@ -90,11 +90,13 @@ angular.module('fixtApp')
         vm.cardDetails.topFields = [];
         
         if (commonUtility.isDefinedObject(vm.cardDetails.customerNodeDetails)) {
-            setFinalHeirarcyLabel(vm.cardDetails.customerNodeDetails, "C",
+            setFinalHeirarcyLabel(vm.cardDetails.customerNodeDetails, 
+                constantLoader.nodeTypes.CUSTOMER,
                 vm.cardDetails.customerNodeDetails.customerNumber,
                 vm.cardDetails.customerNodeDetails.customerName);
         }else if (commonUtility.isDefinedObject(vm.cardDetails.hierarchyNodeDetails)) {
-            setFinalHeirarcyLabel(vm.cardDetails.bundleNodeDetails, "H",
+            setFinalHeirarcyLabel(vm.cardDetails.bundleNodeDetails, 
+                constantLoader.nodeTypes.HEIRARCHY,
                 vm.cardDetails.hierarchyNodeDetails.custBillingHierarchyId,
                 vm.cardDetails.hierarchyNodeDetails.description);
         }else if (commonUtility.isDefinedObject(vm.cardDetails.bundleNodeDetails)) {
@@ -118,7 +120,8 @@ angular.module('fixtApp')
     }
     
     function setParentLabelInHeirarchy(type, id, desc){
-        return type + ": " + id + " - " + desc;
+        return type + constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + 
+            id + constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR2 + desc;
     }
     
     function setFinalHeirarcyLabel(nodeDetails, nodeType, nodeId, nodeLabel){
@@ -130,11 +133,14 @@ angular.module('fixtApp')
         id = commonUtility.is3DValidKey(nodeType) ? nodeId : nodeDetails.nodeID;
         label = commonUtility.is3DValidKey(nodeType) ? nodeLabel : nodeDetails.nodeLabel;
         
-        vm.cardDetails.nodeId = type + ": " + id;
+        vm.cardDetails.nodeId = type + 
+            constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + id;
         vm.cardDetails.nodeLabel = label;
 
         vm.cardDetails.parentNodes.push(
-                vm.cardDetails.nodeId + " - " + vm.cardDetails.nodeLabel);
+            vm.cardDetails.nodeId + 
+            constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR2 + 
+            vm.cardDetails.nodeLabel);
 
         setTopFiveFields(nodeDetails);
     }

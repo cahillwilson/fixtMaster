@@ -18,7 +18,7 @@ angular.module('fixtApp')
                             '<div class="cardExpand">' +
                                 '<div class="crdExpheader">' +
                                     '<div class="crdExptitle">' +
-                                        '<span ng-bind="cardId"></span>-' +
+                                        '<span>{{cardId | fixtHideChar: ":"}}</span>-' +
                                         '<fixt-editable item="cardLabel"></fixt-editable>' +
                                     '</div>' +
                                     '<div class="sBxaction">' +
