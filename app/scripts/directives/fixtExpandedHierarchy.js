@@ -42,7 +42,7 @@ angular.module('fixtApp')
         <div class="hrNode1-4"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>1:1122334455667-East </div>
         <div class="hrNode1-5"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>1:1122334455667-East <span class="badge">234</span></div>
         <div class="hrNode1-6"><span class="nodeIcon"><img src="styles/images/Hrchy-expand.jpg" width="20" height="20" alt=""/></span>Sub Accounts 001-100</div>
-        		<div class="hrNode2-1"><span class="nodeIcon"><img src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/><div>{{myList}}</div></span></div>
+        		<div class="hrNode2-1"><span class="nodeIcon"><img src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/><div ng-repeat="children in myList">{{children}}</div></span></div>
         		
                 
                 
