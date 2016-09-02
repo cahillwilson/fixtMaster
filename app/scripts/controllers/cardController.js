@@ -50,68 +50,63 @@ angular.module('fixtApp')
         vm.cardDetails.parentNodes = [];
         if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails)) {
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.customerExcerpt)) {
-                vm.cardDetails.parentNodes.push("C: " +
-                        vm.cardDetails.parentNodeDetails.customerExcerpt.customerId +
-                        " - " +
-                        vm.cardDetails.parentNodeDetails.customerExcerpt.customerName);
+                vm.cardDetails.parentNodes.push(
+                    setParentLabelInHeirarchy("C", 
+                        vm.cardDetails.parentNodeDetails.customerExcerpt.customerId,
+                        vm.cardDetails.parentNodeDetails.customerExcerpt.customerName));
             }
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.hierarchyExcerpt)) {
-                vm.cardDetails.parentNodes.push("H: " +
-                        vm.cardDetails.parentNodeDetails.hierarchyExcerpt.custBillingHierarchyId +
-                        " - " +
-                        vm.cardDetails.parentNodeDetails.hierarchyExcerpt.description);
+                vm.cardDetails.parentNodes.push(
+                    setParentLabelInHeirarchy("H", 
+                        vm.cardDetails.parentNodeDetails.hierarchyExcerpt.custBillingHierarchyId,
+                        vm.cardDetails.parentNodeDetails.hierarchyExcerpt.description));
             }
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.bundleExcerpt)) {
-                vm.cardDetails.parentNodes.push("BA: " +
-                        vm.cardDetails.parentNodeDetails.bundleExcerpt.custBillingHierarchyId +
-                        " - " +
-                        vm.cardDetails.parentNodeDetails.bundleExcerpt.description);
+                vm.cardDetails.parentNodes.push(
+                    setParentLabelInHeirarchy("BA", 
+                        vm.cardDetails.parentNodeDetails.bundleExcerpt.custBillingHierarchyId,
+                        vm.cardDetails.parentNodeDetails.bundleExcerpt.description));
             }
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.invoiceExcerpt)) {
-                vm.cardDetails.parentNodes.push("I: " +
-                        vm.cardDetails.parentNodeDetails.invoiceExcerpt.custBillingHierarchyId +
-                        " - " +
-                        vm.cardDetails.parentNodeDetails.invoiceExcerpt.description);
+                vm.cardDetails.parentNodes.push(
+                    setParentLabelInHeirarchy("I", 
+                        vm.cardDetails.parentNodeDetails.invoiceExcerpt.custBillingHierarchyId,
+                        vm.cardDetails.parentNodeDetails.invoiceExcerpt.description));
             }
             if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.cdgexcerpt)) {
-                vm.cardDetails.parentNodes.push("CDG: " +
-                        vm.cardDetails.parentNodeDetails.cdgexcerpt.custBillingHierarchyId +
-                        " - " +
-                        vm.cardDetails.parentNodeDetails.cdgexcerpt.description);
+                vm.cardDetails.parentNodes.push(
+                    setParentLabelInHeirarchy("CDG", 
+                        vm.cardDetails.parentNodeDetails.cdgexcerpt.custBillingHierarchyId,
+                        vm.cardDetails.parentNodeDetails.cdgexcerpt.description));
+            }
+            if (commonUtility.isDefinedObject(vm.cardDetails.parentNodeDetails.subAccountExcerpt)) {
+                vm.cardDetails.parentNodes.push(
+                    setParentLabelInHeirarchy("SA", 
+                        vm.cardDetails.parentNodeDetails.subAccountExcerpt.custBillingHierarchyId,
+                        vm.cardDetails.parentNodeDetails.subAccountExcerpt.description));
             }
         }
 
         vm.cardDetails.topFields = [];
-
-        if (commonUtility.isDefinedObject(vm.cardDetails.invoiceNodeDetails)) {
-            vm.cardDetails.nodeId = vm.cardDetails.invoiceNodeDetails.nodeType + ": " +
-                    vm.cardDetails.invoiceNodeDetails.nodeID;
-            vm.cardDetails.nodeLabel = vm.cardDetails.invoiceNodeDetails.nodeLabel;
-
-            vm.cardDetails.parentNodes.push(
-                    vm.cardDetails.nodeId + " - " + vm.cardDetails.nodeLabel);
-
-            setTopFiveFields(vm.cardDetails.invoiceNodeDetails);
-        }
-        if (commonUtility.isDefinedObject(vm.cardDetails.cdgnodeDetails)) {
-            vm.cardDetails.nodeId = vm.cardDetails.cdgnodeDetails.nodeType +
-                    ": " + vm.cardDetails.cdgnodeDetails.nodeID;
-            vm.cardDetails.nodeLabel = vm.cardDetails.cdgnodeDetails.nodeLabel;
-
-            vm.cardDetails.parentNodes.push(
-                    vm.cardDetails.nodeId + " - " + vm.cardDetails.nodeLabel);
-
-            setTopFiveFields(vm.cardDetails.cdgnodeDetails);
-        }
-        if (commonUtility.isDefinedObject(vm.cardDetails.subAccountNodeDetails)) {
-            vm.cardDetails.nodeId = vm.cardDetails.subAccountNodeDetails.nodeType +
-                    ": " + vm.cardDetails.subAccountNodeDetails.nodeID;
-            vm.cardDetails.nodeLabel = vm.cardDetails.subAccountNodeDetails.nodeLabel;
-
-            vm.cardDetails.parentNodes.push(
-                    vm.cardDetails.nodeId + " - " + vm.cardDetails.nodeLabel);
-
-            setTopFiveFields(vm.cardDetails.subAccountNodeDetails);
+        
+        if (commonUtility.isDefinedObject(vm.cardDetails.customerNodeDetails)) {
+            setFinalHeirarcyLabel(vm.cardDetails.customerNodeDetails, "C",
+                vm.cardDetails.customerNodeDetails.customerNumber,
+                vm.cardDetails.customerNodeDetails.customerName);
+        }else if (commonUtility.isDefinedObject(vm.cardDetails.hierarchyNodeDetails)) {
+            setFinalHeirarcyLabel(vm.cardDetails.bundleNodeDetails, "H",
+                vm.cardDetails.hierarchyNodeDetails.custBillingHierarchyId,
+                vm.cardDetails.hierarchyNodeDetails.description);
+        }else if (commonUtility.isDefinedObject(vm.cardDetails.bundleNodeDetails)) {
+            setFinalHeirarcyLabel(vm.cardDetails.bundleNodeDetails);
+        }else if (commonUtility.isDefinedObject(vm.cardDetails.invoiceNodeDetails)) {
+            setFinalHeirarcyLabel(vm.cardDetails.invoiceNodeDetails);
+        }else if (commonUtility.isDefinedObject(vm.cardDetails.cdgnodeDetails)) {
+            setFinalHeirarcyLabel(vm.cardDetails.cdgnodeDetails);
+        }else if (commonUtility.isDefinedObject(vm.cardDetails.subAccountNodeDetails)) {
+            setFinalHeirarcyLabel(vm.cardDetails.subAccountNodeDetails);
+        }else if (commonUtility.isDefinedObject(vm.cardDetails.siteNodeDetails)) {
+            setFinalHeirarcyLabel(vm.cardDetails.siteNodeDetails);
         }
 
         if (vm.cardDetails.parentNodes.length >
@@ -120,6 +115,28 @@ angular.module('fixtApp')
                     (vm.cardDetails.parentNodes.length -
                             constantLoader.defaultValues.MAX_NODE_TYPE_COUNT));
         }
+    }
+    
+    function setParentLabelInHeirarchy(type, id, desc){
+        return type + ": " + id + " - " + desc;
+    }
+    
+    function setFinalHeirarcyLabel(nodeDetails, nodeType, nodeId, nodeLabel){
+        var type = constantLoader.defaultValues.BLANK_STRING;
+        var id = constantLoader.defaultValues.BLANK_STRING;
+        var label = constantLoader.defaultValues.BLANK_STRING;
+        
+        type = commonUtility.is3DValidKey(nodeType) ? nodeType : nodeDetails.nodeType;
+        id = commonUtility.is3DValidKey(nodeType) ? nodeId : nodeDetails.nodeID;
+        label = commonUtility.is3DValidKey(nodeType) ? nodeLabel : nodeDetails.nodeLabel;
+        
+        vm.cardDetails.nodeId = type + ": " + id;
+        vm.cardDetails.nodeLabel = label;
+
+        vm.cardDetails.parentNodes.push(
+                vm.cardDetails.nodeId + " - " + vm.cardDetails.nodeLabel);
+
+        setTopFiveFields(nodeDetails);
     }
     
     function setTopFiveFields(nodeFields){
@@ -161,9 +178,6 @@ angular.module('fixtApp')
     vm.onCardHierarchyClick = function(){
         console.log(vm.isCardExtendShow);
         vm.isCardExtendShow = !vm.isCardExtendShow;
-        
-       
-        
     };
 vm.myFakeData = defaultObjects.FAKE_DATA;
 console.log(vm.myFakeData)
