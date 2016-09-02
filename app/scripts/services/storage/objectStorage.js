@@ -3,14 +3,14 @@
 angular.module('fixtApp')
   .service('objectStorage', function () {
       
-    var cardDetail = {};
+    var cardList = {};
     
-    Object.defineProperty(cardDetail, "cardDetail", {
+    Object.defineProperty(cardList, "cardList", {
         get: function() {
-            return cardDetail;
+            return cardList;
         },
-        set: function(card) {
-            cardDetail = card;
+        set: function(cards) {
+            cardList = cards;
         }
     });
 });
