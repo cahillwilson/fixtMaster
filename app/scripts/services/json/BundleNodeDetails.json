@@ -1,0 +1,100 @@
+{
+        "transactionDetails":
+        {
+            "transactionID": "123333",
+            "statusCode": "0",
+            "statusMessage": "Success",
+            "sourceSystem": null,
+            "startRow": "1",
+            "endRow": "400",
+            "totalRow": null,
+            "segment": null,
+            "rowCount": "1",
+            "timeZone": "EST"
+        },
+        "parentNodeDetails":
+        {
+            "subAccountExcerpt": null,
+            "customerExcerpt":
+            {
+                "customerId": "106",
+                "customerName": "BCV INC",
+                "addressName": null
+            },
+            "hierarchyExcerpt":
+            {
+                "parentageLevel": "1",
+                "custBillingHierarchyId": "104",
+                "account1Number": "8310000000363",
+                "description": "",
+                "hierarchyPointId": "2387",
+                "hierarchyId": null,
+                "accountType": null
+            },
+            "bundleExcerpt": null,
+            "invoiceExcerpt": null,
+            "cdgExcerpt": null
+        },
+        "bundleNodeDetails":
+        {
+            "nodeType": "AB",
+            "nodeID": "8310000000363",
+            "nodeLabel": "",
+            "hierarchyPointID": "2387",
+            "startDate": "20150612 00:00:00",
+            "endDate": "",
+            "regionalAccountNumber": "",
+            "customerLegalName": "",
+            "pcsHomerNumber": "",
+            "rollupOption": "",
+            "customerProfession": "",
+            "rollupDetails": "",
+            "vatTaxCode": "",
+            "vatExemptCertificateNumber": "",
+            "vatExemptReason": "",
+            "vatExemptCertificateStartDate": "",
+            "vatMaskRule": "",
+            "vatExemptCertificateEndDate": "",
+            "vatRegistrationNumber": "",
+            "taxPayerId": "",
+            "customerStateTaxId": "",
+            "customerCityTaxId": "",
+            "taxOffice": "",
+            "invoiceTaxType": "",
+            "taxWithholdStatusCode": "",
+            "ratingCurrency": "",
+            "attention": "",
+            "contractName": "",
+            "foreignPostalCode": null,
+            "countryCode": null,
+            "rgnlTaxExmptId": null,
+            "rgnlTaxExmptStrtDate": null,
+            "rgnlTaxExmptEndDate": null,
+            "interOffrRlnkDate": "",
+            "validationIndicator": null,
+            "crncyConvDate": null,
+            "fedGovConNumber": null,
+            "address":
+            {
+                "addressType": "Contract Address",
+                "addressLine1": "",
+                "addressLine2": "",
+                "addressLine3": "",
+                "addressLine4": "",
+                "streetAddress": null,
+                "addressName": "",
+                "city": "PASADENA",
+                "floor": "",
+                "state": "TX",
+                "province": "",
+                "zipCode": "77505",
+                "zipCodeSuffix": "",
+                "foreignPostalCode": "",
+                "countyName": "",
+                "countryName": "",
+                "countryCode": null,
+                "geoCode": "0144201222000",
+                "serviceLocationDetails": null
+            }
+        }
+    }

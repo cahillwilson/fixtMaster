@@ -2,6 +2,7 @@
 
 angular.module('fixtApp')
   .service('objectStorage', function () {
+      
     var cardDetail = {};
     
     Object.defineProperty(cardDetail, "cardDetail", {

@@ -11,7 +11,6 @@ angular.module('fixtApp')
             cardLabel: "=",
             detailsClick: "&",
             hierarchyClick: "&"
-        
         },
         template: function(){
             
@@ -19,7 +18,7 @@ angular.module('fixtApp')
                             'ng-model="details" jqyoui-draggable="{animate:true}">' +
                             '<div class="sBxheader">' +
                                 '<div class="sBxtitle">' +
-                                    '<span ng-bind="cardId"></span>-' +
+                                    '<span>{{cardId | fixtHideChar: ":"}}</span>-' +
                                     '<fixt-editable item="cardLabel"></fixt-editable>' +
                                 '</div>' +
                                 '<div class="sBxaction">' +
