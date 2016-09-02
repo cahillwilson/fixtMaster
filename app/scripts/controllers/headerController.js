@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .controller('headerController', function (constantLoader, cardBusiness, 
-        handlerLoader, commonUtility, localStorage, defaultObjects) {
+        commonUtility) {
 
     var vm =  this;
     vm.searchText = constantLoader.defaultValues.BLANK_STRING;
@@ -18,8 +18,11 @@ angular.module('fixtApp')
     };
     
     vm.onSearchClick = function(){
-        handlerLoader.log.info(vm.searchItemType);
-        commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
+        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1){
+            cardBusiness.getCardDetailsListAsync();
+        }else{
+            commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
+        }
     };
     
     initialized();
