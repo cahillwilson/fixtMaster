@@ -1,0 +1,115 @@
+{
+	"transactionDetails":
+	{
+		"transactionID": "123333",
+		"statusCode": "0",
+		"statusMessage": "Success",
+		"sourceSystem": null,
+		"startRow": "1",
+		"endRow": "400",
+		"totalRow": null,
+		"segment": null,
+		"rowCount": "1",
+		"timeZone": "EST"
+	},
+	"parentNodeDetails":
+	{
+		"subAccountExcerpt":
+		{
+			"parentageLevel": "1",
+			"account1Number": "8310000000366",
+			"description": "",
+			"hierarchyPointId": "2394",
+			"custBillingHierarchyId": "104",
+			"custID": null,
+			"hierarchyId": null,
+			"accountType": null
+		},
+		"customerExcerpt":
+		{
+			"customerId": "106",
+			"customerName": "BCV INC",
+			"addressName": null
+		},
+		"hierarchyExcerpt":
+		{
+			"parentageLevel": "5",
+			"custBillingHierarchyId": "104",
+			"account1Number": "",
+			"description": "",
+			"hierarchyPointId": "2386",
+			"hierarchyId": null,
+			"accountType": null
+		},
+		"bundleExcerpt":
+		{
+			"parentageLevel": "4",
+			"account1Number": "8310000000363",
+			"description": "",
+			"hierarchyPointId": "2387",
+			"custBillingHierarchyId": "104",
+			"custID": null,
+			"hierarchyId": null,
+			"accountType": null
+		},
+		"invoiceExcerpt":
+		{
+			"parentageLevel": "3",
+			"account1Number": "8310000000364",
+			"description": "",
+			"hierarchyPointId": "2388",
+			"custBillingHierarchyId": "104",
+			"custID": null,
+			"hierarchyId": null,
+			"hierarchyPointID": null,
+			"accountType": null
+		},
+		"cdgExcerpt":
+		{
+			"parentageLevel": "2",
+			"account1Number": "0001",
+			"description": "",
+			"hierarchyPointId": "2389",
+			"custBillingHierarchyId": "104"
+		}
+	},
+	"siteNodeDetails":
+	{
+		"nodeType": null,
+		"nodeID": null,
+		"nodeLabel": "",
+		"hierarchyPointID": "2405",
+		"account1Number": "",
+		"sequenceNumber": "110",
+		"interOfferRelinkDate": "",
+		"startDate": null,
+		"endDate": null,
+		"address":
+		{
+			"addressType": "Service Location Address",
+			"addressLine1": "",
+			"addressLine2": "",
+			"addressLine3": "",
+			"addressLine4": "",
+			"streetAddress": "1129 W OLNEY RD",
+			"addressName": "SGS NA MINERALS SERV DIV",
+			"city": "NORFOLK",
+			"floor": null,
+			"state": "VA",
+			"province": "",
+			"zipCode": "23507",
+			"zipCodeSuffix": "1312",
+			"foreignPostalCode": "",
+			"countyName": "NORFOLK",
+			"countryName": "",
+			"countryCode": "",
+			"geoCode": "0147710044000",
+			"serviceLocationDetails":
+			{
+				"floor": "",
+				"roomNumber": "",
+				"buildingName": ""
+			}
+		}
+	}
+}

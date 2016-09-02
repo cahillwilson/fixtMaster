@@ -11,7 +11,6 @@ angular.module('fixtApp')
             cardLabel: "=",
             detailsClick: "&",
             hierarchyClick: "&"
-        
         },
         template: function(){
             

@@ -1,0 +1,67 @@
+{
+        "transactionDetails":
+        {
+            "transactionId": "123333",
+            "statusCode": "0",
+            "statusMessage": "Success",
+            "sourceSystem": null,
+            "startRow": "1",
+            "endRow": "400",
+            "totalRow": null,
+            "segment": null,
+            "rowCount": "1",
+            "timeZone": "EST"
+        },
+        "customerNodeDetails":
+        {
+            "customerNumber": "36921817",
+            "customerName": "DURAKON INDUSTRIES",
+            "taxIdCity": "",
+            "taxIdState": "",
+            "salesSegment": "",
+            "accountClassification": "",
+            "specialCustomerBillCode": "",
+            "masterAgreementNumber": "",
+            "billingInquiryNumber": "",
+            "creditCheckAuthorizationNumber": "",
+            "salesATTId": "",
+            "paymentTerm": "",
+            "startDate": "20020225 00:00:00",
+            "customerProfileClassName": "",
+            "endCustomerName": "",
+            "externalCustomerTypeCode": "",
+            "externalCustomerNumber": "",
+            "postalCodeMaskRu": null,
+            "postalCod": null,
+            "city": null,
+            "stateProvinence": null,
+            "county": null,
+            "country": null,
+            "zipCode": null,
+            "zipCodeSuffix": null,
+            "dunsNumber": "",
+            "mdsId": "",
+            "address":
+            {
+                "addressType": "Customer Address",
+                "addressLine1": "2101 LAPEER RD,LAPEER,MI,48446",
+                "addressLine2": "",
+                "addressLine3": "",
+                "addressLine4": "",
+                "streetAddress": "",
+                "addressName": "",
+                "city": "LAPEER",
+                "floor": "",
+                "state": "MI",
+                "province": "",
+                "zipCode": "48446",
+                "zipCodeSuffix": "",
+                "foreignPostalCode": "",
+                "countyName": "",
+                "countryName": "",
+                "countryCode": null,
+                "geoCode": "",
+                "serviceLocationDetails": null
+            }
+        }
+    }
