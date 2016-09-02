@@ -7,6 +7,7 @@ angular.module('fixtApp')
     var vm =  this;
     vm.isCardDetailsShow = false;
     vm.isCardExtendShow = false;
+    vm.cardDetailsDisplayId = 0;
     vm.title = constantLoader.defaultValues.SANDBOX_TITLE;
     vm.cardExtended = {};
     vm.cards = [];
@@ -53,8 +54,9 @@ angular.module('fixtApp')
         }
     }*/
     
-    vm.onCardDetailsClick = function(){
+    vm.onCardDetailsClick = function(nodeId){
         vm.isCardDetailsShow = !vm.isCardDetailsShow;
+        vm.cardDetailsDisplayId = nodeId;
     };
     
     vm.onCardHierarchyClick = function(){
