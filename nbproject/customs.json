@@ -22,6 +22,14 @@
                 "card-id": {}
             }
         },
+        "fixt-card-detail-view": {
+            "attributes": {
+                "card-label": {},
+                "parent-nodes": {},
+                "card-id": {},
+                "show-card-view-click": {}
+            }
+        },
         "fixt-searchbox": {
             "attributes": {
                 "label-binding": {},
