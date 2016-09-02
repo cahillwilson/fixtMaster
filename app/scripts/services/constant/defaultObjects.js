@@ -78,7 +78,7 @@ var fakeData =
 
 
        var idsOnly = fakeData.map(function (d) {
-           return d.hierarchyId;
+           return d.hierarchyPointID;
         });
 
 angular.module('fixtApp')
