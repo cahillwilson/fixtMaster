@@ -59,7 +59,7 @@ angular.module('fixtApp')
                 cardDetails.customerNodeDetails.customerNumber,
                 cardDetails.customerNodeDetails.customerName);
         }else if (commonUtility.isDefinedObject(cardDetails.hierarchyNodeDetails)) {
-            setFinalHeirarcyLabel(cardDetails.bundleNodeDetails, 
+            setFinalHeirarcyLabel(cardDetails.hierarchyNodeDetails, 
                 constantLoader.nodeTypes.HEIRARCHY,
                 cardDetails.hierarchyNodeDetails.custBillingHierarchyId,
                 cardDetails.hierarchyNodeDetails.description);
