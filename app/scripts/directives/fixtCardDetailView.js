@@ -60,12 +60,12 @@ angular.module('fixtApp')
                                     '<div class="crdExpMidcol"></div>' +
                                     '<div class="crdExpRightcol">' +
                                         '<ul class="nav nav-tabs">' +
-                                            '<li class="active"><span>Over view</span></li>' +
-                                            '<li><span>Charges</span></li>' +
-                                            '<li><span>Telephone Numbers</span></li>' +
+                                            '<li class="active"><a data-target="#overview" data-toggle="tab">Overview</a></li>' +
+                                            '<li><a data-target="#charges" data-toggle="tab">Charges</a></li>' +
+                                            '<li><a data-target="#contacts" data-toggle="tab">Telephone Numbers</a></li>' +
                                         '</ul>' +
                                         '<div class="tab-content">' +
-                                            '<div class="tab-pane fade in active">' +
+                                            '<div class="tab-pane fade in active" id="overview">' +
                                                 '<div class="crdTabComoncol">' +
                                                     '<div class="crdTabLeftcol">' +
                                                         '<div>' +
@@ -131,12 +131,12 @@ angular.module('fixtApp')
                                                     '</div>' +
                                                 '</div>' +
                                             '</div>' +
-                                            '<div class="tab-pane fade">' +
-                                                '<h3>Wallmart- Details</h3>' +
+                                            '<div class="tab-pane fade" id="charges">' +
+                                                '<h3>Wallmart- Details - Charges</h3>' +
                                                 '<p>Some content in Pending.</p>' +
                                             '</div>' +
-                                            '<div class="tab-pane fade">' +
-                                                '<h3>Wallmart- Details</h3>' +
+                                            '<div class="tab-pane fade" id="contacts">' +
+                                                '<h3>Wallmart- Details - Telephone Numbers</h3>' +
                                                 '<p>Some content in Pending.</p>' +
                                             '</div>' +
                                         '</div>' +
