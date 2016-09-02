@@ -33,7 +33,7 @@ angular.module('fixtApp')
 //            }, handlerLoader.exceptionHandler.logError);
 //        }
         cardBusiness.getCardDetailsListAsync().then(function (response) {
-            cardDetails = response.data;
+            cardDetails = response.data[0];
             setCardDetailFromResponse();
         }, handlerLoader.exceptionHandler.logError);
     }
