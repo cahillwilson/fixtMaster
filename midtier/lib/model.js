@@ -38,6 +38,20 @@ module.exports = function(mongoose) {
         role: Number
     });
     
+    var Topfive = new Schema({
+        nodeType: String,
+        displayTags: [String]
+    });
+    
+    var Layout = new Schema({
+        nodeType: String,
+        field: String,
+        category: String,
+        column: Number,
+        row: Number,
+        displayName: String
+    });
+    
     // This is the status of a transaction
     var Status = new Schema({
         name: String,
@@ -73,6 +87,8 @@ module.exports = function(mongoose) {
         Roles: mongoose.model('Roles', Role),
         Users: mongoose.model('Users', User),
         Nodes: mongoose.model('Nodes', Node),
+        Topfives: mongoose.model('Topfives', Topfive),
+        Layouts: mongoose.model('Layouts', Layout),
         Statuses: mongoose.model('Statuses', Status),
         Transactions: mongoose.model('Transactions', Transaction),
         RelinkCards: mongoose.model('RelinkCards', RelinkCard),
