@@ -249,7 +249,78 @@
             "nodeLabel",
             "startDate",
             "seqNum"
-            ]
+        ]
+    },
+    {
+        "parentNodeDetails":
+        {
+            "subAccountExcerpt": null,
+            "customerExcerpt":
+            {
+                "customerId": "106",
+                "customerName": "BCV INC",
+                "addressName": null
+            },
+            "hierarchyExcerpt": null,
+            "bundleExcerpt": null,
+            "invoiceExcerpt": null,
+            "cdgExcerpt": null
+        },
+        "topFive":[
+            "sequenceNumber",
+            "cfmStartDate",
+            "ebillIndicator"
+        ],
+        "hierarchyNodeDetails":
+        {
+            "custBillingHierarchyId": "104",
+            "startDate": "20150612 00:00:00",
+            "sequenceNumber": "10",
+            "endDate": "",
+            "description": "CodeDetails",
+            "interOfferRelinkDate": "",
+            "billingAsSubContractor": "",
+            "legalEntityCountryCode": "",
+            "ebillIndicator": "DF",
+            "specialMRCIndicator": "",
+            "nonBalanceIndicator": "",
+            "webInitialOrderIndicator": "",
+            "billControlModelCode": "",
+            "migrationDate": "",
+            "prohibitRelink": "",
+            "specialBid": "",
+            "specialBidActivityType": "",
+            "specialBidDetails": "",
+            "service": "",
+            "accountType": "",
+            "availableServices": "",
+            "regionalBiller": "",
+            "attLegalEntityName": "",
+            "billLocked": "",
+            "manualBillhierarchy": "",
+            "attLegalEntityCode": "",
+            "cfmStartDate": "12-JUN-15",
+            "socCountry": "",
+            "socCountryCode": "",
+            "ccfDate": "",
+            "billingAsSubcond": "",
+            "nonBalanceIndi": "",
+            "lspVendorCode": "",
+            "lspVendorName": ""
+        },
+        "transactionDetails":
+        {
+            "transactionID": "123333",
+            "statusCode": "0",
+            "statusMessage": "Success",
+            "sourceSystem": null,
+            "startRow": "1",
+            "endRow": "400",
+            "totalRow": null,
+            "segment": null,
+            "rowCount": "1",
+            "timeZone": "EST"
+        }
     }
 ]
  

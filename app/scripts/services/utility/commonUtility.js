@@ -22,6 +22,10 @@ angular.module('fixtApp')
         serviceLoader.location.path(route);
     };
     
+    commonUtility.getCurrentLocation = function(){
+        return serviceLoader.location.path();
+    };
+    
     commonUtility.filterInArray = function(array, filterJson){
         return serviceLoader.filter("filter")(array, filterJson);
     };
@@ -29,6 +33,18 @@ angular.module('fixtApp')
     commonUtility.isSearchBoxHide = function(isHide){
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SEARCH_HIDDEN, 
             isHide, false);
+    };
+    
+    commonUtility.callback = function(callbackName, args){
+        if(this.is3DValidKey(callbackName) && typeof callbackName ==='function'){
+            if(this.is3DValidKey(args)){
+                callbackName(args); 
+            } else{
+                callbackName();
+            }
+        } else{
+            return;
+        }
     };
     
     return commonUtility;

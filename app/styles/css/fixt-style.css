@@ -796,3 +796,8 @@ input#searchIcon{
     cursor: pointer;
   }
 }
+
+.card-container{
+    display: inline-block; 
+    margin-left: 20px;
+}

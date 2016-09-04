@@ -2,10 +2,12 @@
 
 angular.module('fixtApp')
   .service('objectStorage', function () {
-      
-    var cardList = {};
     
-    Object.defineProperty(cardList, "cardList", {
+    var objectStorage = {};
+    
+    var cardList = [];
+    
+    Object.defineProperty(objectStorage, "cardList", {
         get: function() {
             return cardList;
         },
@@ -13,4 +15,6 @@ angular.module('fixtApp')
             cardList = cards;
         }
     });
+    
+    return objectStorage;
 });
