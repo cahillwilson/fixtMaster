@@ -7,8 +7,8 @@ angular.module('fixtApp')
     var cardBusiness = {};
     
     var cardDetails = {};
-    cardDetails.nodeId = "";
-    cardDetails.nodeLabel = "";
+    cardDetails.nodeId = constantLoader.defaultValues.BLANK_STRING;
+    cardDetails.nodeLabel = constantLoader.defaultValues.BLANK_STRING;
     
     function setCardDetailFromResponse(successCallback) {
         cardDetails.parentNodes = [];
@@ -51,7 +51,7 @@ angular.module('fixtApp')
             }
         }
 
-        cardDetails.topFields = [];
+        cardDetails.fields = [];
         
         if (commonUtility.isDefinedObject(cardDetails.customerNodeDetails)) {
             setFinalHeirarcyLabel(cardDetails.customerNodeDetails, 
@@ -113,20 +113,59 @@ angular.module('fixtApp')
     }
     
     function setTopFiveFields(nodeFields){
-        if(commonUtility.isDefinedObject(cardDetails.topFive)){
-            for(var cnt=0; cnt<Object.keys(nodeFields).length; cnt++){
-                for(var index=0; index<cardDetails.topFive.length; index++){
-                    if(cardDetails.topFive[index] === Object.keys(nodeFields)[cnt]){
-                        if(cardDetails.topFields.length < 
-                            constantLoader.defaultValues.MAX_NODE_FIELD_COUNT){
-                            cardDetails.topFields.push({
-                                name: Object.keys(nodeFields)[cnt],
-                                value: nodeFields[Object.keys(nodeFields)[cnt]]
-                            });
+        if(commonUtility.isDefinedObject(cardDetails.layout)){
+            if(commonUtility.isDefinedObject(nodeFields)){
+                for(var index=0; index<cardDetails.layout.length; index++){
+                    var topFiveRank = 0;
+                    if(commonUtility.isDefinedObject(cardDetails.topFive)){
+                        if(commonUtility.isDefinedObject(cardDetails.topFive.displayTags)){
+                            for(var count=0; count<cardDetails.topFive.displayTags.length; count++){
+                                if(cardDetails.topFive.displayTags[count] === 
+                                    cardDetails.layout[index].field){
+                                    topFiveRank = count + 1;
+                                    break;
+                                }
+                            }
                         }
                     }
+                    
+                    var children = cardDetails.layout[index].field.split(constantLoader.defaultValues.JSON_DELIMETER);
+                    var value = constantLoader.defaultValues.BLANK_STRING;
+                    for(var cnt=0; cnt<Object.keys(nodeFields).length; cnt++){
+                        if(children.length === 1){
+                            if(Object.keys(nodeFields)[cnt] === children[0]){
+                                value = nodeFields[Object.keys(nodeFields)[cnt]];
+                            }
+                        }else if(children.length === 2){
+                            if(Object.keys(nodeFields)[cnt] === children[0]){
+                                for(var cnt1=0; cnt1<Object.keys(nodeFields[Object.keys(nodeFields)[cnt]]).length; cnt1++){
+                                    if(Object.keys(nodeFields[Object.keys(nodeFields)[cnt]])[cnt1] === children[1]){
+                                        value = nodeFields[Object.keys(nodeFields)[cnt]][Object.keys(nodeFields[Object.keys(nodeFields)[cnt]])[cnt1]];
+                                        break;
+                                    }
+                                }
+                            }
+                        }else{
+                            break;
+                        }
+                        if(value !== constantLoader.defaultValues.BLANK_STRING){
+                            break;
+                        }
+                    }
+                    
+                    cardDetails.fields.push({
+                        id: cardDetails.layout[index]._id,
+                        nodeType: cardDetails.layout[index].nodeType,
+                        field: cardDetails.layout[index].field,
+                        category: cardDetails.layout[index].category,
+                        column: cardDetails.layout[index].column,
+                        row: cardDetails.layout[index].row,
+                        displayName: cardDetails.layout[index].displayName,
+                        rank: topFiveRank,
+                        value: value
+                    });
                 }
-            };
+            }
         }
     }
     

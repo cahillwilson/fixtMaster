@@ -93,7 +93,7 @@
             "webOrderNumber": "",
             "salesOffice": "",
             "masterCustNumber": null,
-            "billGroup": "",
+            "billGroup": "KKot",
             "ratedInvTab": null,
             "gbpcustomerName": null,
             "address":
@@ -118,12 +118,83 @@
                 "geoCode": "0147059068000"
             }
         },
-        "topFive":[
-            "nodeID",
-            "nodeLabel",
-            "startDate",
-            "seqNum"
+        "topFive":
+        {
+            "_id": "57cb9416dac3e09ac833f2e4",
+            "nodeType": "I",
+            "displayTags": [
+                "startDate",
+                "address.city",
+                "address.state",
+                "billGroup",
+                "seqNum"
             ]
+        },
+        "layout": [
+            {
+                "_id": "57cb9416dac3e09ac833f2e1",
+                "nodeType": "SA",
+                "field": "nodeLabel",
+                "category": "test1",
+                "column": 1,
+                "row": 1,
+                "displayName": "Node Label"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e2",
+                "nodeType": "SA",
+                "field": "nodeID",
+                "category": "test1",
+                "column": 1,
+                "row": 2,
+                "displayName": "Node Id"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e3",
+                "nodeType": "SA",
+                "field": "startDate",
+                "category": "test1",
+                "column": 1,
+                "row": 3,
+                "displayName": "Start Date"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e4",
+                "nodeType": "SA",
+                "field": "address.city",
+                "category": "test1",
+                "column": 1,
+                "row": 4,
+                "displayName": "City"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e4",
+                "nodeType": "SA",
+                "field": "address.state",
+                "category": "test1",
+                "column": 1,
+                "row": 5,
+                "displayName": "State"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e4",
+                "nodeType": "SA",
+                "field": "billGroup",
+                "category": "test1",
+                "column": 1,
+                "row": 6,
+                "displayName": "Bill Group"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e4",
+                "nodeType": "SA",
+                "field": "seqNum",
+                "category": "test1",
+                "column": 1,
+                "row": 7,
+                "displayName": "Seq #"
+            }
+        ]    
     },
     {
         "transactionDetails":
@@ -219,7 +290,7 @@
             "webOrderNumber": "",
             "salesOffice": "",
             "masterCustNumber": null,
-            "billGroup": "",
+            "billGroup": "KKor",
             "ratedInvTab": null,
             "gbpcustomerName": null,
             "address":
@@ -266,11 +337,7 @@
             "invoiceExcerpt": null,
             "cdgExcerpt": null
         },
-        "topFive":[
-            "sequenceNumber",
-            "cfmStartDate",
-            "ebillIndicator"
-        ],
+        
         "hierarchyNodeDetails":
         {
             "custBillingHierarchyId": "104",

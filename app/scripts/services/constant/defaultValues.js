@@ -9,5 +9,6 @@ angular.module('fixtApp')
         MAX_NODE_TYPE_COUNT: 6,
         MAX_NODE_FIELD_COUNT: 5,
         HEIRARCHY_LABEL_SEPARATOR1: ": ",
-        HEIRARCHY_LABEL_SEPARATOR2: " - "
+        HEIRARCHY_LABEL_SEPARATOR2: " - ",
+        JSON_DELIMETER: "."
     });

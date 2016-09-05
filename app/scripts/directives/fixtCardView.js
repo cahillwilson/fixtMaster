@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .directive('fixtCardView', function () {
+  .directive('fixtCardView', function (constantLoader) {
     return {
 	restricted: "E",
 	replace: true,
@@ -61,8 +61,9 @@ angular.module('fixtApp')
                                 '<fixt-node-hierarchy nodes="details.parentNodes"></fixt-node-hierarchy>' +
                                 '<div class="sandBoxMidcol"></div>' +
                                 '<div class="sandBoxRightcol">' +
-                                    '<div ng-repeat="field in details.topFields">' +
-                                        '<div class="sbxRightItem1-1">{{field.name}}: </div>' +
+                                    '<div ng-repeat="field in details.fields | filter: {rank:\'!0\'} | orderBy: \'rank\' | limitTo:' + 
+                                        constantLoader.defaultValues.MAX_NODE_FIELD_COUNT + '">' +
+                                        '<div class="sbxRightItem1-1">{{field.displayName}}: </div>' +
                                         '<div class="sbxRightItem1-2">{{field.value}}</div><br>' +
                                     '</div>' +
                                 '</div>' +
