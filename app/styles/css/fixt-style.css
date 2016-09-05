@@ -264,6 +264,7 @@ input#searchIcon{
 }
 .sbxRightItem1-1{ 
     width: auto; 
+    min-width: 100px;
     height:14px; 
     float:left; 
     font-size:16px; 
