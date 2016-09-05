@@ -12,5 +12,6 @@ angular.module('fixtApp')
         SEARCH_VALIDATION_CONTRACT: "search contract",
         SEARCH_VALIDATION_ADDRESS: "search address",
         SEARCH_VALIDATION_INVENTORY: "search inventory",
-        SEARCH_VALIDATION_ACCOUNT: "search account"
+        SEARCH_VALIDATION_ACCOUNT: "search account",
+        SEARCH_ERROR_MSG: "Please enter a valid "
     });

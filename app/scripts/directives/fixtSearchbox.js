@@ -67,69 +67,12 @@ angular.module('fixtApp')
                     setErrorPlace(true, constantLoader.messages.SEARCH_ITEM_NOT_VALID);
                     return false;
                 }
-                if((constantLoader.defaultObjects.SEARCH_LIST.length > 0) &&
-                    (searchTypeItem.id === constantLoader.defaultObjects.SEARCH_LIST[0].id)){
-                    if(!constantLoader.validationPatterns.SEARCH_CUSTOMER.test(scope.ngModel)){
-                        setErrorPlace(true, constantLoader.messages.SEARCH_VALIDATION_CUSTOMER);
-                        return false;
-                    }
-                }
-                if((constantLoader.defaultObjects.SEARCH_LIST.length > 1) &&
-                    (searchTypeItem.id === constantLoader.defaultObjects.SEARCH_LIST[1].id)){
-                    if(!constantLoader.validationPatterns.SEARCH_MCN.test(scope.ngModel)){
-                        setErrorPlace(true, constantLoader.messages.SEARCH_VALIDATION_MCN);
-                        return false;
-                    }
-                }
-                if((constantLoader.defaultObjects.SEARCH_LIST.length > 2) &&
-                    (searchTypeItem.id === constantLoader.defaultObjects.SEARCH_LIST[2].id)){
-                    if(!constantLoader.validationPatterns.SEARCH_VENDOR.test(scope.ngModel)){
-                        setErrorPlace(true, constantLoader.messages.SEARCH_VALIDATION_VENDOR);
-                        return false;
-                    }
-                }
-                if((constantLoader.defaultObjects.SEARCH_LIST.length > 3) &&
-                    (searchTypeItem.id === constantLoader.defaultObjects.SEARCH_LIST[3].id)){
-                    if(!constantLoader.validationPatterns.SEARCH_CSS.test(scope.ngModel)){
-                        setErrorPlace(true, constantLoader.messages.SEARCH_VALIDATION_CSS);
-                        return false;
-                    }
-                }
-                if((constantLoader.defaultObjects.SEARCH_LIST.length > 4) &&
-                    (searchTypeItem.id === constantLoader.defaultObjects.SEARCH_LIST[4].id)){
-                    if(!constantLoader.validationPatterns.SEARCH_VALIDATION_FOREIGN_ACCOUNT.test(scope.ngModel)){
-                        setErrorPlace(true, constantLoader.messages.SEARCH_FOREIGN_ACCOUNT);
-                        return false;
-                    }
-                }
-                if((constantLoader.defaultObjects.SEARCH_LIST.length > 5) &&
-                    (searchTypeItem.id === constantLoader.defaultObjects.SEARCH_LIST[5].id)){
-                    if(!constantLoader.validationPatterns.SEARCH_CONTRACT.test(scope.ngModel)){
-                        setErrorPlace(true, constantLoader.messages.SEARCH_VALIDATION_CONTRACT);
-                        return false;
-                    }
-                }
-                if((constantLoader.defaultObjects.SEARCH_LIST.length > 6) &&
-                    (searchTypeItem.id === constantLoader.defaultObjects.SEARCH_LIST[6].id)){
-                    if(!constantLoader.validationPatterns.SEARCH_ADDRESS.test(scope.ngModel)){
-                        setErrorPlace(true, constantLoader.messages.SEARCH_VALIDATION_ADDRESS);
-                        return false;
-                    }
-                }
-                if((constantLoader.defaultObjects.SEARCH_LIST.length > 7) &&
-                    (searchTypeItem.id === constantLoader.defaultObjects.SEARCH_LIST[7].id)){
-                    if(!constantLoader.validationPatterns.SEARCH_INVENTORY.test(scope.ngModel)){
-                        setErrorPlace(true, constantLoader.messages.SEARCH_VALIDATION_INVENTORY);
-                        return false;
-                    }
-                }
-                if((constantLoader.defaultObjects.SEARCH_LIST.length > 8) &&
-                    (searchTypeItem.id === constantLoader.defaultObjects.SEARCH_LIST[8].id)){
-                    if(!constantLoader.validationPatterns.SEARCH_ACCOUNT.test(scope.ngModel)){
-                        setErrorPlace(true, constantLoader.messages.SEARCH_VALIDATION_ACCOUNT);
-                        return false;
-                    }
-                }
+                
+                if(!constantLoader.validationPatterns[searchTypeItem.pattern].test(scope.ngModel) || scope.ngModel.length > searchTypeItem.maxLength){
+                    setErrorPlace(true, constantLoader.messages.SEARCH_ERROR_MSG + scope.label);
+                    return false;
+                }                
+                
                 scope.searchClick();
             };
             
