@@ -9,6 +9,7 @@ angular.module('fixtApp')
     var cardDetails = {};
     cardDetails.nodeId = constantLoader.defaultValues.BLANK_STRING;
     cardDetails.nodeLabel = constantLoader.defaultValues.BLANK_STRING;
+    var countCard = 0;
     
     function setCardDetailFromResponse(successCallback) {
         cardDetails.parentNodes = [];
@@ -171,8 +172,12 @@ angular.module('fixtApp')
     
     cardBusiness.getCardDetailsListAsync = function(successCallback) {
         return cardData.getCardDetailsListAsync().then(function (response) {
-            cardDetails = response.data[objectStorage.cardList.length];
+            if(objectStorage.cardList.length > constantLoader.defaultValues.MAX_CARD_IN_SANDBOX - 1){
+                objectStorage.cardList.splice(0, 1);
+            }
+            cardDetails = response.data[countCard];
             setCardDetailFromResponse(successCallback);
+            countCard = countCard + 1;
         }, handlerLoader.exceptionHandler.logError);
     };
     

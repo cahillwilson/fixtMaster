@@ -21,7 +21,7 @@ angular.module('fixtApp')
     }
     
     function loadCardDetails() {
-//        var localCopy = localStorage.getObject("cardDetail");
+//        var localCopy = localStorage.getObject("cards");
 //        
 //        if (commonUtility.isDefinedObject(localCopy)) {
 //            vm.cardDetails = localCopy;

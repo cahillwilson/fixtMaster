@@ -10,5 +10,6 @@ angular.module('fixtApp')
         MAX_NODE_FIELD_COUNT: 5,
         HEIRARCHY_LABEL_SEPARATOR1: ": ",
         HEIRARCHY_LABEL_SEPARATOR2: " - ",
-        JSON_DELIMETER: "."
+        JSON_DELIMETER: ".",
+        MAX_CARD_IN_SANDBOX: 2
     });

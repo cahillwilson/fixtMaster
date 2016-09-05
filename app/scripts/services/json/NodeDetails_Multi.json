@@ -168,7 +168,7 @@
                 "displayName": "City"
             },
             {
-                "_id": "57cb9416dac3e09ac833f2e4",
+                "_id": "57cb9416dac3e09ac833f2e5",
                 "nodeType": "SA",
                 "field": "address.state",
                 "category": "test1",
@@ -177,7 +177,7 @@
                 "displayName": "State"
             },
             {
-                "_id": "57cb9416dac3e09ac833f2e4",
+                "_id": "57cb9416dac3e09ac833f2e6",
                 "nodeType": "SA",
                 "field": "billGroup",
                 "category": "test1",
@@ -186,7 +186,7 @@
                 "displayName": "Bill Group"
             },
             {
-                "_id": "57cb9416dac3e09ac833f2e4",
+                "_id": "57cb9416dac3e09ac833f2e7",
                 "nodeType": "SA",
                 "field": "seqNum",
                 "category": "test1",
@@ -263,7 +263,7 @@
             "premierFAN": "",
             "serviceCenter": "",
             "specialBillCode": "",
-            "serviceType": "",
+            "serviceType": "FG",
             "specialBillCodeTb": null,
             "billRefTextMOW": null,
             "arrangeText": "",
@@ -315,11 +315,100 @@
                 "geoCode": "0147059068000"
             }
         },
-        "topFive":[
-            "nodeID",
-            "nodeLabel",
-            "startDate",
-            "seqNum"
+        "topFive":
+        {
+            "_id": "57cb9416dac3e09ac833f2e4",
+            "nodeType": "I",
+            "displayTags": [
+                "startDate",
+                "address.city",
+                "address.state",
+                "serviceType",
+                "address.zipCode"
+            ]
+        },
+        "layout": [
+            {
+                "_id": "57cb9416dac3e09ac833f2e1",
+                "nodeType": "SA",
+                "field": "nodeLabel",
+                "category": "test1",
+                "column": 1,
+                "row": 1,
+                "displayName": "Node Label"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e2",
+                "nodeType": "SA",
+                "field": "nodeID",
+                "category": "test1",
+                "column": 1,
+                "row": 2,
+                "displayName": "Node Id"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e3",
+                "nodeType": "SA",
+                "field": "startDate",
+                "category": "test1",
+                "column": 1,
+                "row": 3,
+                "displayName": "Start Date"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e4",
+                "nodeType": "SA",
+                "field": "address.city",
+                "category": "test1",
+                "column": 1,
+                "row": 4,
+                "displayName": "City"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e5",
+                "nodeType": "SA",
+                "field": "address.state",
+                "category": "test1",
+                "column": 1,
+                "row": 5,
+                "displayName": "State"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e6",
+                "nodeType": "SA",
+                "field": "billGroup",
+                "category": "test1",
+                "column": 1,
+                "row": 6,
+                "displayName": "Bill Group"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e7",
+                "nodeType": "SA",
+                "field": "seqNum",
+                "category": "test1",
+                "column": 1,
+                "row": 7,
+                "displayName": "Seq #"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e8",
+                "nodeType": "SA",
+                "field": "serviceType",
+                "category": "test1",
+                "column": 1,
+                "row": 8,
+                "displayName": "Service Type"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e9",
+                "nodeType": "SA",
+                "field": "address.zipCode",
+                "category": "test1",
+                "column": 1,
+                "row": 9,
+                "displayName": "Zip"
+            }
         ]
     },
     {
@@ -358,7 +447,7 @@
             "specialBid": "",
             "specialBidActivityType": "",
             "specialBidDetails": "",
-            "service": "",
+            "service": "Free",
             "accountType": "",
             "availableServices": "",
             "regionalBiller": "",
@@ -367,7 +456,7 @@
             "manualBillhierarchy": "",
             "attLegalEntityCode": "",
             "cfmStartDate": "12-JUN-15",
-            "socCountry": "",
+            "socCountry": "USA",
             "socCountryCode": "",
             "ccfDate": "",
             "billingAsSubcond": "",
@@ -387,7 +476,362 @@
             "segment": null,
             "rowCount": "1",
             "timeZone": "EST"
-        }
+        },
+        "topFive":
+        {
+            "_id": "57cb9416dac3e09ac833f2e4",
+            "nodeType": "H",
+            "displayTags": [
+                "startDate",
+                "service",
+                "socCountry",
+                "description",
+                "sequenceNumber"
+            ]
+        },
+        "layout": [
+            {
+                "_id": "57cb9416dac3e09ac833f2e1",
+                "nodeType": "H",
+                "field": "nodeLabel",
+                "category": "test1",
+                "column": 1,
+                "row": 1,
+                "displayName": "Node Label"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e2",
+                "nodeType": "H",
+                "field": "nodeID",
+                "category": "test1",
+                "column": 1,
+                "row": 2,
+                "displayName": "Node Id"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e3",
+                "nodeType": "H",
+                "field": "startDate",
+                "category": "test1",
+                "column": 1,
+                "row": 3,
+                "displayName": "Start Date"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e4",
+                "nodeType": "H",
+                "field": "service",
+                "category": "test1",
+                "column": 1,
+                "row": 4,
+                "displayName": "Service"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e5",
+                "nodeType": "H",
+                "field": "socCountry",
+                "category": "test1",
+                "column": 1,
+                "row": 5,
+                "displayName": "SOC Country"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e6",
+                "nodeType": "H",
+                "field": "description",
+                "category": "test1",
+                "column": 1,
+                "row": 6,
+                "displayName": "Description"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e7",
+                "nodeType": "H",
+                "field": "sequenceNumber",
+                "category": "test1",
+                "column": 1,
+                "row": 7,
+                "displayName": "Seq #"
+            }
+        ]
+    },
+    {
+        "parentNodeDetails":
+        {
+            "subAccountExcerpt": null,
+            "customerExcerpt":
+            {
+                "customerId": "106",
+                "customerName": "BCV INC",
+                "addressName": null
+            },
+            "hierarchyExcerpt": null,
+            "bundleExcerpt": null,
+            "invoiceExcerpt": null,
+            "cdgExcerpt": null
+        },
+        
+        "hierarchyNodeDetails":
+        {
+            "custBillingHierarchyId": "105",
+            "startDate": "20150612 00:00:00",
+            "sequenceNumber": "10",
+            "endDate": "",
+            "description": "CodeDetails",
+            "interOfferRelinkDate": "",
+            "billingAsSubContractor": "",
+            "legalEntityCountryCode": "",
+            "ebillIndicator": "DF",
+            "specialMRCIndicator": "",
+            "nonBalanceIndicator": "",
+            "webInitialOrderIndicator": "",
+            "billControlModelCode": "",
+            "migrationDate": "",
+            "prohibitRelink": "",
+            "specialBid": "",
+            "specialBidActivityType": "",
+            "specialBidDetails": "",
+            "service": "Free",
+            "accountType": "",
+            "availableServices": "",
+            "regionalBiller": "",
+            "attLegalEntityName": "",
+            "billLocked": "",
+            "manualBillhierarchy": "",
+            "attLegalEntityCode": "",
+            "cfmStartDate": "12-JUN-15",
+            "socCountry": "USA",
+            "socCountryCode": "",
+            "ccfDate": "",
+            "billingAsSubcond": "",
+            "nonBalanceIndi": "",
+            "lspVendorCode": "",
+            "lspVendorName": ""
+        },
+        "transactionDetails":
+        {
+            "transactionID": "123333",
+            "statusCode": "0",
+            "statusMessage": "Success",
+            "sourceSystem": null,
+            "startRow": "1",
+            "endRow": "400",
+            "totalRow": null,
+            "segment": null,
+            "rowCount": "1",
+            "timeZone": "EST"
+        },
+        "topFive":
+        {
+            "_id": "57cb9416dac3e09ac833f2e4",
+            "nodeType": "H",
+            "displayTags": [
+                "startDate",
+                "service",
+                "socCountry",
+                "description",
+                "sequenceNumber"
+            ]
+        },
+        "layout": [
+            {
+                "_id": "57cb9416dac3e09ac833f2e1",
+                "nodeType": "H",
+                "field": "nodeLabel",
+                "category": "test1",
+                "column": 1,
+                "row": 1,
+                "displayName": "Node Label"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e2",
+                "nodeType": "H",
+                "field": "nodeID",
+                "category": "test1",
+                "column": 1,
+                "row": 2,
+                "displayName": "Node Id"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e3",
+                "nodeType": "H",
+                "field": "startDate",
+                "category": "test1",
+                "column": 1,
+                "row": 3,
+                "displayName": "Start Date"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e4",
+                "nodeType": "H",
+                "field": "service",
+                "category": "test1",
+                "column": 1,
+                "row": 4,
+                "displayName": "Service"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e5",
+                "nodeType": "H",
+                "field": "socCountry",
+                "category": "test1",
+                "column": 1,
+                "row": 5,
+                "displayName": "SOC Country"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e6",
+                "nodeType": "H",
+                "field": "description",
+                "category": "test1",
+                "column": 1,
+                "row": 6,
+                "displayName": "Description"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e7",
+                "nodeType": "H",
+                "field": "sequenceNumber",
+                "category": "test1",
+                "column": 1,
+                "row": 7,
+                "displayName": "Seq #"
+            }
+        ]
+    },
+    {
+        "transactionDetails":
+        {
+            "transactionId": "123333",
+            "statusCode": "0",
+            "statusMessage": "Success",
+            "sourceSystem": null,
+            "startRow": "1",
+            "endRow": "400",
+            "totalRow": null,
+            "segment": null,
+            "rowCount": "1",
+            "timeZone": "EST"
+        },
+        "customerNodeDetails":
+        {
+            "customerNumber": "36921817",
+            "customerName": "DURAKON",
+            "taxIdCity": "",
+            "taxIdState": "",
+            "salesSegment": "",
+            "accountClassification": "",
+            "specialCustomerBillCode": "",
+            "masterAgreementNumber": "",
+            "billingInquiryNumber": "",
+            "creditCheckAuthorizationNumber": "",
+            "salesATTId": "",
+            "paymentTerm": "",
+            "startDate": "20020225 00:00:00",
+            "customerProfileClassName": "",
+            "endCustomerName": "",
+            "externalCustomerTypeCode": "",
+            "externalCustomerNumber": "",
+            "postalCodeMaskRu": null,
+            "postalCod": null,
+            "city": null,
+            "stateProvinence": null,
+            "county": null,
+            "country": null,
+            "zipCode": null,
+            "zipCodeSuffix": null,
+            "dunsNumber": "",
+            "mdsId": "",
+            "address":
+            {
+                "addressType": "Customer Address",
+                "addressLine1": "2101 LAPEER RD,LAPEER,MI,48446",
+                "addressLine2": "",
+                "addressLine3": "",
+                "addressLine4": "",
+                "streetAddress": "",
+                "addressName": "",
+                "city": "LAPEER",
+                "floor": "",
+                "state": "MI",
+                "province": "",
+                "zipCode": "48446",
+                "zipCodeSuffix": "",
+                "foreignPostalCode": "",
+                "countyName": "",
+                "countryName": "",
+                "countryCode": null,
+                "geoCode": "",
+                "serviceLocationDetails": null
+            }
+        },
+        "topFive":
+        {
+            "_id": "57cb9416dac3e09ac833f2e5",
+            "nodeType": "C",
+            "displayTags": [
+                "startDate",
+                "address.city",
+                "address.state",
+                "address.zipCode"
+            ]
+        },
+        "layout": [
+            {
+                "_id": "57cb9416dac3e09ac833f2e1",
+                "nodeType": "C",
+                "field": "customerName",
+                "category": "test1",
+                "column": 1,
+                "row": 1,
+                "displayName": "Customer Name"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e2",
+                "nodeType": "C",
+                "field": "customerNumber",
+                "category": "test1",
+                "column": 1,
+                "row": 2,
+                "displayName": "Customer Number"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e3",
+                "nodeType": "H",
+                "field": "startDate",
+                "category": "test1",
+                "column": 1,
+                "row": 3,
+                "displayName": "Start Date"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e4",
+                "nodeType": "C",
+                "field": "address.city",
+                "category": "test1",
+                "column": 1,
+                "row": 4,
+                "displayName": "City"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e5",
+                "nodeType": "C",
+                "field": "address.state",
+                "category": "test1",
+                "column": 1,
+                "row": 5,
+                "displayName": "State"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e6",
+                "nodeType": "C",
+                "field": "address.zipCode",
+                "category": "test1",
+                "column": 1,
+                "row": 6,
+                "displayName": "Zip"
+            }
+        ]
     }
 ]
  
