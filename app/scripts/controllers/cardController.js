@@ -56,7 +56,6 @@ angular.module('fixtApp')
         
     vm.onCloseClick = function(card){
         vm.cards.splice(vm.cards.indexOf(card), 1);
-        console.log(objectStorage.cardList);
     };
     
     vm.onCardDetailsClick = function(nodeId){

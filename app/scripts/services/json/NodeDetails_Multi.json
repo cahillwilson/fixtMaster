@@ -59,7 +59,7 @@
             "nodeID": "123455",
             "nodeLabel": "CUSTOMBILLING",
             "hierarchyPointID": "164241159",
-            "startDate": "20080924 11:30:08",
+            "startDate": "24-Aug-2008",
             "endDate": "",
             "seqNum": "20",
             "interOfferRelinkDate": "",
@@ -256,7 +256,7 @@
             "nodeID": "123456",
             "nodeLabel": "CUSTOM",
             "hierarchyPointID": "164241159",
-            "startDate": "20080924 11:30:08",
+            "startDate": "25-Aug-2008",
             "endDate": "",
             "seqNum": "20",
             "interOfferRelinkDate": "",
@@ -430,7 +430,7 @@
         "hierarchyNodeDetails":
         {
             "custBillingHierarchyId": "104",
-            "startDate": "20150612 00:00:00",
+            "startDate": "24-Jun-2008",
             "sequenceNumber": "10",
             "endDate": "",
             "description": "CodeDetails",

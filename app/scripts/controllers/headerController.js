@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .controller('headerController', function (constantLoader, cardBusiness, 
-        commonUtility) {
+        commonUtility, handlerLoader) {
 
     var vm =  this;
     vm.searchText = constantLoader.defaultValues.BLANK_STRING;
@@ -18,6 +18,7 @@ angular.module('fixtApp')
     };
     
     vm.onSearchClick = function(){
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchText);
         if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1){
             cardBusiness.getCardDetailsListAsync();
         }else{
