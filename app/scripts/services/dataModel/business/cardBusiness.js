@@ -200,10 +200,11 @@ angular.module('fixtApp')
                 {subAccountNodeDetails: {
                     nodeID: handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT)}});
             if(commonUtility.isDefinedObject(cards) && cards.length > 0){
+                var existCard = [];
                 if(commonUtility.isDefinedObject(objectStorage.cardList) && objectStorage.cardList.length > 0){
-                    var existCard = commonUtility.filterInArray(objectStorage.cardList, 
+                    existCard = commonUtility.filterInArray(objectStorage.cardList, 
                         {nodeId: cards[0].subAccountNodeDetails.nodeID});
-                    if(!(commonUtility.isDefinedObject(existCard) && existCard.length > 0)){
+                    if(existCard.length === 0){
                         cardDetails = cards[0];
                         setCardDetailFromResponse(successCallback);
                     }
@@ -212,6 +213,7 @@ angular.module('fixtApp')
                     setCardDetailFromResponse(successCallback);
                 }
             }
+            commonUtility.callback(successCallback);
         }, handlerLoader.exceptionHandler.logError);
     };
     
