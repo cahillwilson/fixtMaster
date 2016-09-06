@@ -613,20 +613,22 @@ input#searchIcon{
     height:260px; 
     padding: 0px 10px 0px 10px; 
     line-height:30px;
-    border:solid 1px red;
+    display: inline-block;
 }
 .crdTabLeftcol{ 
-    width:400px; 
+    width:390px; 
     height:260px; 
     float:left; 
     padding-right: 0px; 
-    line-height:30px 
+    line-height:30px;
+    display: inline-block;
 }
 .crdTabMidcol{ 
     width:2px; 
     height:330px; 
     float:left; 
     border-right:1px solid rgba(204, 204, 204, 1);
+    display: inline-block;
 }
 .crdTabRightcol{ 
     width:390px; 

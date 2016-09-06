@@ -60,22 +60,23 @@ angular.module('fixtApp')
                                     '<div class="crdExpRightcol">' +
                                         '<ul class="nav nav-tabs">' +
                                             '<li ng-repeat="cat in details.categoryList" ng-class="{active: $index===0}" class="pointer">' +
-                                                '<a data-target="{{$index}}_{{cat.category}}" data-toggle="tab">{{cat.category}}</a>' +
+                                                '<a data-target="#{{$index}}_{{cat.category}}" data-toggle="tab">{{cat.category}}</a>' +
                                             '</li>' +
                                         '</ul>' +
                                         '<div class="tab-content">' +
-                                            '<div class="tab-pane fade" ng-repeat="cat in details.categoryList" ng-class="{in:($index===0), active:($index===0)}" ' +
+                                            '<div class="tab-pane fade" ng-repeat="cat in details.categoryList" ' +
+                                                'ng-class="{in:($index===0), active:($index===0)}" ' +
                                                 'id="{{$index}}_{{cat.category}}">' +
                                                 '<div class="crdTabComoncol">' +
-//                                                    '<div ng-repeat="n in cat.cols | filter: {cat: cat.category}" class="crdTabcol">' +
-//                                                        '<div class="crdTabLeftcol">' +
-//                                                            '<div>n={{n}}' +
-//                                                                '<div class="txtMed">Type:</div>' +
-//                                                                '<div class="txtRt">IP Service</div>' +
-//                                                            '</div>' +
-//                                                        '</div>' +
-//                                                        '<div class="crdTabMidcol"></div>' +
-//                                                    '</div>' +
+                                                    '<div ng-repeat="col in cat.cols" class="crdTabcol">' +
+                                                        '<div class="crdTabLeftcol">' +
+                                                            '<div ng-repeat="field in details.fields | filter: {column: col.col, category: cat.category}">' +
+                                                                '<div class="txtMed">{{field.displayName}}:</div>' +
+                                                                '<div class="txtRt">{{field.value}}</div>' +
+                                                            '</div>' +
+                                                        '</div>' +
+                                                        '<div class="crdTabMidcol" ng-if="$even && cat.cols.length>1"></div>' +
+                                                    '</div>' +
 //                                                    
 //                                                    '<span class="txtTit">Service Location Address</span>' +
 //                                                    '<div class="crdTabRightcol">' +
