@@ -72,7 +72,10 @@ angular.module('fixtApp')
                     setErrorPlace(true, constantLoader.messages.SEARCH_ERROR_MSG + scope.label);
                     return false;
                 }                
-                
+                if(searchTypeItem.id !== "ba_acc" && searchTypeItem.id !== "sa_acc" && searchTypeItem.id !== "i_acc") {
+                    setErrorPlace(true, "Not Implemented!");
+                    return false;
+                } 
                 scope.searchClick();
             };
             
