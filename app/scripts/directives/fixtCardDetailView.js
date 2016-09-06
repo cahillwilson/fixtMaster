@@ -6,9 +6,7 @@ angular.module('fixtApp')
 	restricted: "E",
 	replace: true,
         scope: {
-            cardId: "=",
-            cardLabel: "=",
-            parentNodes:"=",
+            details: "=",
             showCardViewClick: "&"
         
         },
@@ -18,8 +16,8 @@ angular.module('fixtApp')
                             '<div class="cardExpand">' +
                                 '<div class="crdExpheader">' +
                                     '<div class="crdExptitle">' +
-                                        '<span>{{cardId | fixtHideChar: ":"}}</span>-' +
-                                        '<fixt-editable item="cardLabel"></fixt-editable>' +
+                                        '<span>{{details.nodeId | fixtHideChar: ":"}}</span>-' +
+                                        '<fixt-editable item="details.nodeLabel"></fixt-editable>' +
                                     '</div>' +
                                     '<div class="sBxaction">' +
                                         '<div class="sBxbox1-1">' +
@@ -50,95 +48,52 @@ angular.module('fixtApp')
                                             '</div>' +
                                         '</div>' +
                                         '<div class="sBxbox1-2">' +
-                                            '<img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/>' +
+                                            '<span class="pointer" ng-click="goToCardView()">' +
+                                                '<img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/>' +
+                                            '</span>' +
                                         '</div>' +
-                                    '</div><!---sBxaction end-->' +
-                                '</div><!---sBxheader end-->' +
+                                    '</div>' +
+                                '</div>' +
                                 '<div class="crdExpComoncol">' +
-                                    '<fixt-node-hierarchy nodes="parentNodes"></fixt-node-hierarchy>' +
-
+                                    '<fixt-node-hierarchy nodes="details.parentNodes"></fixt-node-hierarchy>' +
                                     '<div class="crdExpMidcol"></div>' +
                                     '<div class="crdExpRightcol">' +
                                         '<ul class="nav nav-tabs">' +
-                                            '<li class="active"><a data-target="#overview" data-toggle="tab">Overview</a></li>' +
-                                            '<li><a data-target="#charges" data-toggle="tab">Charges</a></li>' +
-                                            '<li><a data-target="#contacts" data-toggle="tab">Telephone Numbers</a></li>' +
+                                            '<li ng-repeat="cat in details.categoryList" ng-class="{active: $index===0}" class="pointer">' +
+                                                '<a data-target="{{$index}}_{{cat.category}}" data-toggle="tab">{{cat.category}}</a>' +
+                                            '</li>' +
                                         '</ul>' +
                                         '<div class="tab-content">' +
-                                            '<div class="tab-pane fade in active" id="overview">' +
+                                            '<div class="tab-pane fade" ng-repeat="cat in details.categoryList" ng-class="{in:($index===0), active:($index===0)}" ' +
+                                                'id="{{$index}}_{{cat.category}}">' +
                                                 '<div class="crdTabComoncol">' +
-                                                    '<div class="crdTabLeftcol">' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">Type:</div>' +
-                                                            '<div class="txtRt">IP Service</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">Start Date:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">#######:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">#######:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">#######:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">#######:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">#######:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                    '</div>' +
-                                                    '<div class="crdTabMidcol"></div>' +
-                                                    '<span class="txtTit">Service Location Address</span>' +
-                                                    '<div class="crdTabRightcol">' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">Type:</div>' +
-                                                            '<div class="txtRt">IP Service</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">Start Date:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">#######:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">#######:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">#######:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">#######:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                        '<div>' +
-                                                            '<div class="txtMed">#######:</div>' +
-                                                            '<div class="txtRt">###########</div>' +
-                                                        '</div>' +
-                                                    '</div>' +
+//                                                    '<div ng-repeat="n in cat.cols | filter: {cat: cat.category}" class="crdTabcol">' +
+//                                                        '<div class="crdTabLeftcol">' +
+//                                                            '<div>n={{n}}' +
+//                                                                '<div class="txtMed">Type:</div>' +
+//                                                                '<div class="txtRt">IP Service</div>' +
+//                                                            '</div>' +
+//                                                        '</div>' +
+//                                                        '<div class="crdTabMidcol"></div>' +
+//                                                    '</div>' +
+//                                                    
+//                                                    '<span class="txtTit">Service Location Address</span>' +
+//                                                    '<div class="crdTabRightcol">' +
+//                                                        '<div>' +
+//                                                            '<div class="txtMed">Type:</div>' +
+//                                                            '<div class="txtRt">IP Service</div>' +
+//                                                        '</div>' +
+//                                                    '</div>' +
                                                 '</div>' +
                                             '</div>' +
-                                            '<div class="tab-pane fade" id="charges">' +
-                                                '<h3>Wallmart- Details - Charges</h3>' +
-                                                '<p>Some content in Pending.</p>' +
-                                            '</div>' +
-                                            '<div class="tab-pane fade" id="contacts">' +
-                                                '<h3>Wallmart- Details - Telephone Numbers</h3>' +
-                                                '<p>Some content in Pending.</p>' +
-                                            '</div>' +
+//                                            '<div class="tab-pane fade" id="charges">' +
+//                                                '<h3>Wallmart- Details - Charges</h3>' +
+//                                                '<p>Some content in Pending.</p>' +
+//                                            '</div>' +
+//                                            '<div class="tab-pane fade" id="contacts">' +
+//                                                '<h3>Wallmart- Details - Telephone Numbers</h3>' +
+//                                                '<p>Some content in Pending.</p>' +
+//                                            '</div>' +
                                         '</div>' +
                                     '</div>' +
                                 '</div>' +

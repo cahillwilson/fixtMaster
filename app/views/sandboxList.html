@@ -53,13 +53,11 @@
             <div ng-hide="vm.isCardDetailsShow" class="short-card-container">
                 <fixt-card-view card-id="card.nodeId" details-click="vm.onCardDetailsClick(card.nodeId)"
                     details="card" hierarchy-click="vm.onCardHierarchyClick()"
-                    card-label="card.nodeLabel"></fixt-card-view>
+                    card-label="card.nodeLabel" close-click="vm.onCloseClick(card)"></fixt-card-view>
             </div>
             <div ng-show="vm.isCardDetailsShow && (vm.cardDetailsDisplayId === card.nodeId)">
-                <fixt-card-detail-view card-id="card.nodeId" 
-                    show-card-view-click="vm.onCardDetailsClick()" 
-                    card-label="card.nodeLabel" 
-                    parent-nodes="card.parentNodes"></fixt-card-detail-view>
+                <fixt-card-detail-view details="card"
+                    show-card-view-click="vm.onCardDetailsClick()" ></fixt-card-detail-view>
             </div>
         </div>
     </div>
