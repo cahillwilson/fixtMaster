@@ -607,6 +607,13 @@ input#searchIcon{
     padding:23px 0px 0 0px; 
     color:rgba(51, 51, 51, 1);
 }
+.crdTabcol{ 
+    width:420px; 
+    height:260px; 
+    padding: 0px 10px 0px 10px; 
+    line-height:30px;
+    border:solid 1px red;
+}
 .crdTabLeftcol{ 
     width:400px; 
     height:260px; 

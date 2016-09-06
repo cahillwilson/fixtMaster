@@ -114,9 +114,34 @@ angular.module('fixtApp')
     }
     
     function setTopFiveFields(nodeFields){
+        cardDetails.categoryList = [];
         if(commonUtility.isDefinedObject(cardDetails.layout)){
             if(commonUtility.isDefinedObject(nodeFields)){
                 for(var index=0; index<cardDetails.layout.length; index++){
+                    if(commonUtility.filterInArray(cardDetails.categoryList, 
+                        cardDetails.layout[index].category).length === 0){
+                        cardDetails.categoryList.push({
+                            category: cardDetails.layout[index].category,
+                            colCount: cardDetails.layout[index].column,
+                            cols: []
+                        });
+                        cardDetails.categoryList[cardDetails.categoryList.length-1].cols.push({
+                            col: cardDetails.layout[index].column,
+                            cat: cardDetails.layout[index].category
+                        });
+                    }else{
+                        for(var cnt=0; cnt<cardDetails.categoryList.length; cnt++){
+                            if(cardDetails.categoryList[cnt].category === cardDetails.layout[index].category){
+                                if(cardDetails.categoryList[cnt].colCount < cardDetails.layout[index].column){
+                                    cardDetails.categoryList[cnt].colCount = cardDetails.layout[index].column;
+                                    cardDetails.categoryList[cnt].cols.push({
+                                        col: cardDetails.layout[index].column,
+                                        cat: cardDetails.layout[index].category
+                                    });
+                                }
+                            }
+                        }
+                    }
                     var topFiveRank = 0;
                     if(commonUtility.isDefinedObject(cardDetails.topFive)){
                         if(commonUtility.isDefinedObject(cardDetails.topFive.displayTags)){
@@ -177,7 +202,7 @@ angular.module('fixtApp')
             }
             cardDetails = response.data[countCard];
             setCardDetailFromResponse(successCallback);
-            countCard = countCard + 1;
+            countCard = (countCard<=constantLoader.defaultValues.MAX_CARD_IN_SANDBOX) ? (countCard + 1) : countCard;
         }, handlerLoader.exceptionHandler.logError);
     };
     

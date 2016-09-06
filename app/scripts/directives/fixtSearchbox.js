@@ -71,11 +71,13 @@ angular.module('fixtApp')
                 if(!constantLoader.validationPatterns[searchTypeItem.pattern].test(scope.ngModel) || scope.ngModel.length > searchTypeItem.maxLength){
                     setErrorPlace(true, constantLoader.messages.SEARCH_ERROR_MSG + scope.label);
                     return false;
-                }                
+                }
+                /* will be deleted - start */
                 if(searchTypeItem.id !== "ba_acc" && searchTypeItem.id !== "sa_acc" && searchTypeItem.id !== "i_acc") {
                     setErrorPlace(true, "Not Implemented!");
                     return false;
-                } 
+                }
+                /* will be deleted - end */
                 scope.searchClick();
             };
             

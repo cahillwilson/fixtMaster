@@ -10,7 +10,8 @@ angular.module('fixtApp')
             cardId: "=",
             cardLabel: "=",
             detailsClick: "&",
-            hierarchyClick: "&"
+            hierarchyClick: "&",
+            closeClick: "&"
         },
         template: function(){
             
@@ -53,7 +54,9 @@ angular.module('fixtApp')
                                         '</div>' +
                                     '</div>' +
                                     '<div class="sBxbox1-2">' +
-                                        '<img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/>' +
+                                        '<span class="pointer" ng-click="onCloseClick(details)">' +
+                                            '<img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/>' +
+                                        '</span>' +
                                     '</div>' +
                                 '</div>' +
                             '</div>' +
@@ -87,6 +90,12 @@ angular.module('fixtApp')
             
             scope.onHierarchyClick = function(){
                 scope.hierarchyClick();
+            };
+            
+            scope.onCloseClick = function(details){
+                scope.closeClick({
+                    card: details
+                });
             };
         }
     };

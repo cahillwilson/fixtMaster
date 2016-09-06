@@ -53,6 +53,11 @@ angular.module('fixtApp')
             },handlerLoader.exceptionHandler.logError);
         }
     }*/
+        
+    vm.onCloseClick = function(card){
+        vm.cards.splice(vm.cards.indexOf(card), 1);
+        console.log(objectStorage.cardList);
+    };
     
     vm.onCardDetailsClick = function(nodeId){
         vm.isCardDetailsShow = !vm.isCardDetailsShow;

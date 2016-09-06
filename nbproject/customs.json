@@ -26,6 +26,7 @@
             "attributes": {
                 "card-label": {},
                 "parent-nodes": {},
+                "details": {},
                 "card-id": {},
                 "show-card-view-click": {}
             }
