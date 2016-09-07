@@ -12,7 +12,7 @@ angular.module('fixtApp')
 		template: function(){
      
   var html= `<div class="sbxHierarchy">
-  <div class="sBxbox1-2"><span id='close'><img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/></span></div>
+  <div class="sBxbox1-2"><span id='close'><img id="expandedClose" src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/></span></div>
  
 	<div class="sBxheader">
 		<div class="sBxtitle"> <span id="itm1" onclick="exchange(this.id)">Walmart SA12345678123- State DC</span></div>
@@ -42,7 +42,7 @@ angular.module('fixtApp')
         <div class="hrNode1-4"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>1:1122334455667-East </div>
         <div class="hrNode1-5"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>1:1122334455667-East </div>
         <div class="hrNode1-6"><span class="nodeIcon"><input type="image" src="styles/images/Hrchy-expand.jpg" width="20" height="20" alt="expand"/></span>Sub Accounts 001-100</div>
-        <div class="hrNode2-1"><span class="nodeIcon"><div ng-repeat="children in myList"><img src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>{{children}}</div></span></div>
+        <div class="hrNode2-1"><span class="nodeIcon"><div ng-repeat="children in myList"><img id="nodeBubble" src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>SA Walmart-{{children}}</div></span></div>
         		
                 
 	</div>
