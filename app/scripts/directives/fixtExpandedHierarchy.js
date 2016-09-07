@@ -41,10 +41,11 @@ angular.module('fixtApp')
  		<div class="hrNode1-3"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>BA 1234567891234-East region</div>
         <div class="hrNode1-4"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>1:1122334455667-East </div>
         <div class="hrNode1-5"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>1:1122334455667-East <span class="badge">234</span></div>
-        <div class="hrNode1-6"><span class="nodeIcon"><img src="styles/images/Hrchy-expand.jpg" width="20" height="20" alt=""/></span>Sub Accounts 001-100</div>
-        		<div class="hrNode2-1"><span class="nodeIcon"><img src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/><div ng-repeat="children in myList">{{children}}</div></span></div>
+        <div class="hrNode1-6"><span class="nodeIcon"><input type="image" src="styles/images/Hrchy-expand.jpg" width="20" height="20" alt="expand"/></span>Sub Accounts 001-100</div>
+        
+        <div class="hrNode2-1"><span class="nodeIcon"><div class="expandNode" ng-repeat="children in myList"><img src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>{{children}}</div></span></div>
         		
-                
+               
                 
         
         
