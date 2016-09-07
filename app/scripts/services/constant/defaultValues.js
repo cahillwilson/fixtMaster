@@ -13,5 +13,6 @@ angular.module('fixtApp')
         JSON_DELIMETER: ".",
         MAX_CARD_IN_SANDBOX: 2,
         CONFIRM_BOX_YES: "Yes",
-        CONFIRM_BOX_NO: "No"
+        CONFIRM_BOX_NO: "No",
+        MAX_CARD_DETAILS_COL_COUNT: 2
     });

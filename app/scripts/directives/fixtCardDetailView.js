@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .directive('fixtCardDetailView', function () {
+  .directive('fixtCardDetailView', function (constantLoader) {
     return {
 	restricted: "E",
 	replace: true,
@@ -68,33 +68,20 @@ angular.module('fixtApp')
                                                 'ng-class="{in:($index===0), active:($index===0)}" ' +
                                                 'id="{{$index}}_{{cat.category}}">' +
                                                 '<div class="crdTabComoncol">' +
-                                                    '<div ng-repeat="col in cat.cols" class="crdTabcol">' +
+                                                    '<div ng-repeat="col in cat.cols | limitTo: ' + 
+                                                        constantLoader.defaultValues.MAX_CARD_DETAILS_COL_COUNT + 
+                                                        '" class="crdTabcol">' +
                                                         '<div class="crdTabLeftcol">' +
-                                                            '<div ng-repeat="field in details.fields | filter: {column: col.col, category: cat.category}">' +
+                                                            '<div ng-repeat="field in details.fields | filter: {column: col.col, category: cat.category} | orderBy: row">' +
                                                                 '<div class="txtMed">{{field.displayName}}:</div>' +
                                                                 '<div class="txtRt">{{field.value}}</div>' +
                                                             '</div>' +
                                                         '</div>' +
                                                         '<div class="crdTabMidcol" ng-if="$even && cat.cols.length>1"></div>' +
                                                     '</div>' +
-//                                                    
 //                                                    '<span class="txtTit">Service Location Address</span>' +
-//                                                    '<div class="crdTabRightcol">' +
-//                                                        '<div>' +
-//                                                            '<div class="txtMed">Type:</div>' +
-//                                                            '<div class="txtRt">IP Service</div>' +
-//                                                        '</div>' +
-//                                                    '</div>' +
                                                 '</div>' +
                                             '</div>' +
-//                                            '<div class="tab-pane fade" id="charges">' +
-//                                                '<h3>Wallmart- Details - Charges</h3>' +
-//                                                '<p>Some content in Pending.</p>' +
-//                                            '</div>' +
-//                                            '<div class="tab-pane fade" id="contacts">' +
-//                                                '<h3>Wallmart- Details - Telephone Numbers</h3>' +
-//                                                '<p>Some content in Pending.</p>' +
-//                                            '</div>' +
                                         '</div>' +
                                     '</div>' +
                                 '</div>' +

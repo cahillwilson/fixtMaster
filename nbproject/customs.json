@@ -45,5 +45,7 @@
             }
         }
     },
-    "attributes": {}
+    "attributes": {
+        "close-click": {}
+    }
 }
