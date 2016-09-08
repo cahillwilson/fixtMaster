@@ -4,7 +4,10 @@ angular.module('fixtApp')
 			restrict:'EA',
 			replace: true,
 			scope:{
-                   myList: '='
+                   myList: '=',
+                   toggleDetails: '&',
+                   isVisible: '='
+                   //showCardViewClick: "&"
 			},
 			
 		    
@@ -35,19 +38,19 @@ angular.module('fixtApp')
 			</div><!---sBxaction end-->
 	</div><!---sBxheader end-->
 <!----Hierarchy chart colum starting-------------->
-<div class="sbxHrchyCol">
+<div class="sbxHrchyCol" >
 		<div class="hrNode1-1"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>C000123456-Walmart</div>
         <div class="hrNode1-2"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>H 98564321 - East region</div>
  		<div class="hrNode1-3"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>BA 1234567891234-East region</div>
         <div class="hrNode1-4"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>1:1122334455667-East </div>
         <div class="hrNode1-5"><span class="nodeIcon"><img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/></span>1:1122334455667-East </div>
-        <div class="hrNode1-6"><span class="nodeIcon"><input type="image" src="styles/images/Hrchy-expand.jpg" width="20" height="20" alt="expand"/></span>Sub Accounts 001-100</div>
-        <div class="hrNode2-1"><span class="nodeIcon"><div ng-repeat="children in myList"><img id="nodeBubble" src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>SA Walmart-{{children}}</div></span></div>
+        <div class="hrNode1-6"><span id="expanded" ng-click="toggleDetails()" class="nodeIcon"><input type="image" ng-src="{{!isVisible ? 'styles/images/Hrchy-expand.jpg' : 'styles/images/Hrchy-collapse.jpg'}}" width="20" height="20" alt="expand"/></span>Sub Accounts 001-100</div>
+        <div class="hrNode2-1" ng-show="isVisible"><span class="nodeIcon"><div ng-repeat="children in myList"><img id="nodeBubble" src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>SA Walmart-{{children}}</div></span></div>
         		
                 
 	</div>
     <div class="sbxHrchyFooter">
-        	<div class="sbxHrchyFtrLeft"><a href="#">Back to card view</a></div>
+        	<div class="sbxHrchyFtrLeft"><span class="defaultCardView" ng-click="goToCardView()">Back to card view</span></div>
             <div class="sbxHrchyFtrRight"><a href="#">Open in new card</a></div>
         </div><!-- sBxfooter end-->
 
@@ -57,6 +60,17 @@ return html;
 
 	
 },
+
+link: function(scope){
+            scope.goToCardView = function(){
+                scope.showCardViewClick();
+            };
+            scope.toggleDetails = function () {
+            	scope.isVisible = !scope.isVisible;
+            	
+            };
+            
+        }
 }
 
 	
