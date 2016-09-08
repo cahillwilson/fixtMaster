@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp') 
-    .directive('fixtExpandedHierarchy', function(){
+    .directive('fixtExpandedHierarchy', function(constantLoader){
         return{
             restrict:'EA',
             replace: true,
@@ -62,35 +62,21 @@ angular.module('fixtApp')
                                     '</div>' +
                                 '</div>' +
                                 '<div class="sbxHrchyCol" >' +
-                                    '<div class="hrNode1-1">' +
-                                        '<span class="nodeIcon">' +
-                                            '<img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/>' +
-                                        '</span>C000123456-Walmart' +
-                                    '</div>' +
-                                    '<div class="hrNode1-2">' +
-                                        '<span class="nodeIcon">' +
-                                            '<img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/>' +
-                                        '</span>H 98564321 - East region' +
-                                    '</div>' +
-                                    '<div class="hrNode1-3">' +
-                                        '<span class="nodeIcon">' +
-                                            '<img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/>' +
-                                        '</span>BA 1234567891234-East region' +
-                                    '</div>' +
-                                    '<div class="hrNode1-4">' +
-                                        '<span class="nodeIcon">' +
-                                            '<img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/>' +
-                                        '</span>1:1122334455667-East ' +
-                                    '</div>' +
-                                    '<div class="hrNode1-5">' +
-                                        '<span class="nodeIcon">' +
-                                            '<img src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""/>' +
-                                        '</span>1:1122334455667-East ' +
+                                    '<div ng-repeat="item in details.parentNodes">' +
+                                        '<div class="hrNode1-1" style="margin-top:14px; margin-left: {{($index+1)*21}}px;">' +
+                                            '<span class="nodeIcon">' +
+                                                '<img ng-if="(details.parentNodes.length !== $index+1)" src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""  />' +
+                                                '<img ng-if="(details.parentNodes.length === $index+1)" ng-src="{{!isVisible ? \'styles/images/Hrchy-expand.jpg\' : \'styles/images/Hrchy-collapse.jpg\'}}" width="20" height="20" alt="" ' +
+                                                    'ng-click="toggleDetails(details.parentNodes.length, $index)" />' +
+                                            '</span>' +
+                                            '<span>' +
+                                                '<span>{{item.slice(0, item.indexOf("' + 
+                                                    constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + 
+                                                '")+2)}}</span>{{item.slice(item.indexOf("' + 
+                                                    constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + 
+                                                '")+2)}}' +
+                                            '</span>' +
                                         '</div>' +
-                                    '<div class="hrNode1-6">' +
-                                        '<span id="expanded" ng-click="toggleDetails()" class="nodeIcon">' +
-                                            '<input type="image" ng-src="{{!isVisible ? \'styles/images/Hrchy-expand.jpg\' : \'styles/images/Hrchy-collapse.jpg\'}}" width="20" height="20" alt="expand"/>' +
-                                        '</span>SA 123455-CUSTOMBILLING' +
                                     '</div>' +
                                     '<div class="hrNode2-1" ng-show="isVisible">' +
                                         '<span class="nodeIcon">' +
@@ -121,9 +107,10 @@ angular.module('fixtApp')
                     scope.showCardViewClick();
                 };
                 
-                scope.toggleDetails = function() {
-                    scope.isVisible = !scope.isVisible;
-
+                scope.toggleDetails = function(length, index) {
+                    if(length === (index + 1)){
+                        scope.isVisible = !scope.isVisible;
+                    }
                 };
                 
                 scope.onCloseClick = function(){
