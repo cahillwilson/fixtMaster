@@ -7,7 +7,7 @@ angular.module('fixtApp')
     var vm =  this;
     vm.isCardDetailsShow = false;
     vm.isCardExtendShow = false;
-    vm.isCardCollapse = false;
+//    vm.isCardCollapse = false;
     vm.cardDetailsDisplayId = 0;
     vm.title = constantLoader.defaultValues.SANDBOX_TITLE;
     vm.cardExtended = {};
@@ -66,7 +66,7 @@ angular.module('fixtApp')
     
     vm.onCardHierarchyClick = function(){
         
-        vm.isCardExtendShow = !vm.isCardExtendShow;
+//        vm.isCardExtendShow = !vm.isCardExtendShow;
         vm.myFakeData = defaultObjects.FAKE_DATA;
 
     };
