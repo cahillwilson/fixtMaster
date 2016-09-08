@@ -15,7 +15,8 @@ angular.module('fixtApp')
             
             myList: '=',
             toggleDetails: '&',
-            isVisible: '='
+            isVisible: '=',
+            openNewCard: "&"
         },
         template: function(){
             
@@ -23,7 +24,7 @@ angular.module('fixtApp')
                             '<div ng-if="isCardExtendShow">' +
                                 '<fixt-expanded-hierarchy toggle-details="onCardExpandClick()" ' +
                                     'is-visible="true" show-card-view-click="onCardViewBackClick()" ' +
-                                    'details="details" ' +
+                                    'details="details" open-new-card="onOpenNewCard()"' +
                                     'my-list="myList" close-card="onCloseClick()"></fixt-expanded-hierarchy>' +
                             '</div>' +
                             '<div ng-if="!isCardExtendShow" class="sandBox" data-drag="true" data-jqyoui-options="{revert: \'false\', containment: \'window\'}" ' +
@@ -120,6 +121,10 @@ angular.module('fixtApp')
             
             scope.onCardViewBackClick = function(){
                 scope.isCardExtendShow = !scope.isCardExtendShow;
+            };
+            
+            scope.onOpenNewCard = function(){
+                scope.openNewCard();
             };
         }
     };

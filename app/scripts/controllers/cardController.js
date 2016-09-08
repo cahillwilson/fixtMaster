@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .controller('cardController', function (constantLoader, cardBusiness, 
-        defaultObjects, objectStorage) {
+        defaultObjects, objectStorage, handlerLoader) {
     
     var vm =  this;
     vm.isCardDetailsShow = false;
@@ -71,7 +71,10 @@ angular.module('fixtApp')
 
     };
 
-    
+    vm.onOpenNewCard = function(){
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, "123456");
+        loadCardDetails();
+    };
        
        
 

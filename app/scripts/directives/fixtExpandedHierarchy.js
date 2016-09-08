@@ -12,7 +12,8 @@ angular.module('fixtApp')
                 
                 showCardViewClick: "&",
                 closeCard: "&",
-                details: "="
+                details: "=",
+                openNewCard: "&"
             },
             template: function(){
      
@@ -89,12 +90,13 @@ angular.module('fixtApp')
                                     '<div class="hrNode1-6">' +
                                         '<span id="expanded" ng-click="toggleDetails()" class="nodeIcon">' +
                                             '<input type="image" ng-src="{{!isVisible ? \'styles/images/Hrchy-expand.jpg\' : \'styles/images/Hrchy-collapse.jpg\'}}" width="20" height="20" alt="expand"/>' +
-                                        '</span>Sub Accounts 001-100' +
+                                        '</span>SA 123455-CUSTOMBILLING' +
                                     '</div>' +
                                     '<div class="hrNode2-1" ng-show="isVisible">' +
                                         '<span class="nodeIcon">' +
                                             '<div ng-repeat="children in myList">' +
-                                                '<img id="nodeBubble" src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>SA Walmart-{{children}}' +
+                                                '<img id="nodeBubble" src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>' +
+                                                'SA Walmart-{{children}}' +
                                             '</div>' +
                                         '</span>' +
                                     '</div>' +
@@ -106,7 +108,7 @@ angular.module('fixtApp')
                                         '</span>' +
                                     '</div>' +
                                 '<div class="sbxHrchyFtrRight">' +
-                                    '<span class="sBxfooter1-ext">Open in new card</span>' +
+                                    '<span class="sBxfooter1-ext" ng-click="onOpenNewCardClick()">Open in new card</span>' +
                                 '</div>' +
                             '</div>' +
                         '</div>';
@@ -126,6 +128,10 @@ angular.module('fixtApp')
                 
                 scope.onCloseClick = function(){
                     scope.closeCard();
+                };
+                
+                scope.onOpenNewCardClick = function(){
+                    scope.openNewCard();
                 };
             }
         };
