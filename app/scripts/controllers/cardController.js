@@ -3,10 +3,11 @@
 angular.module('fixtApp')
     .controller('cardController', function (constantLoader, cardBusiness, 
         defaultObjects, objectStorage) {
-
+    
     var vm =  this;
     vm.isCardDetailsShow = false;
     vm.isCardExtendShow = false;
+    vm.isCardCollapse = false;
     vm.cardDetailsDisplayId = 0;
     vm.title = constantLoader.defaultValues.SANDBOX_TITLE;
     vm.cardExtended = {};
@@ -66,10 +67,16 @@ angular.module('fixtApp')
     vm.onCardHierarchyClick = function(){
         
         vm.isCardExtendShow = !vm.isCardExtendShow;
+        vm.myFakeData = defaultObjects.FAKE_DATA;
+
     };
-vm.myFakeData = defaultObjects.FAKE_DATA;
 
     
+       
+       
+
     initialized();
+
+    
          
   });
