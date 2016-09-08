@@ -6,8 +6,8 @@ angular.module('fixtApp')
 			scope:{
                    myList: '=',
                    toggleDetails: '&',
-                   isVisible: '='
-                   //showCardViewClick: "&"
+                   isVisible: '=',
+                   showCardViewClick: "&"
 			},
 			
 		    
