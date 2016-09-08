@@ -192,6 +192,7 @@ input#searchIcon{
     height:313px;
     border-radius: 8px;
     font-family:"Omnes_ATTW02Medium";
+    vertical-align: top;
 }
 .sBxheader{ 
     width:603px; 
@@ -538,6 +539,8 @@ input#searchIcon{
 
 .short-card-container{
     margin: 0px 10px 10px 15px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .short-card-container.right-aligned{
