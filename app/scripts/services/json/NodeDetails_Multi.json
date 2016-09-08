@@ -412,6 +412,401 @@
         ]
     },
     {
+        "transactionDetails":
+        {
+            "transactionID": "1223213",
+            "statusCode": "0",
+            "statusMessage": "Success",
+            "sourceSystem": null,
+            "startRow": "1",
+            "endRow": "400",
+            "totalRow": null,
+            "segment": null,
+            "rowCount": "1",
+            "timeZone": "EST"
+        },
+        "parentNodeDetails":
+        {
+            "customerExcerpt":
+            {
+                "customerId": "38531632",
+                "customerName": "IBM MSA"
+            },
+            "hierarchyExcerpt":
+            {
+                "parentageLevel": "4",
+                "custBillingHierarchyId": "40921031",
+                "account1Number": "",
+                "description": "IBM MSA",
+                "hierarchyPointId": "164240405"
+            },
+            "bundleExcerpt":
+            {
+                "parentageLevel": "3",
+                "account1Number": "8310001226058",
+                "description": "IBM MSA",
+                "hierarchyPointId": "164240438",
+                "custBillingHierarchyId": "40921031"
+            },
+            "invoiceExcerpt":
+            {
+                "parentageLevel": "2",
+                "account1Number": "8310001226097",
+                "description": "IBM MSA",
+                "hierarchyPointId": "164240519",
+                "custBillingHierarchyId": "40921031"
+            },
+            "cdgexcerpt":
+            {
+                "parentageLevel": "1",
+                "account1Number": "000001",
+                "description": "IBM MSA",
+                "hierarchyPointId": "164240521",
+                "custBillingHierarchyId": "40921031"
+            }
+        },
+        "subAccountNodeDetails":
+        {
+            "nodeType": "SA",
+            "nodeID": "123457",
+            "nodeLabel": "NEWBILLING",
+            "hierarchyPointID": "164241159",
+            "startDate": "24-Aug-2008",
+            "endDate": "",
+            "seqNum": "20",
+            "interOfferRelinkDate": "",
+            "premierFAN": "",
+            "serviceCenter": "",
+            "specialBillCode": "",
+            "serviceType": "",
+            "specialBillCodeTb": null,
+            "billRefTextMOW": null,
+            "arrangeText": "",
+            "foreignAcntId": null,
+            "orginatingSystemID": null,
+            "sourceBillerId": "",
+            "foreignAccNodeDetails":
+            [
+                {
+                    "foreignAcntId": "955503",
+                    "foreignAccountCustNm": "CUSTOMBILLING",
+                    "parentForiegnAcntId": "955502",
+                    "foreignAccId": null,
+                    "foreignAccNb": null,
+                    "foreignAccStartDate": "20080924 11:30:08"
+                }
+            ],
+            "originatingSystemCD": null,
+            "foreignAccountCustNm": null,
+            "parentForeignAcntId": null,
+            "enterpriseNumber": null,
+            "deleteGBPAsso": null,
+            "dailPlanId": "",
+            "webOrderNumber": "",
+            "salesOffice": "",
+            "masterCustNumber": null,
+            "billGroup": "KKot",
+            "ratedInvTab": null,
+            "gbpcustomerName": null,
+            "address":
+            {
+                "addressType": "Taxing Address",
+                "addressLine1": "3033 CHAINBRIDGE RD",
+                "addressLine2": "",
+                "addressLine3": "",
+                "addressLine4": "",
+                "streetAddress": "3033 CHAINBRIDGE RD",
+                "addressName": "",
+                "city": "VIENNA",
+                "floor": "",
+                "state": "VA",
+                "province": "",
+                "zipCode": "22185",
+                "zipCodeSuffix": "0001",
+                "foreignPostalCode": "",
+                "countyName": null,
+                "countryName": null,
+                "countryCode": "",
+                "geoCode": "0147059068000"
+            }
+        },
+        "topFive":
+        {
+            "_id": "57cb9416dac3e09ac833f2e4",
+            "nodeType": "I",
+            "displayTags": [
+                "startDate",
+                "address.city",
+                "address.state",
+                "billGroup",
+                "seqNum"
+            ]
+        },
+        "layout": [
+            {
+                "_id": "57cb9416dac3e09ac833f2e1",
+                "nodeType": "SA",
+                "field": "nodeLabel",
+                "category": "test1",
+                "column": 1,
+                "row": 1,
+                "displayName": "Node Label"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e2",
+                "nodeType": "SA",
+                "field": "nodeID",
+                "category": "test1",
+                "column": 2,
+                "row": 2,
+                "displayName": "Node Id"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e3",
+                "nodeType": "SA",
+                "field": "startDate",
+                "category": "test2",
+                "column": 1,
+                "row": 3,
+                "displayName": "Start Date"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e4",
+                "nodeType": "SA",
+                "field": "address.city",
+                "category": "test1",
+                "column": 2,
+                "row": 4,
+                "displayName": "City"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e5",
+                "nodeType": "SA",
+                "field": "address.state",
+                "category": "test1",
+                "column": 1,
+                "row": 5,
+                "displayName": "State"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e6",
+                "nodeType": "SA",
+                "field": "billGroup",
+                "category": "test3",
+                "column": 1,
+                "row": 6,
+                "displayName": "Bill Group"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e7",
+                "nodeType": "SA",
+                "field": "seqNum",
+                "category": "test1",
+                "column": 1,
+                "row": 7,
+                "displayName": "Seq #"
+            }
+        ]    
+    },
+    {
+        "transactionDetails":
+        {
+            "transactionID": "1223213",
+            "statusCode": "0",
+            "statusMessage": "Success",
+            "sourceSystem": null,
+            "startRow": "1",
+            "endRow": "400",
+            "totalRow": null,
+            "segment": null,
+            "rowCount": "1",
+            "timeZone": "EST"
+        },
+        "parentNodeDetails":
+        {
+            "customerExcerpt":
+            {
+                "customerId": "38531632",
+                "customerName": "IBM MSA"
+            },
+            "hierarchyExcerpt":
+            {
+                "parentageLevel": "4",
+                "custBillingHierarchyId": "40921031",
+                "account1Number": "",
+                "description": "IBM MSA",
+                "hierarchyPointId": "164240405"
+            },
+            "bundleExcerpt":
+            {
+                "parentageLevel": "3",
+                "account1Number": "8310001226058",
+                "description": "IBM MSA",
+                "hierarchyPointId": "164240438",
+                "custBillingHierarchyId": "40921031"
+            },
+            "invoiceExcerpt":
+            {
+                "parentageLevel": "2",
+                "account1Number": "8310001226097",
+                "description": "IBM MSA",
+                "hierarchyPointId": "164240519",
+                "custBillingHierarchyId": "40921031"
+            },
+            "cdgexcerpt":
+            {
+                "parentageLevel": "1",
+                "account1Number": "000001",
+                "description": "IBM MSA",
+                "hierarchyPointId": "164240521",
+                "custBillingHierarchyId": "40921031"
+            }
+        },
+        "subAccountNodeDetails":
+        {
+            "nodeType": "SA",
+            "nodeID": "123458",
+            "nodeLabel": "NEW CUSTOM",
+            "hierarchyPointID": "164241159",
+            "startDate": "24-Aug-2008",
+            "endDate": "",
+            "seqNum": "20",
+            "interOfferRelinkDate": "",
+            "premierFAN": "",
+            "serviceCenter": "",
+            "specialBillCode": "",
+            "serviceType": "",
+            "specialBillCodeTb": null,
+            "billRefTextMOW": null,
+            "arrangeText": "",
+            "foreignAcntId": null,
+            "orginatingSystemID": null,
+            "sourceBillerId": "",
+            "foreignAccNodeDetails":
+            [
+                {
+                    "foreignAcntId": "955503",
+                    "foreignAccountCustNm": "CUSTOMBILLING",
+                    "parentForiegnAcntId": "955502",
+                    "foreignAccId": null,
+                    "foreignAccNb": null,
+                    "foreignAccStartDate": "20080924 11:30:08"
+                }
+            ],
+            "originatingSystemCD": null,
+            "foreignAccountCustNm": null,
+            "parentForeignAcntId": null,
+            "enterpriseNumber": null,
+            "deleteGBPAsso": null,
+            "dailPlanId": "",
+            "webOrderNumber": "",
+            "salesOffice": "",
+            "masterCustNumber": null,
+            "billGroup": "KKot",
+            "ratedInvTab": null,
+            "gbpcustomerName": null,
+            "address":
+            {
+                "addressType": "Taxing Address",
+                "addressLine1": "3033 CHAINBRIDGE RD",
+                "addressLine2": "",
+                "addressLine3": "",
+                "addressLine4": "",
+                "streetAddress": "3033 CHAINBRIDGE RD",
+                "addressName": "",
+                "city": "VIENNA",
+                "floor": "",
+                "state": "VA",
+                "province": "",
+                "zipCode": "22185",
+                "zipCodeSuffix": "0001",
+                "foreignPostalCode": "",
+                "countyName": null,
+                "countryName": null,
+                "countryCode": "",
+                "geoCode": "0147059068000"
+            }
+        },
+        "topFive":
+        {
+            "_id": "57cb9416dac3e09ac833f2e4",
+            "nodeType": "I",
+            "displayTags": [
+                "startDate",
+                "address.city",
+                "address.state",
+                "billGroup",
+                "seqNum"
+            ]
+        },
+        "layout": [
+            {
+                "_id": "57cb9416dac3e09ac833f2e1",
+                "nodeType": "SA",
+                "field": "nodeLabel",
+                "category": "test1",
+                "column": 1,
+                "row": 1,
+                "displayName": "Node Label"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e2",
+                "nodeType": "SA",
+                "field": "nodeID",
+                "category": "test1",
+                "column": 2,
+                "row": 2,
+                "displayName": "Node Id"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e3",
+                "nodeType": "SA",
+                "field": "startDate",
+                "category": "test2",
+                "column": 1,
+                "row": 3,
+                "displayName": "Start Date"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e4",
+                "nodeType": "SA",
+                "field": "address.city",
+                "category": "test1",
+                "column": 2,
+                "row": 4,
+                "displayName": "City"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e5",
+                "nodeType": "SA",
+                "field": "address.state",
+                "category": "test1",
+                "column": 1,
+                "row": 5,
+                "displayName": "State"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e6",
+                "nodeType": "SA",
+                "field": "billGroup",
+                "category": "test3",
+                "column": 1,
+                "row": 6,
+                "displayName": "Bill Group"
+            },
+            {
+                "_id": "57cb9416dac3e09ac833f2e7",
+                "nodeType": "SA",
+                "field": "seqNum",
+                "category": "test1",
+                "column": 1,
+                "row": 7,
+                "displayName": "Seq #"
+            }
+        ]    
+    },
+    
+    {
         "parentNodeDetails":
         {
             "subAccountExcerpt": null,

@@ -11,7 +11,7 @@ angular.module('fixtApp')
         HEIRARCHY_LABEL_SEPARATOR1: ": ",
         HEIRARCHY_LABEL_SEPARATOR2: " - ",
         JSON_DELIMETER: ".",
-        MAX_CARD_IN_SANDBOX: 2,
+        MAX_CARD_IN_SANDBOX: 4,
         CONFIRM_BOX_YES: "Yes",
         CONFIRM_BOX_NO: "No",
         MAX_CARD_DETAILS_COL_COUNT: 2
