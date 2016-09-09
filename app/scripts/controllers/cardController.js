@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .controller('cardController', function (constantLoader, cardBusiness, 
-        defaultObjects, objectStorage, handlerLoader) {
+        objectStorage, handlerLoader) {
     
     var vm =  this;
     vm.isCardDetailsShow = false;
@@ -11,9 +11,7 @@ angular.module('fixtApp')
     vm.cardExtDisplayId = 0;
     vm.title = constantLoader.defaultValues.SANDBOX_TITLE;
     
-    vm.cardExtended = {};
-    vm.myFakeData = defaultObjects.FAKE_DATA;
-    
+    vm.cardChildList = [];
     vm.cards = [];
     
     function initialized() {
@@ -40,20 +38,6 @@ angular.module('fixtApp')
         vm.cards = objectStorage.cardList;
     }
     
-    /*function loadCardExtend(){
-        vm.localCopy = localStorage.getObject("cardExtended");
-        if (commonUtility.isDefinedObject(localCopy)){
-            vm.cardDetails = localCopy;
-            setCardExtendedFromResponse();
-        }else{
-            cardExtBusiness.getCardExtendListAsync().then(function(response){
-                vm.cardExtended = response.data;
-                localStorage.setObject("cardExtended", vm.cardExtended);
-                setCardExtendedFromResponse();
-            },handlerLoader.exceptionHandler.logError);
-        }
-    }*/
-        
     vm.onCloseClick = function(card){
         vm.cards.splice(vm.cards.indexOf(card), 1);
     };
@@ -72,6 +56,11 @@ angular.module('fixtApp')
         if(nodeId === vm.cardExtDisplayId || vm.cardExtDisplayId === 0){
             vm.isCardExtendShow = !vm.isCardExtendShow;
         }
+        if(vm.isCardExtendShow){
+            cardBusiness.getCardChildListAsync(nodeId).then(function(response){
+                vm.cardChildList = response.data.childDetails;
+            }, handlerLoader.exceptionHandler.logError);
+        }
         vm.cardExtDisplayId = nodeId;
         
         vm.isCardDetailsShow = false;
@@ -82,11 +71,7 @@ angular.module('fixtApp')
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, id);
         loadCardDetails();
     };
-       
-       
-
+    
     initialized();
 
-    
-         
   });

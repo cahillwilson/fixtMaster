@@ -9,5 +9,9 @@ angular.module('fixtApp')
         return dataAccess.getFromJsonAsync(constantLoader.relativeUrls.CARD_DETAILS);
     };
     
+    cardData.getCardChildListAsync = function(id) {
+        return dataAccess.getFromJsonAsync(constantLoader.relativeUrls.CARD_CHILD);
+    };
+    
     return cardData;
   });

@@ -1,90 +1,118 @@
+{
+    "transactionDetails":
     {
-        "transactionDetails":
+        "transactionID": "123333",
+        "statusCode": "0",
+        "statusMessage": "Success",
+        "sourceSystem": null,
+        "startRow": "1",
+        "endRow": "10",
+        "totalRow": null,
+        "segment": null,
+        "rowCount": "31",
+        "timeZone": "EST"
+    },
+    "childDetails":
+    [
         {
-            "transactionID": "123333",
-            "statusCode": "0",
-            "statusMessage": "Success",
-            "sourceSystem": null,
-            "startRow": "1",
-            "endRow": "20",
-            "totalRow": null,
-            "segment": null,
-            "rowCount": "1",
-            "timeZone": "EST"
+            "parentageLevel": null,
+            "account1Number": "1717905096183",
+            "description": "IBM MSA",
+            "hierarchyPointId": "152097019",
+            "custBillingHierarchyId": "33320982",
+            "custID": null,
+            "hierarchyId": null,
+            "accountType": "S"
         },
-        "childDetails":
-        [
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860191",
-                "hierarchyPointID": "161715109",
-                "accountType": "S"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860191",
-                "hierarchyPointID": "161715108",
-                "accountType": "AS"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860201",
-                "hierarchyPointID": "161715101",
-                "accountType": "S"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860201",
-                "hierarchyPointID": "161715100",
-                "accountType": "AS"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860201",
-                "hierarchyPointID": "161679852",
-                "accountType": "AG"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860201",
-                "hierarchyPointID": "161679818",
-                "accountType": "S"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860201",
-                "hierarchyPointID": "161679816",
-                "accountType": "I"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860201",
-                "hierarchyPointID": "161679814",
-                "accountType": "AB"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860191",
-                "hierarchyPointID": "161679811",
-                "accountType": "AG"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860191",
-                "hierarchyPointID": "161679775",
-                "accountType": "S"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860191",
-                "hierarchyPointID": "161679774",
-                "accountType": "I"
-            },
-            {
-                "custID": "38469907",
-                "hierarchyId": "40860191",
-                "hierarchyPointID": "161679773",
-                "accountType": "AB"
-            }
-        ]
-    }
+        {
+            "parentageLevel": null,
+            "account1Number": "1717906639118",
+            "description": "IBM MSA",
+            "hierarchyPointId": "152826948",
+            "custBillingHierarchyId": "33320982",
+            "custID": null,
+            "hierarchyId": null,
+            "accountType": "S"
+        },
+        {
+            "parentageLevel": null,
+            "account1Number": "1717907987196",
+            "description": "IBM MSA",
+            "hierarchyPointId": "153976258",
+            "custBillingHierarchyId": "33320982",
+            "custID": null,
+            "hierarchyId": null,
+            "accountType": "S"
+        },
+        {
+            "parentageLevel": null,
+            "account1Number": "1717908853703",
+            "description": "IBM MSA",
+            "hierarchyPointId": "154779960",
+            "custBillingHierarchyId": "33320982",
+            "custID": null,
+            "hierarchyId": null,
+            "accountType": "S"
+        },
+        {
+            "parentageLevel": null,
+            "account1Number": "1717909713943",
+            "description": "SGS TESTCOM",
+            "hierarchyPointId": "155346355",
+            "custBillingHierarchyId": "33320982",
+            "custID": null,
+            "hierarchyId": null,
+            "accountType": "S"
+        },
+        {
+            "parentageLevel": null,
+            "account1Number": "1717910115219",
+            "description": "IBM MSA",
+            "hierarchyPointId": "123456",
+            "custBillingHierarchyId": "33320982",
+            "custID": null,
+            "hierarchyId": null,
+            "accountType": "S"
+        },
+        {
+            "parentageLevel": null,
+            "account1Number": "1717910318388",
+            "description": "IBM MSA",
+            "hierarchyPointId": "123457",
+            "custBillingHierarchyId": "33320982",
+            "custID": null,
+            "hierarchyId": null,
+            "accountType": "S"
+        },
+        {
+            "parentageLevel": null,
+            "account1Number": "1717910353733",
+            "description": "SGS North America",
+            "hierarchyPointId": "155911701",
+            "custBillingHierarchyId": "33320982",
+            "custID": null,
+            "hierarchyId": null,
+            "accountType": "S"
+        },
+        {
+            "parentageLevel": null,
+            "account1Number": "1717910512820",
+            "description": "IBM MSA",
+            "hierarchyPointId": "156122672",
+            "custBillingHierarchyId": "33320982",
+            "custID": null,
+            "hierarchyId": null,
+            "accountType": "S"
+        },
+        {
+            "parentageLevel": null,
+            "account1Number": "1717919326261",
+            "description": "IBM MSA",
+            "hierarchyPointId": "162950524",
+            "custBillingHierarchyId": "33320982",
+            "custID": null,
+            "hierarchyId": null,
+            "accountType": "S"
+        }
+    ]
+}

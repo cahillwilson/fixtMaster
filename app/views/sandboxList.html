@@ -55,7 +55,7 @@
             <fixt-expanded-hierarchy 
                 show-card-view-click="vm.onCardHierarchyClick(card.nodeId)" is-visible="true"
                 details="card" open-new-card="vm.onOpenNewCard(id)"
-                my-list="vm.myFakeData" close-click="vm.onCloseClick(card)"></fixt-expanded-hierarchy>
+                child-list="vm.cardChildList" close-click="vm.onCloseClick(card)"></fixt-expanded-hierarchy>
         </div>
         <div ng-repeat="card in vm.cards" class="card-container" 
             ng-show="vm.isCardDetailsShow && (vm.cardDetailsDisplayId === card.nodeId)">

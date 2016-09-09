@@ -6,8 +6,7 @@ angular.module('fixtApp')
             restrict:'EA',
             replace: true,
             scope:{
-                myList: "=",
-                
+                childList: "=",
                 showCardViewClick: "&",
                 closeClick: "&",
                 details: "=",
@@ -73,7 +72,7 @@ angular.module('fixtApp')
                                                     '<img ng-if="(details.parentNodes.length === $index+1)" ng-src="{{!isChildrenVisible ? ' +
                                                         '\'styles/images/Hrchy-expand.jpg\' : \'styles/images/Hrchy-collapse.jpg\'}}" ' + 
                                                         'width="20" height="20" alt="" class="pointer" ' +
-                                                        'ng-click="toggleDetails(details.parentNodes.length, $index)" />' +
+                                                        'ng-click="onFinalLevelClick($index)" />' +
                                                 '</span>' +
                                                 '<span>' +
                                                     '<span>{{item.slice(0, item.indexOf("' + 
@@ -86,11 +85,13 @@ angular.module('fixtApp')
                                         '</div>' +
                                     '</div>' +
                                     '<div class="hrNode2-1" ng-show="isChildrenVisible" style="margin-left: {{(details.parentNodes.length*24)-(details.parentNodes.length/2)}}px; ' + 
-                                        'height: {{(myList.length*20)-9}}px;">' +
-                                        '<div ng-repeat="children in myList" class="nodeIcon-child" ng-click="onChildClick(children)">' +
+                                        'height: {{(childList.length*20)-9}}px;">' +
+                                        '<div ng-repeat="child in childList" class="nodeIcon-child" ng-click="onChildClick(child.hierarchyPointId)">' +
                                             '<div class="inner-div-space"></div>' +
                                             '<img id="nodeBubble" src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>' +
-                                            '<span ng-class="{\'sbox-item-title\':(activeChild === children)}">{{children}}-IBM MSA</span>' +
+                                            '<span ng-class="{\'sbox-item-title\':(activeChild === child.hierarchyPointId)}">' +
+                                                '{{child.hierarchyPointId}}-{{child.description}}' +
+                                            '</span>' +
                                         '</div>' +
                                     '</div>' +
                                 '</div>' +
@@ -124,8 +125,8 @@ angular.module('fixtApp')
                     scope.showCardViewClick();
                 };
                 
-                scope.toggleDetails = function(length, index) {
-                    if(length === (index + 1)){
+                scope.onFinalLevelClick = function(index) {
+                    if(scope.details.parentNodes.length === (index + 1)){
                         scope.isChildrenVisible = !scope.isChildrenVisible;
                     }
                 };

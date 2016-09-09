@@ -217,5 +217,9 @@ angular.module('fixtApp')
         }, handlerLoader.exceptionHandler.logError);
     };
     
+    cardBusiness.getCardChildListAsync = function(id){
+        return cardData.getCardChildListAsync(id);
+    };
+    
     return cardBusiness;
   });
