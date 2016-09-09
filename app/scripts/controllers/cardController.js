@@ -13,10 +13,6 @@ angular.module('fixtApp')
     vm.cardExtended = {};
     vm.cards = [];
     
-    var cardDetails = {};
-    cardDetails.nodeId = "";
-    cardDetails.nodeLabel = "";
-
     function initialized() {
         loadCardDetails();
     }
@@ -60,7 +56,9 @@ angular.module('fixtApp')
     };
     
     vm.onCardDetailsClick = function(nodeId){
-        vm.isCardDetailsShow = !vm.isCardDetailsShow;
+        if(nodeId === vm.cardDetailsDisplayId || vm.cardDetailsDisplayId === 0){
+            vm.isCardDetailsShow = !vm.isCardDetailsShow;
+        }
         vm.cardDetailsDisplayId = nodeId;
     };
     

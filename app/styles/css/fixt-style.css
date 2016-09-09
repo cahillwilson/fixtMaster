@@ -555,9 +555,15 @@ input#searchIcon{
     position:absolute;
 }
 
-.cardCver{margin:auto;  width:1284px; height:auto; padding:0 0px 20px 0px;align-items: center;
-  display: flex;
-  justify-content: center;}
+.cardCver{
+    margin:auto;  
+    width:1284px; 
+    height:auto; 
+    padding:0 0px 20px 0px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
 .cardExpand{
     border: 1px solid rgba(204, 204, 204, 1);
     /*padding: 15px 20px 15px 20px;*/
