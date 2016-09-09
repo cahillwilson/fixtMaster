@@ -82,7 +82,7 @@ angular.module('fixtApp')
                                         '<span class="nodeIcon">' +
                                             '<div ng-repeat="children in myList">' +
                                                 '<img id="nodeBubble" src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>' +
-                                                'SA Walmart-{{children}}' +
+                                                '{{children}}-IBM MSA' +
                                             '</div>' +
                                         '</span>' +
                                     '</div>' +
