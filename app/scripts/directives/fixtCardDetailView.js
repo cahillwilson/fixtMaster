@@ -7,8 +7,8 @@ angular.module('fixtApp')
 	replace: true,
         scope: {
             details: "=",
-            showCardViewClick: "&"
-        
+            showCardViewClick: "&",
+            closeClick: "&"
         },
         template: function(){
             
@@ -48,7 +48,7 @@ angular.module('fixtApp')
                                             '</div>' +
                                         '</div>' +
                                         '<div class="sBxbox1-2">' +
-                                            '<span class="pointer" ng-click="goToCardView()">' +
+                                            '<span class="pointer" ng-click="onCloseClick(details)">' +
                                                 '<img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/>' +
                                             '</span>' +
                                         '</div>' +
@@ -101,6 +101,11 @@ angular.module('fixtApp')
                 scope.showCardViewClick();
             };
             
+            scope.onCloseClick = function(details){
+                scope.closeClick({
+                    card: details
+                });
+            };
         }
     };
   });
