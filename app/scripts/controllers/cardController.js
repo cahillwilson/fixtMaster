@@ -78,8 +78,8 @@ angular.module('fixtApp')
         vm.cardDetailsDisplayId = 0;
     };
 
-    vm.onOpenNewCard = function(){
-        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, "123456");
+    vm.onOpenNewCard = function(id){
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, id);
         loadCardDetails();
     };
        

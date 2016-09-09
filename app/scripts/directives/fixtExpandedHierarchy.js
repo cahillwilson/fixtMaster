@@ -7,8 +7,6 @@ angular.module('fixtApp')
             replace: true,
             scope:{
                 myList: "=",
-                toggleDetails: "&",
-                isVisible: "=",
                 
                 showCardViewClick: "&",
                 closeClick: "&",
@@ -62,29 +60,38 @@ angular.module('fixtApp')
                                     '</div>' +
                                 '</div>' +
                                 '<div class="sbxHrchyCol" >' +
-                                    '<div ng-repeat="item in details.parentNodes">' +
-                                        '<div class="hrNode1-1" style="margin-top:14px; margin-left: {{($index+1)*21}}px;">' +
-                                            '<span class="nodeIcon">' +
-                                                '<img ng-if="(details.parentNodes.length !== $index+1)" src="styles/images/Hrchy-collapse.jpg" width="20" height="20" alt=""  />' +
-                                                '<img ng-if="(details.parentNodes.length === $index+1)" ng-src="{{!isVisible ? \'styles/images/Hrchy-expand.jpg\' : \'styles/images/Hrchy-collapse.jpg\'}}" width="20" height="20" alt="" ' +
-                                                    'ng-click="toggleDetails(details.parentNodes.length, $index)" />' +
-                                            '</span>' +
-                                            '<span>' +
-                                                '<span>{{item.slice(0, item.indexOf("' + 
-                                                    constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + 
-                                                '")+2)}}</span>{{item.slice(item.indexOf("' + 
-                                                    constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + 
-                                                '")+2)}}' +
-                                            '</span>' +
+                                    '<div ng-repeat="item in details.parentNodes | limitTo: showLevel">' +
+                                        '<div class="hrNode1-1" style="padding-left: {{($index+1)*20}}px;">' +
+                                            '<div ng-class="{\'hrNode1-1-1\':($index>0),\'hrNode1-1-1-first\': ($index===0)}">' +
+                                                '<div ng-class="{\'space-div\':($index>0),\'space-div-first\': ($index===0)}"></div>' +
+                                                '<span class="nodeIcon">' +
+                                                    '<img ng-if="(details.parentNodes.length !== $index+1)" ' +
+                                                        'ng-src="{{(!isLevelShow && (showLevel === ($index+1))) ? ' +
+                                                        '\'styles/images/Hrchy-expand.jpg\' : \'styles/images/Hrchy-collapse.jpg\'}}" ' +
+                                                        'width="20" height="20" alt="" class="pointer" ' +
+                                                        'ng-click="onHideLevels($index)" />' +
+                                                    '<img ng-if="(details.parentNodes.length === $index+1)" ng-src="{{!isChildrenVisible ? ' +
+                                                        '\'styles/images/Hrchy-expand.jpg\' : \'styles/images/Hrchy-collapse.jpg\'}}" ' + 
+                                                        'width="20" height="20" alt="" class="pointer" ' +
+                                                        'ng-click="toggleDetails(details.parentNodes.length, $index)" />' +
+                                                '</span>' +
+                                                '<span>' +
+                                                    '<span>{{item.slice(0, item.indexOf("' + 
+                                                        constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + 
+                                                    '")+2)}}</span>{{item.slice(item.indexOf("' + 
+                                                        constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + 
+                                                    '")+2)}}' +
+                                                '</span>' +
+                                            '</div>' +
                                         '</div>' +
                                     '</div>' +
-                                    '<div class="hrNode2-1" ng-show="isVisible">' +
-                                        '<span class="nodeIcon">' +
-                                            '<div ng-repeat="children in myList">' +
-                                                '<img id="nodeBubble" src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>' +
-                                                '{{children}}-IBM MSA' +
-                                            '</div>' +
-                                        '</span>' +
+                                    '<div class="hrNode2-1" ng-show="isChildrenVisible" style="margin-left: {{(details.parentNodes.length*24)-(details.parentNodes.length/2)}}px; ' + 
+                                        'height: {{(myList.length*20)-9}}px;">' +
+                                        '<div ng-repeat="children in myList" class="nodeIcon-child" ng-click="onChildClick(children)">' +
+                                            '<div class="inner-div-space"></div>' +
+                                            '<img id="nodeBubble" src="styles/images/Hrchy-child.jpg" width="10" height="10" alt=""/>' +
+                                            '<span ng-class="{\'sbox-item-title\':(activeChild === children)}">{{children}}-IBM MSA</span>' +
+                                        '</div>' +
                                     '</div>' +
                                 '</div>' +
                                 '<div class="sbxHrchyFooter">' +
@@ -93,24 +100,43 @@ angular.module('fixtApp')
                                             'Back to card view' +
                                         '</span>' +
                                     '</div>' +
-                                '<div class="sbxHrchyFtrRight">' +
-                                    '<span class="sBxfooter1-ext" ng-click="onOpenNewCardClick()">Open in new card</span>' +
+                                    '<div class="sbxHrchyFtrRight">' +
+                                        '<span class="sBxfooter1-ext" ng-click="onOpenNewCardClick()">Open in new card</span>' +
+                                    '</div>' +
                                 '</div>' +
-                            '</div>' +
-                        '</div>';
+                            '</div>';
 
                 return html;
             },
 
             link: function(scope){
+                
+                scope.activeChild = 0;
+                scope.isChildrenVisible = true;
+                scope.showLevel = scope.details.parentNodes.length;
+                scope.isLevelShow = true;
+                
+                scope.onChildClick = function(id){
+                    scope.activeChild = id;
+                };
+                
                 scope.onCardViewClick = function(){
                     scope.showCardViewClick();
                 };
                 
                 scope.toggleDetails = function(length, index) {
                     if(length === (index + 1)){
-                        scope.isVisible = !scope.isVisible;
+                        scope.isChildrenVisible = !scope.isChildrenVisible;
                     }
+                };
+                
+                scope.onHideLevels = function(index){
+                    scope.showLevel = index + 1;
+                    scope.isLevelShow = !scope.isLevelShow;
+                    if(scope.isLevelShow){
+                        scope.showLevel = scope.details.parentNodes.length;
+                    }
+                    scope.isChildrenVisible = scope.isLevelShow;
                 };
                 
                 scope.onCloseClick = function(details){
@@ -120,7 +146,9 @@ angular.module('fixtApp')
                 };
                 
                 scope.onOpenNewCardClick = function(){
-                    scope.openNewCard();
+                    scope.openNewCard({
+                        id: scope.activeChild
+                    });
                 };
             }
         };
