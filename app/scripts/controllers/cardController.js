@@ -7,10 +7,13 @@ angular.module('fixtApp')
     var vm =  this;
     vm.isCardDetailsShow = false;
     vm.isCardExtendShow = false;
-//    vm.isCardCollapse = false;
     vm.cardDetailsDisplayId = 0;
+    vm.cardExtDisplayId = 0;
     vm.title = constantLoader.defaultValues.SANDBOX_TITLE;
+    
     vm.cardExtended = {};
+    vm.myFakeData = defaultObjects.FAKE_DATA;
+    
     vm.cards = [];
     
     function initialized() {
@@ -60,13 +63,19 @@ angular.module('fixtApp')
             vm.isCardDetailsShow = !vm.isCardDetailsShow;
         }
         vm.cardDetailsDisplayId = nodeId;
-    };
-    
-    vm.onCardHierarchyClick = function(){
         
-//        vm.isCardExtendShow = !vm.isCardExtendShow;
-        vm.myFakeData = defaultObjects.FAKE_DATA;
+        vm.isCardExtendShow = false;
+        vm.cardExtDisplayId = 0;
+    };
 
+    vm.onCardHierarchyClick = function(nodeId){
+        if(nodeId === vm.cardExtDisplayId || vm.cardExtDisplayId === 0){
+            vm.isCardExtendShow = !vm.isCardExtendShow;
+        }
+        vm.cardExtDisplayId = nodeId;
+        
+        vm.isCardDetailsShow = false;
+        vm.cardDetailsDisplayId = 0;
     };
 
     vm.onOpenNewCard = function(){

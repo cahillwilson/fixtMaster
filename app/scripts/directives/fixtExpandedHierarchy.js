@@ -11,7 +11,7 @@ angular.module('fixtApp')
                 isVisible: "=",
                 
                 showCardViewClick: "&",
-                closeCard: "&",
+                closeClick: "&",
                 details: "=",
                 openNewCard: "&"
             },
@@ -19,7 +19,7 @@ angular.module('fixtApp')
      
                 var html=   '<div class="sbxHierarchy">' +
                                 '<div class="sBxbox1-2">' +
-                                    '<span class="pointer" ng-click="onCloseClick()">' +
+                                    '<span class="pointer" ng-click="onCloseClick(details)">' +
                                         '<img id="expandedClose" src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/>' +
                                     '</span>' +
                                 '</div>' +
@@ -113,8 +113,10 @@ angular.module('fixtApp')
                     }
                 };
                 
-                scope.onCloseClick = function(){
-                    scope.closeCard();
+                scope.onCloseClick = function(details){
+                    scope.closeClick({
+                        card: details
+                    });
                 };
                 
                 scope.onOpenNewCardClick = function(){
