@@ -593,7 +593,6 @@ function prepareNodeForCard(body, fromCache, res) {
 
 };
 
-
 function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, res) {
     logger.info('finding node in CSIBGW');
     request({
@@ -614,13 +613,72 @@ function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, re
             res.send('something bad happened during search');
         } else {
             var bodyobj = JSON.parse(body);
-            logger.info('creating the node object');
-            var node = new models.Nodes({
-                nodeId: JSON.stringify(bodyobj.invoiceNodeDetails.nodeID),
-                hierarchyPointId: JSON.stringify(bodyobj.invoiceNodeDetails.hierarchyPointID),
-                timestamp: Math.floor(new Date() / 1000),
-                body: body
-            });
+            var node;
+            switch (nodeTypeIndicator) {
+                case "invoiceNode":
+                    node = new models.Nodes({
+                        nodeId: JSON.stringify(bodyobj.invoiceNodeDetails.nodeID),
+                        hierarchyPointId: JSON.stringify(bodyobj.invoiceNodeDetails.hierarchyPointID),
+                        timestamp: Math.floor(new Date() / 1000),
+                        body: body
+                    });
+                    break;
+                case "bundleNode":
+                    node = new models.Nodes({
+                        nodeId: JSON.stringify(bodyobj.bundleNodeDetails.nodeID),
+                        hierarchyPointId: JSON.stringify(bodyobj.bundleNodeDetails.hierarchyPointID),
+                        timestamp: Math.floor(new Date() / 1000),
+                        body: body
+                    });
+                    break;
+                case "cdgNode":
+                    node = new models.Nodes({
+                        nodeId: JSON.stringify(bodyobj.cdgNodeDetails.nodeID),
+                        hierarchyPointId: JSON.stringify(bodyobj.cdgNodeDetails.hierarchyPointID),
+                        timestamp: Math.floor(new Date() / 1000),
+                        body: body
+                    });
+                    break;
+                case "customerNode":
+                    node = new models.Nodes({
+                        nodeId: JSON.stringify(bodyobj.customerNodeDetails.nodeID),
+                        hierarchyPointId: JSON.stringify(bodyobj.customerNodeDetails.hierarchyPointID),
+                        timestamp: Math.floor(new Date() / 1000),
+                        body: body
+                    });
+                    break;
+                case "hierarchyNode":
+                    node = new models.Nodes({
+                        nodeId: JSON.stringify(bodyobj.hierarchyNodeDetails.nodeID),
+                        hierarchyPointId: JSON.stringify(bodyobj.hierarchyNodeDetails.hierarchyPointID),
+                        timestamp: Math.floor(new Date() / 1000),
+                        body: body
+                    });
+                    break;
+                case "siteNode":
+                    node = new models.Nodes({
+                        nodeId: JSON.stringify(bodyobj.siteNodeDetails.nodeID),
+                        hierarchyPointId: JSON.stringify(bodyobj.siteNodeDetails.hierarchyPointID),
+                        timestamp: Math.floor(new Date() / 1000),
+                        body: body
+                    });
+                    break;
+                case "subaccountNode":
+                    node = new models.Nodes({
+                        nodeId: JSON.stringify(bodyobj.subAccountNodeDetails.nodeID),
+                        hierarchyPointId: JSON.stringify(bodyobj.subAccountNodeDetails.hierarchyPointID),
+                        timestamp: Math.floor(new Date() / 1000),
+                        body: body
+                    });
+                    break;
+            }
+//            logger.info('creating the node object');
+//            var node = new models.Nodes({
+//                nodeId: JSON.stringify(bodyobj.nodeDetails.nodeID),
+//                hierarchyPointId: JSON.stringify(bodyobj.nodeDetails.hierarchyPointID),
+//                timestamp: Math.floor(new Date() / 1000),
+//                body: body
+//            });
             logger.info('saving the node in the db');
             node.save(function (err, node) {
                 if (err) {
@@ -651,7 +709,6 @@ function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, re
                             delete bodyobj.invoiceNodeDetails[removeTag];
                         }
                         bodyobj.editableFields = role.editableFields;
-                        // TODO: Add layout tags
                         var foundfive = topfive.filter(function (item) {
                             return item.nodeType == nodeTypeIndicator;
                         });
