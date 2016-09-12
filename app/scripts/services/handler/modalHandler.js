@@ -40,12 +40,15 @@ angular.module('fixtApp')
         };
         
         modalDialog.showMediumHTML = function(HTMLLink){
-        
             ngDialog.open({ 
                 template: HTMLLink ,
                 className: 'ngdialog-theme-medium ngdialog-overlay',
                 overlay: false
             });
+        };
+        
+        modalDialog.closeHTML = function(HTMLLink){
+            ngDialog.close({ template: HTMLLink });        
         };
         
         return modalDialog;

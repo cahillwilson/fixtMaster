@@ -46,7 +46,7 @@
             <fixt-card-detail-view details="card" close-click="vm.onCloseClick(card)"
                 show-card-view-click="vm.onCardDetailsClick(card.nodeId)" ></fixt-card-detail-view>
         </div>
-        <div ng-repeat="card in vm.cards" class="card-container">
+        <div ng-repeat="card in vm.cards | filter: {boxId: vm.activeBoxId}" class="card-container">
             <div ng-hide="(vm.isCardDetailsShow && (vm.cardDetailsDisplayId === card.nodeId)) || 
                         (vm.isCardExtendShow && (vm.cardExtDisplayId === card.nodeId))" 
                 class="short-card-container">

@@ -6,6 +6,7 @@ angular.module('fixtApp')
     var objectStorage = {};
     
     var cardList = [];
+    var isSandboxAdded = false;
     
     Object.defineProperty(objectStorage, "cardList", {
         get: function() {
@@ -13,6 +14,15 @@ angular.module('fixtApp')
         },
         set: function(cards) {
             cardList = cards;
+        }
+    });
+    
+    Object.defineProperty(objectStorage, "isSandboxAdded", {
+        get: function() {
+            return isSandboxAdded;
+        },
+        set: function(isAdded) {
+            isSandboxAdded = isAdded;
         }
     });
     

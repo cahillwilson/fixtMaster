@@ -10,6 +10,7 @@ angular.module('fixtApp')
     vm.cardDetailsDisplayId = 0;
     vm.cardExtDisplayId = 0;
     vm.title = constantLoader.defaultValues.SANDBOX_TITLE;
+    vm.activeBoxId = 0;
     
     vm.cardChildList = [];
     vm.cards = [];
@@ -30,6 +31,7 @@ angular.module('fixtApp')
                 if(commonUtility.filterInArray(vm.sandBoxes, {isActive: true}).length>0){
                     vm.title = commonUtility.filterInArray(vm.sandBoxes, {isActive: true})[0].title;
                     var cards = commonUtility.filterInArray(vm.sandBoxes, {isActive: true})[0].cards;
+                    vm.activeBoxId = commonUtility.filterInArray(vm.sandBoxes, {isActive: true})[0].boxId;
                     if(commonUtility.isDefinedObject(cards) && cards.length>0){
                         for(var index=0; index<cards.length; index++){
                             if(commonUtility.is3DValidKey(localStorage.getObject(cards[index]))){
@@ -51,8 +53,12 @@ angular.module('fixtApp')
     }
     
     function loadCardDetails() {
-        cardBusiness.getCardDetailsListAsync(loadSuccessCall, 
-            commonUtility.filterInArray(vm.sandBoxes, {isActive: true})[0].boxId);
+        if(objectStorage.isSandboxAdded){
+            loadSuccessCall();
+            objectStorage.isSandboxAdded = false;
+        }else{
+            cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+        }
     }
     
     function loadSuccessCall(){
