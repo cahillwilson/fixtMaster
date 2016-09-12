@@ -38,5 +38,15 @@ angular.module('fixtApp')
             });
             return nestedConfirmDialog;
         };
+        
+        modalDialog.showMediumHTML = function(HTMLLink){
+        
+            ngDialog.open({ 
+                template: HTMLLink ,
+                className: 'ngdialog-theme-medium ngdialog-overlay',
+                overlay: false
+            });
+        };
+        
         return modalDialog;
   });

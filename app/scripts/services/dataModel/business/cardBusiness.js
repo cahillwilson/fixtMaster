@@ -2,15 +2,17 @@
 
 angular.module('fixtApp')
   .factory('cardBusiness', function (cardData, handlerLoader, commonUtility,
-        constantLoader, objectStorage) {
+        constantLoader, objectStorage, localStorage) {
     
     var cardBusiness = {};
     
     var cardDetails = {};
+    cardDetails.id = constantLoader.defaultValues.BLANK_STRING;
     cardDetails.nodeId = constantLoader.defaultValues.BLANK_STRING;
     cardDetails.nodeLabel = constantLoader.defaultValues.BLANK_STRING;
+    cardDetails.boxId = constantLoader.defaultValues.BLANK_STRING;
     
-    function setCardDetailFromResponse(successCallback) {
+    function setCardDetailFromResponse(successCallback, activeSanboxId) {
         cardDetails.parentNodes = [];
         if (commonUtility.isDefinedObject(cardDetails.parentNodeDetails)) {
             if (commonUtility.isDefinedObject(cardDetails.parentNodeDetails.customerExcerpt)) {
@@ -54,25 +56,25 @@ angular.module('fixtApp')
         cardDetails.fields = [];
         
         if (commonUtility.isDefinedObject(cardDetails.customerNodeDetails)) {
-            setFinalHeirarcyLabel(cardDetails.customerNodeDetails, 
+            setFinalHeirarcyLabel(activeSanboxId, cardDetails.customerNodeDetails, 
                 constantLoader.nodeTypes.CUSTOMER,
                 cardDetails.customerNodeDetails.customerNumber,
                 cardDetails.customerNodeDetails.customerName);
         }else if (commonUtility.isDefinedObject(cardDetails.hierarchyNodeDetails)) {
-            setFinalHeirarcyLabel(cardDetails.hierarchyNodeDetails, 
+            setFinalHeirarcyLabel(activeSanboxId, cardDetails.hierarchyNodeDetails, 
                 constantLoader.nodeTypes.HEIRARCHY,
                 cardDetails.hierarchyNodeDetails.custBillingHierarchyId,
                 cardDetails.hierarchyNodeDetails.description);
         }else if (commonUtility.isDefinedObject(cardDetails.bundleNodeDetails)) {
-            setFinalHeirarcyLabel(cardDetails.bundleNodeDetails);
+            setFinalHeirarcyLabel(activeSanboxId, cardDetails.bundleNodeDetails);
         }else if (commonUtility.isDefinedObject(cardDetails.invoiceNodeDetails)) {
-            setFinalHeirarcyLabel(cardDetails.invoiceNodeDetails);
+            setFinalHeirarcyLabel(activeSanboxId, cardDetails.invoiceNodeDetails);
         }else if (commonUtility.isDefinedObject(cardDetails.cdgnodeDetails)) {
-            setFinalHeirarcyLabel(cardDetails.cdgnodeDetails);
+            setFinalHeirarcyLabel(activeSanboxId, cardDetails.cdgnodeDetails);
         }else if (commonUtility.isDefinedObject(cardDetails.subAccountNodeDetails)) {
-            setFinalHeirarcyLabel(cardDetails.subAccountNodeDetails);
+            setFinalHeirarcyLabel(activeSanboxId, cardDetails.subAccountNodeDetails);
         }else if (commonUtility.isDefinedObject(cardDetails.siteNodeDetails)) {
-            setFinalHeirarcyLabel(cardDetails.siteNodeDetails);
+            setFinalHeirarcyLabel(activeSanboxId, cardDetails.siteNodeDetails);
         }
 
         if (cardDetails.parentNodes.length >
@@ -82,6 +84,7 @@ angular.module('fixtApp')
                     constantLoader.defaultValues.MAX_NODE_TYPE_COUNT));
         }
         
+        localStorage.setObject(cardDetails.id, cardDetails);
         objectStorage.cardList.push(cardDetails);
         commonUtility.callback(successCallback);
     }
@@ -91,7 +94,7 @@ angular.module('fixtApp')
             id + constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR2 + desc;
     }
     
-    function setFinalHeirarcyLabel(nodeDetails, nodeType, nodeId, nodeLabel){
+    function setFinalHeirarcyLabel(activeSanboxId, nodeDetails, nodeType, nodeId, nodeLabel){
         var type = constantLoader.defaultValues.BLANK_STRING;
         var id = constantLoader.defaultValues.BLANK_STRING;
         var label = constantLoader.defaultValues.BLANK_STRING;
@@ -100,9 +103,11 @@ angular.module('fixtApp')
         id = commonUtility.is3DValidKey(nodeType) ? nodeId : nodeDetails.nodeID;
         label = commonUtility.is3DValidKey(nodeType) ? nodeLabel : nodeDetails.nodeLabel;
         
+        cardDetails.id = id;
         cardDetails.nodeId = type + 
             constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + id;
         cardDetails.nodeLabel = label;
+        cardDetails.boxId = activeSanboxId;
 
         cardDetails.parentNodes.push(
             cardDetails.nodeId + 
@@ -194,7 +199,24 @@ angular.module('fixtApp')
         }
     }
     
-    cardBusiness.getCardDetailsListAsync = function(successCallback) {
+    cardBusiness.getCardDetailsListAsync = function(successCallback, activeSanboxId) {
+        if(commonUtility.is3DValidKey(localStorage.getObject(
+            handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT)))){
+            if(commonUtility.isDefinedObject(objectStorage.cardList) && 
+                objectStorage.cardList.length > 0){
+                if(commonUtility.filterInArray(objectStorage.cardList, 
+                        {id: handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT), 
+                            boxId: activeSanboxId}).length === 0){
+                    objectStorage.cardList.push(localStorage.getObject(
+                        handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT)));        
+                }
+            }else{
+                objectStorage.cardList.push(localStorage.getObject(
+                    handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT)));   
+            }
+            commonUtility.callback(successCallback);
+            return;
+        }
         return cardData.getCardDetailsListAsync().then(function (response) {
             var cards = commonUtility.filterInArray(response.data, 
                 {subAccountNodeDetails: {
@@ -203,14 +225,14 @@ angular.module('fixtApp')
                 var existCard = [];
                 if(commonUtility.isDefinedObject(objectStorage.cardList) && objectStorage.cardList.length > 0){
                     existCard = commonUtility.filterInArray(objectStorage.cardList, 
-                        {nodeId: cards[0].subAccountNodeDetails.nodeID});
+                        {nodeId: cards[0].subAccountNodeDetails.nodeID, boxId: activeSanboxId});
                     if(existCard.length === 0){
                         cardDetails = cards[0];
-                        setCardDetailFromResponse(successCallback);
+                        setCardDetailFromResponse(successCallback, activeSanboxId);
                     }
                 }else{
                     cardDetails = cards[0];
-                    setCardDetailFromResponse(successCallback);
+                    setCardDetailFromResponse(successCallback, activeSanboxId);
                 }
             }
             commonUtility.callback(successCallback);

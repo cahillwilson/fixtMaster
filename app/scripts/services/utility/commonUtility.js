@@ -36,7 +36,7 @@ angular.module('fixtApp')
     };
     
     commonUtility.callback = function(callbackName, args){
-        if(this.is3DValidKey(callbackName) && typeof callbackName ==='function'){
+        if(this.is3DValidKey(callbackName) && typeof callbackName === 'function'){
             if(this.is3DValidKey(args)){
                 callbackName(args); 
             } else{

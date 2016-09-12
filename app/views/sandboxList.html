@@ -8,42 +8,25 @@
         <div class="col-sm-6">
         <div class="sandboxTitle">
             <img src="styles/images/sandBox-icon.png" width="27" height="27" alt=""/>
-            <div class="titleAlign" contenteditable="true" ng-model="vm.title"></div>
+            <div style="display: inline-block;"
+                ng-repeat="box in vm.sandBoxes | filter: {isActive: true} | limitTo: 1">
+                <fixt-editable item="vm.title"></fixt-editable>
+            </div>
         </div>
         </div>
         <div class="col-sm-6">
             <div class="sandboxElements">
-                <div class="iconBox" align="center">
-                    <span>
-                        <img src="styles/images/sbx-icon-delate.png" width="17" height="21" alt=""/>
-                    </span><br>
-                    Delete
-                </div>
-                <div class="iconBox" align="center">
-                    <span>
-                        <img src="styles/images/sbx-icon-clear.png" width="22" height="22" alt=""/>
-                    </span><br>
-                    Clear All
-                </div>
-                <div class="iconBox" align="center">
-                    <span>
-                        <img src="styles/images/sbx-icon-save.png" width="24" height="22" alt=""/>
-                    </span><br>
-                    Save
-                </div>
+                <fixt-sand-box-button label="Delete" image="sbx-icon-delate.png"
+                    height="21" width="17" button-click=""></fixt-sand-box-button>
+                <fixt-sand-box-button label="Clear All" image="sbx-icon-clear.png"
+                    height="22" width="22" button-click="vm.onClearAllClick()"></fixt-sand-box-button>
+                <fixt-sand-box-button label="Save" image="sbx-icon-save.png"
+                    height="22" width="24" button-click="vm.onSaveSanboxClick()"></fixt-sand-box-button>
                 <div class="elementBorder"></div>
-                <div class="iconBox" align="center">
-                    <span>
-                        <img src="styles/images/sbx-icon-unify.png" width="15" height="19" alt=""/>
-                    </span><br>
-                    Unify
-                </div>
-                <div class="iconBox" align="center">
-                    <span>
-                        <img src="styles/images/sbx-icon-relink.png" width="22" height="19" alt=""/>
-                    </span><br>
-                    Relink
-                </div>
+                <fixt-sand-box-button label="Unify" image="sbx-icon-unify.png"
+                    height="19" width="15" button-click="vm.test()"></fixt-sand-box-button>
+                <fixt-sand-box-button label="Relink" image="sbx-icon-relink.png"
+                    height="19" width="22" button-click=""></fixt-sand-box-button>
             </div>
         </div>
     </div>
@@ -51,14 +34,14 @@
     <!--Row with two columns divided two equal columns-->
     <div class="row">
         <div ng-repeat="card in vm.cards" class="card-container"
-            ng-show="vm.isCardExtendShow && (vm.cardExtDisplayId === card.nodeId)">
+            ng-if="vm.isCardExtendShow && (vm.cardExtDisplayId === card.nodeId)">
             <fixt-expanded-hierarchy 
                 show-card-view-click="vm.onCardHierarchyClick(card.nodeId)" is-visible="true"
-                details="card" open-new-card="vm.onOpenNewCard(id)"
+                details="card" open-new-card="vm.onOpenNewCardClick(id)"
                 child-list="vm.cardChildList" close-click="vm.onCloseClick(card)"></fixt-expanded-hierarchy>
         </div>
         <div ng-repeat="card in vm.cards" class="card-container" 
-            ng-show="vm.isCardDetailsShow && (vm.cardDetailsDisplayId === card.nodeId)">
+            ng-if="vm.isCardDetailsShow && (vm.cardDetailsDisplayId === card.nodeId)">
             <fixt-card-detail-view details="card" close-click="vm.onCloseClick(card)"
                 show-card-view-click="vm.onCardDetailsClick(card.nodeId)" ></fixt-card-detail-view>
         </div>

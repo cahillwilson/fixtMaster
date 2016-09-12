@@ -5,6 +5,15 @@
                 "nodes": {}
             }
         },
+        "fixt-sand-box-button": {
+            "attributes": {
+                "image": {},
+                "width": {},
+                "label": {},
+                "button-click": {},
+                "height": {}
+            }
+        },
         "fixt-editable": {
             "attributes": {
                 "item": {},

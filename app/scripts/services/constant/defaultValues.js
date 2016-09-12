@@ -14,5 +14,6 @@ angular.module('fixtApp')
         MAX_CARD_IN_SANDBOX: 4,
         CONFIRM_BOX_YES: "Yes",
         CONFIRM_BOX_NO: "No",
-        MAX_CARD_DETAILS_COL_COUNT: 2
+        MAX_CARD_DETAILS_COL_COUNT: 2,
+        SANDBOX_SAVE_INTERVAL_IN_MIN: 2
     });
