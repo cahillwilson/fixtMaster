@@ -15,7 +15,6 @@ var traverse = require('traverse');
 
 logger.info('FIXT logging enabled');
 
-// topFive table = nodeType string, displayTags array
 var topfive = [];
 models.Topfives.find({}, function (err, result) {
     logger.info('finding topfive now');
@@ -24,10 +23,6 @@ models.Topfives.find({}, function (err, result) {
     } else {
         logger.info('search complete, count is ' + Object.keys(result).length);
         topfive = result;
-//        var foundfive = topfive.filter(function(item) {
-//            return item.nodeType == 'I';
-//        });
-//        logger.info('found five: ' + foundfive);
     }
 });
 
@@ -42,7 +37,7 @@ models.Layouts.find({}, function (err, result) {
     }
 });
 
-// Get all sandboxes for the given user
+// API 1: GET ALL SANDBOXES FOR USER
 router.get('/sandbox', function (req, res, next) {
     logger.info('get all sandboxes [user ' + req.headers['userid'] + ']');
     var sandboxes = [];
@@ -53,7 +48,7 @@ router.get('/sandbox', function (req, res, next) {
     });
 });
 
-// Get a sandbox
+// API 2: GET SANDBOX
 router.get('/sandbox/:sandboxId', function (req, res, next) {
     logger.info('get sandbox ' + req.params.sandboxId + ' [user ' + req.headers['userid'] + ']');
     var sandbox = models.Sandboxes.find({
@@ -180,8 +175,36 @@ router.delete('/sandbox/:sandboxId', function (req, res, next) {
         } else {
             res.send('sandbox deleted');
         }
-    })
+    });
 });
+
+router.get('/lockStatus', function (req, res) {
+    logger.info('requesting lock status');
+    // customerId, hierarchyPointId
+    request({
+        url: 'http://localhost:9000/restservices/csi-billinggateway/v1/status/account',
+        qs: {
+            customerId: req.query.customerId,
+            hierarchyPointId: req.query.hierarchyPointId
+        },
+        method: 'GET',
+        headers: {
+            'TransactionID': '1234',
+            'UserID': req.headers['userid']
+        }
+    }, function (error, response, body) {
+        logger.info('lock status API call completed');
+
+        if (error) {
+            logger.info('error during lock status API execution');
+            res.send('error during lock status check');
+        } else {
+            res.set(response.headers);
+            res.send(JSON.parse(body));
+        }
+    });
+});
+
 
 // Execute initial search
 router.get('/initialSearch/:searchCategory/:searchType/:searchString', function (req, res) {
@@ -238,6 +261,41 @@ router.get('/initialSearch/:searchCategory/:searchType/:searchString', function 
     });
 });
 
+// API 60 GET CHILDREN
+router.get('/node/:nodeID/children', function (req, res) {
+    logger.info('requesting child info');
+    request({
+        url: 'http://localhost:9000/restservices/csi-billinggateway/v1/customerHierarchy/childNode',
+        qs: {
+            hierarchyPointId: req.params.nodeID
+        },
+        method: 'GET'
+    }, function(error, response, body) {
+        logger.info('get children call completed');
+        if (error) {
+            logger.info('error during get children API call');
+            res.send('error during get children call');
+        } else {
+            res.set(response.headers);
+            res.send(JSON.parse(body));
+        }
+    });
+});
+
+router.get('/node/:nodeID/users', function (req, res) {
+    logger.info('requesting all node users');
+    // search for cards whose node id is :nodeID
+    // fish out the user IDs from the results
+    var users = models.Cards.find({
+        'nodeId': req.params.nodeID
+    }, 'userId', function (err, users) {
+        logger.info('node users found');
+        res.send(users);
+    });
+
+});
+
+// API 51
 // Execute invoice node detail call
 router.get('/invoiceDetail', function (req, res) {
     logger.info('Invoice node detail called');
@@ -261,18 +319,91 @@ router.get('/invoiceDetail', function (req, res) {
     query.exec(function (err, cachedNode) {
         if (err) {
             logger.info('error during cache lookup, calling CSIBGW');
-            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'I', res);
-//        } else if (cachedNode) {
-//            logger.info('node found in cache: ' + cachedNode);
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'invoiceNode', res);
+            //        } else if (cachedNode) {
+            //            logger.info('node found in cache: ' + cachedNode);
             // TODO: Body is the whole Node, you must still filter based on role!
-//            res.send(JSON.parse(cachedNode.body));
+            //            res.send(JSON.parse(cachedNode.body));
         } else {
             logger.info('Node not found in cache; calling CSIBGW');
-            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'I', res);
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'invoiceNode', res);
         }
     });
 });
 
+// API 53
+// Execute subaccount node detail call
+router.get('/subaccountDetail', function (req, res) {
+    logger.info('Subaccount node detail called');
+    // TODO: Check if mongo has the node already and use it if so
+    var cachedNode;
+    var acctQuery = models.Nodes.findOne({
+        nodeId: '"' + req.query.accountNumber + '"'
+    });
+    var hierarchyQuery = models.Nodes.findOne({
+        hierarchyPointId: '"' + req.query.hierarchyPointId + '"'
+    });
+    var query;
+
+    if (req.query.accountNumber) {
+        query = acctQuery;
+    } else {
+        query = hierarchyQuery;
+    }
+
+    // FIXME: Temporarily removed cached node until cached is processed for role etc.
+    query.exec(function (err, cachedNode) {
+        if (err) {
+            logger.info('error during cache lookup, calling CSIBGW');
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'subaccountNode', res);
+            //        } else if (cachedNode) {
+            //            logger.info('node found in cache: ' + cachedNode);
+            // TODO: Body is the whole Node, you must still filter based on role!
+            //            res.send(JSON.parse(cachedNode.body));
+        } else {
+            logger.info('Node not found in cache; calling CSIBGW');
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'subaccountNode', res);
+        }
+    });
+});
+
+// API 52
+// Execute bundle node detail call
+router.get('/bundleDetail', function (req, res) {
+    logger.info('Bundle node detail called');
+    // TODO: Check if mongo has the node already and use it if so
+    var cachedNode;
+    var acctQuery = models.Nodes.findOne({
+        nodeId: '"' + req.query.accountNumber + '"'
+    });
+    var hierarchyQuery = models.Nodes.findOne({
+        hierarchyPointId: '"' + req.query.hierarchyPointId + '"'
+    });
+    var query;
+
+    if (req.query.accountNumber) {
+        query = acctQuery;
+    } else {
+        query = hierarchyQuery;
+    }
+
+    // FIXME: Temporarily removed cached node until cached is processed for role etc.
+    query.exec(function (err, cachedNode) {
+        if (err) {
+            logger.info('error during cache lookup, calling CSIBGW');
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'bundleNode', res);
+            //        } else if (cachedNode) {
+            //            logger.info('node found in cache: ' + cachedNode);
+            // TODO: Body is the whole Node, you must still filter based on role!
+            //            res.send(JSON.parse(cachedNode.body));
+        } else {
+            logger.info('Node not found in cache; calling CSIBGW');
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'bundleNode', res);
+        }
+    });
+});
+
+// API 55
 // Execute customer node detail call
 router.get('/customerDetail', function (req, res) {
     logger.info('Customer node detail called');
@@ -295,19 +426,20 @@ router.get('/customerDetail', function (req, res) {
     query.exec(function (err, cachedNode) {
         if (err) {
             logger.info('error during cache lookup, calling CSIBGW');
-            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'C', res);
-//        } else if (cachedNode) {
-//            logger.info('node found in cache: ' + cachedNode);
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'customerNode', res);
+            //        } else if (cachedNode) {
+            //            logger.info('node found in cache: ' + cachedNode);
             // TODO: Body is the whole Node, you must still filter based on role!
-//            res.send(JSON.parse(cachedNode.body));
+            //            res.send(JSON.parse(cachedNode.body));
         } else {
             logger.info('Node not found in cache; calling CSIBGW');
             // TODO: get node from backend
-            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'C', res);
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'customerNode', res);
         }
     });
 });
 
+// API 54
 // Execute cdg node detail call
 router.get('/cdgDetail', function (req, res) {
     logger.info('CDG node detail called');
@@ -330,19 +462,20 @@ router.get('/cdgDetail', function (req, res) {
     query.exec(function (err, cachedNode) {
         if (err) {
             logger.info('error during cache lookup, calling CSIBGW');
-            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'CDG', res);
-//        } else if (cachedNode) {
-//            logger.info('node found in cache: ' + cachedNode);
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'cdgNode', res);
+            //        } else if (cachedNode) {
+            //            logger.info('node found in cache: ' + cachedNode);
             // TODO: Body is the whole Node, you must still filter based on role!
-//            res.send(JSON.parse(cachedNode.body));
+            //            res.send(JSON.parse(cachedNode.body));
         } else {
             logger.info('Node not found in cache; calling CSIBGW');
             // TODO: get node from backend
-            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'CDG', res);
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'cdgNode', res);
         }
     });
 });
 
+// API 56
 // Execute hierarchy node detail call
 router.get('/hierarchyDetail', function (req, res) {
     logger.info('Hierarchy node detail called');
@@ -365,19 +498,20 @@ router.get('/hierarchyDetail', function (req, res) {
     query.exec(function (err, cachedNode) {
         if (err) {
             logger.info('error during cache lookup, calling CSIBGW');
-            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], res);
-        } else if (cachedNode) {
-            logger.info('node found in cache: ' + cachedNode);
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'hierarchyNode', res);
+            //        } else if (cachedNode) {
+            //            logger.info('node found in cache: ' + cachedNode);
             // TODO: Body is the whole Node, you must still filter based on role!
-            res.send(JSON.parse(cachedNode.body));
+            //            res.send(JSON.parse(cachedNode.body));
         } else {
             logger.info('Node not found in cache; calling CSIBGW');
             // TODO: get node from backend
-            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], res);
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'hierarchyNode', res);
         }
     });
 });
 
+// API 57
 // Execute site node detail call
 router.get('/siteDetail', function (req, res) {
     logger.info('Site node detail called');
@@ -400,15 +534,15 @@ router.get('/siteDetail', function (req, res) {
     query.exec(function (err, cachedNode) {
         if (err) {
             logger.info('error during cache lookup, calling CSIBGW');
-            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], res);
-        } else if (cachedNode) {
-            logger.info('node found in cache: ' + cachedNode);
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'siteNode', res);
+            //        } else if (cachedNode) {
+            //            logger.info('node found in cache: ' + cachedNode);
             // TODO: Body is the whole Node, you must still filter based on role!
             //            res.send(JSON.parse(cachedNode.body));
-            prepareNodeForCard(cachedNode, true, res);
+            //            prepareNodeForCard(cachedNode, true, res);
         } else {
             logger.info('Node not found in cache; calling CSIBGW');
-            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], res);
+            findNode(req.query.accountNumber, req.query.hierarchyPointId, req.headers['userid'], 'siteNode', res);
         }
     });
 });
@@ -459,10 +593,11 @@ function prepareNodeForCard(body, fromCache, res) {
 
 };
 
+
 function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, res) {
     logger.info('finding node in CSIBGW');
     request({
-        url: 'http://localhost:9000/services/BGWFIXT/v1/hierarchy/invoiceNode',
+        url: 'http://localhost:9000/restservices/csi-billinggateway/v1/customerHierarchy/' + nodeTypeIndicator,
         qs: {
             accountNumber: accountNumber,
             hierarchyPointId: hierarchyPointId
@@ -473,18 +608,20 @@ function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, re
             'UserID': userId
         }
     }, function (error, response, body) {
-        logger.info('initial search api call completed');
+        logger.info('node detail search api call completed');
         if (error) {
             logger.info('An error occurred during backend search');
             res.send('something bad happened during search');
         } else {
             var bodyobj = JSON.parse(body);
+            logger.info('creating the node object');
             var node = new models.Nodes({
                 nodeId: JSON.stringify(bodyobj.invoiceNodeDetails.nodeID),
                 hierarchyPointId: JSON.stringify(bodyobj.invoiceNodeDetails.hierarchyPointID),
                 timestamp: Math.floor(new Date() / 1000),
                 body: body
             });
+            logger.info('saving the node in the db');
             node.save(function (err, node) {
                 if (err) {
                     return console.error(err);
@@ -515,7 +652,7 @@ function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, re
                         }
                         bodyobj.editableFields = role.editableFields;
                         // TODO: Add layout tags
-                        var foundfive = topfive.filter(function(item) {
+                        var foundfive = topfive.filter(function (item) {
                             return item.nodeType == nodeTypeIndicator;
                         });
                         bodyobj.topfive = foundfive;

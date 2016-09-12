@@ -88,7 +88,7 @@
 					"mode": "formdata",
 					"formdata": []
 				},
-				"description": "Save the given sandbox to the nodejs server."
+				"description": "This is only required if the sandbox label can be updated. The sandbox will be modified on card deletion by the delete card api."
 			},
 			"response": []
 		},
@@ -135,7 +135,7 @@
 		{
 			"name": "7 Create card in sandbox",
 			"request": {
-				"url": "{{scheme}}://{{host}}/{{context}}/sandbox/57bb0ed9e82b49fe798ebf30/1717858114129",
+				"url": "{{scheme}}://{{host}}/{{context}}/sandbox/57d6f9146458dfeba1511497/1717858114129",
 				"method": "POST",
 				"header": [
 					{
@@ -375,6 +375,20 @@
 			"response": []
 		},
 		{
+			"name": "23 Export card",
+			"request": {
+				"url": "",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "50 Initial search",
 			"request": {
 				"url": "{{scheme}}://{{host}}/{{context}}/initialSearch/UpAccountNumber/invoice/1717908853703?start=1&end=25",
@@ -437,7 +451,7 @@
 		{
 			"name": "53 Get subaccount node details",
 			"request": {
-				"url": "{{scheme}}://{{host}}/{{context}}/invoiceDetail?subaccountNumber=1717858114129",
+				"url": "{{scheme}}://{{host}}/{{context}}/subaccountDetail?subaccountNumber=1717858114129",
 				"method": "GET",
 				"header": [
 					{
@@ -477,9 +491,15 @@
 		{
 			"name": "55 Get customer node details",
 			"request": {
-				"url": "",
+				"url": "{{scheme}}://{{host}}/{{context}}/customerDetail?accountNumber=1717858114129",
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": []
@@ -491,9 +511,15 @@
 		{
 			"name": "56 Get hierarchy node details",
 			"request": {
-				"url": "",
+				"url": "{{scheme}}://{{host}}/{{context}}/hierarchyDetail?accountNumber=1717858114129",
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": []
@@ -505,9 +531,15 @@
 		{
 			"name": "57 Get site node details",
 			"request": {
-				"url": "",
+				"url": "{{scheme}}://{{host}}/{{context}}/siteDetail?accountNumber=1717858114129",
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": []
@@ -519,9 +551,15 @@
 		{
 			"name": "58 Get node lock status",
 			"request": {
-				"url": "",
+				"url": "{{scheme}}://{{host}}/{{context}}/lockStatus?customerId=11223344&hierarchyPointId=01020304",
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": []
@@ -541,6 +579,26 @@
 					"formdata": []
 				},
 				"description": "This goes to CSI-BGW and also updates card label in mongo."
+			},
+			"response": []
+		},
+		{
+			"name": "60 Get node children",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/node/1717858114129/children",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
 			},
 			"response": []
 		},
@@ -573,24 +631,10 @@
 			"response": []
 		},
 		{
-			"name": "102 Export card",
-			"request": {
-				"url": "",
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
 			"name": "200 Create user role",
 			"request": {
 				"url": "",
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "formdata",
@@ -604,7 +648,7 @@
 			"name": "201 Create user",
 			"request": {
 				"url": "",
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "formdata",
