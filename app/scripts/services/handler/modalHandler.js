@@ -16,22 +16,17 @@ angular.module('fixtApp')
                 closeByDocument: false
             });
         };
-        modalDialog.showConfirm = function(message, positiveText, negativeText){
-            
-            positiveText = (angular.isDefined(positiveText) &&
-                    positiveText !== constantLoader.defaultValues.BLANK_STRING && positiveText !== null) ?
-                    positiveText : constantLoader.defaultValues.CONFIRM_BOX_YES;
-            negativeText = (angular.isDefined(negativeText) &&
-                    negativeText !== constantLoader.defaultValues.BLANK_STRING && negativeText !== null) ?
-                    negativeText : constantLoader.defaultValues.CONFIRM_BOX_NO;
-            
+        modalDialog.showConfirm = function(heading, message){
             var nestedConfirmDialog = ngDialog.openConfirm({
-                template:   '<p>' + message + '</p>' +
+                template:   '<h3>' + heading + '</h3>' +
+                            '<p>' + message + '</p>' +
                             '<div class="ngdialog-buttons">' +
                                 '<button type="button" class="ngdialog-button ngdialog-button-primary" ' +
-                                    ' ng-click="confirm(1)">' + positiveText + '</button>' +
+                                    ' ng-click="confirm(1)">' + 
+                                    constantLoader.defaultValues.CONFIRM_BOX_YES + '</button>' +
                                 '<button type="button" class="ngdialog-button ngdialog-button-secondary" ' +
-                                    'ng-click="closeThisDialog(0)">' + negativeText + '</button>' +
+                                    'ng-click="closeThisDialog(0)">' + 
+                                    constantLoader.defaultValues.CONFIRM_BOX_NO + '</button>' +
                             '</div>',
                 plain: true,
                 closeByDocument: false

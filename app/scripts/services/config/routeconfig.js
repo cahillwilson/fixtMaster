@@ -27,6 +27,9 @@ angular.module('routerConfigModule', ['ngRoute'])
                 }
             }
         })
+        .when('/ui',{
+            templateUrl:'views/ui.html'
+        })
         .otherwise({
             redirectTo: '/'
         });

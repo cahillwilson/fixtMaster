@@ -2,7 +2,8 @@
 
 angular.module('fixtApp')
     .controller('cardController', function (constantLoader, cardBusiness, 
-        objectStorage, handlerLoader, localStorage, commonUtility, serviceLoader) {
+        objectStorage, handlerLoader, localStorage, commonUtility, serviceLoader,
+        sandboxBusiness) {
     
     var vm =  this;
     vm.isCardDetailsShow = false;
@@ -25,13 +26,19 @@ angular.module('fixtApp')
     }
     
     function loadSandboxes(){
-        if(commonUtility.is3DValidKey(localStorage.getObject("sandBoxes"))){
-            vm.sandBoxes = localStorage.getObject("sandBoxes");
+        if(objectStorage.SandboxEditId > 0){
             if(vm.sandBoxes.length>0){
-                if(commonUtility.filterInArray(vm.sandBoxes, {isActive: true}).length>0){
-                    vm.title = commonUtility.filterInArray(vm.sandBoxes, {isActive: true})[0].title;
-                    var cards = commonUtility.filterInArray(vm.sandBoxes, {isActive: true})[0].cards;
-                    vm.activeBoxId = commonUtility.filterInArray(vm.sandBoxes, {isActive: true})[0].boxId;
+                for(var index=0; index<vm.sandBoxes.length; index++){
+                    vm.sandBoxes[index].isActive = false;
+                }
+                if(commonUtility.filterInArray(vm.sandBoxes, {boxId: objectStorage.SandboxEditId}).length>0){
+                    vm.title = commonUtility.filterInArray(vm.sandBoxes, 
+                        {boxId: objectStorage.SandboxEditId})[0].title;
+                    commonUtility.filterInArray(vm.sandBoxes, 
+                        {boxId: objectStorage.SandboxEditId})[0].isActive = true;
+                    var cards = commonUtility.filterInArray(vm.sandBoxes, 
+                        {boxId: objectStorage.SandboxEditId})[0].cards;
+                    vm.activeBoxId = objectStorage.SandboxEditId;
                     if(commonUtility.isDefinedObject(cards) && cards.length>0){
                         for(var index=0; index<cards.length; index++){
                             if(commonUtility.is3DValidKey(localStorage.getObject(cards[index]))){
@@ -41,14 +48,12 @@ angular.module('fixtApp')
                     }
                 }
             }
+            
+            objectStorage.SandboxEditId = 0;
         }else{
-            vm.sandBoxes.push({
-                boxId: 1,
-                title: vm.title,
-                isActive: true,
-                cards: []
-            });
-            localStorage.setObject("sandBoxes", vm.sandBoxes);
+            sandboxBusiness.addSandbox(sandBoxLoadSuccessCall);
+            vm.activeBoxId = commonUtility.filterInArray(vm.sandBoxes, 
+                {isActive: true})[0].boxId;
         }
     }
     
@@ -61,20 +66,16 @@ angular.module('fixtApp')
         }
     }
     
+    function sandBoxLoadSuccessCall(){
+        vm.sandBoxes = localStorage.getObject("sandBoxes");
+    }
+    
     function loadSuccessCall(){
         vm.cards = objectStorage.cardList;
     }
     
     function saveSandbox(){
-        if(commonUtility.filterInArray(vm.sandBoxes, {isActive: true}).length > 0){
-            commonUtility.filterInArray(vm.sandBoxes, {isActive: true})[0].title = vm.title;
-            commonUtility.filterInArray(vm.sandBoxes, {isActive: true})[0].cards = [];
-            for(var index=0; index<vm.cards.length; index++){
-                commonUtility.filterInArray(vm.sandBoxes, 
-                    {isActive: true})[0].cards.push(vm.cards[index].id);
-            }
-        }
-        localStorage.setObject("sandBoxes", vm.sandBoxes);
+        sandboxBusiness.saveSandBox(vm.sandBoxes, vm.activeBoxId, vm.title, vm.cards);
     }
     
     vm.onCloseClick = function(card){
@@ -128,7 +129,17 @@ angular.module('fixtApp')
     };
     
     vm.onSanboxMenuClick = function(){
-        handlerLoader.modalHandler.showMediumHTML("views/sandboxMenu.html");
+        commonUtility.redirectTo(constantLoader.routeList.DASHBOARD);
+    };
+    
+    vm.onDeleteClick = function(){
+        handlerLoader.modalHandler.showConfirm("heading", "are you sure1").then(function(response){
+            if(response > 0){
+                sandboxBusiness.deleteSandbox(vm.cards, vm.activeBoxId, vm.sandBoxes);
+                vm.activeBoxId = 0;
+                commonUtility.redirectTo(constantLoader.routeList.DASHBOARD);
+            }
+        });
     };
     
     initialized();

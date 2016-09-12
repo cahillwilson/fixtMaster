@@ -7,6 +7,7 @@ angular.module('fixtApp')
     
     var cardList = [];
     var isSandboxAdded = false;
+    var sandboxEditId = 0;
     
     Object.defineProperty(objectStorage, "cardList", {
         get: function() {
@@ -23,6 +24,15 @@ angular.module('fixtApp')
         },
         set: function(isAdded) {
             isSandboxAdded = isAdded;
+        }
+    });
+    
+    Object.defineProperty(objectStorage, "SandboxEditId", {
+        get: function() {
+            return sandboxEditId;
+        },
+        set: function(id) {
+            sandboxEditId = id;
         }
     });
     
