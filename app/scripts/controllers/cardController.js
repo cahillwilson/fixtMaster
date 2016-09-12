@@ -121,10 +121,10 @@ angular.module('fixtApp')
         loadSuccessCall();
     };
     
-    initialized();
-    
-    vm.test = function(){
-        handlerLoader.modalHandler.showMediumHTML("views/login.html");
+    vm.onSanboxMenuClick = function(){
+        handlerLoader.modalHandler.showMediumHTML("views/sandboxMenu.html");
     };
+    
+    initialized();
 
   });

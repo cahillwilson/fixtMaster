@@ -7,7 +7,8 @@
 
         <div class="col-sm-6">
         <div class="sandboxTitle">
-            <img src="styles/images/sandBox-icon.png" width="27" height="27" alt=""/>
+            <img src="styles/images/sandBox-icon.png" class="pointer" 
+                ng-click="vm.onSanboxMenuClick()" width="27" height="27" alt=""/>
             <div style="display: inline-block;"
                 ng-repeat="box in vm.sandBoxes | filter: {isActive: true} | limitTo: 1">
                 <fixt-editable item="vm.title"></fixt-editable>
@@ -24,7 +25,7 @@
                     height="22" width="24" button-click="vm.onSaveSanboxClick()"></fixt-sand-box-button>
                 <div class="elementBorder"></div>
                 <fixt-sand-box-button label="Unify" image="sbx-icon-unify.png"
-                    height="19" width="15" button-click="vm.test()"></fixt-sand-box-button>
+                    height="19" width="15" button-click=""></fixt-sand-box-button>
                 <fixt-sand-box-button label="Relink" image="sbx-icon-relink.png"
                     height="19" width="22" button-click=""></fixt-sand-box-button>
             </div>

@@ -937,6 +937,7 @@ input#searchIcon{
   padding: 1em;
   position: relative;
   width: 550px;
+  min-height: 350px;
   top: 90px;
 }
 
