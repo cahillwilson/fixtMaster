@@ -8,6 +8,7 @@ angular.module('fixtApp')
     var cardList = [];
     var isSandboxAdded = false;
     var sandboxEditId = 0;
+    var searchSummary = [];
     
     Object.defineProperty(objectStorage, "cardList", {
         get: function() {
@@ -35,6 +36,16 @@ angular.module('fixtApp')
             sandboxEditId = id;
         }
     });
+    
+    Object.defineProperty(objectStorage, "searchSummary", {
+        get: function() {
+            return searchSummary;
+        },
+        set: function(searchResult) {
+            searchSummary = searchResult;
+        }
+    });
+    
     
     return objectStorage;
 });
