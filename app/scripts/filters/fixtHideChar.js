@@ -7,8 +7,8 @@ angular.module('fixtApp')
         if(!commonUtility.is3DValidKey(input)){
             return constantLoader.defaultValues.BLANK_STRING;
         }
-
-        return input.replace(outText, 
+        
+        return commonUtility.replaceString(input, outText,
             constantLoader.defaultValues.BLANK_STRING);
     };
   });

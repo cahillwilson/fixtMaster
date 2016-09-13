@@ -35,6 +35,10 @@ angular.module('fixtApp')
             isHide, false);
     };
     
+    commonUtility.replaceString = function(text, replacePart, replaceWith){
+        return text.replace(replacePart, replaceWith);
+    };
+    
     commonUtility.callback = function(callbackName, args){
         if(this.is3DValidKey(callbackName) && typeof callbackName === 'function'){
             if(this.is3DValidKey(args)){

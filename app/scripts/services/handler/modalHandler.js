@@ -5,10 +5,10 @@ angular.module('fixtApp')
     
     var modalDialog = {};
 
-        modalDialog.showMsg = function(message){
-        
+        modalDialog.showMsg = function(heading, message){
             ngDialog.open({
-                template: '<p>' + message + '</p>' +
+                template: '<h3>' + heading + '</h3>' +
+                          '<p>' + message + '</p>' +
                         '<div class="ngdialog-buttons"> <button type="button" ' +
                         'class="ngdialog-button ngdialog-button-secondary" ' +
                         'ng-click="closeThisDialog(0)">OK</button></div>',

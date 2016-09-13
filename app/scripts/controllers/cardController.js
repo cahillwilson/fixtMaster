@@ -48,7 +48,6 @@ angular.module('fixtApp')
                     }
                 }
             }
-            
             objectStorage.SandboxEditId = 0;
         }else{
             sandboxBusiness.addSandbox(sandBoxLoadSuccessCall);
@@ -133,7 +132,11 @@ angular.module('fixtApp')
     };
     
     vm.onDeleteClick = function(){
-        handlerLoader.modalHandler.showConfirm("heading", "are you sure1").then(function(response){
+        handlerLoader.modalHandler.showConfirm(
+            commonUtility.replaceString(constantLoader.messages.SANDBOX_DELETE_HEADING,
+                constantLoader.defaultValues.SANDBOX_REPLACABLE_NAME, vm.title),
+            commonUtility.replaceString(constantLoader.messages.SANDBOX_DELETE_MSG,
+                constantLoader.defaultValues.SANDBOX_REPLACABLE_NAME, vm.title)).then(function(response){
             if(response > 0){
                 sandboxBusiness.deleteSandbox(vm.cards, vm.activeBoxId, vm.sandBoxes);
                 vm.activeBoxId = 0;
