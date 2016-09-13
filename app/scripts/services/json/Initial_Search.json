@@ -32,8 +32,8 @@
             
             {
                 "nodeType": "AS",
-                "nodeID": "8310001226402",
-                "nodeLabel": "CUSTOMBILLING",
+                "nodeID": "2331001226402",
+                "nodeLabel": "CUSTOM_BILLING",
                 "hierarchyPointID": "164241159",
                 "startDate": "20080924 11:30:08",
                 "endDate": "",
