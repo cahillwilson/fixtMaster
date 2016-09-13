@@ -27,6 +27,7 @@ angular.module('fixtApp')
     
     function loadSandboxes(){
         if(objectStorage.SandboxEditId > 0){
+            sandBoxLoadSuccessCall();
             if(vm.sandBoxes.length>0){
                 for(var index=0; index<vm.sandBoxes.length; index++){
                     vm.sandBoxes[index].isActive = false;
@@ -36,19 +37,10 @@ angular.module('fixtApp')
                         {boxId: objectStorage.SandboxEditId})[0].title;
                     commonUtility.filterInArray(vm.sandBoxes, 
                         {boxId: objectStorage.SandboxEditId})[0].isActive = true;
-                    var cards = commonUtility.filterInArray(vm.sandBoxes, 
-                        {boxId: objectStorage.SandboxEditId})[0].cards;
                     vm.activeBoxId = objectStorage.SandboxEditId;
-                    if(commonUtility.isDefinedObject(cards) && cards.length>0){
-                        for(var index=0; index<cards.length; index++){
-                            if(commonUtility.is3DValidKey(localStorage.getObject(cards[index]))){
-                                objectStorage.cardList.push(localStorage.getObject(cards[index]));
-                            }
-                        }
-                    }
                 }
+                localStorage.setObject("sandBoxes", vm.sandBoxes);
             }
-            objectStorage.SandboxEditId = 0;
         }else{
             sandboxBusiness.addSandbox(sandBoxLoadSuccessCall);
             vm.activeBoxId = commonUtility.filterInArray(vm.sandBoxes, 

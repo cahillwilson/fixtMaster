@@ -18,6 +18,11 @@ angular.module('fixtApp')
         commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
     };
     
+    vm.onSandboxClick = function(box){
+        objectStorage.SandboxEditId = box.boxId;
+        commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
+    };
+    
     initialized();
          
   });

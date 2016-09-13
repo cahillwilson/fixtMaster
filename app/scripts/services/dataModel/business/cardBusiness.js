@@ -199,9 +199,8 @@ angular.module('fixtApp')
         }
     }
     
-    function setCard(activeSanboxId){
-        var card = localStorage.getObject(
-            handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT));
+    function setCard(activeSanboxId, cardId){
+        var card = localStorage.getObject(cardId);
         if(commonUtility.is3DValidKey(card.boxId)){
             card.boxId = activeSanboxId;
         }
@@ -209,6 +208,9 @@ angular.module('fixtApp')
     }
     
     function isCardCountAcceptable(activeSanboxId){
+        if(objectStorage.SandboxEditId > 0){
+            return true;
+        }
         if(commonUtility.filterInArray(objectStorage.cardList, 
             {boxId: activeSanboxId}).length > 0){
             if(commonUtility.filterInArray(objectStorage.cardList, 
@@ -226,47 +228,89 @@ angular.module('fixtApp')
         return true;
     }
     
-    cardBusiness.getCardDetailsListAsync = function(successCallback, activeSanboxId) {
-        if(!commonUtility.is3DValidKey(activeSanboxId)){
-            var boxes = localStorage.getObject("sandBoxes");
-            activeSanboxId = commonUtility.filterInArray(boxes, {isActive: true})[0].boxId;
-        }
-        if(isCardCountAcceptable(activeSanboxId)){
-            if(commonUtility.is3DValidKey(localStorage.getObject(
-                handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT)))){
-                if(commonUtility.isDefinedObject(objectStorage.cardList) && 
-                    objectStorage.cardList.length > 0){
-                    if(commonUtility.filterInArray(objectStorage.cardList, 
-                            {id: handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT), 
-                                boxId: activeSanboxId}).length === 0){
-                        objectStorage.cardList.push(setCard(activeSanboxId)); 
-                    }
-                }else{
-                    objectStorage.cardList.push(setCard(activeSanboxId));
+    function getCardFromMemory(activeSanboxId, cardId){
+        if(commonUtility.is3DValidKey(localStorage.getObject(cardId))){
+            if(commonUtility.isDefinedObject(objectStorage.cardList) && 
+                objectStorage.cardList.length > 0){
+                if(commonUtility.filterInArray(objectStorage.cardList, 
+                        {id: cardId, 
+                            boxId: activeSanboxId}).length === 0){
+                    objectStorage.cardList.push(setCard(activeSanboxId, cardId)); 
                 }
-                commonUtility.callback(successCallback);
-                return;
+            }else{
+                objectStorage.cardList.push(setCard(activeSanboxId, cardId));
             }
-            return cardData.getCardDetailsListAsync().then(function (response) {
-                var cards = commonUtility.filterInArray(response.data, 
-                    {subAccountNodeDetails: {
-                        nodeID: handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT)}});
-                if(commonUtility.isDefinedObject(cards) && cards.length > 0){
-                    var existCard = [];
-                    if(commonUtility.isDefinedObject(objectStorage.cardList) && objectStorage.cardList.length > 0){
-                        existCard = commonUtility.filterInArray(objectStorage.cardList, 
-                            {nodeId: cards[0].subAccountNodeDetails.nodeID, boxId: activeSanboxId});
-                        if(existCard.length === 0){
-                            cardDetails = cards[0];
-                            setCardDetailFromResponse(successCallback, activeSanboxId);
-                        }
-                    }else{
+            return true;
+        }
+        return false;
+    }
+    
+    function getCardFromDB(activeSanboxId, successCallback, cardId){
+        return cardData.getCardDetailsListAsync().then(function (response) {
+            var cards = commonUtility.filterInArray(response.data, 
+                {subAccountNodeDetails: {
+                    nodeID: cardId}});
+            if(commonUtility.isDefinedObject(cards) && cards.length > 0){
+                var existCard = [];
+                if(commonUtility.isDefinedObject(objectStorage.cardList) && objectStorage.cardList.length > 0){
+                    existCard = commonUtility.filterInArray(objectStorage.cardList, 
+                        {nodeId: cards[0].subAccountNodeDetails.nodeID, boxId: activeSanboxId});
+                    if(existCard.length === 0){
                         cardDetails = cards[0];
                         setCardDetailFromResponse(successCallback, activeSanboxId);
                     }
+                }else{
+                    cardDetails = cards[0];
+                    setCardDetailFromResponse(successCallback, activeSanboxId);
                 }
-                commonUtility.callback(successCallback);
-            }, handlerLoader.exceptionHandler.logError);
+            }
+            commonUtility.callback(successCallback);
+        }, handlerLoader.exceptionHandler.logError);
+    }
+    
+    cardBusiness.getCardDetailsListAsync = function(successCallback, activeSanboxId) {
+        var boxes = localStorage.getObject("sandBoxes");
+        if(!commonUtility.is3DValidKey(activeSanboxId)){
+            activeSanboxId = commonUtility.filterInArray(boxes, {isActive: true})[0].boxId;
+        }
+        if(isCardCountAcceptable(activeSanboxId)){
+            if(objectStorage.SandboxEditId > 0){
+                objectStorage.SandboxEditId = 0;
+                if(commonUtility.filterInArray(boxes, {boxId: activeSanboxId}).length > 0){
+                    var cards = commonUtility.filterInArray(boxes, {boxId: activeSanboxId})[0].cards;
+                    if(commonUtility.isDefinedObject(cards)){
+                        var excludedCards = [];
+                        for(var index=0; index<cards.length; index++){
+                            if(commonUtility.isDefinedObject(objectStorage.cardList)){
+                                if(commonUtility.filterInArray(objectStorage.cardList, 
+                                    {id: cards[index], boxId: activeSanboxId}).length === 0){
+                                    if(!getCardFromMemory(activeSanboxId, cards[index])){
+                                        excludedCards.push(cards[index]);
+                                    }
+                                }
+                            }
+                        }
+                        if(excludedCards.length === 0){
+                            commonUtility.callback(successCallback);
+                            return;
+                        }else{
+                            for(var index=0; index<excludedCards.length; index++){
+                                getCardFromDB(activeSanboxId, successCallback, 
+                                    excludedCards[index]);
+                            }
+                        }
+                    }
+                }
+            }else{
+                if(getCardFromMemory(activeSanboxId,
+                    handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT))){
+                    commonUtility.callback(successCallback);
+                    return;
+                }
+
+                return getCardFromDB(activeSanboxId, successCallback, 
+                    handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT));
+            }
         }
     };
     

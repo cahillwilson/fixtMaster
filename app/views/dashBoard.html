@@ -1,4 +1,9 @@
 <div  ng-controller="dashboardController as vm">
     dashboard content
     <button type="button" ng-click="vm.onAddSandboxClick()">Add Sandbox</button>
+    <div>
+        <div ng-repeat="box in vm.sandBoxes" ng-click="vm.onSandboxClick(box)">
+            {{box.title}}
+        </div>
+    </div>
 </div>

@@ -49,19 +49,19 @@ angular.module('fixtApp')
         if(commonUtility.isDefinedObject(cards)){
             for(var index=(cards.length-1); index>=0; index--){
                 if(cards[index].boxId === activeBoxId){
-                    cards.splice(cards[index], 1);
+                    cards.splice(cards.indexOf(cards[index]), 1);
                 }
             }
         }
         for(var index=0; index<sandBoxes.length; index++){
             if(sandBoxes[index].boxId === activeBoxId){
-                sandBoxes.splice(sandBoxes[index], 1);
+                sandBoxes.splice(sandBoxes.indexOf(sandBoxes[index]), 1);
                 break;
             }
         }
         
-        objectStorage.cardList = cards;
         localStorage.setObject("sandBoxes", sandBoxes);
+        objectStorage.cardList = cards;
     };
     
     return sandboxBusiness;
