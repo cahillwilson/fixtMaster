@@ -13,5 +13,9 @@ angular.module('fixtApp')
         return dataAccess.getFromJsonAsync(constantLoader.relativeUrls.CARD_CHILD);
     };
     
+    cardData.getInitialSearchResultAsync = function() {
+        return dataAccess.getFromJsonAsync(constantLoader.relativeUrls.SEARCH_SUMMARY);
+    };
+    
     return cardData;
   });
