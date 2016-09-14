@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-    .controller('headerController', function (constantLoader, cardBusiness, 
+    .controller('searchController', function (constantLoader, cardBusiness, 
         commonUtility, handlerLoader) {
 
     var vm =  this;

@@ -100,7 +100,7 @@
         <script src="scripts/controllers/dashboardController.js"></script>
         <script src="scripts/controllers/cardController.js"></script>
         <script src="scripts/controllers/loginController.js"></script>
-        <script src="scripts/controllers/headerController.js"></script>
+        <script src="scripts/controllers/searchController.js"></script>
         
         <!-- application component - end -->
     </head>
@@ -130,7 +130,7 @@
         </header>
         
         <div id="container">
-            <div class="searchTab" ng-controller="headerController as vm" 
+            <div class="searchTab" ng-controller="searchController as vm" 
                 ng-hide="{{'IS_SEARCH_HIDDEN' | fixtRootScope}}">
                 <fixt-searchbox label="vm.searchItemType" items="vm.searchList"
                     search-click="vm.onSearchClick()" ng-model="vm.searchText"
