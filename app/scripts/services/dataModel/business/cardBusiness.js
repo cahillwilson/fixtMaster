@@ -268,6 +268,31 @@ angular.module('fixtApp')
         }, handlerLoader.exceptionHandler.logError);
     }
     
+    function getMultipleCards(cardIds, activeSanboxId, successCallback){
+        if(commonUtility.isDefinedObject(cardIds)){
+            var excludedCards = [];
+            for(var index=0; index<cardIds.length; index++){
+                if(commonUtility.isDefinedObject(objectStorage.cardList)){
+                    if(commonUtility.filterInArray(objectStorage.cardList, 
+                        {id: cardIds[index], boxId: activeSanboxId}).length === 0){
+                        if(!getCardFromMemory(activeSanboxId, cardIds[index])){
+                            excludedCards.push(cardIds[index]);
+                        }
+                    }
+                }
+            }
+            if(excludedCards.length === 0){
+                commonUtility.callback(successCallback);
+                return;
+            }else{
+                for(var index=0; index<excludedCards.length; index++){
+                    getCardFromDB(activeSanboxId, successCallback, 
+                        excludedCards[index]);
+                }
+            }
+        }
+    }
+    
     cardBusiness.getCardDetailsListAsync = function(successCallback, activeSanboxId) {
         var boxes = localStorage.getObject("sandBoxes");
         if(!commonUtility.is3DValidKey(activeSanboxId)){
@@ -278,28 +303,7 @@ angular.module('fixtApp')
                 objectStorage.SandboxEditId = 0;
                 if(commonUtility.filterInArray(boxes, {boxId: activeSanboxId}).length > 0){
                     var cards = commonUtility.filterInArray(boxes, {boxId: activeSanboxId})[0].cards;
-                    if(commonUtility.isDefinedObject(cards)){
-                        var excludedCards = [];
-                        for(var index=0; index<cards.length; index++){
-                            if(commonUtility.isDefinedObject(objectStorage.cardList)){
-                                if(commonUtility.filterInArray(objectStorage.cardList, 
-                                    {id: cards[index], boxId: activeSanboxId}).length === 0){
-                                    if(!getCardFromMemory(activeSanboxId, cards[index])){
-                                        excludedCards.push(cards[index]);
-                                    }
-                                }
-                            }
-                        }
-                        if(excludedCards.length === 0){
-                            commonUtility.callback(successCallback);
-                            return;
-                        }else{
-                            for(var index=0; index<excludedCards.length; index++){
-                                getCardFromDB(activeSanboxId, successCallback, 
-                                    excludedCards[index]);
-                            }
-                        }
-                    }
+                    getMultipleCards(cards, activeSanboxId, successCallback);
                 }
             }else{
                 if(getCardFromMemory(activeSanboxId,
@@ -312,6 +316,10 @@ angular.module('fixtApp')
                     handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT));
             }
         }
+    };
+    
+    cardBusiness.addMultipleCards = function(cardIds, activeSanboxId, successCallback){
+        getMultipleCards(cardIds, activeSanboxId, successCallback);
     };
     
     cardBusiness.getCardChildListAsync = function(id){
