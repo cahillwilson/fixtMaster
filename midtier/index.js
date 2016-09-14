@@ -187,6 +187,11 @@ router.get('/lockStatus', function (req, res) {
             customerId: req.query.customerId,
             hierarchyPointId: req.query.hierarchyPointId
         },
+        auth: {
+            user: 'userfoo',
+            pass: 'passfoo',
+            sendImmediately: true
+        },
         method: 'GET',
         headers: {
             'TransactionID': '1234',
@@ -215,6 +220,11 @@ router.get('/initialSearch/:searchCategory/:searchType/:searchString', function 
             start: req.query.start,
             end: req.query.end,
             segment: req.query.segment
+        },
+        auth: {
+            user: 'userfoo',
+            pass: 'passfoo',
+            sendImmediately: true
         },
         method: 'GET',
         headers: {
@@ -268,6 +278,11 @@ router.get('/node/:nodeID/children', function (req, res) {
         url: 'http://localhost:9000/restservices/csi-billinggateway/v1/customerHierarchy/childNode',
         qs: {
             hierarchyPointId: req.params.nodeID
+        },
+        auth: {
+            user: 'userfoo',
+            pass: 'passfoo',
+            sendImmediately: true
         },
         method: 'GET'
     }, function(error, response, body) {
@@ -600,6 +615,11 @@ function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, re
         qs: {
             accountNumber: accountNumber,
             hierarchyPointId: hierarchyPointId
+        },
+        auth: {
+            user: 'userfoo',
+            pass: 'passfoo',
+            sendImmediately: true
         },
         method: 'GET',
         headers: {

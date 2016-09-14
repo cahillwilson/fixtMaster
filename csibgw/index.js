@@ -1,6 +1,15 @@
 var express = require('express');
 var app = express();
 var port = 9000;
+var auth = require('basic-auth');
+
+function isAuthenticated(req, res, next) {
+    console.log('Authentication triggered');
+    console.log(req.headers);
+    var credentials = auth(req);
+    console.log('Credentials: ' + credentials.name + ' [' + credentials.pass + ']');
+    next();
+}
 
 app.get('/', function(req, res) {
     res.send('Basic GET is functional');
@@ -35,7 +44,7 @@ var children = '{    "transactionDetails": {        "transactionID": "123333",  
 // Valid segments: RETAIL, WHOLESALE, GOVT (just those 3)
 
 // API 50
-app.get('/services/BGWFIXT/v1/search/initialSearch/:searchCategory/:searchType/:searchString', function (req, res) {
+app.get('/services/BGWFIXT/v1/search/initialSearch/:searchCategory/:searchType/:searchString', isAuthenticated, function (req, res) {
     console.log('Initial search called');
     console.log('category: ' + req.params.searchCategory);    
     console.log('type: ' + req.params.searchType);    
@@ -52,63 +61,63 @@ app.get('/services/BGWFIXT/v1/search/initialSearch/:searchCategory/:searchType/:
 
 // API 51
 // invoice node detail
-app.get('/restservices/csi-billinggateway/v1/customerHierarchy/invoiceNode', function(req, res) {
+app.get('/restservices/csi-billinggateway/v1/customerHierarchy/invoiceNode', isAuthenticated, function(req, res) {
     console.log('invoice node detail called for account ' + req.query.accountNumber); 
     res.setHeader('Content-Type', 'application/json');
     res.send(invoiceNodeDetail);
 });
 
 // API 57
-app.get('/restservices/csi-billinggateway/v1/customerHierarchy/siteNode', function(req, res) {
+app.get('/restservices/csi-billinggateway/v1/customerHierarchy/siteNode', isAuthenticated, function(req, res) {
     console.log('site node detail called for account ' + req.query.accountNumber); 
     res.setHeader('Content-Type', 'application/json');
     res.send(siteNodeDetail);
 });
 
 // API 53
-app.get('/restservices/csi-billinggateway/v1/customerHierarchy/subaccountNode', function(req, res) {
+app.get('/restservices/csi-billinggateway/v1/customerHierarchy/subaccountNode', isAuthenticated, function(req, res) {
     console.log('subaccount node detail called for account ' + req.query.accountNumber); 
     res.setHeader('Content-Type', 'application/json');
     res.send(subaccountNodeDetail);
 });
 
 // API 54
-app.get('/restservices/csi-billinggateway/v1/customerHierarchy/cdgNode', function(req, res) {
+app.get('/restservices/csi-billinggateway/v1/customerHierarchy/cdgNode', isAuthenticated, function(req, res) {
     console.log('cdg node detail called for account ' + req.query.accountNumber); 
     res.setHeader('Content-Type', 'application/json');
     res.send(cdgNodeDetail);
 });
 
 // API 52
-app.get('/restservices/csi-billinggateway/v1/customerHierarchy/bundleNode', function(req, res) {
+app.get('/restservices/csi-billinggateway/v1/customerHierarchy/bundleNode', isAuthenticated, function(req, res) {
     console.log('bundle node detail called for account ' + req.query.accountNumber); 
     res.setHeader('Content-Type', 'application/json');
     res.send(bundleNodeDetail);
 });
 
 // API 56
-app.get('/restservices/csi-billinggateway/v1/customerHierarchy/hierarchyNode', function(req, res) {
+app.get('/restservices/csi-billinggateway/v1/customerHierarchy/hierarchyNode', isAuthenticated, function(req, res) {
     console.log('hierarchy node detail called for account ' + req.query.accountNumber); 
     res.setHeader('Content-Type', 'application/json');
     res.send(hierarchyNodeDetail);
 });
 
 // API 55
-app.get('/restservices/csi-billinggateway/v1/customerHierarchy/customerNode', function(req, res) {
+app.get('/restservices/csi-billinggateway/v1/customerHierarchy/customerNode', isAuthenticated, function(req, res) {
     console.log('customer node detail called for account ' + req.query.accountNumber); 
     res.setHeader('Content-Type', 'application/json');
     res.send(customerNodeDetail);
 });
 
 // API 58
-app.get('/restservices/csi-billinggateway/v1/status/account', function(req, res) {
+app.get('/restservices/csi-billinggateway/v1/status/account', isAuthenticated, function(req, res) {
     console.log('lock status called');
     res.setHeader('Content-Type', 'application/json');
     res.send(lockStatus);
 });
 
 // API 60
-app.get('/restservices/csi-billinggateway/v1/customerHierarchy/childNode', function (req, res) {
+app.get('/restservices/csi-billinggateway/v1/customerHierarchy/childNode', isAuthenticated, function (req, res) {
     console.log('get children called');
     res.setHeader('Content-Type', 'application/json');
     res.send(children);
