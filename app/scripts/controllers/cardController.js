@@ -18,7 +18,7 @@ angular.module('fixtApp')
     vm.sandBoxes = [];
     
     serviceLoader.interval(saveSandbox, 
-        (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_MIN * 60 * 1000));
+        (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
     
     function initialized() {
         loadSandboxes();
