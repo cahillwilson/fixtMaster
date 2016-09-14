@@ -2,8 +2,9 @@
     dashboard content
     <button type="button" ng-click="vm.onAddSandboxClick()">Add Sandbox</button>
     <div>
-        <div ng-repeat="box in vm.sandBoxes" ng-click="vm.onSandboxClick(box)">
-            {{box.title}}
+        <div ng-repeat="box in vm.sandBoxes">
+            <span ng-click="vm.onSandboxClick(box)">{{box.title}}</span>
+            <span style="margin-left: 50px; cursor: pointer;" ng-click="vm.onDeleteSandboxClick(box)">Delete</span>
         </div>
     </div>
 </div>
