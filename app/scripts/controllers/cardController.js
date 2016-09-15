@@ -58,9 +58,12 @@ angular.module('fixtApp')
             if(objectStorage.searchSummary.length === 1) {
                 cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
                 vm.hasSearchList = false;
-            } else {
+            } else if(objectStorage.searchSummary.length > 1){
                 vm.hasSearchList = true;
                 vm.searchSummary = objectStorage.searchSummary;
+            } else {
+                handlerLoader.modalHandler.showMsg(
+                    "Message", "No records found!!");
             }
         }
     }
