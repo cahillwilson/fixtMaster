@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .constant('defaultValues', {
-        BASE_URL: "",
+        BASE_URL: "http://localhost:3000/fixt/",
         BLANK_STRING: "",
         SEARCH_TYPE_INIT_VALUE: "Type/ Select",
         SANDBOX_TITLE: "Untitled",
