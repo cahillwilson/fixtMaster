@@ -30,6 +30,7 @@ angular.module('fixtApp')
     };
     
     function loadSuccessCall(){
+        vm.searchList = objectStorage.searchSummary;
         if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) === -1){
             commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
         }

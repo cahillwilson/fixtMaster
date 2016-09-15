@@ -9,7 +9,6 @@ angular.module('fixtApp')
     var isSandboxAdded = false;
     var sandboxEditId = 0;
     var searchSummary = [];
-    var isMultipleRecords = false;
     
     Object.defineProperty(objectStorage, "cardList", {
         get: function() {
@@ -47,14 +46,6 @@ angular.module('fixtApp')
         }
     });
     
-    Object.defineProperty(objectStorage, "isMultipleRecords", {
-        get: function() {
-            return isMultipleRecords;
-        },
-        set: function(manyRecords) {
-            isMultipleRecords = manyRecords;
-        }
-    });
     
     return objectStorage;
 });
