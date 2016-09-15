@@ -9,18 +9,21 @@ angular.module('fixtApp')
     
     
     function setSearchSummaryFromResponse(successCallback, activeSanboxId) {
-        if (commonUtility.isDefinedObject(nodeDetails) && nodeDetails.length === 1) {
-            cardBusiness.getCardDetailsListAsync(successCallback, activeSanboxId);
-            objectStorage.searchSummary.push(nodeDetails[0]);
-        } else {
-            angular.forEach(nodeDetails, function (value) {
-                var detail = {};
-                detail.showQuickView = false;
-                detail.nodeDetail = value;
-                objectStorage.searchSummary.push(detail);
-            });
+        objectStorage.isMultipleRecords = false;
+        if (commonUtility.isDefinedObject(nodeDetails) && nodeDetails.length > 0) {
+            if (nodeDetails.length === 1) {
+                cardBusiness.getCardDetailsListAsync(successCallback, activeSanboxId);
+                objectStorage.searchSummary.push(nodeDetails[0]);
+            } else {
+                objectStorage.isMultipleRecords = true;
+                angular.forEach(nodeDetails, function (value) {
+                    var detail = {};
+                    detail.showQuickView = false;
+                    detail.nodeDetail = value;
+                    objectStorage.searchSummary.push(detail);
+                });
+            }
         }
-       // commonUtility.callback(successCallback);
     }
     
     searchBusiness.getSearchSummaryAsync = function(successCallback, activeSanboxId) {
