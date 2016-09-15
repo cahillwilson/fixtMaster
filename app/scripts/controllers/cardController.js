@@ -18,6 +18,8 @@ angular.module('fixtApp')
     vm.sandBoxes = [];
     vm.searchSummary = [];
     vm.hasSearchList = false;
+    vm.nodes = [];
+    vm.selectedNodes = [];
     
     serviceLoader.interval(saveSandbox, 
         (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
@@ -156,6 +158,16 @@ angular.module('fixtApp')
             } 
         });
     };
+    
+    vm.onSateChange = function (qId) {
+        var nodeIndex = vm.selectedNodes.indexOf(qId);
+        if (vm.nodes[qId]) {
+            vm.selectedNodes.push(qId);
+
+        } else {
+            vm.selectedNodes.splice(nodeIndex, 1);
+        }
+    }
     
     initialized();
 

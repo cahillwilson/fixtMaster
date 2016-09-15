@@ -18,7 +18,7 @@
                     <div class="srchInfo">
                         <div class="srchTtlDtls">
                             <div class="checkbox checkbox-primary">
-                                <input id="checkbox_{{$index}}" type="checkbox">  
+                                <input id="checkbox_{{$index}}" type="checkbox" ng-model="vm.nodes[item.nodeDetail.nodeID]" ng-change="vm.onSateChange(item.nodeDetail.nodeID)">  
                                 <label for="checkbox_{{$index}}"> 
                                     <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeType}} {{item.nodeID}}</div>
                                     <span class="srchDtCnt-b">ID</span>
