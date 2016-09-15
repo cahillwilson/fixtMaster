@@ -6,5 +6,5 @@ angular.module('fixtApp')
         CARD_CHILD: "/scripts/services/json/GetChildrenAPIresponse.json",
         SEARCH_SUMMARY: "/scripts/services/json/Initial_Search.json",
         
-        GET_SANDBOXES: "sandbox"
+        GET_SANDBOXES: "/sandbox"
     });

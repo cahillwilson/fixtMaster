@@ -8,10 +8,10 @@ angular.module('fixtApp')
     vm.sandBoxes = [];
    
     function initialized() {
-//        loadSandboxes();
-        if(commonUtility.isDefinedObject(localStorage.getObject("sandBoxes"))){
-            vm.sandBoxes = localStorage.getObject("sandBoxes");
-        }
+        loadSandboxes();
+//        if(commonUtility.isDefinedObject(localStorage.getObject("sandBoxes"))){
+//            vm.sandBoxes = localStorage.getObject("sandBoxes");
+//        }
     }
     
     function loadSandboxes(){

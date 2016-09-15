@@ -55,12 +55,7 @@ angular.module('fixtApp')
     function generateHeader() {
         var header = {};
         header = {
-            
             "userid": "123456"
-//            "Access-Control-Allow-Origin": "*"
-//            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-//            "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE"
-            
         };
         return header;
     }
