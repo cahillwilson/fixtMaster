@@ -19,22 +19,15 @@ angular.module('fixtApp')
     
     vm.onSearchClick = function(){
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchText);
-        searchBusiness.getSearchSummaryAsync(loadSuccessCall);
-//        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1){
-//            //cardBusiness.getCardDetailsListAsync();
-//            searchBusiness.getSearchSummaryAsync(loadSuccessCall);
-//        }else{
-//            searchBusiness.getSearchSummaryAsync(loadSuccessCall);
-//            
-//        }
-    };
-    
-    function loadSuccessCall(){
-        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) === -1){
-            commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
+        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1){
+            searchBusiness.getSearchSummaryAsync();
         }
-    }
-    
+        else{
+            commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
+            searchBusiness.getSearchSummaryAsync();
+            
+        }
+    };
     initialized();
          
   });

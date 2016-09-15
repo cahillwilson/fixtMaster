@@ -1,5 +1,5 @@
 <div ng-controller="cardController as vm"> 
-    <div id="container" ng-if="vm.hasSearchList">
+    <div id="container" >
         <!--************* responsive colum layout starts here**********************************----->   
         <div class="cardCver">
             <div class="srchRsltBox">
@@ -20,13 +20,13 @@
                             <div class="checkbox checkbox-primary">
                                 <input id="checkbox_{{$index}}" type="checkbox" ng-model="vm.nodes[item.nodeDetail.nodeID]" ng-change="vm.onSateChange(item.nodeDetail.nodeID)">  
                                 <label for="checkbox_{{$index}}"> 
-                                    <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeType}} {{item.nodeID}}</div>
+                                    <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeDetail.nodeType}} {{item.nodeDetail.nodeID}}</div>
                                     <span class="srchDtCnt-b">ID</span>
-                                    <span class="srchDtCnt-C">{{item.nodeID}}</span>
+                                    <span class="srchDtCnt-C">{{item.nodeDetail.nodeID}}</span>
                                     <span class="srchDtCnt-b">Label</span>
-                                    <span class="srchDtCnt-C">{{item.nodeLabel}}</span>
+                                    <span class="srchDtCnt-C">{{item.nodeDetail.nodeLabel}}</span>
                                     <span class="srchDtCnt-b">Start Date</span>
-                                    <span class="srchDtCnt-C">{{item.startDate | fixtSplit:' ': 0|date: 'MM/dd/yyyy'}}</span>
+                                    <span class="srchDtCnt-C">{{item.nodeDetail.startDate | fixtSplit:' ': 0|date: 'MM/dd/yyyy'}}</span>
                                     <span class="srchDtCnt-b">Address</span>
                                     <span class="srchDtCnt-C">123 Main street Dallas TX12345</span> 
                                 </label>

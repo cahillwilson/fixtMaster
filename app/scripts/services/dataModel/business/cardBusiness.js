@@ -85,7 +85,9 @@ angular.module('fixtApp')
         }
         
         localStorage.setObject(cardDetails.id, cardDetails);
-        objectStorage.cardList.push(cardDetails);
+        if (!objectStorage.hasMultipleRecords) {
+            objectStorage.cardList.push(cardDetails);
+        }
         commonUtility.callback(successCallback);
     }
     
