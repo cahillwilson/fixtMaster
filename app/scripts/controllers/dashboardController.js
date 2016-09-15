@@ -8,9 +8,18 @@ angular.module('fixtApp')
     vm.sandBoxes = [];
    
     function initialized() {
+//        loadSandboxes();
         if(commonUtility.isDefinedObject(localStorage.getObject("sandBoxes"))){
             vm.sandBoxes = localStorage.getObject("sandBoxes");
         }
+    }
+    
+    function loadSandboxes(){
+        sandboxBusiness.getAllSandboxAsync(successLoadSandboxesCall);
+    }
+    
+    function successLoadSandboxesCall(){
+        vm.sandBoxes = localStorage.getObject("sandBoxes");
     }
     
     vm.onAddSandboxClick = function(){

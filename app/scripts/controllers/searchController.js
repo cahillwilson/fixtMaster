@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .controller('searchController', function (constantLoader, cardBusiness, 
-        commonUtility, handlerLoader) {
+        commonUtility, handlerLoader, searchBusiness, objectStorage) {
 
     var vm =  this;
     vm.searchText = constantLoader.defaultValues.BLANK_STRING;
@@ -19,12 +19,22 @@ angular.module('fixtApp')
     
     vm.onSearchClick = function(){
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchText);
-        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1){
-            cardBusiness.getCardDetailsListAsync();
-        }else{
+        searchBusiness.getSearchSummaryAsync(loadSuccessCall);
+//        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1){
+//            //cardBusiness.getCardDetailsListAsync();
+//            searchBusiness.getSearchSummaryAsync(loadSuccessCall);
+//        }else{
+//            searchBusiness.getSearchSummaryAsync(loadSuccessCall);
+//            
+//        }
+    };
+    
+    function loadSuccessCall(){
+        vm.searchList = objectStorage.searchSummary;
+        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) === -1){
             commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
         }
-    };
+    }
     
     initialized();
          

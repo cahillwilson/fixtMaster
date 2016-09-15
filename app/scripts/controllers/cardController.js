@@ -16,6 +16,10 @@ angular.module('fixtApp')
     vm.cardChildList = [];
     vm.cards = [];
     vm.sandBoxes = [];
+    vm.searchSummary = [];
+    vm.hasSearchList = false;
+    vm.nodes = [];
+    vm.selectedNodes = [];
     
     serviceLoader.interval(saveSandbox, 
         (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
@@ -53,7 +57,16 @@ angular.module('fixtApp')
             loadSuccessCall();
             objectStorage.isSandboxAdded = false;
         }else{
-            cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+            if(objectStorage.searchSummary.length === 1) {
+                cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+                vm.hasSearchList = false;
+            } else if(objectStorage.searchSummary.length > 1){
+                vm.hasSearchList = true;
+                vm.searchSummary = objectStorage.searchSummary;
+            } else {
+                handlerLoader.modalHandler.showMsg(
+                    "Message", "No records found!!");
+            }
         }
     }
     
@@ -63,6 +76,7 @@ angular.module('fixtApp')
     
     function loadSuccessCall(){
         vm.cards = objectStorage.cardList;
+        vm.searchSummary = objectStorage.searchSummary;
     }
     
     function saveSandbox(){
@@ -136,6 +150,24 @@ angular.module('fixtApp')
             }
         });
     };
+    
+    vm.onClickQuickView =  function(quickViewItem) {
+        angular.forEach(objectStorage.searchSummary, function(searchedItem) {
+            if(searchedItem.nodeDetail.nodeID === quickViewItem.nodeID || searchedItem.showQuickView) {
+                searchedItem.showQuickView = !searchedItem.showQuickView;
+            } 
+        });
+    };
+    
+    vm.onSateChange = function (qId) {
+        var nodeIndex = vm.selectedNodes.indexOf(qId);
+        if (vm.nodes[qId]) {
+            vm.selectedNodes.push(qId);
+
+        } else {
+            vm.selectedNodes.splice(nodeIndex, 1);
+        }
+    }
     
     initialized();
 

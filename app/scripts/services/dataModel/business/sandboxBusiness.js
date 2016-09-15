@@ -2,9 +2,17 @@
 
 angular.module('fixtApp')
   .factory('sandboxBusiness', function (commonUtility, constantLoader, 
-      localStorage, objectStorage) {
+      localStorage, objectStorage, sandboxData, handlerLoader) {
     
     var sandboxBusiness = {};
+    
+    sandboxBusiness.getAllSandboxAsync = function(successCallback){
+        sandboxData.getAllSandboxAsync().then(function(response){
+            var boxes = response.data;
+            localStorage.setObject("sandBoxes", boxes);
+            commonUtility.callback(successCallback);
+        }, handlerLoader.exceptionHandler.logError);
+    };
     
     sandboxBusiness.addSandbox = function(successCallback){
         var maxId = 0;
