@@ -16,6 +16,7 @@ angular.module('fixtApp')
     vm.cardChildList = [];
     vm.cards = [];
     vm.sandBoxes = [];
+    vm.hasSearchList = false;
     
     serviceLoader.interval(saveSandbox, 
         (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
@@ -53,7 +54,13 @@ angular.module('fixtApp')
             loadSuccessCall();
             objectStorage.isSandboxAdded = false;
         }else{
-            cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+            if(objectStorage.searchSummary.length === 1) {
+                cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+                vm.hasSearchList = false;
+            } else {
+                vm.hasSearchList = true;
+                vm.searchSummary = objectStorage.searchSummary;
+            }
         }
     }
     
@@ -63,6 +70,7 @@ angular.module('fixtApp')
     
     function loadSuccessCall(){
         vm.cards = objectStorage.cardList;
+        vm.searchSummary = objectStorage.searchSummary;
     }
     
     function saveSandbox(){

@@ -1,5 +1,111 @@
 <div ng-controller="cardController as vm"> 
+    <div id="container" ng-if="vm.hasSearchList">
+        <!--************* responsive colum layout starts here**********************************----->   
+        <div class="cardCver">
+            <div class="srchRsltBox">
+                <div class="sBxbox1-2"><span id='close'><img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/></span></div>
+                <div class="srchRsltHeader">
+                    <div class="srchRslTitl">Search Result:</div>
+                    <div class="tagContainer">
+                        <div class="srchTagBox"><span class="srchtagItem">Walmart</span><div class="tagClosr"><span id='close_tag1'><img src="styles/images/icn-close-gray.png" width="14" height="14" alt=""/></span></div></div>
+                        <div class="srchTagBox"><span class="srchtagItem">Zip123</span><div class="tagClosr"><span id='close_tag2'><img src="styles/images/icn-close-gray.png" width="14" height="14" alt=""/></span></div></div>
+                        <div class="tagClear"><span id='close_tag3'>Clear tags</span></div>
+                    </div>
+                </div><!---srchRsltHeader end-->
+                <div class="sBxbox1-2"><div class="addSearch"><span class="addSearchItem">Add to Sandbox</span></div></div>
+                <div class="srchDisply">Displaying 10 of 400 Results</div><!---srchDisply end-->
+               <div ng-repeat="item in vm.searchSummary">
+                    <div class="srchInfo">
+                        <div class="srchTtlDtls">
+                            <div class="checkbox checkbox-primary">
+                                <input id="checkbox_{{$index}}" type="checkbox">  
+                                <label for="checkbox_{{$index}}"> 
+                                    <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeType}} {{item.nodeID}}</div>
+                                    <span class="srchDtCnt-b">ID</span>
+                                    <span class="srchDtCnt-C">{{item.nodeID}}</span>
+                                    <span class="srchDtCnt-b">Label</span>
+                                    <span class="srchDtCnt-C">{{item.nodeLabel}}</span>
+                                    <span class="srchDtCnt-b">Start Date</span>
+                                    <span class="srchDtCnt-C">{{item.startDate | fixtSplit:' ': 0|date: 'MM/dd/yyyy'}}</span>
+                                    <span class="srchDtCnt-b">Address</span>
+                                    <span class="srchDtCnt-C">123 Main street Dallas TX12345</span> 
+                                </label>
+                            </div>
+                        </div>
+                        <span class="expandInfo">
+                            <img ng-src="{{!item.showQuickView ? 'styles/images/Hrchy-expand.jpg' : 'styles/images/Hrchy-collapse.jpg'}}" width="20" height="20" alt="" ng-click="vm.onClickQuickView(item.nodeDetail)"/>
+                        </span>
+                        <div class="srchExpDtls" ng-if="item.showQuickView"><!----start-quick info----->
+                            <div class="sdNodHrch box1-3 omnReg"><!-- start 1st box----->
+                                <div ng-repeat="item in vm.card.parentNodes">
+                                    <div style="padding-left: {{$index*7}}px;">
+                                        <div class="sbxLeftItem">
+                                            <span ng-class="{'sbox-item-title':!($index < vm.card.parentNodes.length -1)}">
+                                                <span style="font-weight: bold;">{{item |fixtSplit:': ' : 0}}: </span>
+                                                {{item|fixtSplit:': ' : 1}}
+                                            </span>
+                                        </div>
+                                    </div><br>
+                                </div>
+                            </div><!-- end 1st box----->
+                            <div class="sdNodHrch box2-3"><!-- start 2nd box----->
+                                <div class="nodDtCmn left">ID:</div>
+                                <div class="nodDtCmn right">###-###-###</div>
+                                <div class="nodDtCmn left">Node Start Date:</div>
+                                <div class="nodDtCmn right">###-###-###</div>
+                                <div class="nodDtCmn left">Node End Date:</div>
+                                <div class="nodDtCmn right">###-###-###</div>
+                                <div class="nodDtCmn left">Description:</div>
+                                <div class="nodDtCmn right">###-###-###</div>
+                            </div>  <!-- end 2nd box----->   
+                            <div class="sdNodHrch box3-3"><!-- start 3rd box----->
+                                <div class="nodDtCmn left">Source Biller ID:</div>
+                                <div class="nodDtCmn right">###-###-###</div>
+                                <div class="nodDtCmn left">Start Date:</div>
+                                <div class="nodDtCmn right">###-###-###</div>
+                                <div class="nodDtCmn left">Sub Account ID:</div>
+                                <div class="nodDtCmn right">###-###-###</div>
+                                <div class="nodDtCmn left">Parent Foreign ID acct :</div>
+                                <div class="nodDtCmn right">###-###-###</div>
+                            </div><!-- end 3rd box----->
 
+                        </div><!----End-quick info----->
+                    </div>
+                    
+                    <div class="brdrInf"></div>
+                </div>
+                <!--<fixt-search-list search-list="vm.searchSummary" ></fixt-search-list>-->
+                <div class="srchInFooter">
+            <li class="Pgnsn"><img src="styles/images/arrow_gry-lft.png" width="5" height="8" alt=""/></li>
+            <li class="Pgnsn acton">1</li>
+            <li class="Pgnsn">2</li>
+            <li class="Pgnsn">3</li>
+            <li class="Pgnsn">4</li>
+            <li class="Pgnsn">5</li>
+            <li class="Pgnsn">6</li>
+            <li class="Pgnsn">7</li>
+            <li class="Pgnsn">8</li>
+            <li class="Pgnsn">...</li>
+            <li class="Pgnsn">39</li>
+            <li class="Pgnsn">40</li>
+            <li class="Pgnsn"><img src="styles/images/arrow_blu-rt.png" width="5" height="8" alt=""/></li>
+            <div class="srchInFtrBox cmnFrteen">Items per page
+                <div class="srchPrPg">
+
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="srchPrPgitm">10 Per page</span> <span><img src="images/dropdwn-arrow.png" width="18" height="10" alt=""/></span></a>
+
+                        <ul class="dropdown-menu perpage pull-left">
+                            <li><a href="#">20 Per page</a></li>
+                        </ul>
+                    </div>
+
+                </div><!----End srchPrPg---------->
+            </div><!--End srchInFtrBox----->
+        </div><!----End srchInFooter---->
+            </div>
+        </div>
+    </div>
 
     <div class="borderline" ></div>
 
