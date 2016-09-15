@@ -16,6 +16,7 @@ angular.module('fixtApp')
     vm.cardChildList = [];
     vm.cards = [];
     vm.sandBoxes = [];
+    vm.searchSummary = [];
     vm.hasSearchList = false;
     
     serviceLoader.interval(saveSandbox, 
@@ -142,6 +143,14 @@ angular.module('fixtApp')
                 vm.activeBoxId = 0;
                 commonUtility.redirectTo(constantLoader.routeList.DASHBOARD);
             }
+        });
+    };
+    
+    vm.onClickQuickView =  function(quickViewItem) {
+        angular.forEach(objectStorage.searchSummary, function(searchedItem) {
+            if(searchedItem.nodeDetail.nodeID === quickViewItem.nodeID || searchedItem.showQuickView) {
+                searchedItem.showQuickView = !searchedItem.showQuickView;
+            } 
         });
     };
     
