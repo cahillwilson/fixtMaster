@@ -1245,7 +1245,7 @@ input#searchIcon{
     font-size: 16px;
     color: rgba(51, 51, 51, 1)
 }
-.Pgnsn {
+.Pgnsn, .Pgnsn1 {
     width: 24px;
     height: 24px;
     /*background-color: #F15E60;*/
@@ -1253,7 +1253,10 @@ input#searchIcon{
     font-size: 16px;
     text-align: center;
 }
-.Pgnsn.acton {
+.Pgnsn:hover {
+    border-bottom: 3px solid rgba(5, 116, 172, 0.4);
+}
+.pg-acton {
     border-bottom: 3px solid rgba(5, 116, 172, 1);
 }
 /*Check box styling*/
