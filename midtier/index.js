@@ -197,8 +197,8 @@ router.get('/lockStatus', allowCrossDomain, function (req, res) {
             hierarchyPointId: req.query.hierarchyPointId
         },
         auth: {
-            user: 'userfoo',
-            pass: 'passfoo',
+            user: 'fedtest_bgw',
+            pass: 'fedtest_bgw0805',
             sendImmediately: true
         },
         method: 'GET',
@@ -231,8 +231,8 @@ router.get('/initialSearch/:searchCategory/:searchType/:searchString', allowCros
             segment: req.query.segment
         },
         auth: {
-            user: 'userfoo',
-            pass: 'passfoo',
+            user: 'fedtest_bgw',
+            pass: 'fedtest_bgw0805',
             sendImmediately: true
         },
         method: 'GET',
@@ -289,8 +289,8 @@ router.get('/node/:nodeID/children', allowCrossDomain, function (req, res) {
             hierarchyPointId: req.params.nodeID
         },
         auth: {
-            user: 'userfoo',
-            pass: 'passfoo',
+            user: 'fedtest_bgw',
+            pass: 'fedtest_bgw0805',
             sendImmediately: true
         },
         method: 'GET'
@@ -626,8 +626,8 @@ function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, re
             hierarchyPointId: hierarchyPointId
         },
         auth: {
-            user: 'userfoo',
-            pass: 'passfoo',
+            user: 'fedtest_bgw',
+            pass: 'fedtest_bgw0805',
             sendImmediately: true
         },
         method: 'GET',
