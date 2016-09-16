@@ -3,7 +3,7 @@
 angular.module('fixtApp')
     .controller('cardController', function (constantLoader, cardBusiness, 
         objectStorage, handlerLoader, localStorage, commonUtility, serviceLoader,
-        sandboxBusiness) {
+        sandboxBusiness, searchBusiness) {
     
     var vm =  this;
     vm.isCardDetailsShow = false;
@@ -17,7 +17,6 @@ angular.module('fixtApp')
     vm.cards = [];
     vm.sandBoxes = [];
     vm.searchSummary = [];
-    vm.hasSearchList = false;
     vm.nodes = [];
     vm.selectedNodes = [];
     
@@ -25,8 +24,13 @@ angular.module('fixtApp')
         (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
     
     function initialized() {
+        var searchType = handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TYPE);        
         loadSandboxes();
-        loadCardDetails();
+        if (searchType === "name") {
+            loadSearchSummary();
+        } else {
+            loadCardDetails();
+        }
     }
     
     function loadSandboxes(){
@@ -53,21 +57,16 @@ angular.module('fixtApp')
     }
     
     function loadCardDetails() {
-        if(objectStorage.isSandboxAdded){
+        if (objectStorage.isSandboxAdded) {
             loadSuccessCall();
             objectStorage.isSandboxAdded = false;
-        }else{
-            if(objectStorage.searchSummary.length === 1) {
-                cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
-                vm.hasSearchList = false;
-            } else if(objectStorage.searchSummary.length > 1){
-                vm.hasSearchList = true;
-                vm.searchSummary = objectStorage.searchSummary;
-            } else {
-                handlerLoader.modalHandler.showMsg(
-                    "Message", "No records found!!");
-            }
+        } else {
+            cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
         }
+    }
+    
+    function loadSearchSummary() {
+        searchBusiness.getSearchSummaryAsync(loadSuccessCall);
     }
     
     function sandBoxLoadSuccessCall(){
@@ -77,6 +76,9 @@ angular.module('fixtApp')
     function loadSuccessCall(){
         vm.cards = objectStorage.cardList;
         vm.searchSummary = objectStorage.searchSummary;
+        if (commonUtility.isDefinedObject(vm.cards)) {
+            vm.card = vm.cards[0];
+        }
     }
     
     function saveSandbox(){
@@ -153,9 +155,12 @@ angular.module('fixtApp')
     
     vm.onClickQuickView =  function(quickViewItem) {
         angular.forEach(objectStorage.searchSummary, function(searchedItem) {
-            if(searchedItem.nodeDetail.nodeID === quickViewItem.nodeID || searchedItem.showQuickView) {
+            if(searchedItem.showQuickView) {
                 searchedItem.showQuickView = !searchedItem.showQuickView;
-            } 
+            } else if (searchedItem.nodeDetail.nodeID === quickViewItem.nodeID) {
+                searchedItem.showQuickView = !searchedItem.showQuickView;
+                cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+            }
         });
     };
     

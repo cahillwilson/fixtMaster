@@ -1,5 +1,5 @@
 <div ng-controller="cardController as vm"> 
-    <div id="container" ng-if="vm.hasSearchList">
+    <div id="container" ng-if="vm.searchSummary.length !== 0">
         <!--************* responsive colum layout starts here**********************************----->   
         <div class="cardCver">
             <div class="srchRsltBox">
@@ -20,13 +20,13 @@
                             <div class="checkbox checkbox-primary">
                                 <input id="checkbox_{{$index}}" type="checkbox" ng-model="vm.nodes[item.nodeDetail.nodeID]" ng-change="vm.onSateChange(item.nodeDetail.nodeID)">  
                                 <label for="checkbox_{{$index}}"> 
-                                    <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeType}} {{item.nodeID}}</div>
+                                    <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeDetail.nodeType}} {{item.nodeDetail.nodeID}}</div>
                                     <span class="srchDtCnt-b">ID</span>
-                                    <span class="srchDtCnt-C">{{item.nodeID}}</span>
+                                    <span class="srchDtCnt-C">{{item.nodeDetail.nodeID}}</span>
                                     <span class="srchDtCnt-b">Label</span>
-                                    <span class="srchDtCnt-C">{{item.nodeLabel}}</span>
+                                    <span class="srchDtCnt-C">{{item.nodeDetail.nodeLabel}}</span>
                                     <span class="srchDtCnt-b">Start Date</span>
-                                    <span class="srchDtCnt-C">{{item.startDate | fixtSplit:' ': 0|date: 'MM/dd/yyyy'}}</span>
+                                    <span class="srchDtCnt-C">{{item.nodeDetail.startDate | fixtSplit:' ': 0|date: 'MM/dd/yyyy'}}</span>
                                     <span class="srchDtCnt-b">Address</span>
                                     <span class="srchDtCnt-C">123 Main street Dallas TX12345</span> 
                                 </label>
@@ -75,34 +75,7 @@
                     <div class="brdrInf"></div>
                 </div>
                 <!--<fixt-search-list search-list="vm.searchSummary" ></fixt-search-list>-->
-                <div class="srchInFooter">
-            <li class="Pgnsn"><img src="styles/images/arrow_gry-lft.png" width="5" height="8" alt=""/></li>
-            <li class="Pgnsn acton">1</li>
-            <li class="Pgnsn">2</li>
-            <li class="Pgnsn">3</li>
-            <li class="Pgnsn">4</li>
-            <li class="Pgnsn">5</li>
-            <li class="Pgnsn">6</li>
-            <li class="Pgnsn">7</li>
-            <li class="Pgnsn">8</li>
-            <li class="Pgnsn">...</li>
-            <li class="Pgnsn">39</li>
-            <li class="Pgnsn">40</li>
-            <li class="Pgnsn"><img src="styles/images/arrow_blu-rt.png" width="5" height="8" alt=""/></li>
-            <div class="srchInFtrBox cmnFrteen">Items per page
-                <div class="srchPrPg">
-
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="srchPrPgitm">10 Per page</span> <span><img src="images/dropdwn-arrow.png" width="18" height="10" alt=""/></span></a>
-
-                        <ul class="dropdown-menu perpage pull-left">
-                            <li><a href="#">20 Per page</a></li>
-                        </ul>
-                    </div>
-
-                </div><!----End srchPrPg---------->
-            </div><!--End srchInFtrBox----->
-        </div><!----End srchInFooter---->
+                <fixt-search-list-pagination total-record="400"></fixt-search-list-pagination>
             </div>
         </div>
     </div>

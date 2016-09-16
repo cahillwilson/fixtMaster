@@ -28,7 +28,7 @@ angular.module('routerConfigModule', ['ngRoute'])
             }
         })
         .when('/ui',{
-            templateUrl:'views/ui.html'
+            templateUrl:'views/UI_HTML/SearchResults-Quick View.html'
         })
         .otherwise({
             redirectTo: '/'

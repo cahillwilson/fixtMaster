@@ -18,24 +18,25 @@ angular.module('fixtApp')
     };
     
     vm.onSearchClick = function(){
-        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchText);
-        searchBusiness.getSearchSummaryAsync(loadSuccessCall);
-//        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1){
-//            //cardBusiness.getCardDetailsListAsync();
-//            searchBusiness.getSearchSummaryAsync(loadSuccessCall);
-//        }else{
-//            searchBusiness.getSearchSummaryAsync(loadSuccessCall);
-//            
-//        }
-    };
-    
-    function loadSuccessCall(){
-        vm.searchList = objectStorage.searchSummary;
-        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) === -1){
-            commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
+        var searchType = handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TYPE);
+        switch(searchType) {
+            case "name":
+                if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
+                    searchBusiness.getSearchSummaryAsync();
+                }
+                break;
+            case "id":
+                if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
+                    cardBusiness.getCardDetailsListAsync();
+                } 
+                break;
         }
-    }
-    
+        
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchText);
+        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) <= -1){            
+            commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);            
+        }
+    };
     initialized();
          
   });

@@ -294,6 +294,10 @@ angular.module('fixtApp')
     }
     
     cardBusiness.getCardDetailsListAsync = function(successCallback, activeSanboxId) {
+        if (handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TYPE) === "id") {
+            var length = objectStorage.searchSummary.length;
+            objectStorage.searchSummary.splice(0, length);
+        }
         var boxes = localStorage.getObject("sandBoxes");
         if(!commonUtility.is3DValidKey(activeSanboxId)){
             activeSanboxId = commonUtility.filterInArray(boxes, {isActive: true})[0].boxId;

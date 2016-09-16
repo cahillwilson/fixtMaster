@@ -9,5 +9,20 @@
             <file>file:/C:/ATnT/FIXTatnt/app/scripts/services/dataModel/business/sandboxBusiness.js</file>
             <file>file:/C:/ATnT/FIXTatnt/app/scripts/services/handler/modalHandler.js</file>
         </group>
+        <group>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/services/dataModel/business/searchBusiness.js</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/services/storage/objectStorage.js</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/services/dataModel/business/cardBusiness.js</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/directives/fixtCardDetailView.js</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/controllers/searchController.js</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/services/storage/sessionStorage.js</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/index.html</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/views/sandboxList.html</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/services/dataModel/business/dashboardBusiness.js</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/controllers/cardController.js</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/controllers/dashboardController.js</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/directives/fixtSearchList.js</file>
+            <file>file:/C:/AT&amp;T/atntfixt/app/scripts/directives/fixtQuickView.js</file>
+        </group>
     </open-files>
 </project-private>
