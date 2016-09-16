@@ -66,7 +66,7 @@ angular.module('fixtApp')
     }
     
     function loadSearchSummary() {
-        searchBusiness.getSearchSummaryAsync(loadSummarySuccessCall);
+        searchBusiness.getSearchSummaryAsync(loadSuccessCall);
     }
     
     function sandBoxLoadSuccessCall(){
@@ -75,11 +75,10 @@ angular.module('fixtApp')
     
     function loadSuccessCall(){
         vm.cards = objectStorage.cardList;
-    }
-    
-    function loadSummarySuccessCall(){
-        vm.cards = objectStorage.cardList;
         vm.searchSummary = objectStorage.searchSummary;
+        if (commonUtility.isDefinedObject(vm.cards)) {
+            vm.card = vm.cards[0];
+        }
     }
     
     function saveSandbox(){
@@ -156,9 +155,12 @@ angular.module('fixtApp')
     
     vm.onClickQuickView =  function(quickViewItem) {
         angular.forEach(objectStorage.searchSummary, function(searchedItem) {
-            if(searchedItem.nodeDetail.nodeID === quickViewItem.nodeID || searchedItem.showQuickView) {
+            if(searchedItem.showQuickView) {
                 searchedItem.showQuickView = !searchedItem.showQuickView;
-            } 
+            } else if (searchedItem.nodeDetail.nodeID === quickViewItem.nodeID) {
+                searchedItem.showQuickView = !searchedItem.showQuickView;
+                cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+            }
         });
     };
     
