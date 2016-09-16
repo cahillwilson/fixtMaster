@@ -33,6 +33,10 @@ body{
     src: url("../fonts/Omnes_ATTW02-Light.ttf");
 } 
 
+.omnReg{font-family: "Omnes_ATTW02";}
+.omnMed{font-family: "Omnes_ATTW02Medium";}
+.omnLite{font-family: "Omnes_ATTW02-Light";}
+
 /*HEADER*------------------------------------------------------------------------*/
 header{ 
     width:100%; 
