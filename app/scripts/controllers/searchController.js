@@ -18,14 +18,23 @@ angular.module('fixtApp')
     };
     
     vm.onSearchClick = function(){
-        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchText);
-        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1){
-            searchBusiness.getSearchSummaryAsync();
+        var searchType = handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TYPE);
+        switch(searchType) {
+            case "name":
+                if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
+                    searchBusiness.getSearchSummaryAsync();
+                }
+                break;
+            case "id":
+                if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
+                    cardBusiness.getCardDetailsListAsync();
+                } 
+                break;
         }
-        else{
-            commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
-            searchBusiness.getSearchSummaryAsync();
-            
+        
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchText);
+        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) <= -1){            
+            commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);            
         }
     };
     initialized();

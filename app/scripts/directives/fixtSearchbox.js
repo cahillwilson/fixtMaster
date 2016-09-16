@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .directive('fixtSearchbox', function (constantLoader, commonUtility) {
+  .directive('fixtSearchbox', function (constantLoader, commonUtility, handlerLoader) {
     return {
 	restricted: "E",
 	replace: true,
@@ -59,6 +59,7 @@ angular.module('fixtApp')
             };
             
             scope.onSearchClick = function(){
+                handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TYPE, searchTypeItem.searchType);
                 if(!commonUtility.is3DValidKey(scope.ngModel)){
                     setErrorPlace(true, constantLoader.messages.SEARCH_NOT_VALID);
                     return false;
@@ -73,7 +74,7 @@ angular.module('fixtApp')
                     return false;
                 }
                 /* will be deleted - start */
-                if(searchTypeItem.id !== "ba_acc" && searchTypeItem.id !== "sa_acc" && searchTypeItem.id !== "i_acc") {
+                if(searchTypeItem.searchType !== "id" && searchTypeItem.searchType !== "name") {
                     setErrorPlace(true, "Not Implemented!");
                     return false;
                 }

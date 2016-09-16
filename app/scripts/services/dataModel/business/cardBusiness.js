@@ -85,9 +85,7 @@ angular.module('fixtApp')
         }
         
         localStorage.setObject(cardDetails.id, cardDetails);
-        if (!objectStorage.hasMultipleRecords) {
-            objectStorage.cardList.push(cardDetails);
-        }
+        objectStorage.cardList.push(cardDetails);
         commonUtility.callback(successCallback);
     }
     
@@ -296,6 +294,8 @@ angular.module('fixtApp')
     }
     
     cardBusiness.getCardDetailsListAsync = function(successCallback, activeSanboxId) {
+        var length = objectStorage.searchSummary.length;
+        objectStorage.searchSummary.splice(0, length);
         var boxes = localStorage.getObject("sandBoxes");
         if(!commonUtility.is3DValidKey(activeSanboxId)){
             activeSanboxId = commonUtility.filterInArray(boxes, {isActive: true})[0].boxId;
