@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .directive('fixtSearchListPagination', function () {
+  .directive('fixtSearchListPagination', function (handlerLoader, constantLoader) {
     return {
 	restricted: "E",
 	replace: true,
@@ -68,31 +68,47 @@ angular.module('fixtApp')
         link: function(scope){
             scope.activePage = 1;
             scope.itemCount = 10;
+            handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_LIST_PER_PAGE_ITEM,
+                scope.itemCount, false);
             scope.perPageItems = [10, 20, 30];
             scope.pageCount = (scope.totalRecord / scope.itemCount) + 
                 ((scope.totalRecord % scope.itemCount) > 0 ? 1 : 0);
             
+            setLastCount();
+            
             scope.onPageClick = function(page){
                 scope.activePage = Number(page);
+                setLastCount();
             };
             
             scope.onLeftClick = function(){
                 if(scope.activePage>1){
                     scope.activePage = scope.activePage - 1;
                 }
+                setLastCount();
             };
             
             scope.onRightClick = function(){
                 if(scope.activePage<scope.pageCount){
                     scope.activePage = scope.activePage + 1;
                 }
+                setLastCount();
             };
             
             scope.onPagePerItemClick = function(item){
                 scope.itemCount = item;
+                handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_LIST_PER_PAGE_ITEM,
+                    scope.itemCount, false);
                 scope.pageCount = (scope.totalRecord / scope.itemCount) + 
                     ((scope.totalRecord % scope.itemCount) > 0 ? 1 : 0);
+                
+                setLastCount();
             };
+            
+            function setLastCount(){
+                handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_LIST_LAST_COUNT,
+                    (scope.activePage * scope.itemCount), false);
+            }
         }
     };
   });
