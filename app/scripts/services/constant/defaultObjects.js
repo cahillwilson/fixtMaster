@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .constant('defaultObjects', {
-        SEARCH_LIST: [
+        SEARCH_LIST_CATEGORY: [
             {
                 id: "cust_name",
                 value: "Customer Name",
@@ -136,5 +136,43 @@ angular.module('fixtApp')
                 pattern: "TBD",
                 searchType: "tbd"
             }
+        ],
+        SEARCH_LIST_TYPE: [
+            {
+                id: "nodeID",
+                value: "Node ID",
+                maxLength: "TBD",
+                pattern: "TBD",
+                searchType: "tbd"
+            },
+            {
+                id: "nodeLabel",
+                value: "Node Label",
+                maxLength: "TBD",
+                pattern: "TBD",
+                searchType: "tbd"
+            },
+            {
+                id: "address",
+                value: "Address",
+                maxLength: "TBD",
+                pattern: "TBD",
+                searchType: "tbd"
+            },
+            {
+                id: "nodeType",
+                value: "Node Type",
+                maxLength: "TBD",
+                pattern: "TBD",
+                searchType: "tbd"
+            },
+            {
+                id: "startDate",
+                value: "Start Date",
+                maxLength: "TBD",
+                pattern: "TBD",
+                searchType: "date"
+            }
+            
         ]
     });

@@ -6,15 +6,19 @@ angular.module('fixtApp')
 
     var vm =  this;
     vm.searchText = constantLoader.defaultValues.BLANK_STRING;
-    vm.searchList = constantLoader.defaultObjects.SEARCH_LIST;
-    vm.searchItemType = constantLoader.defaultValues.SEARCH_TYPE_INIT_VALUE;
+    vm.searchTypeText = constantLoader.defaultValues.BLANK_STRING;
+    vm.searchCategoryList = constantLoader.defaultObjects.SEARCH_LIST_CATEGORY;
+    vm.searchTypeList = constantLoader.defaultObjects.SEARCH_LIST_TYPE;
+    vm.searchCategory = constantLoader.defaultValues.SEARCH_CAT_INIT_VALUE;
+    vm.searchType = constantLoader.defaultValues.SEARCH_TYPE_INIT_VALUE;
+    vm.showSearchType = false;
    
     function initialized() {
         
     }
     
     vm.onSearchItemChanged = function(item){
-        vm.searchItemType = item.value;
+        vm.searchCategory = item.value;
     };
     
     vm.onSearchClick = function(){
@@ -24,6 +28,7 @@ angular.module('fixtApp')
                 if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
                     searchBusiness.getSearchSummaryAsync();
                 }
+                vm.showSearchType = true;
                 break;
             case "id":
                 if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {

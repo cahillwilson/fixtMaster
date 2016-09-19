@@ -4,7 +4,8 @@ angular.module('fixtApp')
     .constant('defaultValues', {
         BASE_URL: "http://localhost:3000/fixt",
         BLANK_STRING: "",
-        SEARCH_TYPE_INIT_VALUE: "Type/ Select",
+        SEARCH_CAT_INIT_VALUE: "Type/ Select",
+        SEARCH_TYPE_INIT_VALUE: "Select",
         SANDBOX_TITLE: "Untitled",
         MAX_NODE_TYPE_COUNT: 6,
         MAX_NODE_FIELD_COUNT: 5,

@@ -18,6 +18,8 @@
         <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-plain.css" />
         <link rel="stylesheet" type="text/css" href="styles/css/fixt-style.css" />
         <link rel="stylesheet" href="styles/css/ie10-viewport-bug-workaround.css" />
+        <link rel='stylesheet' href='bower_components/angular-busy/dist/angular-busy.css' type='text/css' media='all' />
+        
         <!-- style - end -->
         
         <!-- bower component - start -->
@@ -29,7 +31,9 @@
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
         <script src="bower_components/ng-content-editable/dist/ng-content-editable.js"></script>
-        <script src="bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>
+        <script src="bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>     
+        <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+        
         <!-- bower component - end -->
         
         <!-- application component - start -->
@@ -91,6 +95,7 @@
         <script src="scripts/directives/fixtSandBoxButton.js"></script>
         <script src="scripts/directives/fixtSearchList.js"></script>
         <script src="scripts/directives/fixtSearchListPagination.js"></script>
+        <script src="scripts/directives/fixtQuickView.js"></script>
         
         <!-- filter classes -->
         <script src="scripts/filters/fixtRootScope.js"></script>
@@ -134,8 +139,12 @@
         <div id="container">
             <div class="searchTab" ng-controller="searchController as vm" 
                 ng-hide="{{'IS_SEARCH_HIDDEN' | fixtRootScope}}">
-                <fixt-searchbox label="vm.searchItemType" items="vm.searchList"
+                <fixt-searchbox show="!vm.showSearchType" label="vm.searchCategory" items="vm.searchCategoryList"
                     search-click="vm.onSearchClick()" ng-model="vm.searchText"
+                    selection-changed="vm.onSearchItemChanged(item)"
+                    label-binding="value" model-binding="id"></fixt-searchbox>
+                <fixt-searchbox show="vm.showSearchType" label="vm.searchType" items="vm.searchTypeList"
+                    search-click="vm.onSearchClick()" ng-model="vm.searchTypeText"
                     selection-changed="vm.onSearchItemChanged(item)"
                     label-binding="value" model-binding="id"></fixt-searchbox>
             </div>
