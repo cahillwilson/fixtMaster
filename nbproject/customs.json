@@ -19,7 +19,11 @@
                 "height": {}
             }
         },
-        "fixt-search-list-heading": {},
+        "fixt-search-list-heading": {
+            "attributes": {
+                "show-record-count": {}
+            }
+        },
         "fixt-editable": {
             "attributes": {
                 "item": {},
@@ -44,6 +48,17 @@
                 "details": {},
                 "card-id": {},
                 "show-card-view-click": {}
+            }
+        },
+        "fixt-search-list-pagination": {
+            "attributes": {
+                "total-record": {},
+                "change-page": {}
+            }
+        },
+        "fixt-quick-view": {
+            "attributes": {
+                "details": {}
             }
         },
         "fixt-searchbox": {

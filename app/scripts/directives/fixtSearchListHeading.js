@@ -6,26 +6,36 @@ angular.module('fixtApp')
 	restricted: "E",
 	replace: true,
         scope: {
+            showRecordCount: "=",
             singleTagDelete: "&",
             clearAllTags: "&"
         },
         template: function(){
             
-            var html =  '<div class="srchRsltHeader">' +
-                            '<div class="srchRslTitl">Search Result:</div>' +
-                            '<div class="tagContainer">' +
-                                '<div class="srchTagBox" ng-repeat="tag in tagList">' +
-                                    '<span class="srchtagItem">{{tag}}</span>' +
-                                    '<div class="tagClosr">' +
-                                        '<span class="pointer" ng-click="onTagClick(tag)">' +
-                                            '<img src="styles/images/icn-close-gray.png" width="14" height="14" alt=""/>' +
-                                        '</span>' +
+            var html =  '<div>' +
+                            '<div class="srchRsltHeader">' +
+                                '<div class="srchRslTitl">Search Result:</div>' +
+                                '<div class="tagContainer">' +
+                                    '<div class="srchTagBox" ng-repeat="tag in tagList">' +
+                                        '<span class="srchtagItem">{{tag}}</span>' +
+                                        '<div class="tagClosr">' +
+                                            '<span class="pointer" ng-click="onTagClick(tag)">' +
+                                                '<img src="styles/images/icn-close-gray.png" width="14" height="14" alt=""/>' +
+                                            '</span>' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="tagClear pointer" ng-hide="isClearTagHide">' +
+                                        '<span ng-click="onClearTagsClick()">Clear tags</span>' +
                                     '</div>' +
                                 '</div>' +
-                                '<div class="tagClear pointer" ng-hide="isClearTagHide">' +
-                                    '<span ng-click="onClearTagsClick()">Clear tags</span>' +
+                            '</div>' +
+                            '<div class="sBxbox1-2">' +
+                                '<div class="addSearch pointer">' +
+                                    '<span class="addSearchItem">Add to Sandbox</span>' +
                                 '</div>' +
                             '</div>' +
+                            '<div class="srchDisply">Displaying {{showRecordCount}} of ' +
+                                '{{\'SEARCH_LIST_TOT_COUNT\' | fixtRootScope : true}} Results</div>' +
                         '</div>';
         
             return html;

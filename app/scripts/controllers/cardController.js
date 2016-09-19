@@ -17,10 +17,13 @@ angular.module('fixtApp')
     vm.cards = [];
     vm.sandBoxes = [];
     vm.searchSummary = [];
+    vm.totalSearchRecords = 0;
     vm.nodes = [];
     vm.selectedNodes = [];
     vm.myPromise = [];
-    vm.templateUrl = 'views/loadingBar-template.html';
+    vm.templateUrl = constantLoader.defaultValues.LOADING_TEMPLATE;
+    vm.currentRecCount = 0;
+    vm.pageItemCount = 0;
     
     serviceLoader.interval(saveSandbox, 
         (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
@@ -78,6 +81,7 @@ angular.module('fixtApp')
     function loadSuccessCall(){
         vm.cards = objectStorage.cardList;
         vm.searchSummary = objectStorage.searchSummary;
+        vm.totalSearchRecords = vm.searchSummary.length;
         if (commonUtility.isDefinedObject(vm.cards)) {
             vm.card = vm.cards[0];
         }
@@ -155,7 +159,7 @@ angular.module('fixtApp')
         });
     };
     
-    vm.onClickQuickView =  function(quickViewItem, index) {
+    vm.onQuickViewClick =  function(quickViewItem, index) {
         vm.card = null;
         angular.forEach(objectStorage.searchSummary, function(searchedItem) {
             if(searchedItem.showQuickView) {
@@ -175,7 +179,12 @@ angular.module('fixtApp')
         } else {
             vm.selectedNodes.splice(nodeIndex, 1);
         }
-    }
+    };
+    
+    vm.onPageChangeClick = function(currentRecCount, pageItemCount){
+        vm.currentRecCount = currentRecCount;
+        vm.pageItemCount = pageItemCount;
+    };
     
     initialized();
 

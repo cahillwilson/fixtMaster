@@ -226,6 +226,7 @@ input#searchIcon{
 .sBxbox1-2{ 
     float:right; 
     padding-left:14px;
+    margin-top: 12px;
 }
 #expandedClose{
     margin:19px -36px 0;

@@ -91,8 +91,7 @@ angular.module('fixtApp')
                                     '</div>' +
                                 '</div>' +
                             '</div>' +
-                            '<!---sandBox end-->' +
-                        '</div><!---card Cvr end-->';
+                        '</div>';
         
             return html;
         },

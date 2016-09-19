@@ -6,7 +6,8 @@ angular.module('fixtApp')
 	restricted: "E",
 	replace: true,
         scope: {
-            totalRecord: "@"
+            totalRecord: "=",
+            changePage: "&"
         },
         template: function(){
             
@@ -68,46 +69,57 @@ angular.module('fixtApp')
         link: function(scope){
             scope.activePage = 1;
             scope.itemCount = 10;
-            handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_LIST_PER_PAGE_ITEM,
-                scope.itemCount, false);
+            
+            handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_LIST_TOT_COUNT,
+                scope.totalRecord, false);
+                
             scope.perPageItems = [10, 20, 30];
             scope.pageCount = (scope.totalRecord / scope.itemCount) + 
                 ((scope.totalRecord % scope.itemCount) > 0 ? 1 : 0);
             
-            setLastCount();
+            onPageChangeClick();
             
             scope.onPageClick = function(page){
                 scope.activePage = Number(page);
-                setLastCount();
+                onPageChangeClick();
             };
             
             scope.onLeftClick = function(){
                 if(scope.activePage>1){
                     scope.activePage = scope.activePage - 1;
                 }
-                setLastCount();
+                onPageChangeClick();
             };
             
             scope.onRightClick = function(){
                 if(scope.activePage<scope.pageCount){
                     scope.activePage = scope.activePage + 1;
                 }
-                setLastCount();
+                onPageChangeClick();
             };
             
             scope.onPagePerItemClick = function(item){
                 scope.itemCount = item;
-                handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_LIST_PER_PAGE_ITEM,
-                    scope.itemCount, false);
                 scope.pageCount = (scope.totalRecord / scope.itemCount) + 
                     ((scope.totalRecord % scope.itemCount) > 0 ? 1 : 0);
                 
-                setLastCount();
+                onPageChangeClick();
             };
             
-            function setLastCount(){
-                handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_LIST_LAST_COUNT,
-                    (scope.activePage * scope.itemCount), false);
+            function onPageChangeClick(){
+                var currentRecCount = scope.activePage * scope.itemCount;
+                if((scope.activePage * scope.itemCount) > scope.totalRecord){
+                    currentRecCount = scope.totalRecord % scope.itemCount;
+                }
+                var pageItemCount = scope.itemCount;
+                if((scope.pageCount === scope.activePage) && 
+                    ((scope.totalRecord % scope.itemCount) > 0)){
+                    pageItemCount = scope.totalRecord % scope.itemCount;
+                }
+                scope.changePage({
+                    currentRecCount: currentRecCount,
+                    pageItemCount: pageItemCount
+                });
             }
         }
     };

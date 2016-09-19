@@ -5,9 +5,7 @@
         <div class="cardCver">
             <div class="srchRsltBox">
                 <div class="sBxbox1-2"><span id='close'><img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/></span></div>
-                <fixt-search-list-heading></fixt-search-list-heading>
-                <div class="sBxbox1-2"><div class="addSearch"><span class="addSearchItem">Add to Sandbox</span></div></div>
-                <div class="srchDisply">Displaying 10 of 400 Results</div>
+                <fixt-search-list-heading show-record-count="vm.pageItemCount"></fixt-search-list-heading>
                 <div cg-busy="{promise:vm.mainPromise,minDuration:700, templateUrl:vm.templateUrl}"></div>
     
                 <div class="search-list-body">
@@ -29,10 +27,12 @@
                                     </label>
                                 </div>
                             </div>
-                            <span class="expandInfo">
-                                <img ng-src="{{!item.showQuickView ? 'styles/images/Hrchy-expand.jpg' : 'styles/images/Hrchy-collapse.jpg'}}" width="20" height="20" alt="" ng-click="vm.onClickQuickView(item.nodeDetail, $index)"/>
+                            <span class="expandInfo pointer">
+                                <img ng-src="{{!item.showQuickView ? 'styles/images/Hrchy-expand.jpg' : 'styles/images/Hrchy-collapse.jpg'}}" 
+                                    width="20" height="20" alt="" ng-click="vm.onQuickViewClick(item.nodeDetail, $index)"/>
                             </span>
-                            <div class="srchExpDtls" ng-if="item.showQuickView" cg-busy="{promise:vm.myPromise[$index],templateUrl:vm.templateUrl}" ><!----start-quick info----->
+                            <div class="srchExpDtls" ng-if="item.showQuickView" 
+                                cg-busy="{promise:vm.myPromise[$index],templateUrl:vm.templateUrl}" >{{vm.card}}
                                 <div class="sdNodHrch box1-3 omnReg">
                                     <fixt-quick-view details="vm.card"></fixt-quick-view>
                                 </div>
@@ -42,7 +42,9 @@
                     </div>
                 </div>
                 <!--<fixt-search-list search-list="vm.searchSummary" ></fixt-search-list>-->
-                <fixt-search-list-pagination total-record="400"></fixt-search-list-pagination>
+                <fixt-search-list-pagination total-record="vm.totalSearchRecords" 
+                    change-page="vm.onPageChangeClick(currentRecCount, pageItemCount)">
+                </fixt-search-list-pagination>
             </div>
         </div>
     </div>
