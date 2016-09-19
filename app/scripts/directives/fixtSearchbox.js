@@ -13,6 +13,7 @@ angular.module('fixtApp')
             ngModel: "=",
             selectionChanged: "&",
             searchClick: "&",
+            show:"="
         },
         template: function(element, attrs){
             
