@@ -21,8 +21,8 @@ angular.module('fixtApp')
                                             '<img src="styles/images/icn-close-gray.png" width="14" height="14" alt=""/>' +
                                         '</span>' +
                                     '</div>' +
-                                '</div>' +
-                                '<div class="tagClear pointer" ng-hide="isClearTagShow">' +
+                                '</div>{{isClearTagHide}}' +
+                                '<div class="tagClear pointer" ng-hide="isClearTagHide">' +
                                     '<span ng-click="onClearTagsClick()">Clear tags</span>' +
                                 '</div>' +
                             '</div>' +
@@ -32,9 +32,10 @@ angular.module('fixtApp')
         },
         link: function(scope){
             
+            scope.isClearTagHide = false;
+            
             function initialized(){
                 scope.tagList = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
-                scope.isClearTagShow = false;
                 if(commonUtility.isDefinedObject(
                     handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
                     setClearTagVisibility();
@@ -42,8 +43,8 @@ angular.module('fixtApp')
             }
             
             function setClearTagVisibility(){
-                scope.isClearTagShow = 
-                    (handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, 
+                scope.isClearTagHide = 
+                    !(handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, 
                         false).length > 0);
             }
             
