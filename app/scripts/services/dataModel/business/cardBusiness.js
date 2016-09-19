@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
   .factory('cardBusiness', function (cardData, handlerLoader, commonUtility,
-        constantLoader, objectStorage, localStorage) {
+        constantLoader, objectStorage, localStorage, $timeout) {
     
     var cardBusiness = {};
     
@@ -247,6 +247,9 @@ angular.module('fixtApp')
     
     function getCardFromDB(activeSanboxId, successCallback, cardId){
         return cardData.getCardDetailsListAsync().then(function (response) {
+            return $timeout(function() {
+        
+                 
             var cards = commonUtility.filterInArray(response.data, 
                 {subAccountNodeDetails: {
                     nodeID: cardId}});
@@ -265,7 +268,8 @@ angular.module('fixtApp')
                 }
             }
             commonUtility.callback(successCallback);
-        }, handlerLoader.exceptionHandler.logError);
+        }, 1000);
+        }, handlerLoader.exceptionHandler.logError);   
     }
     
     function getMultipleCards(cardIds, activeSanboxId, successCallback){

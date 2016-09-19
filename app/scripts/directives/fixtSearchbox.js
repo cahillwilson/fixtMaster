@@ -12,11 +12,11 @@ angular.module('fixtApp')
             modelBinding: "@",
             ngModel: "=",
             selectionChanged: "&",
-            searchClick: "&"
+            searchClick: "&",
         },
         template: function(element, attrs){
             
-            var html =  '<div class="col-xs-6 col-xs search-body-height">' +
+            var html =  '<div class="col-xs-6 col-xs search-body-height" ng-show="show">' +
                             '<div class="input-group">' +
                                 '<div class="input-group-btn search-panel">' +
                                     '<div class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +

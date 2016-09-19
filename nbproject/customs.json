@@ -10,6 +10,11 @@
                 "nodes": {}
             }
         },
+        "fixt-card-detail": {
+            "attributes": {
+                "details": {}
+            }
+        },
         "fixt-sand-box-button": {
             "attributes": {
                 "image": {},
@@ -45,6 +50,11 @@
                 "show-card-view-click": {}
             }
         },
+        "fixt-quick-view": {
+            "attributes": {
+                "details": {}
+            }
+        },
         "fixt-searchbox": {
             "attributes": {
                 "label-binding": {},
@@ -54,12 +64,16 @@
                 "ng-model": {},
                 "msg-type": {},
                 "selection-changed": {},
+                "show": {},
                 "label": {},
                 "items": {}
             }
         }
     },
     "attributes": {
-        "close-click": {}
+        "close-click": {},
+        "cg-busy": {
+            "context": "div"
+        }
     }
 }

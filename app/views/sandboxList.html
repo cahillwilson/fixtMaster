@@ -1,5 +1,6 @@
 <div ng-controller="cardController as vm"> 
-    <div id="container" ng-if="vm.searchSummary.length !== 0">
+    <div id="container">
+        
         <!--************* responsive colum layout starts here**********************************----->   
         <div class="cardCver">
             <div class="srchRsltBox">
@@ -14,7 +15,9 @@
                 </div><!---srchRsltHeader end-->
                 <div class="sBxbox1-2"><div class="addSearch"><span class="addSearchItem">Add to Sandbox</span></div></div>
                 <div class="srchDisply">Displaying 10 of 400 Results</div><!---srchDisply end-->
-               <div ng-repeat="item in vm.searchSummary">
+                <div cg-busy="{promise:vm.mainPromise,minDuration:700, templateUrl:vm.templateUrl}"></div>
+    
+               <div ng-repeat="item in vm.searchSummary"  >
                     <div class="srchInfo">
                         <div class="srchTtlDtls">
                             <div class="checkbox checkbox-primary">
@@ -33,11 +36,22 @@
                             </div>
                         </div>
                         <span class="expandInfo">
-                            <img ng-src="{{!item.showQuickView ? 'styles/images/Hrchy-expand.jpg' : 'styles/images/Hrchy-collapse.jpg'}}" width="20" height="20" alt="" ng-click="vm.onClickQuickView(item.nodeDetail)"/>
+                            <img ng-src="{{!item.showQuickView ? 'styles/images/Hrchy-expand.jpg' : 'styles/images/Hrchy-collapse.jpg'}}" width="20" height="20" alt="" ng-click="vm.onClickQuickView(item.nodeDetail, $index)"/>
                         </span>
-                        <div class="srchExpDtls" ng-if="item.showQuickView"><!----start-quick info----->
-                            <div class="sdNodHrch box1-3 omnReg"><!-- start 1st box----->
-                                <div ng-repeat="item in vm.card.parentNodes">
+                        <div class="srchExpDtls" ng-if="item.showQuickView" cg-busy="{promise:vm.myPromise[$index],templateUrl:vm.templateUrl}" ><!----start-quick info----->
+                            <div class="sdNodHrch box1-3 omnReg">
+                                <fixt-quick-view details="vm.card"></fixt-quick-view>
+                            </div>
+                            <!--<div class="sdNodHrch box1-3 omnReg">
+                                <fixt-node-hierarchy nodes="vm.card.parentNodes"></fixt-node-hierarchy>
+                                <div class="sandBoxMidcol"></div>
+                                <div class="sandBoxRightcol">
+                                    <div ng-repeat="field in vm.card.fields | filter: {rank:'!0'} | orderBy: 'rank' | limitTo:5">
+                                        <div class="sbxRightItem1-1">{{field.displayName}}: </div>
+                                        <div class="sbxRightItem1-2">{{field.value}}</div><br>
+                                    </div>
+                                </div>-->
+                                <!--<div ng-repeat="item in vm.card.parentNodes">
                                     <div style="padding-left: {{$index*7}}px;">
                                         <div class="sbxLeftItem">
                                             <span ng-class="{'sbox-item-title':!($index < vm.card.parentNodes.length -1)}">
@@ -47,28 +61,8 @@
                                         </div>
                                     </div><br>
                                 </div>
-                            </div><!-- end 1st box----->
-                            <div class="sdNodHrch box2-3"><!-- start 2nd box----->
-                                <div class="nodDtCmn left">ID:</div>
-                                <div class="nodDtCmn right">###-###-###</div>
-                                <div class="nodDtCmn left">Node Start Date:</div>
-                                <div class="nodDtCmn right">###-###-###</div>
-                                <div class="nodDtCmn left">Node End Date:</div>
-                                <div class="nodDtCmn right">###-###-###</div>
-                                <div class="nodDtCmn left">Description:</div>
-                                <div class="nodDtCmn right">###-###-###</div>
-                            </div>  <!-- end 2nd box----->   
-                            <div class="sdNodHrch box3-3"><!-- start 3rd box----->
-                                <div class="nodDtCmn left">Source Biller ID:</div>
-                                <div class="nodDtCmn right">###-###-###</div>
-                                <div class="nodDtCmn left">Start Date:</div>
-                                <div class="nodDtCmn right">###-###-###</div>
-                                <div class="nodDtCmn left">Sub Account ID:</div>
-                                <div class="nodDtCmn right">###-###-###</div>
-                                <div class="nodDtCmn left">Parent Foreign ID acct :</div>
-                                <div class="nodDtCmn right">###-###-###</div>
-                            </div><!-- end 3rd box----->
-
+                            </div>-->
+                            
                         </div><!----End-quick info----->
                     </div>
                     

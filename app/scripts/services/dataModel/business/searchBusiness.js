@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
   .factory('searchBusiness', function (cardData, handlerLoader, objectStorage, 
-      commonUtility, cardBusiness, constantLoader) {
+      commonUtility, cardBusiness, constantLoader, $timeout) {
     
     var searchBusiness = {};
     var nodeDetails = [];
@@ -31,10 +31,12 @@ angular.module('fixtApp')
             });
         } else {
             return cardData.getInitialSearchResultAsync().then(function (response) {
+                return $timeout(function() {
                 nodeDetails = response.data.nodeDetails;
 
                 setSearchSummaryFromResponse(successCallback, activeSanboxId);
                 commonUtility.callback(successCallback);
+                }, 2000);
             }, handlerLoader.exceptionHandler.logError);
         }
     };

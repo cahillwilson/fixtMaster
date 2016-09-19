@@ -19,6 +19,8 @@ angular.module('fixtApp')
     vm.searchSummary = [];
     vm.nodes = [];
     vm.selectedNodes = [];
+    vm.myPromise = [];
+    vm.templateUrl = 'views/loadingBar-template.html';
     
     serviceLoader.interval(saveSandbox, 
         (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
@@ -66,7 +68,7 @@ angular.module('fixtApp')
     }
     
     function loadSearchSummary() {
-        searchBusiness.getSearchSummaryAsync(loadSuccessCall);
+        vm.mainPromise = searchBusiness.getSearchSummaryAsync(loadSuccessCall);
     }
     
     function sandBoxLoadSuccessCall(){
@@ -153,15 +155,17 @@ angular.module('fixtApp')
         });
     };
     
-    vm.onClickQuickView =  function(quickViewItem) {
+    vm.onClickQuickView =  function(quickViewItem, index) {
+        vm.card = null;
         angular.forEach(objectStorage.searchSummary, function(searchedItem) {
             if(searchedItem.showQuickView) {
                 searchedItem.showQuickView = !searchedItem.showQuickView;
             } else if (searchedItem.nodeDetail.nodeID === quickViewItem.nodeID) {
                 searchedItem.showQuickView = !searchedItem.showQuickView;
-                cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+                vm.myPromise[index] = cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
             }
         });
+        console.log(JSON.stringify(vm));
     };
     
     vm.onSateChange = function (qId) {

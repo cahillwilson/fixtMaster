@@ -6,5 +6,5 @@ angular
     'ngAnimate',
     'content-editable',
     'ngDialog',
-    'ngDragDrop'   
+    'cgBusy'
   ]);
