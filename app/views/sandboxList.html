@@ -7,59 +7,39 @@
                 <div class="sBxbox1-2"><span id='close'><img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/></span></div>
                 <fixt-search-list-heading></fixt-search-list-heading>
                 <div class="sBxbox1-2"><div class="addSearch"><span class="addSearchItem">Add to Sandbox</span></div></div>
-                <div class="srchDisply">Displaying 10 of 400 Results</div><!---srchDisply end-->
+                <div class="srchDisply">Displaying 10 of 400 Results</div>
                 <div cg-busy="{promise:vm.mainPromise,minDuration:700, templateUrl:vm.templateUrl}"></div>
     
-               <div ng-repeat="item in vm.searchSummary"  >
-                    <div class="srchInfo">
-                        <div class="srchTtlDtls">
-                            <div class="checkbox checkbox-primary">
-                                <input id="checkbox_{{$index}}" type="checkbox" ng-model="vm.nodes[item.nodeDetail.nodeID]" ng-change="vm.onSateChange(item.nodeDetail.nodeID)">  
-                                <label for="checkbox_{{$index}}"> 
-                                    <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeDetail.nodeType}} {{item.nodeDetail.nodeID}}</div>
-                                    <span class="srchDtCnt-b">ID</span>
-                                    <span class="srchDtCnt-C">{{item.nodeDetail.nodeID}}</span>
-                                    <span class="srchDtCnt-b">Label</span>
-                                    <span class="srchDtCnt-C">{{item.nodeDetail.nodeLabel}}</span>
-                                    <span class="srchDtCnt-b">Start Date</span>
-                                    <span class="srchDtCnt-C">{{item.nodeDetail.startDate | fixtSplit:' ': 0|date: 'MM/dd/yyyy'}}</span>
-                                    <span class="srchDtCnt-b">Address</span>
-                                    <span class="srchDtCnt-C">123 Main street Dallas TX12345</span> 
-                                </label>
+                <div class="search-list-body">
+                    <div ng-repeat="item in vm.searchSummary">
+                        <div class="srchInfo">
+                            <div class="srchTtlDtls">
+                                <div class="checkbox checkbox-primary">
+                                    <input id="checkbox_{{$index}}" type="checkbox" ng-model="vm.nodes[item.nodeDetail.nodeID]" ng-change="vm.onSateChange(item.nodeDetail.nodeID)">  
+                                    <label for="checkbox_{{$index}}"> 
+                                        <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeDetail.nodeType}} {{item.nodeDetail.nodeID}}</div>
+                                        <span class="srchDtCnt-b">ID</span>
+                                        <span class="srchDtCnt-C">{{item.nodeDetail.nodeID}}</span>
+                                        <span class="srchDtCnt-b">Label</span>
+                                        <span class="srchDtCnt-C">{{item.nodeDetail.nodeLabel}}</span>
+                                        <span class="srchDtCnt-b">Start Date</span>
+                                        <span class="srchDtCnt-C">{{item.nodeDetail.startDate | fixtSplit:' ': 0|date: 'MM/dd/yyyy'}}</span>
+                                        <span class="srchDtCnt-b">Address</span>
+                                        <span class="srchDtCnt-C">123 Main street Dallas TX12345</span> 
+                                    </label>
+                                </div>
+                            </div>
+                            <span class="expandInfo">
+                                <img ng-src="{{!item.showQuickView ? 'styles/images/Hrchy-expand.jpg' : 'styles/images/Hrchy-collapse.jpg'}}" width="20" height="20" alt="" ng-click="vm.onClickQuickView(item.nodeDetail, $index)"/>
+                            </span>
+                            <div class="srchExpDtls" ng-if="item.showQuickView" cg-busy="{promise:vm.myPromise[$index],templateUrl:vm.templateUrl}" ><!----start-quick info----->
+                                <div class="sdNodHrch box1-3 omnReg">
+                                    <fixt-quick-view details="vm.card"></fixt-quick-view>
+                                </div>
                             </div>
                         </div>
-                        <span class="expandInfo">
-                            <img ng-src="{{!item.showQuickView ? 'styles/images/Hrchy-expand.jpg' : 'styles/images/Hrchy-collapse.jpg'}}" width="20" height="20" alt="" ng-click="vm.onClickQuickView(item.nodeDetail, $index)"/>
-                        </span>
-                        <div class="srchExpDtls" ng-if="item.showQuickView" cg-busy="{promise:vm.myPromise[$index],templateUrl:vm.templateUrl}" ><!----start-quick info----->
-                            <div class="sdNodHrch box1-3 omnReg">
-                                <fixt-quick-view details="vm.card"></fixt-quick-view>
-                            </div>
-                            <!--<div class="sdNodHrch box1-3 omnReg">
-                                <fixt-node-hierarchy nodes="vm.card.parentNodes"></fixt-node-hierarchy>
-                                <div class="sandBoxMidcol"></div>
-                                <div class="sandBoxRightcol">
-                                    <div ng-repeat="field in vm.card.fields | filter: {rank:'!0'} | orderBy: 'rank' | limitTo:5">
-                                        <div class="sbxRightItem1-1">{{field.displayName}}: </div>
-                                        <div class="sbxRightItem1-2">{{field.value}}</div><br>
-                                    </div>
-                                </div>-->
-                                <!--<div ng-repeat="item in vm.card.parentNodes">
-                                    <div style="padding-left: {{$index*7}}px;">
-                                        <div class="sbxLeftItem">
-                                            <span ng-class="{'sbox-item-title':!($index < vm.card.parentNodes.length -1)}">
-                                                <span style="font-weight: bold;">{{item |fixtSplit:': ' : 0}}: </span>
-                                                {{item|fixtSplit:': ' : 1}}
-                                            </span>
-                                        </div>
-                                    </div><br>
-                                </div>
-                            </div>-->
-                            
-                        </div><!----End-quick info----->
+                        <div class="brdrInf"></div>
                     </div>
-                    
-                    <div class="brdrInf"></div>
                 </div>
                 <!--<fixt-search-list search-list="vm.searchSummary" ></fixt-search-list>-->
                 <fixt-search-list-pagination total-record="400"></fixt-search-list-pagination>

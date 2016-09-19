@@ -1060,7 +1060,7 @@ input#searchIcon{
 /*Search results loading-- Added with 011-v1*/
 
 .srchRsltBox {
-    height: 1220px;
+    height: 1000px;
     width: 1232px;
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid rgba(204, 204, 204, 1);
@@ -1152,10 +1152,10 @@ input#searchIcon{
     height: 70px;
 }
 .brdrInf {
-    width: 1193px;
+    width: 1185px;
     height: 1px;
     background-color: rgba(201, 201, 201, 1);
-    margin-left: 37px;
+    margin-left: 35px;
     float: left;
 }
 .brdrInFull {
@@ -1525,3 +1525,10 @@ input#searchIcon{
     background:#7d7d7d;
 }      
 /*************************/
+
+.search-list-body{
+    min-height: 400px;
+    height: 715px;
+    overflow: auto;
+    overflow-x: hidden;
+}

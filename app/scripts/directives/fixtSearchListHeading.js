@@ -21,7 +21,7 @@ angular.module('fixtApp')
                                             '<img src="styles/images/icn-close-gray.png" width="14" height="14" alt=""/>' +
                                         '</span>' +
                                     '</div>' +
-                                '</div>{{isClearTagHide}}' +
+                                '</div>' +
                                 '<div class="tagClear pointer" ng-hide="isClearTagHide">' +
                                     '<span ng-click="onClearTagsClick()">Clear tags</span>' +
                                 '</div>' +
