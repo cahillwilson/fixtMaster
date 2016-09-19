@@ -10,11 +10,6 @@
                 "nodes": {}
             }
         },
-        "fixt-card-detail": {
-            "attributes": {
-                "details": {}
-            }
-        },
         "fixt-sand-box-button": {
             "attributes": {
                 "image": {},
@@ -24,6 +19,7 @@
                 "height": {}
             }
         },
+        "fixt-search-list-heading": {},
         "fixt-editable": {
             "attributes": {
                 "item": {},
@@ -50,11 +46,6 @@
                 "show-card-view-click": {}
             }
         },
-        "fixt-quick-view": {
-            "attributes": {
-                "details": {}
-            }
-        },
         "fixt-searchbox": {
             "attributes": {
                 "label-binding": {},
@@ -71,9 +62,6 @@
         }
     },
     "attributes": {
-        "close-click": {},
-        "cg-busy": {
-            "context": "div"
-        }
+        "close-click": {}
     }
 }

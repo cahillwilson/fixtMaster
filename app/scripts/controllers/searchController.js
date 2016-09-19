@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .controller('searchController', function (constantLoader, cardBusiness, 
-        commonUtility, handlerLoader, searchBusiness, objectStorage) {
+        commonUtility, handlerLoader, searchBusiness) {
 
     var vm =  this;
     vm.searchText = constantLoader.defaultValues.BLANK_STRING;
@@ -15,6 +15,16 @@ angular.module('fixtApp')
    
     function initialized() {
         
+    }
+    
+    function setFilterTags(){
+        var tags = [];
+        if(commonUtility.isDefinedObject(
+            handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
+            tags = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
+        }
+        tags.push(vm.searchText);
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, tags, false);
     }
     
     vm.onSearchItemChanged = function(item){
@@ -36,7 +46,7 @@ angular.module('fixtApp')
                 } 
                 break;
         }
-        
+        setFilterTags();
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchText);
         if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) <= -1){            
             commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);            

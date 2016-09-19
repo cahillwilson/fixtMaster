@@ -6,6 +6,7 @@ angular.module('fixtApp')
       USER_NAME: "userName",
       SEARCH_TEXT: "searchText",
       SEARCH_LIST_PER_PAGE_ITEM: "perPageItems",
-      SEARCH_LIST_LAST_COUNT: "searchListLastCount"
+      SEARCH_LIST_LAST_COUNT: "searchListLastCount",
+      FILTER_TAGS: "filterTags"
   });
 
