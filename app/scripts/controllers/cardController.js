@@ -165,7 +165,6 @@ angular.module('fixtApp')
                 vm.myPromise[index] = cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
             }
         });
-        console.log(JSON.stringify(vm));
     };
     
     vm.onSateChange = function (qId) {

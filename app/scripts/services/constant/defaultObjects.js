@@ -142,35 +142,35 @@ angular.module('fixtApp')
                 id: "nodeID",
                 value: "Node ID",
                 maxLength: "TBD",
-                pattern: "TBD",
-                searchType: "tbd"
+                pattern: "ALPHA_NUMERIC",
+                searchType: "id"
             },
             {
                 id: "nodeLabel",
                 value: "Node Label",
                 maxLength: "TBD",
-                pattern: "TBD",
-                searchType: "tbd"
+                pattern: "ALPHA_NUMERIC",
+                searchType: "name"
             },
             {
                 id: "address",
                 value: "Address",
                 maxLength: "TBD",
-                pattern: "TBD",
-                searchType: "tbd"
+                pattern: "ALPHA_NUMERIC",
+                searchType: "name"
             },
             {
                 id: "nodeType",
                 value: "Node Type",
                 maxLength: "TBD",
-                pattern: "TBD",
-                searchType: "tbd"
+                pattern: "ALPHA_NUMERIC",
+                searchType: "name"
             },
             {
                 id: "startDate",
                 value: "Start Date",
-                maxLength: "TBD",
-                pattern: "TBD",
+                maxLength: "10",
+                pattern: "DATE",
                 searchType: "date"
             }
             

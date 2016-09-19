@@ -75,7 +75,7 @@ angular.module('fixtApp')
                     return false;
                 }
                 /* will be deleted - start */
-                if(searchTypeItem.searchType !== "id" && searchTypeItem.searchType !== "name") {
+                if(searchTypeItem.searchType !== "id" && searchTypeItem.searchType !== "name" && searchTypeItem.searchType !== "date") {
                     setErrorPlace(true, "Not Implemented!");
                     return false;
                 }
