@@ -186,7 +186,6 @@ angular.module('fixtApp')
     };
     
     vm.onCloseSearchSummary = function(){
-        handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_MULTI_RESULT_SHOW, false, false);
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
     };
     

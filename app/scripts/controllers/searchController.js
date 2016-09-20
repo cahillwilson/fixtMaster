@@ -48,26 +48,24 @@ angular.module('fixtApp')
                 handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchTypeText);
             }
         }
-        if(setFilterTags()){
-            switch(searchType) {
-                case "name":
+        switch(searchType) {
+            case "name":
+                if(setFilterTags()){
                     if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
                         searchBusiness.getSearchSummaryAsync();
                     }
-                    handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, true, false);
-                    handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_MULTI_RESULT_SHOW, true, false);
-                    break;
-                case "id":
-                    if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
-                        cardBusiness.getCardDetailsListAsync();
-                    } 
-                    handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
-                    handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_MULTI_RESULT_SHOW, false, false);
-                    break;
-            }
-            if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) <= -1){            
-                commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);            
-            }
+                }
+                handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, true, false);
+                break;
+            case "id":
+                if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
+                    cardBusiness.getCardDetailsListAsync();
+                } 
+                handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
+                break;
+        }
+        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) <= -1){            
+            commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);            
         }
     };
     initialized();
