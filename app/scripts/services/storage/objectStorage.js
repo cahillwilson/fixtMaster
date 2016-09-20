@@ -57,6 +57,5 @@ angular.module('fixtApp')
         }
     });
     
-    
     return objectStorage;
 });

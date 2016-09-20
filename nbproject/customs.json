@@ -19,7 +19,14 @@
                 "height": {}
             }
         },
-        "fixt-search-list-heading": {},
+        "fixt-search-list-heading": {
+            "attributes": {
+                "enable-add": {},
+                "show-record-count": {},
+                "total-rec-count": {},
+                "close-summary": {}
+            }
+        },
         "fixt-editable": {
             "attributes": {
                 "item": {},
@@ -46,22 +53,39 @@
                 "show-card-view-click": {}
             }
         },
+        "fixt-search-list-pagination": {
+            "attributes": {
+                "total-record": {},
+                "rec-count": {},
+                "change-page": {}
+            }
+        },
+        "fixt-quick-view": {
+            "attributes": {
+                "details": {}
+            }
+        },
         "fixt-searchbox": {
             "attributes": {
                 "label-binding": {},
                 "show-validation": {},
                 "model-binding": {},
+                "ng-show": {},
                 "search-click": {},
                 "ng-model": {},
                 "msg-type": {},
                 "selection-changed": {},
                 "show": {},
                 "label": {},
-                "items": {}
+                "items": {},
+                "ng-hide": {}
             }
         }
     },
     "attributes": {
-        "close-click": {}
+        "close-click": {},
+        "cg-busy": {
+            "context": "div"
+        }
     }
 }

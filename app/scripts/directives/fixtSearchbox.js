@@ -12,12 +12,11 @@ angular.module('fixtApp')
             modelBinding: "@",
             ngModel: "=",
             selectionChanged: "&",
-            searchClick: "&",
-            show:"="
+            searchClick: "&"
         },
         template: function(element, attrs){
             
-            var html =  '<div class="col-xs-6 col-xs search-body-height" ng-show="show">' +
+            var html =  '<div class="col-xs-6 col-xs search-body-height">' +
                             '<div class="input-group">' +
                                 '<div class="input-group-btn search-panel">' +
                                     '<div class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
@@ -60,6 +59,10 @@ angular.module('fixtApp')
             };
             
             scope.onSearchClick = function(){
+                if(!commonUtility.is3DValidKey(searchTypeItem.searchType)){
+                    setErrorPlace(true, constantLoader.messages.SEARCH_TYPE_NOT_VALID);
+                    return false;
+                }
                 handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TYPE, searchTypeItem.searchType);
                 if(!commonUtility.is3DValidKey(scope.ngModel)){
                     setErrorPlace(true, constantLoader.messages.SEARCH_NOT_VALID);

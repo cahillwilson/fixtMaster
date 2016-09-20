@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .service('serviceLoader', function ($filter, $http, $log, $location, 
-        $rootScope, $interval) {
+        $rootScope, $interval, $timeout) {
         
         var serviceLoader = {};
         
@@ -12,6 +12,7 @@ angular.module('fixtApp')
         var _location = null;
         var _rootScope = null;
         var _interval = null;
+        var _timeout = null;
         
         function setProperty(instance, service){
             if(instance === null){
@@ -54,6 +55,12 @@ angular.module('fixtApp')
         Object.defineProperty(serviceLoader, "interval", {
             get: function() {
                 return setProperty(_interval, $interval);
+            }
+        });
+        
+        Object.defineProperty(serviceLoader, "timeout", {
+            get: function() {
+                return setProperty(_timeout, $timeout);
             }
         });
         

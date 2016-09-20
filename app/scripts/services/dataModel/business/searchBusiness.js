@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
   .factory('searchBusiness', function (cardData, handlerLoader, objectStorage, 
-      commonUtility, cardBusiness, constantLoader, $timeout) {
+      commonUtility, cardBusiness, constantLoader, serviceLoader) {
     
     var searchBusiness = {};
     var nodeDetails = [];
@@ -31,7 +31,7 @@ angular.module('fixtApp')
             });
         } else {
             return cardData.getInitialSearchResultAsync().then(function (response) {
-                return $timeout(function() {
+                return serviceLoader.timeout(function() {
                 nodeDetails = response.data.nodeDetails;
 
                 setSearchSummaryFromResponse(successCallback, activeSanboxId);

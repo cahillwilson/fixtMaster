@@ -6,7 +6,8 @@ angular.module('fixtApp')
 	restricted: "E",
 	replace: true,
         scope: {
-            totalRecord: "@"
+            recCount: "=",
+            changePage: "&"
         },
         template: function(){
             
@@ -66,48 +67,70 @@ angular.module('fixtApp')
             return html;
         },
         link: function(scope){
-            scope.activePage = 1;
-            scope.itemCount = 10;
-            handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_LIST_PER_PAGE_ITEM,
-                scope.itemCount, false);
-            scope.perPageItems = [10, 20, 30];
-            scope.pageCount = (scope.totalRecord / scope.itemCount) + 
-                ((scope.totalRecord % scope.itemCount) > 0 ? 1 : 0);
+            scope.$watch('recCount', function(newValue, oldValue) {
+                if(newValue !== oldValue){
+                    scope.totalRecord = newValue;
+                    initialized();
+                }
+            });
+            scope.totalRecord = scope.recCount;
+            initialized();
             
-            setLastCount();
-            
+
             scope.onPageClick = function(page){
                 scope.activePage = Number(page);
-                setLastCount();
+                onPageChangeClick();
             };
-            
+
             scope.onLeftClick = function(){
                 if(scope.activePage>1){
                     scope.activePage = scope.activePage - 1;
                 }
-                setLastCount();
+                onPageChangeClick();
             };
-            
+
             scope.onRightClick = function(){
                 if(scope.activePage<scope.pageCount){
                     scope.activePage = scope.activePage + 1;
                 }
-                setLastCount();
+                onPageChangeClick();
             };
-            
+
             scope.onPagePerItemClick = function(item){
                 scope.itemCount = item;
-                handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_LIST_PER_PAGE_ITEM,
-                    scope.itemCount, false);
-                scope.pageCount = (scope.totalRecord / scope.itemCount) + 
-                    ((scope.totalRecord % scope.itemCount) > 0 ? 1 : 0);
-                
-                setLastCount();
+                scope.pageCount = Math.ceil(scope.totalRecord / scope.itemCount) + 
+                    ((scope.totalRecord <= scope.itemCount) ? 0 :
+                        ((scope.totalRecord % scope.itemCount) > 0 ? 1 : 0));
+
+                onPageChangeClick();
             };
             
-            function setLastCount(){
-                handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_LIST_LAST_COUNT,
-                    (scope.activePage * scope.itemCount), false);
+            function initialized(){
+                scope.activePage = 1;
+                scope.itemCount = 10;
+                
+                scope.perPageItems = [10, 20, 30];
+                scope.pageCount = Math.ceil(scope.totalRecord / scope.itemCount) + 
+                    ((scope.totalRecord <= scope.itemCount) ? 0 :
+                        ((scope.totalRecord % scope.itemCount) > 0 ? 1 : 0));
+                
+                onPageChangeClick();
+            }
+
+            function onPageChangeClick(){
+                var currentRecCount = scope.activePage * scope.itemCount;
+                if((scope.activePage * scope.itemCount) > scope.totalRecord){
+                    currentRecCount = scope.totalRecord % scope.itemCount;
+                }
+                var pageItemCount = scope.itemCount;
+                if((scope.pageCount === scope.activePage) && 
+                    ((scope.totalRecord % scope.itemCount) > 0)){
+                    pageItemCount = scope.totalRecord % scope.itemCount;
+                }
+                scope.changePage({
+                    currentRecCount: currentRecCount,
+                    pageItemCount: pageItemCount
+                });
             }
         }
     };

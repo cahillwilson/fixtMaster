@@ -20,7 +20,10 @@ angular.module('fixtApp')
     vm.nodes = [];
     vm.selectedNodes = [];
     vm.myPromise = [];
-    vm.templateUrl = 'views/loadingBar-template.html';
+    vm.templateUrl = constantLoader.defaultValues.LOADING_TEMPLATE;
+    vm.currentRecCount = 0;
+    vm.pageItemCount = 0;
+    vm.limit = 5;
     
     serviceLoader.interval(saveSandbox, 
         (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
@@ -63,12 +66,12 @@ angular.module('fixtApp')
             loadSuccessCall();
             objectStorage.isSandboxAdded = false;
         } else {
-            cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+            vm.singleResultPromise = cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
         }
     }
     
     function loadSearchSummary() {
-        vm.mainPromise = searchBusiness.getSearchSummaryAsync(loadSuccessCall);
+        vm.multiResultPromise = searchBusiness.getSearchSummaryAsync(loadSuccessCall);
     }
     
     function sandBoxLoadSuccessCall(){
@@ -155,7 +158,7 @@ angular.module('fixtApp')
         });
     };
     
-    vm.onClickQuickView =  function(quickViewItem, index) {
+    vm.onQuickViewClick =  function(quickViewItem, index) {
         vm.card = null;
         angular.forEach(objectStorage.searchSummary, function(searchedItem) {
             if(searchedItem.showQuickView) {
@@ -167,7 +170,7 @@ angular.module('fixtApp')
         });
     };
     
-    vm.onSateChange = function (qId) {
+    vm.onSelectNode = function (qId) {
         var nodeIndex = vm.selectedNodes.indexOf(qId);
         if (vm.nodes[qId]) {
             vm.selectedNodes.push(qId);
@@ -175,7 +178,16 @@ angular.module('fixtApp')
         } else {
             vm.selectedNodes.splice(nodeIndex, 1);
         }
-    }
+    };
+    
+    vm.onPageChangeClick = function(currentRecCount, pageItemCount){
+        vm.currentRecCount = currentRecCount;
+        vm.pageItemCount = pageItemCount;
+    };
+    
+    vm.onCloseSearchSummary = function(){
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
+    };
     
     initialized();
 

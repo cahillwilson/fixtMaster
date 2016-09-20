@@ -15,11 +15,8 @@ angular.module('fixtApp')
                                 '<div style="padding-left: {{$index*7}}px;">' +
                                     '<div class="sbxLeftItem">' +
                                         '<span ng-class="{\'sbox-item-title\':!($index < nodes.length -1)}">' +
-                                            '<span style="font-weight: bold;">{{item.slice(0, item.indexOf("' + 
-                                                constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + 
-                                            '")+2)}}</span>{{item.slice(item.indexOf("' + 
-                                                constantLoader.defaultValues.HEIRARCHY_LABEL_SEPARATOR1 + 
-                                            '")+2)}}' +
+                                            '<span style="font-weight: bold;">{{item | fixtSplit:\': \' : 0}}: </span>' +
+                                                '{{item | fixtSplit:\': \' : 1}}' +
                                         '</span>' +
                                     '</div>' +
                                 '</div><br>' +
