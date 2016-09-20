@@ -1,13 +1,14 @@
 <div ng-controller="cardController as vm"> 
-    <div id="container">
+    <div cg-busy="{promise:vm.multiResultPromise,templateUrl:vm.templateUrl}">
+    
+        <div id="container" ng-if="vm.multiResultPromise !== null">
         
         <!--************* responsive colum layout starts here**********************************----->   
         <div class="cardCver">
             <div class="srchRsltBox">
                 <div class="sBxbox1-2"><span id='close'><img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/></span></div>
-                <fixt-search-list-heading show-record-count="vm.pageItemCount"></fixt-search-list-heading>
-                <div cg-busy="{promise:vm.mainPromise,minDuration:700, templateUrl:vm.templateUrl}"></div>
-    
+                <fixt-search-list-heading show-record-count="vm.pageItemCount" enable-add="vm.selectedNodes.length > 0"></fixt-search-list-heading>
+                
                 <div class="search-list-body">
                     <div ng-repeat="item in vm.searchSummary">
                         <div class="srchInfo">
@@ -48,7 +49,7 @@
             </div>
         </div>
     </div>
-
+    <div cg-busy="{promise:vm.singleResultPromise,templateUrl:vm.templateUrl}">
     <div class="borderline" ></div>
 
     <div class="row">
@@ -103,5 +104,7 @@
                     close-click="vm.onCloseClick(card)"></fixt-card-view>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 </div>
