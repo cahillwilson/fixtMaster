@@ -15,36 +15,41 @@
                         <div ng-repeat="item in vm.searchSummary">
                             <div class="srchInfo">
                                 <div class="srchTtlDtls">
-                                    <div class="checkbox checkbox-primary">
-                                        <input id="checkbox_{{$index}}" type="checkbox" ng-model="vm.nodes[item.nodeDetail.nodeID]" ng-change="vm.onSateChange(item.nodeDetail.nodeID)">  
-                                        <label for="checkbox_{{$index}}"> 
-                                            <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeDetail.nodeType}} {{item.nodeDetail.nodeID}}</div>
+                                    <div class="chkHoldr">
+                                        <input id="checkbox_{{$index}}" type="checkbox" 
+                                               ng-model="vm.nodes[item.nodeDetail.nodeID]" 
+                                               ng-change="vm.onSelectNode(item.nodeDetail.nodeID)"/>  
+                                        <label for="checkbox_{{$index}}"></label> 
+                                    </div>  
+                                    <div class="rsltDtlsCol"> 
+                                        <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeDetail.nodeType}} {{item.nodeDetail.nodeID}}</div>
+                                        <div class="srchDtContainr">
                                             <span class="srchDtCnt-b">ID</span>
                                             <span class="srchDtCnt-C">{{item.nodeDetail.nodeID}}</span>
                                             <span class="srchDtCnt-b">Label</span>
                                             <span class="srchDtCnt-C">{{item.nodeDetail.nodeLabel}}</span>
                                             <span class="srchDtCnt-b">Start Date</span>
-                                            <span class="srchDtCnt-C">{{item.nodeDetail.startDate | fixtSplit:' ': 0|date: 'MM/dd/yyyy'}}</span>
+                                            <span class="srchDtCnt-C">{{item.nodeDetail.startDate | fixtSplit:' ' : 0|date: 'MM/dd/yyyy'}}</span>
                                             <span class="srchDtCnt-b">Address</span>
-                                            <span class="srchDtCnt-C">123 Main street Dallas TX12345</span> 
-                                        </label>
+                                            <span class="srchDtCnt-C">123 Main street Dallas TX12345</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <span class="expandInfo pointer">
+                                </div>    
+                                <span class="expandInfo pointer" >
                                     <img ng-src="{{!item.showQuickView ? 'styles/images/Hrchy-expand.jpg' : 'styles/images/Hrchy-collapse.jpg'}}" 
-                                        width="20" height="20" alt="" ng-click="vm.onQuickViewClick(item.nodeDetail, $index)"/>
+                                         width="20" height="20" ng-click="vm.onQuickViewClick(item.nodeDetail, $index)"/>
                                 </span>
-                                <div class="srchExpDtls" ng-if="item.showQuickView" 
-                                    cg-busy="{promise:vm.myPromise[$index],templateUrl:vm.templateUrl}" >
-                                    <div class="sdNodHrch box1-3 omnReg">
-                                        <fixt-quick-view details="vm.card"></fixt-quick-view>
-                                    </div>
+                            </div>
+                            <div class="srchExpDtls" ng-if="item.showQuickView" 
+                                 cg-busy="{promise:vm.myPromise[$index],templateUrl:vm.templateUrl}" >
+                                <div class="sdNodHrch box1-3 omnReg">
+                                    <fixt-quick-view details="vm.card"></fixt-quick-view>
                                 </div>
                             </div>
+
                             <div class="brdrInf"></div>
                         </div>
                     </div>
-                    <!--<fixt-search-list search-list="vm.searchSummary" ></fixt-search-list>-->
                     <fixt-search-list-pagination rec-count="vm.searchSummary.length" 
                         change-page="vm.onPageChangeClick(currentRecCount, pageItemCount)">
                     </fixt-search-list-pagination>

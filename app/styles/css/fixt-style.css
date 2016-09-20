@@ -1180,6 +1180,27 @@ input#searchIcon{
     font-size: 20px;
     color: rgba(5, 116, 172, 1);
 }
+
+.chkHoldr {
+    height:70px;
+    width:42px;
+    float:left;
+    padding-top:18px;
+}
+
+.rsltDtlsCol {
+    height:70px;
+    width:auto;
+    float:left;
+    padding-top:8px;
+}
+
+.srchDtContainr {
+    width:900px;
+    height:70px;
+    float:none;
+}
+
 .srchDtCnt-a {
     font-size: 20px;
     color: rgba(5, 116, 172, 1);
@@ -1302,24 +1323,27 @@ input#searchIcon{
     font-size: 16px;
     color: #555555;
 }
-.checkbox input[type="checkbox"] {
-    opacity: 0;
+
+input[type=checkbox],input[type=checkbox-rev] {
+    display:none;
 }
-.checkbox input[type="checkbox"]:focus + label::before {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
+
+input[type=checkbox] + label,input[type=checkbox-rev]:checked + label {
+    background-image:url(../images/checkBox.png);
+    background-repeat:no-repeat;
+    height:24px;
+    width:24px;
+    display:block;
+    padding:0;
 }
-.checkbox input[type="checkbox"]:checked + label::after {
-    font-family: 'FontAwesome';
-    content: "\f00c";
-}
-.checkbox input[type="checkbox"]:disabled + label {
-    opacity: 0.65;
-}
-.checkbox input[type="checkbox"]:disabled + label::before {
-    background-color: #eeeeee;
-    cursor: not-allowed;
+
+input[type=checkbox]:checked + label,input[type=checkbox-rev] + label {
+    background-image:url(../images/checked.png);
+    background-repeat:no-repeat;
+    height:24px;
+    width:24px;
+    display:block;
+    padding:0;
 }
 .checkbox.checkbox-circle label::before {
     border-radius: 50%;

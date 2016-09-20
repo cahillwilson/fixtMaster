@@ -170,7 +170,7 @@ angular.module('fixtApp')
         });
     };
     
-    vm.onSateChange = function (qId) {
+    vm.onSelectNode = function (qId) {
         var nodeIndex = vm.selectedNodes.indexOf(qId);
         if (vm.nodes[qId]) {
             vm.selectedNodes.push(qId);
