@@ -70,7 +70,7 @@ angular.module('fixtApp')
     }
     
     function loadSearchSummary() {
-        vm.mainPromise = searchBusiness.getSearchSummaryAsync(loadSuccessCall);
+        vm.multiResultPromise = searchBusiness.getSearchSummaryAsync(loadSuccessCall);
     }
     
     function sandBoxLoadSuccessCall(){

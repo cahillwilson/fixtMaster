@@ -80,6 +80,9 @@
         }
     },
     "attributes": {
-        "close-click": {}
+        "close-click": {},
+        "cg-busy": {
+            "context": "div"
+        }
     }
 }

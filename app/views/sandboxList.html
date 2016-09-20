@@ -35,7 +35,7 @@
                                     width="20" height="20" alt="" ng-click="vm.onQuickViewClick(item.nodeDetail, $index)"/>
                             </span>
                             <div class="srchExpDtls" ng-if="item.showQuickView" 
-                                cg-busy="{promise:vm.myPromise[$index],templateUrl:vm.templateUrl}" >{{vm.card}}
+                                cg-busy="{promise:vm.myPromise[$index],templateUrl:vm.templateUrl}" >
                                 <div class="sdNodHrch box1-3 omnReg">
                                     <fixt-quick-view details="vm.card"></fixt-quick-view>
                                 </div>
