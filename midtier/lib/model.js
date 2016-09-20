@@ -19,7 +19,7 @@ module.exports = function(mongoose) {
     });
     
     var Sandbox = new Schema({
-        name: String,
+        title: String,
         userId: String,
         timestamp: Number,
         cards: [Card]
@@ -50,6 +50,11 @@ module.exports = function(mongoose) {
         column: Number,
         row: Number,
         displayName: String
+    });
+    
+    var Environment = new Schema({
+        userId: String,
+        sandboxes: [String]
     });
     
     // This is the status of a transaction
@@ -90,6 +95,7 @@ module.exports = function(mongoose) {
         Topfives: mongoose.model('Topfives', Topfive),
         Layouts: mongoose.model('Layouts', Layout),
         Statuses: mongoose.model('Statuses', Status),
+        Environments: mongoose.model('Environments', Environment),
         Transactions: mongoose.model('Transactions', Transaction),
         RelinkCards: mongoose.model('RelinkCards', RelinkCard),
         UnifyCards: mongoose.model('UnifyCards', UnifyCard)

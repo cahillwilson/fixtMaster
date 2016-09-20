@@ -44,18 +44,38 @@ app.use(function(req, res, next) {
   next();
 });
 
-function allowCrossDomain(req, res, next) {
-    logger.info('cross-domain headers being placed');
-//    res.header('Access-Control-Allow-Origin', '*');
-//    res.header('Access-Control-Allow-Methods', 'GET,OPTIONS,HEAD,PUT,POST,DELETE,PATCH');
-//    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-////    res.header('Access-Control-Allow-Headers', 'origin, x-http-method-override, accept, content-type, authorization, x-pingother, if-match, if-modified-since, if-none-match, if-unmodified-since, x-requested-with');
-//     res.header('Access-Control-Expose-Headers', 'tag, link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes');
-    next();
-};
+// API 24 GET USER ENVIRONMENT
+router.get('/environment', function (req, res) {
+    logger.info('Getting saved environment');
+    models.Environments.findOne({
+        'userId': req.headers['userid']
+    }, function(err, enviro) {
+        if (err) {
+            res.send('error in get environment call');
+        } else {
+            res.send(enviro);
+        }
+    });
+});
+
+// API 25 UPDATE USER ENVIRONMENT
+router.post('/environment', function (req, res) {
+    logger.info('Updating saved environment');
+    logger.info('input: ' + JSON.stringify(req.body));
+    models.Environments.findOneAndUpdate({'userId': req.headers['userid']}, {
+        'userId': req.headers['userid'],
+        'sandboxes': [req.body.sandboxes]
+    }, {upsert: true, new: true}, function (err, enviro) {
+        if (err) {
+            res.send('error in update environment call');
+        } else {
+            res.send(enviro);
+        }
+    });
+});
 
 // API 1: GET ALL SANDBOXES FOR USER
-router.get('/sandbox', allowCrossDomain, function (req, res, next) {
+router.get('/sandbox', function (req, res, next) {
     logger.info('get all sandboxes [user ' + req.headers['userid'] + ']');
     var sandboxes = [];
     models.Sandboxes.find({
@@ -66,9 +86,9 @@ router.get('/sandbox', allowCrossDomain, function (req, res, next) {
 });
 
 // API 2: GET SANDBOX
-router.get('/sandbox/:sandboxId', allowCrossDomain, function (req, res, next) {
+router.get('/sandbox/:sandboxId', function (req, res, next) {
     logger.info('get sandbox ' + req.params.sandboxId + ' [user ' + req.headers['userid'] + ']');
-    var sandbox = models.Sandboxes.find({
+    var sandbox = models.Sandboxes.findOne({
         'userId': req.headers['userid'],
         '_id': req.params.sandboxId
     }, function (err, sandbox) {
@@ -76,9 +96,8 @@ router.get('/sandbox/:sandboxId', allowCrossDomain, function (req, res, next) {
     });
 });
 
-// TODO: Revisit whether a sandbox is required here or not
 // Get a card (open a card)
-router.get('/card/:cardId', allowCrossDomain, function (req, res, next) {
+router.get('/card/:cardId', function (req, res, next) {
     logger.info('get card ' + req.params.cardId + ' from sandbox ' + req.params.sandboxId + ' [user ' + req.headers['userid'] + ']');
     models.Cards.find({
         'userId': req.headers['userid'],
@@ -89,7 +108,7 @@ router.get('/card/:cardId', allowCrossDomain, function (req, res, next) {
 });
 
 // Create a card and add it to sandbox
-router.post('/sandbox/:sandboxId/:nodeId', allowCrossDomain, function (req, res) {
+router.post('/sandbox/:sandboxId/:nodeId', function (req, res) {
     logger.info('create card for node ' + req.params.nodeId);
     var timenow = Math.floor(new Date() / 1000);
     var card = new models.Cards({
@@ -124,7 +143,7 @@ router.post('/sandbox/:sandboxId/:nodeId', allowCrossDomain, function (req, res)
     res.send(card);
 });
 
-router.post('/node/:nodeid/card', allowCrossDomain, function (req, res) {
+router.post('/node/:nodeid/card', function (req, res) {
     logger.info('create card for node ' + req.params.nodeId);
     var card = new models.Cards({
         name: req.params.cardName,
@@ -143,7 +162,7 @@ router.post('/node/:nodeid/card', allowCrossDomain, function (req, res) {
 });
 
 // Delete a card
-router.delete('/card/:cardId', allowCrossDomain, function (req, res) {
+router.delete('/card/:cardId', function (req, res) {
     logger.info('Delete card ' + req.params.cardId);
     models.Cards.remove({
         _id: req.params.cardId
@@ -156,15 +175,25 @@ router.delete('/card/:cardId', allowCrossDomain, function (req, res) {
     });
 });
 
+router.put('/sandbox/:sandboxId/cards', function (req, res) {
+    logger.info('adding cards to sandbox');
+    // Verify that the sandbox ID is good by fetching the sandbox
+    // Verify that the card IDs are good by fetching the cards
+    // Add the cards to the sandbox only if they aren't there already
+    // Return the modified sandbox
+    res.send('added cards to sandbox');
+});
+
 // Close card
-router.put('/sandbox/:sandboxId/:cardId', allowCrossDomain, function (req, res, next) {
+router.put('/sandbox/:sandboxId/:cardId', function (req, res) {
     logger.info('close card ' + req.params.cardId);
     // TODO: update the card in mongo
     res.send('Card ' + req.params.cardId + ' closed');
 });
 
+
 // Create a sandbox
-router.post('/sandbox', allowCrossDomain, function (req, res, next) {
+router.post('/sandbox', function (req, res, next) {
     logger.info('create sandbox "' + req.body.name + '" [user ' + req.headers['userid'] + ']');
     var sandbox = new models.Sandboxes({
         name: req.body.name,
@@ -182,7 +211,7 @@ router.post('/sandbox', allowCrossDomain, function (req, res, next) {
 });
 
 // Delete a sandbox
-router.delete('/sandbox/:sandboxId', allowCrossDomain, function (req, res, next) {
+router.delete('/sandbox/:sandboxId', function (req, res, next) {
     logger.info('delete sandbox ' + req.params.sandboxId);
     models.Sandboxes.remove({
         _id: req.params.sandboxId
@@ -195,7 +224,7 @@ router.delete('/sandbox/:sandboxId', allowCrossDomain, function (req, res, next)
     });
 });
 
-router.get('/lockStatus', allowCrossDomain, function (req, res) {
+router.get('/lockStatus', function (req, res) {
     logger.info('requesting lock status');
     // customerId, hierarchyPointId
     request({
@@ -229,7 +258,7 @@ router.get('/lockStatus', allowCrossDomain, function (req, res) {
 
 
 // Execute initial search
-router.get('/initialSearch/:searchCategory/:searchType/:searchString', allowCrossDomain, function (req, res) {
+router.get('/initialSearch/:searchCategory/:searchType/:searchString', function (req, res) {
     logger.info('initial search called');
     request({
         url: 'http://localhost:9000/services/BGWFIXT/v1/search/initialSearch/' + req.params.searchCategory + '/' + req.params.searchType + '/' + req.params.searchString,
@@ -289,7 +318,7 @@ router.get('/initialSearch/:searchCategory/:searchType/:searchString', allowCros
 });
 
 // API 60 GET CHILDREN
-router.get('/node/:nodeID/children', allowCrossDomain, function (req, res) {
+router.get('/node/:nodeID/children', function (req, res) {
     logger.info('requesting child info');
     request({
         url: 'http://localhost:9000/restservices/csi-billinggateway/v1/customerHierarchy/childNode',
@@ -314,7 +343,7 @@ router.get('/node/:nodeID/children', allowCrossDomain, function (req, res) {
     });
 });
 
-router.get('/node/:nodeID/users', allowCrossDomain, function (req, res) {
+router.get('/node/:nodeID/users', function (req, res) {
     logger.info('requesting all node users');
     // search for cards whose node id is :nodeID
     // fish out the user IDs from the results
@@ -329,7 +358,7 @@ router.get('/node/:nodeID/users', allowCrossDomain, function (req, res) {
 
 // API 51
 // Execute invoice node detail call
-router.get('/invoiceDetail', allowCrossDomain, function (req, res) {
+router.get('/invoiceDetail', function (req, res) {
     logger.info('Invoice node detail called');
     // TODO: Check if mongo has the node already and use it if so
     var cachedNode;
@@ -365,7 +394,7 @@ router.get('/invoiceDetail', allowCrossDomain, function (req, res) {
 
 // API 53
 // Execute subaccount node detail call
-router.get('/subaccountDetail', allowCrossDomain, function (req, res) {
+router.get('/subaccountDetail', function (req, res) {
     logger.info('Subaccount node detail called');
     // TODO: Check if mongo has the node already and use it if so
     var cachedNode;
@@ -401,7 +430,7 @@ router.get('/subaccountDetail', allowCrossDomain, function (req, res) {
 
 // API 52
 // Execute bundle node detail call
-router.get('/bundleDetail', allowCrossDomain, function (req, res) {
+router.get('/bundleDetail', function (req, res) {
     logger.info('Bundle node detail called');
     // TODO: Check if mongo has the node already and use it if so
     var cachedNode;
@@ -437,7 +466,7 @@ router.get('/bundleDetail', allowCrossDomain, function (req, res) {
 
 // API 55
 // Execute customer node detail call
-router.get('/customerDetail', allowCrossDomain, function (req, res) {
+router.get('/customerDetail', function (req, res) {
     logger.info('Customer node detail called');
     // TODO: Check if mongo has the node already and use it if so
     var cachedNode;
@@ -473,7 +502,7 @@ router.get('/customerDetail', allowCrossDomain, function (req, res) {
 
 // API 54
 // Execute cdg node detail call
-router.get('/cdgDetail', allowCrossDomain, function (req, res) {
+router.get('/cdgDetail', function (req, res) {
     logger.info('CDG node detail called');
     // TODO: Check if mongo has the node already and use it if so
     var cachedNode;
@@ -509,7 +538,7 @@ router.get('/cdgDetail', allowCrossDomain, function (req, res) {
 
 // API 56
 // Execute hierarchy node detail call
-router.get('/hierarchyDetail', allowCrossDomain, function (req, res) {
+router.get('/hierarchyDetail', function (req, res) {
     logger.info('Hierarchy node detail called');
     // TODO: Check if mongo has the node already and use it if so
     var cachedNode;
@@ -545,7 +574,7 @@ router.get('/hierarchyDetail', allowCrossDomain, function (req, res) {
 
 // API 57
 // Execute site node detail call
-router.get('/siteDetail', allowCrossDomain, function (req, res) {
+router.get('/siteDetail', function (req, res) {
     logger.info('Site node detail called');
     // TODO: Check if mongo has the node already and use it if so
     var cachedNode;
