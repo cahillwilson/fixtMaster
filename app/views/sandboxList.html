@@ -18,8 +18,9 @@
                                     <div class="chkHoldr">
                                         <input id="checkbox_{{$index}}" type="checkbox" 
                                                ng-model="vm.nodes[item.nodeDetail.nodeID]" 
-                                               ng-change="vm.onSelectNode(item.nodeDetail.nodeID)"/>  
-                                        <label for="checkbox_{{$index}}"></label> 
+                                               ng-disabled="(vm.cards.length + vm.selectedNodes.length > vm.limit) && !vm.nodes[item.nodeDetail.nodeID]"
+                                               ng-change="vm.onSelectNode(item.nodeDetail.nodeID)" />  
+                                        <label for="checkbox_{{$index}}"></label>
                                     </div>  
                                     <div class="rsltDtlsCol"> 
                                         <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeDetail.nodeType}} {{item.nodeDetail.nodeID}}</div>

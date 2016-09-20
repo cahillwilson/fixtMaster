@@ -24,6 +24,7 @@ angular.module('fixtApp')
     vm.currentRecCount = 0;
     vm.pageItemCount = 0;
     vm.isMultiResultShow = true;
+    vm.limit = 5;
     
     serviceLoader.interval(saveSandbox, 
         (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
@@ -66,7 +67,7 @@ angular.module('fixtApp')
             loadSuccessCall();
             objectStorage.isSandboxAdded = false;
         } else {
-            cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+            vm.singleResultPromise = cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
         }
     }
     
