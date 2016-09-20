@@ -1116,6 +1116,9 @@ input#searchIcon{
     margin-left: 10px;
     padding-top: 3px;
 }
+.closer-list{
+    margin-right: 10px;
+}
 .srchDisply {
     width: 1228px;
     height: 75px;

@@ -23,7 +23,8 @@
             "attributes": {
                 "enable-add": {},
                 "show-record-count": {},
-                "total-rec-count": {}
+                "total-rec-count": {},
+                "close-summary": {}
             }
         },
         "fixt-editable": {
@@ -69,13 +70,15 @@
                 "label-binding": {},
                 "show-validation": {},
                 "model-binding": {},
+                "ng-show": {},
                 "search-click": {},
                 "ng-model": {},
                 "msg-type": {},
                 "selection-changed": {},
                 "show": {},
                 "label": {},
-                "items": {}
+                "items": {},
+                "ng-hide": {}
             }
         }
     },

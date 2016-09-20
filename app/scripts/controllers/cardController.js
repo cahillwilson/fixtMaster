@@ -23,6 +23,7 @@ angular.module('fixtApp')
     vm.templateUrl = constantLoader.defaultValues.LOADING_TEMPLATE;
     vm.currentRecCount = 0;
     vm.pageItemCount = 0;
+    vm.isMultiResultShow = true;
     
     serviceLoader.interval(saveSandbox, 
         (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
@@ -182,6 +183,11 @@ angular.module('fixtApp')
     vm.onPageChangeClick = function(currentRecCount, pageItemCount){
         vm.currentRecCount = currentRecCount;
         vm.pageItemCount = pageItemCount;
+    };
+    
+    vm.onCloseSearchSummary = function(){
+        vm.isMultiResultShow = false;
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
     };
     
     initialized();

@@ -5,6 +5,7 @@ angular.module('fixtApp')
       IS_SEARCH_HIDDEN: "isSearchHidden",
       USER_NAME: "userName",
       SEARCH_TEXT: "searchText",
-      FILTER_TAGS: "filterTags"
+      FILTER_TAGS: "filterTags",
+      IS_SHOW_SEARCH_TYPE: "isShowSearchType"
   });
 

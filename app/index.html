@@ -140,11 +140,13 @@
         <div id="container">
             <div class="searchTab" ng-controller="searchController as vm" 
                 ng-hide="{{'IS_SEARCH_HIDDEN' | fixtRootScope}}">
-                <fixt-searchbox show="!vm.showSearchType" label="vm.searchCategory" items="vm.searchCategoryList"
+                <fixt-searchbox ng-hide="{{'IS_SHOW_SEARCH_TYPE' | fixtRootScope}}" 
+                    label="vm.searchCategory" items="vm.searchCategoryList"
                     search-click="vm.onSearchClick()" ng-model="vm.searchText"
                     selection-changed="vm.onSearchItemChanged(item)"
                     label-binding="value" model-binding="id"></fixt-searchbox>
-                <fixt-searchbox show="vm.showSearchType" label="vm.searchType" items="vm.searchTypeList"
+                <fixt-searchbox  ng-show="{{'IS_SHOW_SEARCH_TYPE' | fixtRootScope}}" 
+                    label="vm.searchType" items="vm.searchTypeList"
                     search-click="vm.onSearchClick()" ng-model="vm.searchTypeText"
                     selection-changed="vm.onSearchItemChanged(item)"
                     label-binding="value" model-binding="id"></fixt-searchbox>

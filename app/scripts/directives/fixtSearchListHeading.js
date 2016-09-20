@@ -10,11 +10,18 @@ angular.module('fixtApp')
             totalRecCount: "=",
             enableAdd: "=",
             singleTagDelete: "&",
-            clearAllTags: "&"
+            clearAllTags: "&",
+            closeSummary: "&"
         },
         template: function(){
             
             var html =  '<div>' +
+                            '<div class="sBxbox1-2">' +
+                                '<span class="closer-list pointer" ng-click="onCloseClick()">' +
+                                    '<img src="styles/images/btn-close-sml.png" ' +
+                                        'width="12" height="10" alt=""/>' +
+                                '</span>' +
+                            '</div>' +
                             '<div class="srchRsltHeader">' +
                                 '<div class="srchRslTitl">Search Result:</div>' +
                                 '<div class="tagContainer">' +
@@ -83,6 +90,10 @@ angular.module('fixtApp')
                 handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, tags, false);
                 setClearTagVisibility();
                 scope.singleTagDelete();
+            };
+            
+            scope.onCloseClick = function(){
+                scope.closeSummary();
             };
             
             initialized();

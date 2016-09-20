@@ -11,7 +11,8 @@ angular.module('fixtApp')
     vm.searchTypeList = constantLoader.defaultObjects.SEARCH_LIST_TYPE;
     vm.searchCategory = constantLoader.defaultValues.SEARCH_CAT_INIT_VALUE;
     vm.searchType = constantLoader.defaultValues.SEARCH_TYPE_INIT_VALUE;
-    vm.showSearchType = false;
+    
+    handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
    
     function initialized() {
         
@@ -38,12 +39,13 @@ angular.module('fixtApp')
                 if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
                     searchBusiness.getSearchSummaryAsync();
                 }
-                vm.showSearchType = true;
+                handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, true, false);
                 break;
             case "id":
                 if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
                     cardBusiness.getCardDetailsListAsync();
                 } 
+                handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
                 break;
         }
         setFilterTags();
