@@ -16,7 +16,7 @@ angular.module('fixtApp')
         template: function(){
             
             var html =  '<div>' +
-                            '<div class="sBxbox1-2">' +
+                            '<div class="sBxbox1-2 sBxbox1-3">' +
                                 '<span class="closer-list pointer" ng-click="onCloseClick()">' +
                                     '<img src="styles/images/btn-close-sml.png" ' +
                                         'width="12" height="10" alt=""/>' +
@@ -38,7 +38,7 @@ angular.module('fixtApp')
                                     '</div>' +
                                 '</div>' +
                             '</div>' +
-                            '<div class="sBxbox1-2">' +
+                            '<div class="sBxbox1-2 sBxbox1-3">' +
                                 '<div class="addSearch pointer" ng-class="{\'active\':enableAdd}">' +
                                     '<span class="addSearchItem">Add to Sandbox</span>' +
                                 '</div>' +
