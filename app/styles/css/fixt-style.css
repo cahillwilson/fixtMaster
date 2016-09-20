@@ -1127,26 +1127,24 @@ input#searchIcon{
     padding: 29px 0 0 15px;
 }
 .addSearch {
-    height: 42px;
-    width: 150px;
-    background-color: rgba(179, 179, 179, 1);
-    border-radius: 8px;
-    float: left;
-    margin-left: 10px;
-    list-style: none;
+    float:left;
+    list-style:none;
+    height:42px;
+    width:150px;
+    background-color:rgba(179,179,179,1);
+    border-radius:8px;
+    margin:4px 8px 0 0;
+    padding:11px 0 0 16px;
 }
+
+.addSearch.active {
+    background-color:rgba(0,118,170,1);
+}
+
 .addSearchItem {
-    font-family: "Omnes_ATTW02Medium";
-    font-size: 16px;
-    color: rgba(246, 246, 246, 1);
-}
-.addSearch {
-    height: 42px;
-    width: 150px;
-    background-color: rgba(179, 179, 179, 1);
-    border-radius: 8px;
-    padding: 11px 0 0 16px;
-    margin: 4px 8px 0 0;
+    font-family:Omnes_ATTW02Medium;
+    font-size:16px;
+    color:rgba(246,246,246,1);
 }
 .srchInfo {
     width: 1232px;

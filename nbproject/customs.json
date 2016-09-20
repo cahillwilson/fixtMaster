@@ -21,6 +21,7 @@
         },
         "fixt-search-list-heading": {
             "attributes": {
+                "enable-add": {},
                 "show-record-count": {}
             }
         },

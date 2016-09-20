@@ -7,6 +7,7 @@ angular.module('fixtApp')
 	replace: true,
         scope: {
             showRecordCount: "=",
+            enableAdd: "=",
             singleTagDelete: "&",
             clearAllTags: "&"
         },
@@ -30,7 +31,7 @@ angular.module('fixtApp')
                                 '</div>' +
                             '</div>' +
                             '<div class="sBxbox1-2">' +
-                                '<div class="addSearch pointer">' +
+                                '<div class="addSearch pointer" ng-class="{\'active\':enableAdd}">' +
                                     '<span class="addSearchItem">Add to Sandbox</span>' +
                                 '</div>' +
                             '</div>' +
