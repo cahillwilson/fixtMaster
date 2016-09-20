@@ -23,7 +23,6 @@ angular.module('fixtApp')
     vm.templateUrl = constantLoader.defaultValues.LOADING_TEMPLATE;
     vm.currentRecCount = 0;
     vm.pageItemCount = 0;
-    vm.isMultiResultShow = true;
     vm.limit = 5;
     
     serviceLoader.interval(saveSandbox, 
@@ -187,7 +186,7 @@ angular.module('fixtApp')
     };
     
     vm.onCloseSearchSummary = function(){
-        vm.isMultiResultShow = false;
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_MULTI_RESULT_SHOW, false, false);
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
     };
     

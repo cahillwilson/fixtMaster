@@ -55,12 +55,14 @@ angular.module('fixtApp')
                         searchBusiness.getSearchSummaryAsync();
                     }
                     handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, true, false);
+                    handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_MULTI_RESULT_SHOW, true, false);
                     break;
                 case "id":
                     if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
                         cardBusiness.getCardDetailsListAsync();
                     } 
                     handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
+                    handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_MULTI_RESULT_SHOW, false, false);
                     break;
             }
             if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) <= -1){            

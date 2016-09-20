@@ -1,7 +1,8 @@
 <div ng-controller="cardController as vm"> 
     <div cg-busy="{promise:vm.multiResultPromise,templateUrl:vm.templateUrl}">
     
-        <div id="container" ng-if="(vm.multiResultPromise !== null) && vm.isMultiResultShow">
+        <div id="container" ng-if="(vm.multiResultPromise !== null)" 
+            ng-show="{{'IS_MULTI_RESULT_SHOW' | fixtRootScope}}">
         
         <!--************* responsive colum layout starts here**********************************----->   
             <div class="cardCver">
@@ -20,7 +21,7 @@
                                                ng-model="vm.nodes[item.nodeDetail.nodeID]" 
                                                ng-disabled="(vm.cards.length + vm.selectedNodes.length > vm.limit) && !vm.nodes[item.nodeDetail.nodeID]"
                                                ng-change="vm.onSelectNode(item.nodeDetail.nodeID)" />  
-                                        <label for="checkbox_{{$index}}"></label>
+                                        <label class="pointer" for="checkbox_{{$index}}"></label>
                                     </div>  
                                     <div class="rsltDtlsCol"> 
                                         <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeDetail.nodeType}} {{item.nodeDetail.nodeID}}</div>
