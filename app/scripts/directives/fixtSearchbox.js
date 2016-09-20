@@ -59,6 +59,10 @@ angular.module('fixtApp')
             };
             
             scope.onSearchClick = function(){
+                if(!commonUtility.is3DValidKey(searchTypeItem.searchType)){
+                    setErrorPlace(true, constantLoader.messages.SEARCH_TYPE_NOT_VALID);
+                    return false;
+                }
                 handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TYPE, searchTypeItem.searchType);
                 if(!commonUtility.is3DValidKey(scope.ngModel)){
                     setErrorPlace(true, constantLoader.messages.SEARCH_NOT_VALID);

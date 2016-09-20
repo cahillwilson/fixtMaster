@@ -1083,10 +1083,12 @@ input#searchIcon{
     float: left;
 }
 .tagContainer {
-    width: auto;
+    width: 1000px;
     height: 55px;
     float: left;
     padding: 14px 0 13px 0;
+    max-width: 1000px;
+    overflow: auto;
 }
 .srchTagBox {
     height: 28px;

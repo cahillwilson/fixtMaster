@@ -24,8 +24,15 @@ angular.module('fixtApp')
             handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
             tags = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
         }
-        tags.push(vm.searchText);
-        handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, tags, false);
+        if(tags.indexOf(handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT)) < 0){
+            tags.push(handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT));
+            handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, tags, false);
+        }else{
+            handlerLoader.modalHandler.showMsg(constantLoader.messages.SEARCH_WITH_SAME_TAG_HEADING,
+                constantLoader.messages.SEARCH_WITH_SAME_TAG_MSG);
+            return false;
+        }
+        return true;
     }
     
     vm.onSearchItemChanged = function(item){
@@ -34,24 +41,31 @@ angular.module('fixtApp')
     
     vm.onSearchClick = function(){
         var searchType = handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TYPE);
-        switch(searchType) {
-            case "name":
-                if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
-                    searchBusiness.getSearchSummaryAsync();
-                }
-                handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, true, false);
-                break;
-            case "id":
-                if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
-                    cardBusiness.getCardDetailsListAsync();
-                } 
-                handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
-                break;
-        }
-        setFilterTags();
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchText);
-        if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) <= -1){            
-            commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);            
+        if(commonUtility.is3DValidKey(handlerLoader.sessionHandler.get(
+            constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false))){
+            if(handlerLoader.sessionHandler.get(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false)){
+                handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchTypeText);
+            }
+        }
+        if(setFilterTags()){
+            switch(searchType) {
+                case "name":
+                    if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
+                        searchBusiness.getSearchSummaryAsync();
+                    }
+                    handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, true, false);
+                    break;
+                case "id":
+                    if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
+                        cardBusiness.getCardDetailsListAsync();
+                    } 
+                    handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
+                    break;
+            }
+            if(commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) <= -1){            
+                commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);            
+            }
         }
     };
     initialized();
