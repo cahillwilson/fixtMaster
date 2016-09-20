@@ -17,7 +17,6 @@ angular.module('fixtApp')
     vm.cards = [];
     vm.sandBoxes = [];
     vm.searchSummary = [];
-    vm.totalSearchRecords = 0;
     vm.nodes = [];
     vm.selectedNodes = [];
     vm.myPromise = [];
@@ -81,7 +80,6 @@ angular.module('fixtApp')
     function loadSuccessCall(){
         vm.cards = objectStorage.cardList;
         vm.searchSummary = objectStorage.searchSummary;
-        vm.totalSearchRecords = vm.searchSummary.length;
         if (commonUtility.isDefinedObject(vm.cards)) {
             vm.card = vm.cards[0];
         }

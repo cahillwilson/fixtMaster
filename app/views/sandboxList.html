@@ -7,7 +7,9 @@
         <div class="cardCver">
             <div class="srchRsltBox">
                 <div class="sBxbox1-2"><span id='close'><img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/></span></div>
-                <fixt-search-list-heading show-record-count="vm.pageItemCount" enable-add="vm.selectedNodes.length > 0"></fixt-search-list-heading>
+                <fixt-search-list-heading show-record-count="vm.pageItemCount" 
+                    enable-add="vm.selectedNodes.length > 0"
+                    total-rec-count="vm.searchSummary.length"></fixt-search-list-heading>
                 
                 <div class="search-list-body">
                     <div ng-repeat="item in vm.searchSummary">
@@ -43,7 +45,7 @@
                     </div>
                 </div>
                 <!--<fixt-search-list search-list="vm.searchSummary" ></fixt-search-list>-->
-                <fixt-search-list-pagination total-record="vm.totalSearchRecords" 
+                <fixt-search-list-pagination rec-count="vm.searchSummary.length" 
                     change-page="vm.onPageChangeClick(currentRecCount, pageItemCount)">
                 </fixt-search-list-pagination>
             </div>

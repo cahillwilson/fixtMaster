@@ -22,7 +22,8 @@
         "fixt-search-list-heading": {
             "attributes": {
                 "enable-add": {},
-                "show-record-count": {}
+                "show-record-count": {},
+                "total-rec-count": {}
             }
         },
         "fixt-editable": {
@@ -54,6 +55,7 @@
         "fixt-search-list-pagination": {
             "attributes": {
                 "total-record": {},
+                "rec-count": {},
                 "change-page": {}
             }
         },

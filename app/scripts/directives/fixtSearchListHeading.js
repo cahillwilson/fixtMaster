@@ -7,6 +7,7 @@ angular.module('fixtApp')
 	replace: true,
         scope: {
             showRecordCount: "=",
+            totalRecCount: "=",
             enableAdd: "=",
             singleTagDelete: "&",
             clearAllTags: "&"
@@ -36,7 +37,7 @@ angular.module('fixtApp')
                                 '</div>' +
                             '</div>' +
                             '<div class="srchDisply">Displaying {{showRecordCount}} of ' +
-                                '{{\'SEARCH_LIST_TOT_COUNT\' | fixtRootScope : true}} Results</div>' +
+                                '{{totalRecCount}} Results</div>' +
                         '</div>';
         
             return html;
