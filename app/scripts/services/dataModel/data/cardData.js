@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .factory('cardData', function (dataAccess, constantLoader) {
+  .factory('cardData', function (dataAccess, constantLoader, handlerLoader) {
     
     var cardData = {};
     
@@ -14,7 +14,9 @@ angular.module('fixtApp')
     };
     
     cardData.getInitialSearchResultAsync = function() {
-        return dataAccess.getFromJsonAsync(constantLoader.relativeUrls.SEARCH_SUMMARY);
+        var httpPromise = dataAccess.getFromJsonAsync(constantLoader.relativeUrls.SEARCH_SUMMARY);;
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_SUMMARY_PROMISE, httpPromise, false);
+        return httpPromise;
     };
     
     return cardData;

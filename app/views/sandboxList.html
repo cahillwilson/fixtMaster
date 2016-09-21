@@ -1,5 +1,5 @@
 <div ng-controller="cardController as vm"> 
-    <div cg-busy="{promise:vm.multiResultPromise,templateUrl:vm.templateUrl}">
+    <div cg-busy="{promise:{{'SEARCH_SUMMARY_PROMISE' | fixtRootScope}},templateUrl:vm.templateUrl, minDuration: 1000}">
     
         <div id="container" ng-if="(vm.multiResultPromise !== null)" 
             ng-show="{{'IS_SHOW_SEARCH_TYPE' | fixtRootScope}}">

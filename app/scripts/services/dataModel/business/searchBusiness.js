@@ -36,7 +36,7 @@ angular.module('fixtApp')
 
                 setSearchSummaryFromResponse(successCallback, activeSanboxId);
                 commonUtility.callback(successCallback);
-                }, 2000);
+                }, 1000);
             }, handlerLoader.exceptionHandler.logError);
         }
     };
