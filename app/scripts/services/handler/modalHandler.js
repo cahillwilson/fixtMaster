@@ -7,27 +7,44 @@ angular.module('fixtApp')
 
         modalDialog.showMsg = function(heading, message){
             ngDialog.open({
-                template: '<h3>' + heading + '</h3>' +
-                          '<p>' + message + '</p>' +
-                        '<div class="ngdialog-buttons"> <button type="button" ' +
-                        'class="ngdialog-button ngdialog-button-secondary" ' +
-                        'ng-click="closeThisDialog(0)">OK</button></div>',
+                template:   '<div class="popContinr">' +
+                                '<div class="popBox">' +
+                                '<div class="popTitle">' + heading + '</div>' +
+                                    '<div class="popBxContRit pointer" ng-click="closeThisDialog(0)">' +
+                                        '<img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/>' +
+                                    '</div>' +
+                                    '<div class="popDtls">' + message + '</div >' +
+                                    '<div class="popboxFooter">' +
+                                    '<div class="popFooterLft"></div>' +
+                                    '<div class="popFooterRit pointer" ng-click="closeThisDialog(0)">' +
+                                        '<span class="button active">OK</span>' + 
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>',
                 plain: true,
                 closeByDocument: false
             });
         };
         modalDialog.showConfirm = function(heading, message){
             var nestedConfirmDialog = ngDialog.openConfirm({
-                template:   '<h3>' + heading + '</h3>' +
-                            '<p>' + message + '</p>' +
-                            '<div class="ngdialog-buttons">' +
-                                '<button type="button" class="ngdialog-button ngdialog-button-primary" ' +
-                                    ' ng-click="confirm(1)">' + 
-                                    constantLoader.defaultValues.CONFIRM_BOX_YES + '</button>' +
-                                '<button type="button" class="ngdialog-button ngdialog-button-secondary" ' +
-                                    'ng-click="closeThisDialog(0)">' + 
-                                    constantLoader.defaultValues.CONFIRM_BOX_NO + '</button>' +
-                            '</div>',
+                template:   '<div class="popContinr">' +
+                                '<div class="popBox">' +
+                                '<div class="popTitle">' + heading + '</div>' +
+                                    '<div class="popBxContRit pointer" ng-click="closeThisDialog(0)">' +
+                                        '<img src="styles/images/btn-close-sml.png" width="12" height="10" alt=""/>' +
+                                    '</div>' +
+                                    '<div class="popDtls">' + message + '</div >' +
+                                    '<div class="popboxFooter">' +
+                                    '<div class="popFooterLft pointer" ng-click="closeThisDialog(0)">' + 
+                                        constantLoader.defaultValues.CONFIRM_BOX_NO + '</div>' +
+                                    '<div class="popFooterRit pointer" ng-click="confirm(1)">' +
+                                        '<span class="button active">' + 
+                                            constantLoader.defaultValues.CONFIRM_BOX_YES + '</span>' + 
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>',
                 plain: true,
                 closeByDocument: false
             });
