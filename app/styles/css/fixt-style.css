@@ -1094,13 +1094,14 @@ input#searchIcon{
 }
 .srchTagBox {
     height: 28px;
-    width: 130px;
+    min-width: 100px;
+    width: auto;
     background-color: rgba(242, 242, 242, 1);
     border: 1px solid rgba(201, 201, 201, 1);
     border-radius: 8px;
     float: left;
     margin-left: 10px;
-    list-style: none;
+    list-style: none;   
 }
 .srchtagItem {
     font-family: "Omnes_ATTW02Medium";
@@ -1111,7 +1112,7 @@ input#searchIcon{
 }
 .tagClosr {
     float: right;
-    padding: 2px 9px 7px 0;
+    padding: 2px 9px 7px 5px;
 }
 .tagClear {
     font-size: 16px;

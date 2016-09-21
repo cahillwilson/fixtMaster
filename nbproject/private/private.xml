@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="UPR">
-            <file>file:/C:/ATnT/FIXTatnt/app/scripts/services/dataModel/business/cardBusiness.js</file>
-            <file>file:/C:/ATnT/FIXTatnt/app/views/sandboxList.html</file>
-            <file>file:/C:/ATnT/FIXTatnt/app/scripts/controllers/cardController.js</file>
-            <file>file:/C:/ATnT/FIXTatnt/app/scripts/services/dataModel/business/sandboxBusiness.js</file>
-            <file>file:/C:/ATnT/FIXTatnt/app/scripts/services/handler/modalHandler.js</file>
-        </group>
         <group>
             <file>file:/C:/AT&amp;T/atntfixt/app/scripts/services/dataModel/business/searchBusiness.js</file>
             <file>file:/C:/AT&amp;T/atntfixt/app/scripts/services/storage/objectStorage.js</file>
@@ -23,6 +16,13 @@
             <file>file:/C:/AT&amp;T/atntfixt/app/scripts/controllers/dashboardController.js</file>
             <file>file:/C:/AT&amp;T/atntfixt/app/scripts/directives/fixtSearchList.js</file>
             <file>file:/C:/AT&amp;T/atntfixt/app/scripts/directives/fixtQuickView.js</file>
+        </group>
+        <group name="UPR">
+            <file>file:/C:/ATnT/FIXTatnt/app/views/sandboxList.html</file>
+            <file>file:/C:/ATnT/FIXTatnt/app/styles/css/fixt-style.css</file>
+            <file>file:/C:/ATnT/FIXTatnt/app/scripts/controllers/cardController.js</file>
+            <file>file:/C:/ATnT/FIXTatnt/app/scripts/services/constant/sessionItems.js</file>
+            <file>file:/C:/ATnT/FIXTatnt/app/scripts/controllers/searchController.js</file>
         </group>
     </open-files>
 </project-private>

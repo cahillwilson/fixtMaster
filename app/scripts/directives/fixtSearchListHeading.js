@@ -28,12 +28,12 @@ angular.module('fixtApp')
                                     '<div class="srchTagBox" ng-repeat="tag in tagList">' +
                                         '<span class="srchtagItem">{{tag}}</span>' +
                                         '<div class="tagClosr">' +
-                                            '<span class="pointer" ng-click="onTagClick(tag)">' +
+                                            '<span class="pointer" ng-click="onTagClick(tag)" ng-hide="$index===0">' +
                                                 '<img src="styles/images/icn-close-gray.png" width="14" height="14" alt=""/>' +
                                             '</span>' +
                                         '</div>' +
                                     '</div>' +
-                                    '<div class="tagClear pointer" ng-hide="isClearTagHide">' +
+                                    '<div class="tagClear pointer" ng-show="tagList.length>1">' +
                                         '<span ng-click="onClearTagsClick()">Clear tags</span>' +
                                     '</div>' +
                                 '</div>' +
@@ -57,14 +57,7 @@ angular.module('fixtApp')
                 scope.tagList = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
                 if(commonUtility.isDefinedObject(
                     handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
-                    setClearTagVisibility();
                 }
-            }
-            
-            function setClearTagVisibility(){
-                scope.isClearTagHide = 
-                    !(handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, 
-                        false).length > 0);
             }
             
             scope.onClearTagsClick = function(){
@@ -72,10 +65,9 @@ angular.module('fixtApp')
                 if(commonUtility.isDefinedObject(
                     handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
                     tags = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
-                    for(var index=tags.length-1; index>=0; index--){
+                    for(var index=tags.length-1; index>=1; index--){
                         tags.splice(tags.indexOf(tags[index]), 1);
                     }
-                    setClearTagVisibility();
                     scope.clearAllTags();
                 }
             };
@@ -88,7 +80,6 @@ angular.module('fixtApp')
                     tags.splice(tags.indexOf(tag), 1);
                 }
                 handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, tags, false);
-                setClearTagVisibility();
                 scope.singleTagDelete();
             };
             
