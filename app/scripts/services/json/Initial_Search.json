@@ -3,7 +3,7 @@
         [
             {
                 "nodeType": "AS",
-                "nodeID": "9310001226402",
+                "nodeID": "12345",
                 "nodeLabel": "CUSTOMBILLING",
                 "hierarchyPointID": "164241159",
                 "startDate": "20080924 11:30:08",
@@ -32,7 +32,7 @@
             
             {
                 "nodeType": "AS",
-                "nodeID": "2331001226402",
+                "nodeID": "123456",
                 "nodeLabel": "CUSTOM_BILLING",
                 "hierarchyPointID": "164241159",
                 "startDate": "20080924 11:30:08",
@@ -61,7 +61,7 @@
             
             {
                 "nodeType": "AS",
-                "nodeID": "6310001226402",
+                "nodeID": "123457",
                 "nodeLabel": "CUSTOMBILLING",
                 "hierarchyPointID": "164241159",
                 "startDate": "20080924 11:30:08",

@@ -186,6 +186,12 @@ angular.module('fixtApp')
         vm.pageItemCount = pageItemCount;
     };
     
+    vm.addToSandbox = function() {
+         if(commonUtility.isDefinedObject(vm.selectedNodes) && vm.selectedNodes.length > 0) {
+             cardBusiness.addMultipleCards(vm.selectedNodes, vm.activeBoxId, loadSuccessCall);
+         }
+    };
+    
     vm.onCloseSearchSummary = function(){
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
         handlerLoader.sessionHandler.delete(constantLoader.sessionItems.FILTER_TAGS);

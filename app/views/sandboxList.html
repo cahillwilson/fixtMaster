@@ -12,7 +12,8 @@
                         total-rec-count="vm.searchSummary.length"
                         single-tag-delete="vm.onDeleteTagClick()"
                         clear-all-tags="vm.onDeleteTagClick()"
-                        close-summary="vm.onCloseSearchSummary()"></fixt-search-list-heading>
+                        close-summary="vm.onCloseSearchSummary()"
+                        add-to-sandbox="vm.addToSandbox()"></fixt-search-list-heading>
 
                     <div class="search-list-body">
                         <div ng-repeat="item in vm.searchSummary">

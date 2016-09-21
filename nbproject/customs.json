@@ -22,7 +22,10 @@
         "fixt-search-list-heading": {
             "attributes": {
                 "enable-add": {},
+                "clear-all-tags": {},
+                "add-to-sandbox": {},
                 "show-record-count": {},
+                "single-tag-delete": {},
                 "total-rec-count": {},
                 "close-summary": {}
             }

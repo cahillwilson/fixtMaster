@@ -11,7 +11,8 @@ angular.module('fixtApp')
             enableAdd: "=",
             singleTagDelete: "&",
             clearAllTags: "&",
-            closeSummary: "&"
+            closeSummary: "&",
+            addToSandbox: "&"
         },
         template: function(){
             
@@ -40,7 +41,7 @@ angular.module('fixtApp')
                             '</div>' +
                             '<div class="sBxbox1-2 sBxbox1-3">' +
                                 '<div class="addSearch pointer" ng-class="{\'active\':enableAdd}">' +
-                                    '<span class="addSearchItem">Add to Sandbox</span>' +
+                                    '<span class="addSearchItem" ng-click="onAddClick()">Add to Sandbox</span>' +
                                 '</div>' +
                             '</div>' +
                             '<div class="srchDisply">Displaying {{showRecordCount}} of ' +
@@ -81,6 +82,10 @@ angular.module('fixtApp')
                 }
                 handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, scope.tagList, false);
                 scope.singleTagDelete();
+            };
+            
+            scope.onAddClick = function(){
+                scope.addToSandbox();
             };
             
             scope.onCloseClick = function(){
