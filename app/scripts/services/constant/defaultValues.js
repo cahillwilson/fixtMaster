@@ -19,5 +19,6 @@ angular.module('fixtApp')
         SANDBOX_SAVE_INTERVAL_IN_SEC: 100,
         SANDBOX_REPLACABLE_NAME: "{sandbox}",
         CARD_COUNT_REPLACABLE_TEXT: "{cardCount}",
-        LOADING_TEMPLATE: "views/loadingBar-template.html"
+        LOADING_TEMPLATE: "views/loadingBar-template.html",
+        SEARCH_LIST_PER_PAGE_RECORD: 10
     });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .directive('fixtSearchListPagination', function (handlerLoader, constantLoader) {
+  .directive('fixtSearchListPagination', function (constantLoader) {
     return {
 	restricted: "E",
 	replace: true,
@@ -47,7 +47,7 @@ angular.module('fixtApp')
                                     '</span>' +
                                 '</li>' +
                             '</ul>' +
-                            '<div class="srchInFtrBox cmnFrteen">' +
+                            '<div class="srchInFtrBox cmnFrteen" ng-hide="true">' +
                                 'Items per page' +
                                 '<div class="dropdown srchPrPg">' +
                                     '<div data-toggle="dropdown" class="dropdown-toggle pointer">' +
@@ -107,7 +107,7 @@ angular.module('fixtApp')
             
             function initialized(){
                 scope.activePage = 1;
-                scope.itemCount = 10;
+                scope.itemCount = constantLoader.defaultValues.SEARCH_LIST_PER_PAGE_RECORD;
                 
                 scope.perPageItems = [10, 20, 30];
                 scope.pageCount = Math.ceil(scope.totalRecord / scope.itemCount) + 
