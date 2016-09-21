@@ -1377,6 +1377,14 @@ input[type=checkbox]:checked + label,input[type=checkbox-rev] + label {
     display:block;
     padding:0;
 }
+input[type=checkbox]:disabled + label,input[type=checkbox-rev] + label {
+    background-image:url(../images/checked_disabled.png);
+    background-repeat:no-repeat;
+    height:24px;
+    width:24px;
+    display:block;
+    padding:0;
+}
 .checkbox.checkbox-circle label::before {
     border-radius: 50%;
 }
