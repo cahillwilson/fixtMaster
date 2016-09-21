@@ -54,32 +54,32 @@ angular.module('fixtApp')
             scope.isClearTagHide = false;
             
             function initialized(){
-                scope.tagList = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
+                scope.tagList = [];
                 if(commonUtility.isDefinedObject(
                     handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
+                    scope.tagList = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
                 }
             }
             
             scope.onClearTagsClick = function(){
-                var tags = [];
                 if(commonUtility.isDefinedObject(
                     handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
-                    tags = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
-                    for(var index=tags.length-1; index>=1; index--){
-                        tags.splice(tags.indexOf(tags[index]), 1);
+                    scope.tagList = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
+                    for(var index=scope.tagList.length-1; index>=1; index--){
+                        scope.tagList.splice(scope.tagList.indexOf(scope.tagList[index]), 1);
                     }
+                    handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, scope.tagList, false);
                     scope.clearAllTags();
                 }
             };
             
             scope.onTagClick = function(tag){
-                var tags = [];
                 if(commonUtility.isDefinedObject(
                     handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
-                    tags = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
-                    tags.splice(tags.indexOf(tag), 1);
+                    scope.tagList = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
+                    scope.tagList.splice(scope.tagList.indexOf(tag), 1);
                 }
-                handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, tags, false);
+                handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, scope.tagList, false);
                 scope.singleTagDelete();
             };
             

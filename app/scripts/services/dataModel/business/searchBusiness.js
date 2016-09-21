@@ -25,20 +25,14 @@ angular.module('fixtApp')
     }
     
     searchBusiness.getSearchSummaryAsync = function(successCallback, activeSanboxId) {
-        if (commonUtility.isDefinedObject(objectStorage.searchSummary) && objectStorage.searchSummary.length > 0) {
-            angular.forEach(objectStorage.searchSummary, function (value) {
-                value.showQuickView = false;
-            });
-        } else {
-            return cardData.getInitialSearchResultAsync().then(function (response) {
-                return serviceLoader.timeout(function() {
+        objectStorage.searchSummary = [];
+        return cardData.getInitialSearchResultAsync().then(function (response) {
+            return serviceLoader.timeout(function() {
                 nodeDetails = response.data.nodeDetails;
-
                 setSearchSummaryFromResponse(successCallback, activeSanboxId);
                 commonUtility.callback(successCallback);
-                }, 1000);
-            }, handlerLoader.exceptionHandler.logError);
-        }
+            }, 1000);
+        }, handlerLoader.exceptionHandler.logError);
     };
     
     return searchBusiness;

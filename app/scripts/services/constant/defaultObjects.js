@@ -143,7 +143,7 @@ angular.module('fixtApp')
                 value: "Node ID",
                 maxLength: "TBD",
                 pattern: "ALPHA_NUMERIC",
-                searchType: "id"
+                searchType: "name"
             },
             {
                 id: "nodeLabel",

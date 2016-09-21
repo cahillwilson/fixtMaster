@@ -188,6 +188,12 @@ angular.module('fixtApp')
     
     vm.onCloseSearchSummary = function(){
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
+        handlerLoader.sessionHandler.delete(constantLoader.sessionItems.FILTER_TAGS);
+        objectStorage.searchSummary = [];
+    };
+    
+    vm.onDeleteTagClick = function(){
+        searchBusiness.getSearchSummaryAsync(loadSuccessCall);
     };
     
     initialized();

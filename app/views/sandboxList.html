@@ -10,6 +10,8 @@
                     <fixt-search-list-heading show-record-count="vm.pageItemCount" 
                         enable-add="vm.selectedNodes.length > 0"
                         total-rec-count="vm.searchSummary.length"
+                        single-tag-delete="vm.onDeleteTagClick()"
+                        clear-all-tags="vm.onDeleteTagClick()"
                         close-summary="vm.onCloseSearchSummary()"></fixt-search-list-heading>
 
                     <div class="search-list-body">
