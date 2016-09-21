@@ -22,7 +22,7 @@
                                     <div class="chkHoldr">
                                         <input id="checkbox_{{$index}}" type="checkbox" 
                                                ng-model="vm.nodes[item.nodeDetail.nodeID]" 
-                                               ng-disabled="(vm.cards.length + vm.selectedNodes.length > vm.limit) && !vm.nodes[item.nodeDetail.nodeID]"
+                                               ng-disabled="((vm.cards.length + vm.selectedNodes.length > vm.limit) && !vm.nodes[item.nodeDetail.nodeID]) || item.isAdded"
                                                ng-change="vm.onSelectNode(item.nodeDetail.nodeID)" />  
                                         <label class="pointer" for="checkbox_{{$index}}"></label>
                                     </div>  
@@ -40,7 +40,7 @@
                                         </div>
                                     </div>
                                 </div>    
-                                <span class="expandInfo pointer" >
+                                <span class="expandInfo pointer" ng-if="!item.isAdded" >
                                     <img ng-src="{{!item.showQuickView ? 'styles/images/Hrchy-expand.jpg' : 'styles/images/Hrchy-collapse.jpg'}}" 
                                          width="20" height="20" ng-click="vm.onQuickViewClick(item.nodeDetail, $index)"/>
                                 </span>

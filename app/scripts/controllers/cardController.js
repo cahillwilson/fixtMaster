@@ -80,6 +80,7 @@ angular.module('fixtApp')
     }
     
     function loadSuccessCall(){
+        vm.selectedNodes = [];
         vm.cards = objectStorage.cardList;
         vm.searchSummary = objectStorage.searchSummary;
         if (commonUtility.isDefinedObject(vm.cards)) {
@@ -188,9 +189,19 @@ angular.module('fixtApp')
     
     vm.addToSandbox = function() {
          if(commonUtility.isDefinedObject(vm.selectedNodes) && vm.selectedNodes.length > 0) {
-             cardBusiness.addMultipleCards(vm.selectedNodes, vm.activeBoxId, loadSuccessCall);
+             cardBusiness.addMultipleCards(vm.selectedNodes, vm.activeBoxId, addMultipleCardsSuccessCall);
          }
     };
+    
+    function addMultipleCardsSuccessCall() {
+        var result;
+        for(var i = 0; i < vm.selectedNodes.length; i++) {
+            result = commonUtility.filterInArray(objectStorage.searchSummary, 
+                        {nodeDetail: {nodeID: vm.selectedNodes[i]}})[0];
+            result.isAdded = true;
+        }
+                loadSuccessCall();
+    }
     
     vm.onCloseSearchSummary = function(){
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
