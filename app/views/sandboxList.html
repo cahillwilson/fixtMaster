@@ -23,7 +23,7 @@
                                         <input id="checkbox_{{$index}}" type="checkbox" 
                                                ng-model="vm.nodes[item.nodeDetail.nodeID]" 
                                                ng-disabled="((vm.cards.length + vm.selectedNodes.length > vm.limit) && !vm.nodes[item.nodeDetail.nodeID]) || item.isAdded"
-                                               ng-change="vm.onSelectNode(item.nodeDetail.nodeID)" />  
+                                               ng-change="vm.onSelectNode(item.nodeDetail.nodeID)" />
                                         <label class="pointer" for="checkbox_{{$index}}"></label>
                                     </div>  
                                     <div class="rsltDtlsCol"> 
