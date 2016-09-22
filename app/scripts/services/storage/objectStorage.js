@@ -12,6 +12,7 @@ angular.module('fixtApp')
     var searchSummary = [];
     var quickViewCard = {};
     var quickViewId = constantLoader.defaultValues.BLANK_STRING;
+    var tagList = [];
     
     Object.defineProperty(objectStorage, "hasMultipleRecords", {
         get: function() {
@@ -74,6 +75,15 @@ angular.module('fixtApp')
         },
         set: function(quickView) {
             quickViewCard = quickView;
+        }
+    });
+    
+    Object.defineProperty(objectStorage, "tagList", {
+        get: function() {
+            return tagList;
+        },
+        set: function(tags) {
+            tagList = tags;
         }
     });
     

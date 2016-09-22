@@ -12,7 +12,8 @@ angular.module('fixtApp')
             singleTagDelete: "&",
             clearAllTags: "&",
             closeSummary: "&",
-            addToSandbox: "&"
+            addToSandbox: "&",
+            filterTags: "="
         },
         template: function(){
             
@@ -26,7 +27,7 @@ angular.module('fixtApp')
                             '<div class="srchRsltHeader">' +
                                 '<div class="srchRslTitl">Search Result:</div>' +
                                 '<div class="tagContainer">' +
-                                    '<div class="srchTagBox" ng-repeat="tag in tagList">' +
+                                    '<div class="srchTagBox" ng-repeat="tag in filterTags">' +
                                         '<span class="srchtagItem">{{tag}}</span>' +
                                         '<div class="tagClosr">' +
                                             '<span class="pointer" ng-click="onTagClick(tag)" ng-hide="$index===0">' +
@@ -34,7 +35,7 @@ angular.module('fixtApp')
                                             '</span>' +
                                         '</div>' +
                                     '</div>' +
-                                    '<div class="tagClear pointer" ng-show="tagList.length>1">' +
+                                    '<div class="tagClear pointer" ng-show="filterTags.length>1">' +
                                         '<span ng-click="onClearTagsClick()">Clear tags</span>' +
                                     '</div>' +
                                 '</div>' +
@@ -54,34 +55,12 @@ angular.module('fixtApp')
             
             scope.isClearTagHide = false;
             
-            function initialized(){
-                scope.tagList = [];
-                if(commonUtility.isDefinedObject(
-                    handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
-                    scope.tagList = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
-                }
-            }
-            
             scope.onClearTagsClick = function(){
-                if(commonUtility.isDefinedObject(
-                    handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
-                    scope.tagList = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
-                    for(var index=scope.tagList.length-1; index>=1; index--){
-                        scope.tagList.splice(scope.tagList.indexOf(scope.tagList[index]), 1);
-                    }
-                    handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, scope.tagList, false);
                     scope.clearAllTags();
-                }
             };
             
-            scope.onTagClick = function(tag){
-                if(commonUtility.isDefinedObject(
-                    handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
-                    scope.tagList = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
-                    scope.tagList.splice(scope.tagList.indexOf(tag), 1);
-                }
-                handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, scope.tagList, false);
-                scope.singleTagDelete();
+            scope.onTagClick = function(filter){
+                scope.singleTagDelete({tag: filter});
             };
             
             scope.onAddClick = function(){
@@ -91,8 +70,6 @@ angular.module('fixtApp')
             scope.onCloseClick = function(){
                 scope.closeSummary();
             };
-            
-            initialized();
         }
     };
   });
