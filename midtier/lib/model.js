@@ -13,6 +13,7 @@ module.exports = function(mongoose) {
         userId: String,
         nodeId: String,
         nodeDetails: Node,
+        sandboxId: Schema.Types.ObjectId,
         sandboxIndex: Number,
         hierarchy: Number,
         timestamp: Number
@@ -22,7 +23,7 @@ module.exports = function(mongoose) {
         title: String,
         userId: String,
         timestamp: Number,
-        cards: [Card]
+        cards: [Schema.Types.ObjectId]
     });    
     
     var Role = new Schema({
@@ -36,6 +37,13 @@ module.exports = function(mongoose) {
         name: String,
         userId: String,
         role: Number
+    });
+    
+    var Setting = new Schema({
+        userId: String,
+        maxNodesPerSearch: Number,
+        maxCardsPerSandbox: Number,
+        maxSandboxes: Number
     });
     
     var Topfive = new Schema({
@@ -91,6 +99,7 @@ module.exports = function(mongoose) {
         Cards: mongoose.model('Cards', Card),
         Roles: mongoose.model('Roles', Role),
         Users: mongoose.model('Users', User),
+        Settings: mongoose.model('Settings', Setting),
         Nodes: mongoose.model('Nodes', Node),
         Topfives: mongoose.model('Topfives', Topfive),
         Layouts: mongoose.model('Layouts', Layout),

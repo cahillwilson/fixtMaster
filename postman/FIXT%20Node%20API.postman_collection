@@ -30,7 +30,7 @@
 		{
 			"name": "2 Get sandbox",
 			"request": {
-				"url": "{{scheme}}://{{host}}/{{context}}/sandbox/57a23a2c46382ac2aca942cf",
+				"url": "{{scheme}}://{{host}}/{{context}}/sandbox/57d6f9146458dfeba1511497",
 				"method": "GET",
 				"header": [
 					{
@@ -189,12 +189,23 @@
 		{
 			"name": "10 Add cards to sandbox",
 			"request": {
-				"url": "",
-				"method": "POST",
-				"header": [],
+				"url": "{{scheme}}://{{host}}/{{context}}/sandbox/57d6f9146458dfeba1511497/cards",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
 				"body": {
-					"mode": "formdata",
-					"formdata": []
+					"mode": "raw",
+					"raw": "{\n\t\"cards\":[\"1234\", \"90\"]\n}"
 				},
 				"description": ""
 			},
@@ -380,6 +391,71 @@
 				"url": "",
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "24 Get user environment",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/environment",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": "Get the last saved user environment; this consists of the sandboxes and cards associated with the user and their placement on the desktop work area."
+			},
+			"response": []
+		},
+		{
+			"name": "25 Update user environment",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/environment",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"sandboxes\":[\"1234\", \"90\"]\n}"
+				},
+				"description": "Save a new version of the user environment to the database."
+			},
+			"response": []
+		},
+		{
+			"name": "26 Get user settings",
+			"request": {
+				"url": "{{scheme}}://{{host}}/{{context}}/settings",
+				"method": "GET",
+				"header": [
+					{
+						"key": "userid",
+						"value": "123456",
+						"description": ""
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": []
