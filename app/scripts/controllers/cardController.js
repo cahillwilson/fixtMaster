@@ -196,6 +196,11 @@ angular.module('fixtApp')
         objectStorage.quickViewId = constantLoader.defaultValues.BLANK_STRING;
         if(commonUtility.isDefinedObject(vm.selectedNodes) && vm.selectedNodes.length > 0) {
             cardBusiness.addMultipleCards(vm.selectedNodes, vm.activeBoxId, addMultipleCardsSuccessCall);
+            
+            serviceLoader.timeout(function(){
+                handlerLoader.modalHandler.showMsg(constantLoader.messages.CARD_ADD_TO_SANDBOX_HEADING, 
+                    constantLoader.messages.CARD_ADD_TO_SANDBOX_MSG);
+            }, 1000);
         }
     };
     
@@ -206,7 +211,7 @@ angular.module('fixtApp')
                         {nodeDetail: {nodeID: vm.selectedNodes[i]}})[0];
             result.isAdded = true;
         }
-                loadSuccessCall();
+        loadSuccessCall();
     }
     
     vm.onCloseSearchSummary = function(){

@@ -11,5 +11,7 @@ angular.module('fixtApp')
         MAX_CARD_ERROR_HEADING: "Maximum of {cardCount} reached!",
         MAX_CARD_ERROR_MSG: "You are attempting to add more that {cardCount} cards to this sandbox.",
         SEARCH_WITH_SAME_TAG_HEADING: "Same tag!",
-        SEARCH_WITH_SAME_TAG_MSG: "Please search with different tag"
+        SEARCH_WITH_SAME_TAG_MSG: "Please search with different tag",
+        CARD_ADD_TO_SANDBOX_HEADING: "Card Added",
+        CARD_ADD_TO_SANDBOX_MSG: "Card(s) is added to the sandbox successfully."
     });
