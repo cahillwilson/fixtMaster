@@ -97,22 +97,36 @@ angular.module('fixtApp')
     }
     
     function setSearchSummaryEnableForCardCount(){
+        
         var isAllCardInSandbox = 
             ((vm.cards.length + vm.selectedNodes.length) >= 
                 constantLoader.defaultValues.MAX_CARD_IN_SANDBOX);
         
         if(commonUtility.isDefinedObject(vm.searchSummary)){
             for(var index=0; index<vm.searchSummary.length; index++){
-                if(vm.searchSummary[index].isAdded){
+                var isAdded = false;
+                for(var idx=0; idx<vm.cards.length; idx++){
+                    if(vm.cards[idx].id === vm.searchSummary[index].nodeDetail.nodeID){
+                        isAdded = true;
+                        break;
+                    }
+                }
+                vm.searchSummary[index].isAdded = isAdded;
+                if(commonUtility.is3DValidKey(vm.searchSummary[index].isAdded) 
+                    && vm.searchSummary[index].isAdded){
                     vm.searchSummary[index].isHideForCount = false;
                 }else{
-                    for(var count=0; count<vm.selectedNodes.length; count++){
-                        if(vm.searchSummary[index].nodeDetail.nodeID === vm.selectedNodes[count]){
-                            vm.searchSummary[index].isHideForCount = false;
-                            break;
-                        }else{
-                            vm.searchSummary[index].isHideForCount = isAllCardInSandbox;
+                    if(vm.selectedNodes.length > 0){
+                        for(var count=0; count<vm.selectedNodes.length; count++){
+                            if(vm.searchSummary[index].nodeDetail.nodeID === vm.selectedNodes[count]){
+                                vm.searchSummary[index].isHideForCount = false;
+                                break;
+                            }else{
+                                vm.searchSummary[index].isHideForCount = isAllCardInSandbox;
+                            }
                         }
+                    }else{
+                        vm.searchSummary[index].isHideForCount = isAllCardInSandbox;
                     }
                 }
             }
@@ -121,8 +135,8 @@ angular.module('fixtApp')
     
     vm.onCloseClick = function(card){
         vm.cards.splice(vm.cards.indexOf(card), 1);
-        vm.onSaveSanboxClick();
         setSearchSummaryEnableForCardCount();
+        vm.onSaveSanboxClick();
     };
     
     vm.onCardDetailsClick = function(nodeId){
