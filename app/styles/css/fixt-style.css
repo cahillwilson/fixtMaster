@@ -1656,3 +1656,7 @@ input[type=checkbox]:disabled + label,input[type=checkbox-rev] + label {
 border-radius: 8px;float:left; text-align:center; padding-top:21px;font-family:"Omnes_ATTW02Medium";}
 .button.active{background-color: rgba(0, 118, 170, 1); color:#ffffff;}
 /*POPUP BOX STYLING*******/
+
+.quick-view-div{
+    padding-left: 33px;
+}
