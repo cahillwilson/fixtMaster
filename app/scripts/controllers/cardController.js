@@ -89,15 +89,40 @@ angular.module('fixtApp')
             objectStorage.quickViewId = constantLoader.defaultValues.BLANK_STRING;
         }
         vm.filterTags = objectStorage.tagList;
+        setSearchSummaryEnableForCardCount();
     }
     
     function saveSandbox(){
         sandboxBusiness.saveSandBox(vm.sandBoxes, vm.activeBoxId, vm.title, vm.cards);
     }
     
+    function setSearchSummaryEnableForCardCount(){
+        var isAllCardInSandbox = 
+            ((vm.cards.length + vm.selectedNodes.length) >= 
+                constantLoader.defaultValues.MAX_CARD_IN_SANDBOX);
+        
+        if(commonUtility.isDefinedObject(vm.searchSummary)){
+            for(var index=0; index<vm.searchSummary.length; index++){
+                if(vm.searchSummary[index].isAdded){
+                    vm.searchSummary[index].isHideForCount = false;
+                }else{
+                    for(var count=0; count<vm.selectedNodes.length; count++){
+                        if(vm.searchSummary[index].nodeDetail.nodeID === vm.selectedNodes[count]){
+                            vm.searchSummary[index].isHideForCount = false;
+                            break;
+                        }else{
+                            vm.searchSummary[index].isHideForCount = isAllCardInSandbox;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     vm.onCloseClick = function(card){
         vm.cards.splice(vm.cards.indexOf(card), 1);
         vm.onSaveSanboxClick();
+        setSearchSummaryEnableForCardCount();
     };
     
     vm.onCardDetailsClick = function(nodeId){
@@ -143,6 +168,7 @@ angular.module('fixtApp')
         localStorage.setObject("sandBoxes", vm.sandBoxes);
         objectStorage.cardList = [];
         loadSuccessCall();
+        setSearchSummaryEnableForCardCount();
     };
     
     vm.onSanboxMenuClick = function(){
@@ -181,10 +207,10 @@ angular.module('fixtApp')
         var nodeIndex = vm.selectedNodes.indexOf(qId);
         if (vm.nodes[qId]) {
             vm.selectedNodes.push(qId);
-
         } else {
             vm.selectedNodes.splice(nodeIndex, 1);
         }
+        setSearchSummaryEnableForCardCount();
     };
     
     vm.onPageChangeClick = function(currentRecCount, pageItemCount){
@@ -196,11 +222,6 @@ angular.module('fixtApp')
         objectStorage.quickViewId = constantLoader.defaultValues.BLANK_STRING;
         if(commonUtility.isDefinedObject(vm.selectedNodes) && vm.selectedNodes.length > 0) {
             cardBusiness.addMultipleCards(vm.selectedNodes, vm.activeBoxId, addMultipleCardsSuccessCall);
-            
-            serviceLoader.timeout(function(){
-                handlerLoader.modalHandler.showMsg(constantLoader.messages.CARD_ADD_TO_SANDBOX_HEADING, 
-                    constantLoader.messages.CARD_ADD_TO_SANDBOX_MSG);
-            }, 1000);
         }
     };
     
