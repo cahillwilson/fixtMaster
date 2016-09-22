@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .controller('searchController', function (constantLoader, cardBusiness, 
-        commonUtility, handlerLoader, searchBusiness) {
+        commonUtility, handlerLoader, searchBusiness, objectStorage) {
 
     var vm =  this;
     vm.searchText = constantLoader.defaultValues.BLANK_STRING;
@@ -15,18 +15,19 @@ angular.module('fixtApp')
     handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
    
     function initialized() {
-        
+        vm.searchText = constantLoader.defaultValues.BLANK_STRING;
+        vm.searchTypeText = constantLoader.defaultValues.BLANK_STRING;
+        vm.searchCategory = constantLoader.defaultValues.SEARCH_CAT_INIT_VALUE;
+        vm.searchType = constantLoader.defaultValues.SEARCH_TYPE_INIT_VALUE;
     }
     
     function setFilterTags(){
         var tags = [];
-        if(commonUtility.isDefinedObject(
-            handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false))){
-            tags = handlerLoader.sessionHandler.get(constantLoader.sessionItems.FILTER_TAGS, false);
+        if(commonUtility.isDefinedObject(objectStorage.tagList) && objectStorage.tagList.length > 0){
+            tags = objectStorage.tagList;
         }
         if(tags.indexOf(handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT)) < 0){
-            tags.push(handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT));
-            handlerLoader.sessionHandler.set(constantLoader.sessionItems.FILTER_TAGS, tags, false);
+            objectStorage.tagList.push(handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT));
         }else{
             handlerLoader.modalHandler.showMsg(constantLoader.messages.SEARCH_WITH_SAME_TAG_HEADING,
                 constantLoader.messages.SEARCH_WITH_SAME_TAG_MSG);
