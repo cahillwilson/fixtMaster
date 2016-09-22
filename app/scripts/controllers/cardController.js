@@ -15,6 +15,7 @@ angular.module('fixtApp')
     
     vm.cardChildList = [];
     vm.cards = [];
+    vm.quickCard = {};
     vm.sandBoxes = [];
     vm.searchSummary = [];
     vm.nodes = [];
@@ -83,8 +84,9 @@ angular.module('fixtApp')
         vm.selectedNodes = [];
         vm.cards = objectStorage.cardList;
         vm.searchSummary = objectStorage.searchSummary;
-        if (commonUtility.isDefinedObject(vm.cards)) {
-            vm.card = vm.cards[0];
+        if(commonUtility.is3DValidKey(objectStorage.quickViewId)){
+            vm.quickCard = objectStorage.quickViewCard;
+            objectStorage.quickViewId = constantLoader.defaultValues.BLANK_STRING;
         }
     }
     
@@ -160,14 +162,16 @@ angular.module('fixtApp')
         });
     };
     
-    vm.onQuickViewClick =  function(quickViewItem, index) {
-        vm.card = null;
+    vm.onQuickViewClick =  function(quickViewItem, index, nodeId) {
+        objectStorage.quickViewId = nodeId;
         angular.forEach(objectStorage.searchSummary, function(searchedItem) {
             if(searchedItem.showQuickView) {
                 searchedItem.showQuickView = !searchedItem.showQuickView;
             } else if (searchedItem.nodeDetail.nodeID === quickViewItem.nodeID) {
                 searchedItem.showQuickView = !searchedItem.showQuickView;
-                vm.myPromise[index] = cardBusiness.getCardDetailsListAsync(loadSuccessCall, vm.activeBoxId);
+                vm.myPromise[index] = 
+                    cardBusiness.getCardDetailsListAsync(loadSuccessCall, 
+                        vm.activeBoxId);
             }
         });
     };
@@ -188,9 +192,10 @@ angular.module('fixtApp')
     };
     
     vm.addToSandbox = function() {
-         if(commonUtility.isDefinedObject(vm.selectedNodes) && vm.selectedNodes.length > 0) {
-             cardBusiness.addMultipleCards(vm.selectedNodes, vm.activeBoxId, addMultipleCardsSuccessCall);
-         }
+        objectStorage.quickViewId = constantLoader.defaultValues.BLANK_STRING;
+        if(commonUtility.isDefinedObject(vm.selectedNodes) && vm.selectedNodes.length > 0) {
+            cardBusiness.addMultipleCards(vm.selectedNodes, vm.activeBoxId, addMultipleCardsSuccessCall);
+        }
     };
     
     function addMultipleCardsSuccessCall() {

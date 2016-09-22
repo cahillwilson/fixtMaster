@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fixtApp')
-  .service('objectStorage', function () {
+  .service('objectStorage', function (constantLoader) {
     
     var objectStorage = {};
     
@@ -10,6 +10,8 @@ angular.module('fixtApp')
     var hasMultipleRecords = false;
     var sandboxEditId = 0;
     var searchSummary = [];
+    var quickViewCard = {};
+    var quickViewId = constantLoader.defaultValues.BLANK_STRING;
     
     Object.defineProperty(objectStorage, "hasMultipleRecords", {
         get: function() {
@@ -54,6 +56,24 @@ angular.module('fixtApp')
         },
         set: function(searchResult) {
             searchSummary = searchResult;
+        }
+    });
+    
+    Object.defineProperty(objectStorage, "quickViewId", {
+        get: function() {
+            return quickViewId;
+        },
+        set: function(id) {
+            quickViewId = id;
+        }
+    });
+    
+    Object.defineProperty(objectStorage, "quickViewCard", {
+        get: function() {
+            return quickViewCard;
+        },
+        set: function(quickView) {
+            quickViewCard = quickView;
         }
     });
     
