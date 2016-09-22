@@ -11,7 +11,7 @@ angular.module('fixtApp')
         template: function(){
             
             var html =  
-                    '<div> ' +
+                    '<div class="quick-view-div"> ' +
                         '<fixt-node-hierarchy nodes="details.parentNodes"></fixt-node-hierarchy>' +                            
                         '<div class="sandBoxMidcol" ng-if="details!== null;"></div>' +
                         '<div class="sandBoxRightcol">' +
