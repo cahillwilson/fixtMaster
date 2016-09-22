@@ -2,7 +2,7 @@
 
 angular.module('fixtApp')
     .controller('searchController', function (constantLoader, cardBusiness, 
-        commonUtility, handlerLoader, searchBusiness, objectStorage) {
+        commonUtility, handlerLoader, searchBusiness, objectStorage, serviceLoader) {
 
     var vm =  this;
     vm.searchText = constantLoader.defaultValues.BLANK_STRING;
@@ -13,7 +13,14 @@ angular.module('fixtApp')
     vm.searchType = constantLoader.defaultValues.SEARCH_TYPE_INIT_VALUE;
     
     handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
-   
+    
+    serviceLoader.rootScope.$on(constantLoader.eventList.RESET_SEARCH_BOX, function(){
+        vm.searchCategory = constantLoader.defaultValues.SEARCH_CAT_INIT_VALUE;
+        vm.searchType = constantLoader.defaultValues.SEARCH_TYPE_INIT_VALUE;
+        vm.searchText = constantLoader.defaultValues.BLANK_STRING;
+        vm.searchTypeText = constantLoader.defaultValues.BLANK_STRING;
+    });
+    
     function initialized() {
         vm.searchText = constantLoader.defaultValues.BLANK_STRING;
         vm.searchTypeText = constantLoader.defaultValues.BLANK_STRING;

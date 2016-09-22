@@ -219,6 +219,7 @@ angular.module('fixtApp')
         objectStorage.tagList = [];
         vm.filterTags = objectStorage.tagList;
         objectStorage.searchSummary = [];
+        serviceLoader.rootScope.$broadcast(constantLoader.eventList.RESET_SEARCH_BOX);
     };
     
     vm.onDeleteTagClick = function(tag){
