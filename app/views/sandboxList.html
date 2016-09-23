@@ -22,10 +22,11 @@
                                 <div class="srchTtlDtls">
                                     <div class="chkHoldr">
                                         <input id="checkbox_{{$index}}" type="checkbox" 
-                                               ng-model="vm.nodes[item.nodeDetail.nodeID]" 
-                                               ng-disabled="((vm.cards.length + vm.selectedNodes.length > vm.limit) && !vm.nodes[item.nodeDetail.nodeID]) || item.isAdded"
-                                               ng-change="vm.onSelectNode(item.nodeDetail.nodeID)" />
-                                        <label class="pointer" for="checkbox_{{$index}}"></label>
+                                            ng-model="vm.nodes[item.nodeDetail.nodeID]" 
+                                            ng-disabled="((vm.cards.length + vm.selectedNodes.length > vm.limit) && !vm.nodes[item.nodeDetail.nodeID]) || item.isAdded"
+                                            ng-change="vm.onSelectNode(item.nodeDetail.nodeID)" />
+                                        <label class="pointer" for="checkbox_{{$index}}" ng-hide="item.isHideForCount"></label>
+                                        <div class="chk-lvl-disable" ng-show="item.isHideForCount"></div>
                                     </div>  
                                     <div class="rsltDtlsCol"> 
                                         <div class="srchDtCnt-a">{{item.nodeDetail.nodeLabel}} {{item.nodeDetail.nodeType}} {{item.nodeDetail.nodeID}}</div>

@@ -89,14 +89,53 @@ angular.module('fixtApp')
             objectStorage.quickViewId = constantLoader.defaultValues.BLANK_STRING;
         }
         vm.filterTags = objectStorage.tagList;
+        setSearchSummaryEnableForCardCount();
     }
     
     function saveSandbox(){
         sandboxBusiness.saveSandBox(vm.sandBoxes, vm.activeBoxId, vm.title, vm.cards);
     }
     
+    function setSearchSummaryEnableForCardCount(){
+        
+        var isAllCardInSandbox = 
+            ((vm.cards.length + vm.selectedNodes.length) >= 
+                constantLoader.defaultValues.MAX_CARD_IN_SANDBOX);
+        
+        if(commonUtility.isDefinedObject(vm.searchSummary)){
+            for(var index=0; index<vm.searchSummary.length; index++){
+                var isAdded = false;
+                for(var idx=0; idx<vm.cards.length; idx++){
+                    if(vm.cards[idx].id === vm.searchSummary[index].nodeDetail.nodeID){
+                        isAdded = true;
+                        break;
+                    }
+                }
+                vm.searchSummary[index].isAdded = isAdded;
+                if(commonUtility.is3DValidKey(vm.searchSummary[index].isAdded) 
+                    && vm.searchSummary[index].isAdded){
+                    vm.searchSummary[index].isHideForCount = false;
+                }else{
+                    if(vm.selectedNodes.length > 0){
+                        for(var count=0; count<vm.selectedNodes.length; count++){
+                            if(vm.searchSummary[index].nodeDetail.nodeID === vm.selectedNodes[count]){
+                                vm.searchSummary[index].isHideForCount = false;
+                                break;
+                            }else{
+                                vm.searchSummary[index].isHideForCount = isAllCardInSandbox;
+                            }
+                        }
+                    }else{
+                        vm.searchSummary[index].isHideForCount = isAllCardInSandbox;
+                    }
+                }
+            }
+        }
+    }
+    
     vm.onCloseClick = function(card){
         vm.cards.splice(vm.cards.indexOf(card), 1);
+        setSearchSummaryEnableForCardCount();
         vm.onSaveSanboxClick();
     };
     
@@ -143,6 +182,7 @@ angular.module('fixtApp')
         localStorage.setObject("sandBoxes", vm.sandBoxes);
         objectStorage.cardList = [];
         loadSuccessCall();
+        setSearchSummaryEnableForCardCount();
     };
     
     vm.onSanboxMenuClick = function(){
@@ -181,10 +221,10 @@ angular.module('fixtApp')
         var nodeIndex = vm.selectedNodes.indexOf(qId);
         if (vm.nodes[qId]) {
             vm.selectedNodes.push(qId);
-
         } else {
             vm.selectedNodes.splice(nodeIndex, 1);
         }
+        setSearchSummaryEnableForCardCount();
     };
     
     vm.onPageChangeClick = function(currentRecCount, pageItemCount){
@@ -206,7 +246,7 @@ angular.module('fixtApp')
                         {nodeDetail: {nodeID: vm.selectedNodes[i]}})[0];
             result.isAdded = true;
         }
-                loadSuccessCall();
+        loadSuccessCall();
     }
     
     vm.onCloseSearchSummary = function(){
@@ -214,6 +254,7 @@ angular.module('fixtApp')
         objectStorage.tagList = [];
         vm.filterTags = objectStorage.tagList;
         objectStorage.searchSummary = [];
+        serviceLoader.rootScope.$broadcast(constantLoader.eventList.RESET_SEARCH_BOX);
     };
     
     vm.onDeleteTagClick = function(tag){

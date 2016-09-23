@@ -16,6 +16,7 @@ var traverse = require('traverse');
 logger.info('FIXT logging enabled');
 
 var defaultSettings = '{"maxNodesPerSearch": 400, "maxCardsPerSandbox": 10, "maxSandboxes": 12}';
+var csibgwServer = 'http://localhost:9000/restservices/csi-billinggateway/v1';
 
 // TODO: The top five and layout calls need to complete before server takes any calls!
 var topfive = [];
@@ -262,7 +263,7 @@ router.get('/lockStatus', function (req, res) {
     logger.info('requesting lock status');
     // customerId, hierarchyPointId
     request({
-        url: 'http://localhost:9000/restservices/csi-billinggateway/v1/status/account',
+        url: csibgwServer + '/status/account',
         qs: {
             customerId: req.query.customerId,
             hierarchyPointId: req.query.hierarchyPointId
@@ -294,7 +295,7 @@ router.get('/lockStatus', function (req, res) {
 router.get('/initialSearch/:searchCategory/:searchType/:searchString', function (req, res) {
     logger.info('initial search called');
     request({
-        url: 'http://localhost:9000/services/BGWFIXT/v1/search/initialSearch/' + req.params.searchCategory + '/' + req.params.searchType + '/' + req.params.searchString,
+        url: csibgwServer + '/customerSummary/' + req.params.searchCategory + '/' + req.params.searchType + '/' + req.params.searchString,
         qs: {
             start: req.query.start,
             end: req.query.end,
@@ -354,7 +355,7 @@ router.get('/initialSearch/:searchCategory/:searchType/:searchString', function 
 router.get('/node/:nodeID/children', function (req, res) {
     logger.info('requesting child info');
     request({
-        url: 'http://localhost:9000/restservices/csi-billinggateway/v1/customerHierarchy/childNode',
+        url: csibgwServer + '/customerHierarchy/childNode',
         qs: {
             hierarchyPointId: req.params.nodeID
         },
@@ -684,7 +685,7 @@ function prepareNodeForCard(body, fromCache, res) {
 function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, res) {
     logger.info('finding node in CSIBGW');
     request({
-        url: 'http://localhost:9000/restservices/csi-billinggateway/v1/customerHierarchy/' + nodeTypeIndicator,
+        url: csibgwServer + '/customerHierarchy/' + nodeTypeIndicator,
         qs: {
             accountNumber: accountNumber,
             hierarchyPointId: hierarchyPointId

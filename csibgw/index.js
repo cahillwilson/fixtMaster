@@ -4,10 +4,7 @@ var port = 9000;
 var auth = require('basic-auth');
 
 function isAuthenticated(req, res, next) {
-    console.log('Authentication triggered');
-    console.log(req.headers);
     var credentials = auth(req);
-    console.log('Credentials: ' + credentials.name + ' [' + credentials.pass + ']');
     next();
 }
 
@@ -15,9 +12,9 @@ app.get('/', function(req, res) {
     res.send('Basic GET is functional');
 });
 
-var initialSearch = '{"nodeDetails":[{"nodeType":"AS","nodeID":"8310001226402","nodeLabel":"CUSTOMBILLING","hierarchyPointID":"164241159","startDate":"2008092411:30:08","endDate":"","addressDetails":[{"addressType":null,"addressLine1":null,"addressLine2":null,"addressLine3":null,"addressLine4":null,"addressName":null,"city":null,"floor":null,"state":null,"province":null,"zipCode":null,"zipCodeSuffix":null,"foreignPostalCode":null,"countryCode":null,"geoCode":null}]}],"transactionDetails":{"transactionID":"1234","statusCode":"0","statusMessage":"Success","sourceSystem":null,"startRow":"1","endRow":"400","totalRow":null,"segment":null,"rowCount":"1","timeZone":"EST"}}';
+var initialSearch = '{"nodeDetails":[{"nodeType":"I","nodeID":"1717858114129","nodeLabel":"UAMCITRIXDROIDLEAD","hierarchyPointID":"124988287","startDate":"2008092411:30:08","endDate":"","addressDetails":[{"addressType":"RE","addressLine1":"650 NORTHLAND BLVD STE 600","addressLine2":"CINCINNATI,OH,452403249","addressLine3":null,"addressLine4":null,"addressName":"AT&T","city":"CINCINNATI","floor":null,"state":"OH","province":null,"zipCode":"45240","zipCodeSuffix":"3249","foreignPostalCode":null,"countryCode":null,"geoCode":"0133061201000"}]}],"transactionDetails":{"transactionID":"1234","statusCode":"0","statusMessage":"Success","sourceSystem":null,"startRow":"1","endRow":"400","totalRow":null,"segment":null,"rowCount":"1","timeZone":"EST"}}';
 
-var invoiceNodeDetail = '{"transactionDetails":{"transactionID":"1234","statusCode":"MX_0000","statusMessage":"TransactionSuccess","sourceSystem":null,"startRow":"1","endRow":"400","totalRow":null,"segment":null,"rowCount":null,"timeZone":null},"parentNodeDetails":{"customerExcerpt":{"customerId":"33993395","customerName":"TESTORTABNBETA2"},"hierarchyExcerpt":{"parentageLevel":"2","custBillingHierarchyId":"36298697","account1Number":"","description":"","hierarchyPointId":"124988285"},"bundleExcerpt":{"parentageLevel":"1","account1Number":"50000349163","description":"","hierarchyPointId":"124988286","custBillingHierarchyId":"36298697"},"invoiceExcerpt":null,"cdgexcerpt":null},"invoiceNodeDetails":{"nodeType":"I","nodeID":"1717858114129","nodeLabel":"UAMCITRIXDROIDLEAD","hierarchyPointID":"124988287","startDate":"19-APR-01","endDate":"","address":{"addressType":"RE","addressLine1":"650NORTHLANDBLVDSTE600","addressLine2":"CINCINNATI,OH,452403249","addressLine3":"","addressLine4":"","addressName":"AT&T","city":"CINCINNATI","floor":"","state":"OH","province":"","zipCode":"45240","zipCodeSuffix":"3249","foreignPostalCode":"","countryCode":"","geoCode":"0133061201000"}}}';
+var invoiceNodeDetail = '{"transactionDetails":{"transactionID":"1234","statusCode":"MX_0000","statusMessage":"TransactionSuccess","sourceSystem":null,"startRow":"1","endRow":"400","totalRow":null,"segment":null,"rowCount":null,"timeZone":null},"parentNodeDetails":{"customerExcerpt":{"customerId":"33993395","customerName":"TESTORTABNBETA2"},"hierarchyExcerpt":{"parentageLevel":"2","custBillingHierarchyId":"36298697","account1Number":"","description":"","hierarchyPointId":"124988285"},"bundleExcerpt":{"parentageLevel":"1","account1Number":"50000349163","description":"","hierarchyPointId":"124988286","custBillingHierarchyId":"36298697"},"invoiceExcerpt":null,"cdgexcerpt":null},"invoiceNodeDetails":{"nodeType":"I","nodeID":"1717858114129","nodeLabel":"UAMCITRIXDROIDLEAD","hierarchyPointID":"124988287","startDate":"19-APR-01","endDate":"","address":{"addressType":"RE","addressLine1":"650 NORTHLAND BLVD STE 600","addressLine2":"CINCINNATI,OH,452403249","addressLine3":"","addressLine4":"","addressName":"AT&T","city":"CINCINNATI","floor":"","state":"OH","province":"","zipCode":"45240","zipCodeSuffix":"3249","foreignPostalCode":"","countryCode":"","geoCode":"0133061201000"}}}';
 
 var lockStatus = '{ "lockDetails":{"lockUserId":"sm9121", "lockLevel":"Customer","lockTimeStamp":"20160808 05:45:00"},"transactionDetails":{"transactionID":"1223213","statusCode":"0","statusMessage":"Success", "sourceSystem":null,"startRow":"1","endRow":"400","totalRow":"1","timeZone":"EST"}}';
 
@@ -44,7 +41,7 @@ var children = '{    "transactionDetails": {        "transactionID": "123333",  
 // Valid segments: RETAIL, WHOLESALE, GOVT (just those 3)
 
 // API 50
-app.get('/services/BGWFIXT/v1/search/initialSearch/:searchCategory/:searchType/:searchString', isAuthenticated, function (req, res) {
+app.get('/restservices/csi-billinggateway/v1/customerSummary/:searchCategory/:searchType/:searchString', isAuthenticated, function (req, res) {
     console.log('Initial search called');
     console.log('category: ' + req.params.searchCategory);    
     console.log('type: ' + req.params.searchType);    
@@ -54,7 +51,6 @@ app.get('/services/BGWFIXT/v1/search/initialSearch/:searchCategory/:searchType/:
     console.log('segment: ' + req.query.segment);
     console.log('user ID: ' + req.headers['userid']);
     console.log('transaction: ' + req.headers['transactionid']);
-//    res.send('Initial search executed on server side [transaction ' + req.headers['transactionid'] + ']');
     res.setHeader('Content-Type', 'application/json');
     res.send(initialSearch);
 });

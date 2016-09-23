@@ -27,6 +27,7 @@
                 "show-record-count": {},
                 "single-tag-delete": {},
                 "total-rec-count": {},
+                "filter-tags": {},
                 "close-summary": {}
             }
         },
