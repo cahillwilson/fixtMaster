@@ -41,8 +41,9 @@ angular.module('fixtApp')
                                 '</div>' +
                             '</div>' +
                             '<div class="sBxbox1-2 sBxbox1-3">' +
-                                '<div class="addSearch pointer" ng-class="{\'active\':enableAdd}">' +
-                                    '<span class="addSearchItem" ng-click="onAddClick()">Add to Sandbox</span>' +
+                                '<div class="addSearch pointer" ng-class="{\'active\':enableAdd}" ' +
+                                    'ng-click="onAddClick()">' +
+                                    '<span class="addSearchItem">Add to Sandbox</span>' +
                                 '</div>' +
                             '</div>' +
                             '<div class="srchDisply">Displaying {{showRecordCount}} of ' +
