@@ -803,6 +803,7 @@ function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, re
                             delete bodyobj.invoiceNodeDetails[removeTag];
                         }
                         bodyobj.editableFields = role.editableFields;
+                        logger.info('node type indicator = ' + nodeTypeIndicator);
                         var foundfive = topfive.filter(function (item) {
                             return item.nodeType == nodeTypeIndicator;
                         });
