@@ -807,7 +807,8 @@ function findNode(accountNumber, hierarchyPointId, userId, nodeTypeIndicator, re
                         var foundfive = topfive.filter(function (item) {
                             return item.nodeType == nodeTypeIndicator;
                         });
-                        bodyobj.topfive = foundfive;
+                        logger.info('topfive: ' + foundfive);
+                        bodyobj.topfive = foundfive[0];
                         var foundlayout = layout.filter(function (item) {
                             return item.nodeType == nodeTypeIndicator;
                         });
