@@ -8,6 +8,7 @@ angular.module('fixtApp')
       FILTER_TAGS: "filterTags",
       SEARCH_TYPE: "searchType",
       IS_SHOW_SEARCH_TYPE: "isShowSearchType",
-      SEARCH_SUMMARY_PROMISE: "searchSummaryPromise"
+      SEARCH_SUMMARY_PROMISE: "searchSummaryPromise",
+      SEARCH_OPTION: "searchOption"
   });
 

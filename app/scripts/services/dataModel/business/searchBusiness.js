@@ -10,23 +10,26 @@ angular.module('fixtApp')
     
     function setSearchSummaryFromResponse(successCallback, activeSanboxId) {
         objectStorage.hasMultipleRecords = false;
-        if (handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TYPE) === "id") {
-            cardBusiness.getCardDetailsListAsync(successCallback, activeSanboxId);
-        } else {
-            angular.forEach(nodeDetails, function (value) {
-                var detail = {};
-                detail.showQuickView = false;
-                detail.nodeDetail = value;
-                objectStorage.searchSummary.push(detail);
-            });
-            objectStorage.hasMultipleRecords = true;
+        if(commonUtility.isDefinedObject(nodeDetails) && nodeDetails.length === 1) {
+            cardBusiness.getCardDetailsListAsync(successCallback, activeSanboxId, nodeDetails[0].nodeID, nodeDetails[0].nodeType);
         }
+//        if (handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TYPE) === "id") {
+//            cardBusiness.getCardDetailsListAsync(successCallback, activeSanboxId);
+//        } else {
+//            angular.forEach(nodeDetails, function (value) {
+//                var detail = {};
+//                detail.showQuickView = false;
+//                detail.nodeDetail = value;
+//                objectStorage.searchSummary.push(detail);
+//            });
+//            objectStorage.hasMultipleRecords = true;
+//        }
         commonUtility.callback(successCallback);
     }
     
-    searchBusiness.getSearchSummaryAsync = function(successCallback, activeSanboxId) {
+    searchBusiness.getSearchSummaryAsync = function(relativeUrl, searchString, successCallback, activeSanboxId) {
         objectStorage.searchSummary = [];
-        return cardData.getInitialSearchResultAsync().then(function (response) {
+        return cardData.getInitialSearchResultAsync(relativeUrl, searchString).then(function (response) {
             return serviceLoader.timeout(function() {
                 nodeDetails = response.data.nodeDetails;
                 setSearchSummaryFromResponse(successCallback, activeSanboxId);

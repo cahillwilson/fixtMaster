@@ -57,21 +57,28 @@ angular.module('fixtApp')
                 value: "BA Account #",
                 maxLength: "13",
                 pattern: "NUMERIC",
-                searchType: "id"
+                searchType: "id",
+                searchCategory: "UpAccountNumber",
+                srchType: "bundleAccount"
             },
             {
                 id: "i_acc",
                 value: "I Account #",
                 maxLength: "13",
                 pattern: "NUMERIC",
-                searchType: "id"
+                searchType: "id",
+                searchCategory:"UpAccountNumber",
+                srchType: "invoice"
+                
             },
             {
                 id: "sa_acc",
                 value: "SA Account #",
                 maxLength: "13",
                 pattern: "NUMERIC",
-                searchType: "id"
+                searchType: "id",
+                searchCategory:"UpAccountNumber",
+                srchType: "subAccount"
             },
             {
                 id: "contract_no",

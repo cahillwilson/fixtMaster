@@ -73,7 +73,7 @@ angular.module('fixtApp')
                     return false;
                 }
                 
-                if(!constantLoader.validationPatterns[searchTypeItem.pattern].test(scope.ngModel) || scope.ngModel.length > searchTypeItem.maxLength){
+                if(!constantLoader.validationPatterns[searchTypeItem.pattern].test(scope.ngModel) || scope.ngModel.length != searchTypeItem.maxLength){
                     setErrorPlace(true, constantLoader.messages.SEARCH_ERROR_MSG + scope.label);
                     return false;
                 }

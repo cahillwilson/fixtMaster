@@ -26,18 +26,23 @@ angular.module('fixtApp')
     vm.pageItemCount = 0;
     vm.limit = 5;
     vm.filterTags = [];
+    vm.searchOption = {};
+    vm.searchText = "";
     
     serviceLoader.interval(saveSandbox, 
         (constantLoader.defaultValues.SANDBOX_SAVE_INTERVAL_IN_SEC * 1000));
     
     function initialized() {
+        vm.searchOption = handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_OPTION, false);
+        vm.searchText = handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TEXT, true);
         var searchType = handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TYPE);        
         loadSandboxes();
-        if (searchType === "name") {
-            loadSearchSummary();
-        } else {
-            loadCardDetails();
-        }
+        loadSearchSummary();
+//        if (searchType === "name") {
+//            loadSearchSummary();
+//        } else {
+//            loadCardDetails();
+//        }
     }
     
     function loadSandboxes(){
@@ -73,7 +78,9 @@ angular.module('fixtApp')
     }
     
     function loadSearchSummary() {
-        searchBusiness.getSearchSummaryAsync(loadSuccessCall);
+        var apiPath = constantLoader.relativeUrls.INITIAL_SEARCH + "/" + 
+                    vm.searchOption.searchCategory + "/" + vm.searchOption.srchType;
+        searchBusiness.getSearchSummaryAsync(apiPath, vm.searchText, loadSuccessCall, vm.activeBoxId);
     }
     
     function sandBoxLoadSuccessCall(){

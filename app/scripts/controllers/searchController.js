@@ -11,6 +11,7 @@ angular.module('fixtApp')
     vm.searchTypeList = constantLoader.defaultObjects.SEARCH_LIST_TYPE;
     vm.searchCategory = constantLoader.defaultValues.SEARCH_CAT_INIT_VALUE;
     vm.searchType = constantLoader.defaultValues.SEARCH_TYPE_INIT_VALUE;
+    vm.searchOption = constantLoader.defaultValues.BLANK_STRING;
     
     handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
     
@@ -45,29 +46,34 @@ angular.module('fixtApp')
     
     vm.onSearchItemChanged = function(item){
         vm.searchCategory = item.value;
+        vm.searchOption = item;
     };
     
     vm.onSearchClick = function(){
         var searchType = handlerLoader.sessionHandler.get(constantLoader.sessionItems.SEARCH_TYPE);
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchText);
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_OPTION, vm.searchOption, false);
         if(commonUtility.is3DValidKey(handlerLoader.sessionHandler.get(
             constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false))){
             if(handlerLoader.sessionHandler.get(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false)){
                 handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TEXT, vm.searchTypeText);
             }
         }
+        var apiPath = constantLoader.relativeUrls.INITIAL_SEARCH + "/" + 
+                    vm.searchOption.searchCategory + "/" + vm.searchOption.srchType;   
         switch(searchType) {
             case "name":
                 if(setFilterTags()){
                     if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
-                        searchBusiness.getSearchSummaryAsync();
+                        searchBusiness.getSearchSummaryAsync(apiPath, vm.searchText);
                     }
                 }
                 handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, true, false);
                 break;
             case "id":
                 if (commonUtility.getCurrentLocation().indexOf(constantLoader.routeList.SANDBOX_LIST) > -1) {
-                    cardBusiness.getCardDetailsListAsync();
+                    //cardBusiness.getCardDetailsListAsync();
+                    searchBusiness.getSearchSummaryAsync(apiPath, vm.searchText);
                 } 
                 handlerLoader.sessionHandler.set(constantLoader.sessionItems.IS_SHOW_SEARCH_TYPE, false, false);
                 break;

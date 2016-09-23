@@ -54,7 +54,7 @@ angular.module('fixtApp')
     };
     
     sandboxBusiness.deleteSandbox = function(cards, activeBoxId, sandBoxes){
-        if(commonUtility.isDefinedObject(cards)){
+        if(commonUtility.isDefinedObject(cards) && cards.length > 0){
             for(var index=(cards.length-1); index>=0; index--){
                 if(cards[index].boxId === activeBoxId){
                     cards.splice(cards.indexOf(cards[index]), 1);

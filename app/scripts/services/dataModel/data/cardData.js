@@ -5,16 +5,17 @@ angular.module('fixtApp')
     
     var cardData = {};
     
-    cardData.getCardDetailsListAsync = function() {
-        return dataAccess.getFromJsonAsync(constantLoader.relativeUrls.CARD_DETAILS);
+    cardData.getCardDetailsListAsync = function(relativeUrl) {
+        return dataAccess.getAsync(relativeUrl);//dataAccess.getFromJsonAsync(constantLoader.relativeUrls.CARD_DETAILS);
     };
     
     cardData.getCardChildListAsync = function(id) {
         return dataAccess.getFromJsonAsync(constantLoader.relativeUrls.CARD_CHILD);
     };
     
-    cardData.getInitialSearchResultAsync = function() {
-        var httpPromise = dataAccess.getFromJsonAsync(constantLoader.relativeUrls.SEARCH_SUMMARY);;
+    cardData.getInitialSearchResultAsync = function(relativeUrl, searchString) {
+        var path = relativeUrl + "/" + searchString + "?start = 1&end=25";
+        var httpPromise = dataAccess.getAsync(path);//dataAccess.getFromJsonAsync(constantLoader.relativeUrls.SEARCH_SUMMARY);;
         handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_SUMMARY_PROMISE, httpPromise, false);
         return httpPromise;
     };

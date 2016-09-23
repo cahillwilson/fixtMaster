@@ -20,5 +20,7 @@ angular.module('fixtApp')
         SANDBOX_REPLACABLE_NAME: "{sandbox}",
         CARD_COUNT_REPLACABLE_TEXT: "{cardCount}",
         LOADING_TEMPLATE: "views/loadingBar-template.html",
-        SEARCH_LIST_PER_PAGE_RECORD: 10
+        SEARCH_LIST_PER_PAGE_RECORD: 10,
+        PAGINATION_START: 1,
+        PAGINATION_END: 25
     });
