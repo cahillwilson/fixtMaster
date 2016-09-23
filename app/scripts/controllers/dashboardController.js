@@ -24,6 +24,8 @@ angular.module('fixtApp')
     
     vm.onAddSandboxClick = function(){
         objectStorage.isSandboxAdded = true;
+        handlerLoader.sessionHandler.set(constantLoader.sessionItems.SEARCH_TYPE, 
+            constantLoader.defaultValues.BLANK_STRING);
         commonUtility.redirectTo(constantLoader.routeList.SANDBOX_LIST);
     };
     

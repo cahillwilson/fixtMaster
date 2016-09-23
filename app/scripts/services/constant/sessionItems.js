@@ -6,6 +6,7 @@ angular.module('fixtApp')
       USER_NAME: "userName",
       SEARCH_TEXT: "searchText",
       FILTER_TAGS: "filterTags",
+      SEARCH_TYPE: "searchType",
       IS_SHOW_SEARCH_TYPE: "isShowSearchType",
       SEARCH_SUMMARY_PROMISE: "searchSummaryPromise"
   });

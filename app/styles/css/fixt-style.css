@@ -1665,3 +1665,35 @@ border-radius: 8px;float:left; text-align:center; padding-top:21px;font-family:"
 .quick-view-div{
     padding-left: 33px;
 }
+
+.dashbx{height: 707px;width: 603px;background-color: rgba(255, 255, 255, 1);border-radius: 2px;box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 1), 0px 0px 2px 0px rgba(0, 0, 0, 1);}
+.dashbxHdr{ width:603px; height:66px; border-bottom:1px solid rgba(201, 201, 201, 1); padding: 24px 0 0 15px;font-family:"Omnes_ATTW02";font-size:20px;}
+.dashCell{ width:603px; height:63px;font-family:"Omnes_ATTW02Medium";}
+.dashbx-content{
+    max-height: 580px;
+    width: 603px;
+    overflow-x: auto;
+}
+.dashCell.active{background-color: rgba(5, 116, 172, 1);}
+.colrMax{color: rgba(255, 255, 255, 1);}
+.dashCell.grey{background-color: rgba(216, 216, 216, 1);}
+.dashCellLft{ width:437px;font-size: 16px;color: rgba(51, 51, 51, 1);padding: 24px 0 0 23px;  float:left;}
+.dashCellMid{ width:100px;font-size: 14px; float:left;color: rgba(102, 102, 102, 1); text-align:right;}
+.dashCellMidTop{ width:100px; height:31px; padding-top:18px;}
+.dashCellMidbtm{ width:100px; height:32px;font-family:"Omnes_ATTW02";}
+.dashCellRit{ width:66px; float:left;align-items: center;display: flex;justify-content: center; padding-top:23px;}
+.dashCellBrdr{width:579px; height:1px; background-color:rgba(201, 201, 201, 1); margin-left:24px;}
+.cellAddBtn{width: 60px; height:64px; padding:20px 0 0 24px; float:left;}
+.cellAddTxt{width: 400px; height:64px; padding-top:21px; float:left;}
+
+.dashCellGrey{ width:603px; height:63px;font-family:"Omnes_ATTW02"; font-size:16px; background-color: rgba(242, 242, 242, 1);}
+.icnCellLft{ width:50px;float:left; padding:22px 0 0 26px;}
+.transCellTtl{ width:396px;float:left; padding:25px 0 0 12px;color: rgba(5, 116, 172, 1);}
+.transCellSearch{width:142px;float:left; padding:15px 15px 0 0px;color: rgba(5, 116, 172, 1); }
+.dashSrchStyl{ width:142px; height:36px;border: 1px solid rgba(204, 204, 204, 1); border-radius: 6px; background-color:#f6f5f4;
+padding:5px 0 0 5px;}
+.transSort{font-family:"Omnes_ATTW02Medium"; font-size: 14px;color: rgba(51, 51, 51, 1); padding: 0 47px 0 10px;}
+.sbmtTrnTtl{ width:140px;float:left; padding:0 0 0 16px;}
+.sbmtTrnDtls{width:290px;float:left;font-family: "Omnes_ATTW02";font-size: 14px;color: rgba(51, 51, 51, 1); padding: 12px 0 0 12px;}
+.sbmtTrnTtlTop{ width:126px; height:31px; padding-top:10px;font-family:"Omnes_ATTW02Medium"; font-size: 16px;color: rgba(51, 51, 51, 1); }
+.sbmtTrnTtlBtm{ width:126px; height:32px;padding-top:5px;font-family: "Omnes_ATTW02";font-size: 14px;color: rgba(51, 51, 51, 1);}
